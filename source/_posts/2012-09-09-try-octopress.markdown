@@ -29,4 +29,4 @@ category: blog
 
 仿照着，写了个友情链接侧栏的插件:
 
-{% gist c1c0d01722aacc0e8762 %}
+{% gist 3689183 %}
