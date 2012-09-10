@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Goorockey's Life</title>
+  <title>在dotcloud上搭建wordpress - Goorockey's Life</title>
   <meta name="author" content="Goorockey">
 
   
-  <meta name="description" content="想尝试Octopress很久了。 Octopress自称为A blogging framework for hackers 玩Octopress主要会涉及到以下技术: git ruby markdown 这些技术对我来说还是很陌生，也好借此机会熟悉熟悉～ 总的来说，[Octopress］ &hellip;">
+  <meta name="description" content="之前在sourceforge搭建了wordpress，但SF有两点不好： SF在防火墙禁止了对外连接，使得WP好多功能、插件都无法使用（如Akismet） 访问SF速度很慢很慢 之后在寻找更好的方案时，偶遇dotcloud上搭建wordpress的文章，还看到了借dotcloud的ssh来翻x哦 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://goorockey.github.com">
+  <link rel="canonical" href="http://goorockey.github.com/blogs/77117">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -89,15 +89,13 @@
 </nav>
   <div class="container">
     <div class="row-fluid">
-      <div class="span9">
-  
-  
-  
-    <article>
       
+<article class="hentry span9" role="article">
+
+  
   <header class="page-header">
     
-      <h1 class="entry-title"><a href="/blog/2012/09/09/try-octopress/">从Wordpress转到Octopress</a></h1>
+      <h1 class="entry-title">在dotcloud上搭建wordpress</h1>
     
     
       <p class="meta">
@@ -113,186 +111,52 @@
   
 
 
-<time datetime="2012-09-09T20:53:00+08:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+<time datetime="2012-02-07T00:00:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time>
         
-         | <a href="/blog/2012/09/09/try-octopress/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>想尝试<a href="http://octopress.org">Octopress</a>很久了。</p>
-
-<p><a href="http://octopress.org">Octopress</a>自称为A blogging framework for <strong>hackers</strong></p>
-
-<p>玩<a href="http://octopress.org">Octopress</a>主要会涉及到以下技术:</p>
-
-<ul>
-  <li>git </li>
-  <li>ruby</li>
-  <li>markdown</li>
+<div class="entry-content"><p>之前在sourceforge搭建了wordpress，但SF有两点不好：<br />
+<ul><br />
+	<li>SF在防火墙禁止了对外连接，使得WP好多功能、插件都无法使用（如Akismet）</li><br />
+	<li>访问SF速度很慢很慢</li></p>
 </ul>
-
-<p>这些技术对我来说还是很陌生，也好借此机会熟悉熟悉～</p>
-
-<p>总的来说，[Octopress］想对于Wordpress的优势有:</p>
-
-<ul>
-  <li>静态页面，速度快</li>
-  <li>分布式存储，保证数据的安全。而且即使不能上网，也能本地写博客和预览</li>
-  <li>支持用markdown（当然wordpress也有markdown的插件, 但Octopress在命令行写博客更cool)</li>
+<p>之后在寻找更好的方案时，偶遇dotcloud上搭建wordpress的文章，还看到了借dotcloud的ssh来翻x哦。</p>
+<p><!--more--></p>
+<p>1、dotcloud介绍</p>
+<p>dotcloud是PaaS(Platform as a Service)的云计算平台，类似的还有GAE、Heroku、国内的SAE。</p>
+<p>dotcloud支持几乎所有主流服务，php、java、python、ruby、mysql、postsql、node.js、Hadoop等等。详细参见：<a title="http://docs.dotcloud.com/firststeps/platform-overview/" href="http://docs.dotcloud.com/firststeps/platform-overview/">http://docs.dotcloud.com/firststeps/platform-overview/</a></p>
+<p>dotcloud对搭建的应用没有空间和流量限制，但现在有两个限制：<br />
+<ul><br />
+	<li>每个用户只能有两个应用（每个用户对应一个邮箱，有多个邮箱就可以多申请几个了嘛，呵呵）</li><br />
+	<li>网上流传数据库容量限制在10M（官网上没找到这个说法）</li></p>
 </ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blogs/77254">用VMWare组网，实验DNS隧道</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-15T00:00:00+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2012</time>
-        
-         | <a href="/blogs/77254#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>继续用VMWare来组网，这次要测试我想试很久的DNS隧道，之前碍于没有找到有独立ip的方法（当然是要免费的~~），现在用VMWare就可以了。</p>
-<p>DNS隧道是什么就不解释了。google一下DNS隧道能搜到风河、云风两个大牛相关的blog。这次我用iodine来实现DNS隧道。</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blogs/77254">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blogs/77247">VMWare组网实验(NAT)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-13T00:00:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2012</time>
-        
-         | <a href="/blogs/77247#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本着“干中学”的精神，看完资料，还是用VMWare来练习一下使用NAT，好加深认识。</p>
-<p>实验涉及：NAT，iptables，</p>
+<p>dotcloud的访问速度还是很快的。</p>
+<p><br clear="all" />
+2、dotcloud使用</p>
+<p>搭建wordpress的话，网上资源很多，我主要是参考：</p>
+<p><a title="http://blog.yangtse.me/2011/10/wordpress-dotcloud/" href="http://blog.yangtse.me/2011/10/wordpress-dotcloud/">http://blog.yangtse.me/2011/10/wordpress-dotcloud/</a></p>
+<p><a title="http://olddocs.dotcloud.com/tutorials/wordpress/" href="http://olddocs.dotcloud.com/tutorials/wordpress/">http://olddocs.dotcloud.com/tutorials/wordpress/</a></p>
+<p>反正算蛮简单的。</p>
 <p>&nbsp;</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blogs/77247">Read on &rarr;</a>
-    </footer>
-  
+<p><span style="color: #ff0000; font-size: large;">建议：</span></p>
+<p>不要用postinstall脚本连接的方法。由于dotcloud的push，是把原有的全部删除，重新建立一份，这个脚本是把wp-content移出current目录，防止push后把wp-content覆盖了。</p>
+<p>但由于wordpress的bug（其他应用不确定），一些插件会出现路径的错误。例子可见：<a title="http://blog.yangtse.me/2011/10/wordpress-dotcloud-habari-error/" href="http://blog.yangtse.me/2011/10/wordpress-dotcloud-habari-error/">http://blog.yangtse.me/2011/10/wordpress-dotcloud-habari-error/</a>。</p>
+<p>dotcloud的push我除了第一次上传代码用过，之后都是直接用ssh控制的。所以我就干脆不用postinstall脚本了。</p></div>
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blogs/77213">NAT学习总结</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Goorockey</span></span>
 
-<time datetime="2012-03-11T00:00:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2012</time>
-        
-         | <a href="/blogs/77213#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近要恶补一下计算机网络的基础知识，今天先总结一下NAT。</p>
-<p>&nbsp;<br />
-<h6><strong>1、NAT的背景</strong></h6><br />
-随着Internet的普及，网络中的ip资源是越来越紧张。而NAT就是为了解决这个问题的方案。</p>
-<p>NAT是Network Address Translation,网络地址转换，会在网关中实现局域网内部ip和外网ip之间转换。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blogs/77213">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blogs/77180">再次用linux做宿主系统</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -304,38 +168,50 @@
   
 
 
-<time datetime="2012-02-29T00:00:00+08:00" pubdate data-updated="true">Feb 29<span>th</span>, 2012</time>
-        
-         | <a href="/blogs/77180#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
+<time datetime="2012-02-07T00:00:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/blog/'>blog</a>
+  
+</span>
 
 
-  <div class="entry-content"><h3><strong>1、背景</strong></h3>
-<p>之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。</p>
-<p>最近也在微博上收集意见，发现用linux做宿主系统的人还是蛮多的。其实仔细想想，归根结底还是自己linux的操作还不熟练。</p>
-<p>还好最近一段时间自己多了在linux的工作，这几天又下定决心一次装了linux做宿主来玩了。然后就想写个blog记录一下。</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blogs/77180">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <ul class="pager">
+    </p>
     
-    <li class="previous"><a href="/blog/page/2/">&larr; Older</a></li>
-    
-    <li><a href="/blog/archives">Blog Archives</a></li>
-    
-  </ul>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://goorockey.github.com/blogs/77117" data-via="" data-counturl="http://goorockey.github.com/blogs/77117" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blogs/77106" title="Previous Post:
+        Code Swarm">&laquo; Code Swarm</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/blogs/77141"
+        title="Next Post: SSH端口转发">SSH端口转发
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
 <aside class="sidebar-nav span3">
   
     <section>
@@ -406,7 +282,7 @@
 <section class="well">
   <ul id="gh_repos" class="nav">
     <li class="nav-header">GitHub Repos</li>
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/goorockey">@goorockey</a> on GitHub
@@ -432,6 +308,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo" class="page-footer"><hr>
@@ -447,7 +324,10 @@
       var disqus_shortname = 'goorockeyslife';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://goorockey.github.com/blogs/77117';
+        var disqus_url = 'http://goorockey.github.com/blogs/77117';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
