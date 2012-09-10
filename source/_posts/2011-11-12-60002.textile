@@ -1,0 +1,180 @@
+---
+layout: post
+title: 'CentOS下安装Apache+php+mysql Tomcat'
+date: 2011-11-12
+wordpress_id: 60002
+permalink: /blogs/60002
+comments: true
+category: linux
+---
+<strong><span style="color: #ff0000; font-size: medium;">一、安装及配置Apache+php+mysql</span></strong>
+
+<strong><span style="color: #9bbb59;">1、 安装Apache+php+mysql</span></strong>
+
+(1) 安装Apache+php+Mysql，php连接mysql的组件
+<blockquote>yum -y install httpd php mysql mysql-server php-mysql</blockquote>
+(2) 安装mysql扩展
+<blockquote>yum -y install mysql-connector-odbc mysql-devel libdbi-dbd-mysql</blockquote>
+(3) 安装php的扩展
+<blockquote>yum -y install php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</blockquote>
+(4) 安装apache扩展
+<blockquote>yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql</blockquote>
+
+<!--more-->
+
+或者一次性粘贴安装:
+<blockquote>yum -y install httpd php mysql mysql-server php-mysql httpd-manual mod_ssl mod_perl mod_auth_mysql php-mcrypt php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc mysql-connector-odbc mysql-devel libdbi-dbd-mysql</blockquote>
+<span style="color: #80ff00;"><strong> </strong></span>
+
+<strong><span style="color: #9bbb59;">2、配置Apache+php+mysql</span></strong>
+<table width="502" border="0" cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+<td valign="top" width="223">设置apache为自启动</td>
+<td valign="top" width="277">chkconfig httpd on</td>
+</tr>
+<tr>
+<td valign="top" width="223">mysql服务</td>
+<td valign="top" width="277">chkconfig –-add mysqld</td>
+</tr>
+<tr>
+<td valign="top" width="223">mysqld服务</td>
+<td valign="top" width="277">chkconfig mysqld on</td>
+</tr>
+<tr>
+<td valign="top" width="223">自启动 httpd 服务</td>
+<td valign="top" width="277">service httpd start</td>
+</tr>
+<tr>
+<td valign="top" width="223">自启动mysqld服务</td>
+<td valign="top" width="277">service mysqld start</td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+
+<span style="color: #ff0000; font-size: medium;"><strong>二、安装和配置Tomcat：</strong></span>
+
+<strong><span style="color: #9bbb59;">1、安装JDK：</span></strong>
+
+为了默认使用Sun的javac作为Java的编译器，首先删除CentOS系统默认的Java编译器--gcj。
+
+（1）查看:
+<blockquote>[root@localhost ~ ]#rpm –qa |grep gcj
+
+java-1.5.0-gcj-1.5.0.0-29.1.el6.i686
+
+libgcj-4.4.4-13.el6.i686</blockquote>
+（2）卸载
+<blockquote>[root@localhost ~ ]#rpm –e java-1.5.0-gcj-1.5.0.0-29.1.el6.i686 --nodeps
+
+[root@localhost ~ ]#rpm –e libgcj-4.4.4-13.el6.i686 --nodeps</blockquote>
+（3）检测
+<blockquote>[root@localhost ~]# java --version</blockquote>
+会出现-bash: /usr/bin/java: No such file or directory
+
+表示卸载成功
+
+（4）安装jdk
+
+从Jdk官网下载安装包，如：
+
+jdk-6u27-linux-i586-rpm.bin
+<blockquote>P.S.
+
+由于我的CentOS没有图形界面，下载不方便，
+
+我是先在Windows上访问JDK官网下载安装包，
+
+然后再用Winscp传到CentOS的</blockquote>
+&nbsp;
+
+比如安装包保存在/opt/tmp
+
+跳到该目录添加可执行的权限，并执行
+<blockquote>chmod 777 jdk-6u27-linux-i586-rpm.bin
+
+./jdk-6u27-linux-i586-rpm.bin</blockquote>
+（5）添加环境变量
+
+vi /etc/profile
+
+添加以下内容：
+<blockquote>export JAVA_HOME=/usr/java/jdk1.6.0_27
+
+export JAVA_BIN=/usr/java/jdk1.6.0_27/bin
+
+export PATH=$PATH:$JAVA_HOME/bin
+
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</blockquote>
+保存后，执行java -version 如果有类似以下显示，则表示安装成功：
+
+java version "1.6.0_27"
+
+&nbsp;
+
+<strong><span style="color: #9bbb59;">2、安装Tomcat：</span></strong>
+
+（1）从Tomcat官网下载 安装包，如：
+
+apache-tomcat-7.0.22.tar.gz
+
+（2）把该压缩包拷贝到/usr/local
+<blockquote>cp apache-tomcat-7.0.22.tar.gz /usr/local</blockquote>
+（3）跳转到/usr/local，并解压压缩包
+<blockquote>cd /usr/local
+
+tar -zxvf apache-tomcat-7.0.22.tar.gz</blockquote>
+（4）把解压出来的目录改名为tomcat,并删除拷贝过来的压缩包
+<blockquote>rm apache-tomcat-7.0.22 tomcat</blockquote>
+（5）执行/usr/local/tomcat/bin/startup.sh ，自动添加环境变量，
+
+（6）测试
+
+访问<a href="http://localhost:8080">http://localhost:8080</a>，出现tomcat默认页面，则表示tomcat安装成功
+
+&nbsp;
+
+<strong><span style="color: #9bbb59;">3、配置Tomcat为开机自启动：</span></strong>
+
+（1）添加开机daomon脚本
+
+把/usr/local/tomcat/bin/catalina.sh拷贝到/etc/init.d，并命名为tomcat
+<blockquote>cp /usr/local/tomcat/bin/catalina.sh /etc/init.d/tomcat</blockquote>
+（2）在/etc/init.d/tomcat添加内容：
+<blockquote>#!/bin/sh
+
+<span style="color: #ff0000;"># chkconfig: 2345 10 90</span>
+
+<span style="color: #ff0000;"># description:Tomcat service</span>
+
+# Licensed to the Apache Software Foundation (ASF) under one or more
+
+&nbsp;
+
+……
+
+&nbsp;
+
+# $Id: catalina.sh 1073891 2011-02-23 19:23:59Z markt $
+
+# ------------------------------------------------------------------------
+
+<span style="color: #ff0000;">CATALINA_HOME=/opt/tomcat </span>
+
+<span style="color: #ff0000;">JAVA_HOME=/opt/jdk1.6.0_23</span>
+
+&nbsp;
+
+……</blockquote>
+（3）添加tomcat服务
+<blockquote>chkconfig --add tomcat
+
+service tomcat stop
+
+service tomcat start
+
+chkconfig tomcat on</blockquote>
+&nbsp;
+
+搞定！！

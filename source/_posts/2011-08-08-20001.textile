@@ -1,0 +1,10 @@
+---
+layout: post
+title: '自产生程序'
+date: 2011-8-8
+wordpress_id: 20001
+permalink: /blogs/20001
+comments: true
+category: programming
+---
+<blockquote>   <p>自产生程序：不通过任何输入，输出自己代码的程序。</p> </blockquote>  <p></p>  <p>很多语言都可以写出这样的程序。</p>  <blockquote>   <p>C版本(只有一行)：</p>    <p>char s[] = "char s[] = %c%s%c;int main(){ printf(s, 34, s, 34);return 0;}";int main(){ printf(s, 34, s, 34);return 0;}</p> </blockquote>  <p></p>  <p>虽然是写出来了，但里面还是有很多值得研究的东西的。</p>  <p></p>  <p>参考资料：</p>  <p><a href="http://www.nyx.net/~gthompso/quine.htm">http://www.nyx.net/~gthompso/quine.htm</a></p>
