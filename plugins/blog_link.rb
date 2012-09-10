@@ -1,3 +1,12 @@
+################################# 
+#   File name:   blog_link.rb
+#   Description:    Plugin for Octopress to show link widget at sidebar
+#   Author: goorockey
+#   Usage:  1.put this file to plugins/
+#           2.write a xml file having your link information, and put it to source/.The format of xml file is <xml><blog><name>abc</name><link>http://abc.com<link></blog> ... </xml>
+#           3.add "blog_link_file: " attribute to your _config.yml,which is your link xml file created at step 2
+#################################
+
 require 'rexml/document'
 require 'open-uri'
 

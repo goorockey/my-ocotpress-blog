@@ -25,3 +25,8 @@ category: blog
 - 分布式存储，保证数据的安全。而且即使不能上网，也能本地写博客和预览
 - 支持用markdown（当然wordpress也有markdown的插件, 但Octopress在命令行写博客更cool)
 
+---
+
+仿照着，写了个友情链接侧栏的插件:
+
+{% gist c1c0d01722aacc0e8762 %}
