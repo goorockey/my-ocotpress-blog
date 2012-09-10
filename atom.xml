@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Life]]></title>
   <link href="http://goorockey.github.com/atom.xml" rel="self"/>
   <link href="http://goorockey.github.com/"/>
-  <updated>2012-09-10T14:17:26+08:00</updated>
+  <updated>2012-09-10T23:06:59+08:00</updated>
   <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -42,7 +42,7 @@
 
 <hr />
 
-<p>仿照着，写了个友情链接侧栏的插件:</p>
+<p>仿照着，写了个友情链接侧栏的插件, 当然直接在source/_include/asides/ 写静态页面也可以，纯练手:</p>
 
 <div><script src="https://gist.github.com/3689183.js?file="></script>
 <noscript><pre><code>################################# 
