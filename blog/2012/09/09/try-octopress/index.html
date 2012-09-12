@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>从Wordpress转到Octopress - Goorockey's Life</title>
+  <meta name="author" content="Goorockey">
+
+  
+  <meta name="description" content="想尝试Octopress很久了。 Octopress自称为A blogging framework for hackers 玩Octopress主要会涉及到以下技术: git ruby markdown 这些技术对我来说还是很陌生，也好借此机会熟悉熟悉～ 总的来说，[Octopress］ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://goorockey.github.com/blog/2012/09/09/try-octopress">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      padding-bottom: 40px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    img {
+      max-width: 100%;
+    }
+    .sharing, .meta, .pager {
+      margin: 20px 0px 20px 0px;
+    }
+    .page-footer p {
+      text-align: center;
+    }
+  </style>
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Life" type="application/atom+xml">
+  
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">Goorockey's Life</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="http://feed.goorockey.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:goorockey.github.com" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    
+      <h1 class="entry-title">从Wordpress转到Octopress</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-09T20:53:00+08:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>想尝试<a href="http://octopress.org">Octopress</a>很久了。</p>
+
+<p><a href="http://octopress.org">Octopress</a>自称为A blogging framework for <strong>hackers</strong></p>
+
+<p>玩<a href="http://octopress.org">Octopress</a>主要会涉及到以下技术:</p>
+
+<ul>
+  <li>git </li>
+  <li>ruby</li>
+  <li>markdown</li>
+</ul>
+
+<p>这些技术对我来说还是很陌生，也好借此机会熟悉熟悉～</p>
+
+<p>总的来说，[Octopress］想对于Wordpress的优势有:</p>
+
+<ul>
+  <li>静态页面，速度快</li>
+  <li>分布式存储，保证数据的安全。而且即使不能上网，也能本地写博客和预览</li>
+  <li>支持用markdown（当然wordpress也有markdown的插件, 但Octopress在命令行写博客更cool)</li>
+</ul>
+
+<p>仿照着，写了个友情链接侧栏的插件, 当然直接在source/_include/asides/ 写静态页面也可以，纯练手:</p>
+
+<div><script src="https://gist.github.com/3689183.js?file="></script>
+<noscript><pre><code>################################# 
+#   File name:   blog_link.rb
+#   Description:    Plugin for Octopress to show link widget at sidebar
+#   Author: goorockey
+#   Usage:  1.put this file to plugins/
+#           2.write a xml file having your link information, and put it to source/.The format of xml file is &lt;xml&gt;&lt;blog&gt;&lt;name&gt;abc&lt;/name&gt;&lt;link&gt;http://abc.com&lt;link&gt;&lt;/blog&gt; ... &lt;/xml&gt;
+#           3.add &quot;blog_link_file: &quot; attribute to your _config.yml,which is your link xml file created at step 2
+#################################
+
+require 'rexml/document'
+require 'open-uri'
+
+module Jekyll
+  class BlogLinkTag &lt; Liquid::Tag
+    def render(context)
+    html = &quot;&quot;
+    blog_link_file = context.registers[:site].config['blog_link_file']
+    blog_link_url = context.registers[:site].config['url'] + &quot;/&quot; +  blog_link_file
+
+    if File.exists?(blog_link_file)
+      File.delete(blog_link_file)
+    end
+
+    File.open(blog_link_file, 'wb') do |output|
+        open(blog_link_url) do |input|
+            output &lt;&lt; input.read
+        end
+    end
+
+    if File.exists?(blog_link_file)
+      xml = REXML::Document.new(File.open(blog_link_file))
+
+      xml.each_element('//blog') do |elem|
+        blog_name = elem.elements['name'].text
+        blog_link = elem.elements['link'].text
+        html &lt;&lt; &quot;&lt;li class='blog_link'&gt;&lt;a href=#{blog_link}&gt;#{blog_name}&lt;/a&gt;&lt;/li&gt;&quot;
+      end
+
+    end
+    html
+    end
+  end
+end
+
+Liquid::Template.register_tag('blog_link', Jekyll::BlogLinkTag)
+</code></pre></noscript></div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Goorockey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-09T20:53:00+08:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/blog/'>blog</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://goorockey.github.com/blog/2012/09/09/try-octopress/" data-via="" data-counturl="http://goorockey.github.com/blog/2012/09/09/try-octopress/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blogs/77254" title="Previous Post:
+        用VMWare组网，实验DNS隧道">&laquo; 用VMWare组网，实验DNS隧道</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    <section>
+  <ul id="recent_posts">
+      <li class="post">
+      <a href="http://goorockey.github.com" alt="Home"><img src="/images/Home.png"></a>
+      <a href="http://goorockey.github.com/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
+      <a href="mailto:" alt="E-Mail"><img src="/images/Envelope.png"></a>
+      <a href="http://feed.goorockey.com" alt="subscribe feed"><img src="/images/RSS.png"></a>
+      </li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="categories" class="nav nav-list">
+  <li class="nav-header">Categories</li>
+    <li class='category'><a href='/blog/categories/blog/'>blog (5)</a></li>
+<li class='category'><a href='/blog/categories/cpp/'>cpp (2)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (4)</a></li>
+<li class='category'><a href='/blog/categories/network/'>network (4)</a></li>
+<li class='category'><a href='/blog/categories/others/'>others (1)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (4)</a></li>
+<li class='category'><a href='/blog/categories/windows/'>windows (4)</a></li>
+
+  </ul>
+</section>
+
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/try-octopress/">从Wordpress转到Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blogs/77254">用VMWare组网，实验DNS隧道</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blogs/77247">VMWare组网实验(NAT)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blogs/77213">NAT学习总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blogs/77180">再次用linux做宿主系统</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="well">
+  <ul id="blog_link" class="nav nav-list">
+	<li class="nav-header">Links</li>
+	<li class='blog_link'><a href=http://www.dian.org.cn>Dian</a></li><li class='blog_link'><a href=http://www.seedclass.com>SeedClass</a></li><li class='blog_link'><a href=http://www.thankcreate.com>ThankCreate</a></li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="douban" class="nav nav-list">
+	<li class="nav-header">My Douban</li>
+	<li>
+	<script type="text/javascript" src="http://www.douban.com/service/badge/goorockey/?show=collection&amp;n=8&amp;columns=2&amp;hidelogo=yes" ></script> 
+	</li>
+  </ul>
+</section>
+
+<section class="well">
+  <ul id="gh_repos" class="nav">
+    <li class="nav-header">GitHub Repos</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/goorockey">@goorockey</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        github.showRepos({
+            user: 'goorockey',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/asides/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2012 - Goorockey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'goorockeyslife';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://goorockey.github.com/blog/2012/09/09/try-octopress/';
+        var disqus_url = 'http://goorockey.github.com/blog/2012/09/09/try-octopress/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

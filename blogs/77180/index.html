@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>再次用linux做宿主系统 - Goorockey's Life</title>
+  <meta name="author" content="Goorockey">
+
+  
+  <meta name="description" content="1、背景
+之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。
+最近也在微博上收集意见，发现用linux做宿主系统的人还是蛮多的。其实仔细想想， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://goorockey.github.com/blogs/77180">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      padding-bottom: 40px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    img {
+      max-width: 100%;
+    }
+    .sharing, .meta, .pager {
+      margin: 20px 0px 20px 0px;
+    }
+    .page-footer p {
+      text-align: center;
+    }
+  </style>
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Life" type="application/atom+xml">
+  
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">Goorockey's Life</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="http://feed.goorockey.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:goorockey.github.com" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    
+      <h1 class="entry-title">再次用linux做宿主系统</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-29T00:00:00+08:00" pubdate data-updated="true">Feb 29<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3><strong>1、背景</strong></h3>
+<p>之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。</p>
+<p>最近也在微博上收集意见，发现用linux做宿主系统的人还是蛮多的。其实仔细想想，归根结底还是自己linux的操作还不熟练。</p>
+<p>还好最近一段时间自己多了在linux的工作，这几天又下定决心一次装了linux做宿主来玩了。然后就想写个blog记录一下。</p>
+<p><!--more--><br />
+<h3><strong>2、系统</strong></h3><br />
+这次选的linux的linux mint(64bit)，一个基于ubuntu的linux发行版。</p>
+<p>官方说其目标是成为有windows那样市场占有率的linux发行版。</p>
+<p>我不大喜欢ubuntu现在的natty，所以就在虚拟机试用了一下linux mint，感觉比ubuntu方便。</p>
+<p>&nbsp;<br />
+<h3><strong>3、工具</strong></h3><br />
+<ul><br />
+	<li>浏览器：firefox。一直用firefox，插件强大。</li><br />
+	<li>知识管理：evernote。本地用nevernote，它是evernote的linux版；网页摘取用firefox的evernote clip。</li><br />
+	<li>X windows:awesome。一种平铺窗口管理器。本来想用musca，但我没编译成功。唉~~</li><br />
+	<li>BT下载：utorrent。utorrent有linux版，但是web gui版。</li><br />
+	<li>虚拟机：virtualbox。在virtualbox装了xp，感觉比vmware快多了。。</li></p>
+</ul>
+<p>&nbsp;<br />
+<h3><strong>4、日常应用</strong></h3><br />
+（1）网络管理</p>
+<p>ubuntu(包括linux mint)现在都是默认用NetworkManager来管理网络。我用了几次都不适应。这次立刻就把它卸载了，直接用脚本来管理网络。卸载命令：<br />
+<blockquote>$ sudo apt-get &#8212;purge remove network-manager</p>
+<p>$ sudo apt-get &#8212;purge remove network-manager-gnome</blockquote><br />
+然后就直接对/etc/network/interfaces和/etc/resolv.conf做修改，来配置网络了。</p>
+<p>&nbsp;</p>
+<p>（2）ADSL连接</p>
+<p>寝室是用电信上网，如果不用路由拨号，就要自己电脑直接连到网口，自己拨号。</p>
+<p>配置命令：<br />
+<blockquote>$ sudo pppoeconf</blockquote><br />
+在弹出的窗口中输入帐号和密码，注意之后有个提示选择是否开机时就自动拨号，如果不时总是直接连网口的，就不选吧。</p>
+<p>配置完回到命令行，输入拨号命令就可以上网了：<br />
+<blockquote>$ sudo pon dsl-provider</blockquote><br />
+断开链接的命令则是：<br />
+<blockquote>$ sudo pppoe-stop</blockquote><br />
+&nbsp;</p>
+<p>（3）连wifi<br />
+<blockquote><span><a class="smarterwiki-linkify" href="http://www.jiangmiao.org/blog/1781.html">http://www.jiangmiao.org/blog/1781.html</a></span></blockquote><br />
+&nbsp;</p>
+<p>（4）做AP，共享wifi<br />
+<blockquote><span><a class="smarterwiki-linkify" href="http://blog.csdn.net/feifei454498130/article/details/6642140">http://blog.csdn.net/feifei454498130/article/details/6642140</a></span></blockquote><br />
+&nbsp;</p>
+<p>（5）截图<br />
+<blockquote>$ scrot -bst [file]</blockquote><br />
+然后用鼠标框主目标即可。如果没有制定输出文件路径file，默认输出到用户主目录，并以时间命名。</p>
+<p>&nbsp;</p>
+<p>路漫漫其修远兮，吾将上下而求索~~~</p>
+<p>O(&gt;0&lt;)O</p>
+<p>&nbsp;</p>
+<p>2012.7.12 更新</p>
+<p>找到一篇介绍自己只使用命令行经验的博文，好正点！</p>
+<p>http://blog.chavezgu.com/2012/03/07/the-command-line-challenge/</p>
+<p>赞同里面循序渐进脱离GUI的方法；<br />
+<ul><br />
+	<li>坚持一天只使用命令行！</li><br />
+	<li>坚持一周！！</li><br />
+	<li>坚持一个月！！！</li><br />
+	<li>坚持半年！！！！</li></p>
+</ul>
+<p>呵呵～～</p>
+<p>&nbsp;</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Goorockey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-29T00:00:00+08:00" pubdate data-updated="true">Feb 29<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>linux</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://goorockey.github.com/blogs/77180" data-via="" data-counturl="http://goorockey.github.com/blogs/77180" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blogs/77141" title="Previous Post:
+        SSH端口转发">&laquo; SSH端口转发</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/blogs/77213"
+        title="Next Post: NAT学习总结">NAT学习总结
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    <section>
+  <ul id="recent_posts">
+      <li class="post">
+      <a href="http://goorockey.github.com" alt="Home"><img src="/images/Home.png"></a>
+      <a href="http://goorockey.github.com/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
+      <a href="mailto:" alt="E-Mail"><img src="/images/Envelope.png"></a>
+      <a href="http://feed.goorockey.com" alt="subscribe feed"><img src="/images/RSS.png"></a>
+      </li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="categories" class="nav nav-list">
+  <li class="nav-header">Categories</li>
+    <li class='category'><a href='/blog/categories/blog/'>blog (5)</a></li>
+<li class='category'><a href='/blog/categories/cpp/'>cpp (2)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (4)</a></li>
+<li class='category'><a href='/blog/categories/network/'>network (4)</a></li>
+<li class='category'><a href='/blog/categories/others/'>others (1)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (4)</a></li>
+<li class='category'><a href='/blog/categories/windows/'>windows (4)</a></li>
+
+  </ul>
+</section>
+
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/try-octopress/">从Wordpress转到Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blogs/77254">用VMWare组网，实验DNS隧道</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blogs/77247">VMWare组网实验(NAT)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blogs/77213">NAT学习总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blogs/77180">再次用linux做宿主系统</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="well">
+  <ul id="blog_link" class="nav nav-list">
+	<li class="nav-header">Links</li>
+	<li class='blog_link'><a href=http://www.dian.org.cn>Dian</a></li><li class='blog_link'><a href=http://www.seedclass.com>SeedClass</a></li><li class='blog_link'><a href=http://www.thankcreate.com>ThankCreate</a></li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="douban" class="nav nav-list">
+	<li class="nav-header">My Douban</li>
+	<li>
+	<script type="text/javascript" src="http://www.douban.com/service/badge/goorockey/?show=collection&amp;n=8&amp;columns=2&amp;hidelogo=yes" ></script> 
+	</li>
+  </ul>
+</section>
+
+<section class="well">
+  <ul id="gh_repos" class="nav">
+    <li class="nav-header">GitHub Repos</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/goorockey">@goorockey</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        github.showRepos({
+            user: 'goorockey',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/asides/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2012 - Goorockey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'goorockeyslife';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://goorockey.github.com/blogs/77180';
+        var disqus_url = 'http://goorockey.github.com/blogs/77180';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
