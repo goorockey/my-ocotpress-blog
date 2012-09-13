@@ -180,29 +180,29 @@ Threads can also have their own security context, which can be used for imperson
 它主要是调用线程函数，并把函数返回值传给ExitThread：
 <div id="codeSnippetWrapper">
 <div id="codeSnippet" style="text-align: left; line-height: 12pt; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;">
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 1:</span> VOID BaseThreadStart(PTHREAD_START_ROUTINE pfnStartAddr,PVOID pvParam){% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 1:</span> VOID BaseThreadStart(PTHREAD_START_ROUTINE pfnStartAddr,PVOID pvParam)
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 2:</span> {{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 2:</span> {
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 3:</span> __try{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 3:</span> __try
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 4:</span> {{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 4:</span> {
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 5:</span> ExitThread((pfnStartAddr)(pvParam));{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 5:</span> ExitThread((pfnStartAddr)(pvParam));
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 6:</span> }{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 6:</span> }
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 7:</span> __except(UnhandledExceptionFilter(GetExceptionInformation())){% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 7:</span> __except(UnhandledExceptionFilter(GetExceptionInformation()))
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 8:</span> {{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 8:</span> {
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 9:</span> ExitProcess(GetExceptionCode());{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 9:</span> ExitProcess(GetExceptionCode());
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 10:</span> }{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 10:</span> }
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 11:</span><span style="color: #008000;">//NOTE: We never get here. </span>{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 11:</span><span style="color: #008000;">//NOTE: We never get here. </span>
 &nbsp;
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 12:</span> }{% endcodeblock %}
+<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 12:</span> }
 &nbsp;
 
 </div>
