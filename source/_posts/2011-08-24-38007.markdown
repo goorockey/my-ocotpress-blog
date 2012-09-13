@@ -7,59 +7,49 @@ permalink: /blogs/38007
 comments: true
 category: programming
 ---
-<strong><span style="color: #ff8000;">题一、有一个整数数组，请求出两两之差绝对值最小的值</span></strong>
 
+**题一、有一个整数数组，请求出两两之差绝对值最小的值**
 
 方法：先排序，再找差值最小的点对。
 
-
 效率：时间复杂度O(nlogn)
 
+---
 
-<strong><span style="color: #ff8000;">题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑）</span></strong>
-
+**题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑）**
 
 方法：根据x排序，用图解枚举所有情况，能证明斜率最大的两点肯定是相邻的两点。
 
-
 效率：时间复杂度O(nlogn)
 
-
-<strong><span style="color: #ff8000;">题三、一棵排序二叉树，令 f=(最大值+最小值)/2，设计一个算法，找出距离f值最近、大于f值的结点</span></strong>
-
+---
+**题三、一棵排序二叉树，令 f=(最大值+最小值)/2，设计一个算法，找出距离f值最近、大于f值的结点**
 
 方法：把f插入，中序排序
 
+效率：时间复杂度O(logn)
 
-效率：时间复杂度O(logn)<!--more-->
+<!--more-->
 
+---
+**题四、找出两个字符串中最大公共子字符串,**
 
-<strong><span style="color: #ff8000;">题四、找出两个字符串中最大公共子字符串,</span></strong>
+如"abccade","dgcadde"的最大子串为"cad"
 
+*方法一：*
 
-<span style="color: #c0c0c0;">如"abccade","dgcadde"的最大子串为"cad"</span>
+从字符串一中遍历子串，并在字符串二中匹配。时间复杂度为O(n^3)。
 
-
-<span style="color: #ffff00;"><span style="color: #ff0000;">方法一：</span></span>
-
-
-<span style="color: #c0c0c0;">从字符串一中遍历子串，并在字符串二中匹配。时间复杂度为O(n^3)。</span>
-
-
-<span style="color: #ffff00;"><span style="color: #ff0000;">方法二：</span></span>
-
+*方法二：*
 
 矩阵法：用矩阵表示两字符串，横竖字符相同的格置1，则在45度方向连续1最多的就是所求，时间复杂度O(n^2) 。
 
-
-<strong><span style="color: #ff8000;">题五、检查单向链表中是否有环</span></strong>
-
+---
+**题五、检查单向链表中是否有环**
 
 这算是经典的面试题了，记录一下好的解法和推广。
 
-
-<span style="color: #ffff00;"><span style="color: #ff0000;">方法一：</span></span>
-
+*方法一：*
 
 操作：把链表反向，当游标指针回到首节点时表示有环，否则无环。
 
@@ -69,7 +59,7 @@ category: programming
 
 不足：破坏原链表的结构，需要再遍历一次链表来恢复链表结构。
 
-<span style="color: #ffff00;"><span style="color: #ff0000;">方法二</span></span>（这应该是面试时的标准答案了）：
+*方法二:*
 
 操作：
 
@@ -81,11 +71,11 @@ category: programming
 
 效率：时间复杂度O(n)， 空间复杂度O(1)。
 
-代码：
+*代码：*
 
 {% gist 3712175 %}
 
-
+---
 <div><strong><span style="color: #ff8000;">推广一：有环单向链表中环的节点数</span></strong></div>
 <div><span style="color: #c0c0c0;">操作：</span></div>
 <div><span style="color: #c0c0c0;">还是用快慢指针，当快慢指针在环内相遇后，两指针继续移动，并对慢指针移动的节点计数。当两指针再次相遇时，计数的结果就是环的节点数。</span></div>
@@ -94,8 +84,9 @@ category: programming
 <div></div>
 <div><span style="color: #c0c0c0;">解释：</span></div>
 <div></div>
+<div></div>
 <div><span style="color: #c0c0c0;">还是题一中的思想。设环的节点数为n，当两指针第一次相遇时，可看做两指针的距离为n，则再慢指针再经过n个节点后，两指针会再次相遇，所以慢指针移动的节点数就是环的节点数。</span></div>
-代码：
+*代码：*
 
 {% gist 3712217 %}
 
@@ -116,7 +107,7 @@ category: programming
 <div><span style="color: #ff8000;"><strong>推广三、破坏有环单向链表的环</strong></span></div>
 <div>操作：</div>
 <div>在上面的基础上，当找到了环首节点和环内节点数n后，只要从环首节点移动n到达环的尾节点，修改环尾节点的next指针即可。</div>
-<div></div>
-<div>代码：</div>
+
+*代码：*
 
 {% gist 3712226 %}
