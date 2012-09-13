@@ -4,7 +4,7 @@ var github = (function(){
     var fragment = '<li class="nav-header">GitHub Repos</li>';
 
     for(i = 0; i < repos.length; i++) {
-      fragment += '<li class="post"><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+repos[i].description+'</p></li>';
+      fragment += '<li class="post"><a href="'+repos[i].html_url+'">'+ '&lt' + repos[i].name + '&gt' +'</a><p>'+repos[i].description+'</p></li>';
     }
     t.innerHTML = fragment;
   }
