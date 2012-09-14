@@ -47,8 +47,9 @@ category: windows
 </table>
 &nbsp;
 
-2、EX<!--more-->
+<!--more-->
 
+2、EX
 ON_NOTIFY和ON_NOTIFY_EX 以及 ON_NOTIFY_REFLECT和ON_NOTIFY_REFLECT_EX
 
 区别是：
