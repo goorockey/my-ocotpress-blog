@@ -12,8 +12,8 @@ body {
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
   color: $textColor;
-  // background-color: $bodyBackground;
-  background: url("/images/background.jpg") repeat scroll 0 0 transparent;
+  background-color: $bodyBackground;
+  // background: url("/images/background.jpg") repeat scroll 0 0 transparent;
 }
 
 
