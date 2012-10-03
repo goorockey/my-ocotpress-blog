@@ -13,7 +13,8 @@ categories: python
 整个“任务”可以分为发邮件+定时两部分。
 
 
-<br/>
+---
+
 ###1. 发邮件###
 
 由于服务器是windows系统，google得知，windows下有[blat]这发邮件的大杀器，所以刚开始是想用blat+批处理做的。
@@ -32,8 +33,7 @@ blat还可以通过-install把参数保存到注册表。blat确实是自动发�
 
 *P.S 在linux实现自动发邮件，可以用msmtp,sendmail等～*
 
-
-<hr/>
+---
 
 这本来是很简单的，但因为任务要根据星期几发送邮件给指定的人，而且我们是12个人分成两周，所以想到用一个二维数组存放成员来实现，这也没什么问题。
 
@@ -47,7 +47,8 @@ http://bbs.bathome.net/viewthread.php?tid=5682&highlight=%2Bbatman
 嫌麻烦，我还是决定找有现成库的方法来做，所以就想到用有各种库的python实现了。
 
 <!-- more -->
-<hr/>
+
+---
 
 python有[smtplib : http://docs.python.org/library/smtplib.html]库实现smtp发邮件，核心代码也很简单：
 
