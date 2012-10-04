@@ -40,9 +40,12 @@ blat还可以通过-install把参数保存到注册表。blat确实是自动发�
 问题在于在计算要提醒的人时，要根据今天离开始值日的天数，来从数组获取成员，而这求天数在windows用批处理可不好搞，因为要考虑每月不同天数和闰年啊。
 
 当然也不是不能完成，网上也有方法:
-http://bbs.bathome.net/thread-11128-1-1.html
-http://bbs.bathome.net/viewthread.php?tid=5659&highlight=%2Bbatman
-http://bbs.bathome.net/viewthread.php?tid=5682&highlight=%2Bbatman
+
+- http://bbs.bathome.net/thread-11128-1-1.html
+
+- http://bbs.bathome.net/viewthread.php?tid=5659&highlight=%2Bbatman
+
+- http://bbs.bathome.net/viewthread.php?tid=5682&highlight=%2Bbatman
 
 嫌麻烦，我还是决定找有现成库的方法来做，所以就想到用有各种库的python实现了。
 
@@ -50,7 +53,7 @@ http://bbs.bathome.net/viewthread.php?tid=5682&highlight=%2Bbatman
 
 ---
 
-python有[smtplib : http://docs.python.org/library/smtplib.html]库实现smtp发邮件，核心代码也很简单：
+python有[smtplib](http://docs.python.org/library/smtplib.html "smtplib")库实现smtp发邮件，核心代码也很简单：
 
 {% codeblock using smtplib lang:python %}
 import smtplib
