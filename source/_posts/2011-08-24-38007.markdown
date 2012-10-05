@@ -5,7 +5,8 @@ date: 2011-8-24
 wordpress_id: 38007
 permalink: /blogs/38007
 comments: true
-category: programming
+categories: programming
+tags: programming 面试
 ---
 
 **题一、有一个整数数组，请求出两两之差绝对值最小的值**

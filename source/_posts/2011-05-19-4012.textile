@@ -5,7 +5,8 @@ date: 2011-5-19
 wordpress_id: 4012
 permalink: /blogs/4012
 comments: true
-category: linux
+categories: linux
+tags: linux vim
 ---
 &nbsp;
 

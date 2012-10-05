@@ -5,7 +5,8 @@ date: 2012-2-3
 wordpress_id: 77106
 permalink: /blogs/77106
 comments: true
-category: others
+categories: others
+tags: 趣味
 ---
 今天拿自己项目组svn的日志来小玩了一下code swarm。
 

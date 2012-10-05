@@ -5,6 +5,7 @@ date: 2011-8-2
 wordpress_id: 14001
 permalink: /blogs/14001
 comments: true
-category: cpp
+categories: cpp
+tags: cpp stl
 ---
 <blockquote>   <p>#include &lt;iostream&gt;</p>    <p>#include &lt;iterator&gt;</p>    <p>#include &lt;algorithm&gt;</p><p><br /></p>    <p></p>    <p>int a[] = { 335, 33, 98, 39, 54, 24, 3 };</p>    <p>int nSize = sizeof( a) / sizeof( a[ 0]);</p><p><br /></p>    <p>// 输出数组a到标准输出，同时每个元素都以空格为结束（最后一个元素后面也会有空格）</p>    <p>std::copy( a, a + nSize, std::ostream_iterator&lt; int&gt;( std::cout, " ")); </p> </blockquote>  <p></p>  <blockquote>   <p>结果：</p>    <p>335 33 98 39 54 24 3</p> </blockquote>  <p></p>  <p>一个字：妙！！</p>  <p>(^0^)/ </p>

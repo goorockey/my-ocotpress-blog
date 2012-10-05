@@ -4,6 +4,7 @@ title: "Scheme里面的pair和list"
 date: 2012-09-25 22:41
 comments: true
 categories: lisp
+tags: lisp scheme
 ---
 
 最近学scheme，总结一下pair和list的区别，主要是两点：

@@ -5,7 +5,9 @@ date: 2011-9-2
 wordpress_id: 48001
 permalink: /blogs/48001
 comments: true
-category: windows
+categories: windows
+tags: windows programming
+tags: windows programming
 ---
 <span style="color: #ffff00;"><strong><span style="color: #c0c0c0; font-size: large;">一、摘要</span></strong></span>
 

@@ -5,7 +5,8 @@ date: 2011-8-19
 wordpress_id: 22004
 permalink: /blogs/22004
 comments: true
-category: windows
+categories: windows
+tags: windows vc
 ---
 1、Reflect
 

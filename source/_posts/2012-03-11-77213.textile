@@ -5,7 +5,8 @@ date: 2012-3-11
 wordpress_id: 77213
 permalink: /blogs/77213
 comments: true
-category: network
+categories: network
+tags: network nat
 ---
 最近要恶补一下计算机网络的基础知识，今天先总结一下NAT。
 

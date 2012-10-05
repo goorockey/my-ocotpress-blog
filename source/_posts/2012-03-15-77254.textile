@@ -5,7 +5,8 @@ date: 2012-3-15
 wordpress_id: 77254
 permalink: /blogs/77254
 comments: true
-category: network
+categories: network
+tags: network vmware 隧道
 ---
 继续用VMWare来组网，这次要测试我想试很久的DNS隧道，之前碍于没有找到有独立ip的方法（当然是要免费的~~），现在用VMWare就可以了。
 

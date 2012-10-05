@@ -5,7 +5,8 @@ date: 2012-2-29
 wordpress_id: 77180
 permalink: /blogs/77180
 comments: true
-category: linux
+categories: linux
+tags: linux 
 ---
 <h3><strong>1、背景</strong></h3>
 之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。

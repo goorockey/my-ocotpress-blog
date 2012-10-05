@@ -5,7 +5,8 @@ date: 2012-1-28
 wordpress_id: 77069
 permalink: /blogs/77069
 comments: true
-category: blog
+categories: blog
+tags: blog wordpress sourceforge
 ---
 这几天把博客从GAE+micolog转到了sourceforge+wordpress，主要是考虑到：
 <ul>

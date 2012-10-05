@@ -5,7 +5,8 @@ date: 2012-3-13
 wordpress_id: 77247
 permalink: /blogs/77247
 comments: true
-category: network
+categories: network
+tags: network vmware nat
 ---
 本着“干中学”的精神，看完资料，还是用VMWare来练习一下使用NAT，好加深认识。
 

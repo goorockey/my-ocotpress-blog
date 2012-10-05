@@ -5,7 +5,8 @@ date: 2012-2-7
 wordpress_id: 77117
 permalink: /blogs/77117
 comments: true
-category: blog
+categories: blog
+tags: blog dotcloud wordpress
 ---
 之前在sourceforge搭建了wordpress，但SF有两点不好：
 <ul>

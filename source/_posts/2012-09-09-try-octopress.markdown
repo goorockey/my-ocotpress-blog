@@ -3,7 +3,8 @@ layout: post
 title: "从Wordpress转到Octopress"
 date: 2012-09-09 20:53
 comments: true
-category: blog
+categories: blog
+tags: blog wordpress octopress
 ---
 [Octopress]: http://octopress.org
 想尝试[Octopress]很久了。

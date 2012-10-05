@@ -5,7 +5,8 @@ date: 2011-8-22
 wordpress_id: 28004
 permalink: /blogs/28004
 comments: true
-category: programming
+categories: programming
+tags: programming 
 ---
 两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。
 

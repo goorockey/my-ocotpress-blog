@@ -5,7 +5,8 @@ date: 2011-5-17
 wordpress_id: 1007
 permalink: /blogs/1007
 comments: true
-category: blog
+categories: blog
+tags: micolog blog 
 ---
 1、先下载并安装Live Writer，地址如下
 <blockquote><strong>For Xp</strong> ：   <a href="http://explore.live.com/windows-live-writer-xp">http://explore.live.com/windows-live-writer-xp</a></blockquote>

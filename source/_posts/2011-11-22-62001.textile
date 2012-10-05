@@ -5,7 +5,8 @@ date: 2011-11-22
 wordpress_id: 62001
 permalink: /blogs/62001
 comments: true
-category: linux
+categories: linux
+tags: linux apache tomcat
 ---
 调研了一下Apache和Tomcat：
 

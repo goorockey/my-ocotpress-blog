@@ -5,6 +5,7 @@ date: 2011-8-2
 wordpress_id: 11001
 permalink: /blogs/11001
 comments: true
-category: cpp
+categories: cpp
+tags: cpp programming
 ---
 <table border="0" cellpadding="2" cellspacing="0" width="570"><tbody>     <tr>       <td valign="top" width="159">普通的成员函数</td>        <td valign="top" width="173">编译器会自动为其添加一个this指针作为入参</td>        <td valign="top" width="236">该成员函数能修改成员变量</td>     </tr>      <tr>       <td valign="top" width="159">在成员函数后面加const(注意是后面！)</td>        <td valign="top" width="173">编译器会自动为其添加一个const *this指针作为入参</td>        <td valign="top" width="236">该成员函数不能修改成员变量</td>     </tr>      <tr>       <td valign="top" width="159">成员函数加static</td>        <td valign="top" width="173">编译器不会加this指针</td>        <td valign="top" width="236">该成员函数不能直接访问成员变量，只能访问静态成员变量</td>     </tr>   </tbody></table>  <p></p>  <p>所以在成员函数加static和后面加const是矛盾的，即不能同时这样修饰一个成员函数.</p>

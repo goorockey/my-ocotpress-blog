@@ -5,7 +5,9 @@ date: 2011-9-3
 wordpress_id: 43008
 permalink: /blogs/43008
 comments: true
-category: windows
+categories: windows
+tags: windows programming
+tags: windows programming
 ---
 <strong><span style="font-size: large;">一、摘要：</span></strong>
 

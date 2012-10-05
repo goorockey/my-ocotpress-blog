@@ -4,6 +4,7 @@ title: "python发邮件脚本"
 date: 2012-09-30 00:40
 comments: true
 categories: python
+tags: python 
 ---
 
 [blat]: http://www.blat.net

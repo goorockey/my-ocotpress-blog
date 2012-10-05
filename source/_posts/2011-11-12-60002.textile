@@ -5,7 +5,8 @@ date: 2011-11-12
 wordpress_id: 60002
 permalink: /blogs/60002
 comments: true
-category: linux
+categories: linux
+tags: linux centos apache php mysql tomcat
 ---
 <strong><span style="color: #ff0000; font-size: medium;">一、安装及配置Apache+php+mysql</span></strong>
 
