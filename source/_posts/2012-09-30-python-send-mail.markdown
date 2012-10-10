@@ -43,9 +43,7 @@ blat还可以通过-install把参数保存到注册表。blat确实是自动发�
 当然也不是不能完成，网上也有方法:
 
 - http://bbs.bathome.net/thread-11128-1-1.html
-
 - http://bbs.bathome.net/viewthread.php?tid=5659&highlight=%2Bbatman
-
 - http://bbs.bathome.net/viewthread.php?tid=5682&highlight=%2Bbatman
 
 嫌麻烦，我还是决定找有现成库的方法来做，所以就想到用有各种库的python实现了。
