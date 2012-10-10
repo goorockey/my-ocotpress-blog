@@ -51,11 +51,7 @@ tags: lisp scheme
 引用[这里](http://download.plt-scheme.org/doc/html/guide/Pairs__Lists__and_Scheme_Syntax.html)的解释：
 
 {% blockquote %}
-    In general, the rule for printing a pair is as follows: use the 
-dot notation always, but if the dot is immediately followed by an open
-parenthesis, then remove the dot, the open parenthesis, and the	matching
-close parenthesis. Thus, (0 . (1 . 2)) becomes (0 1 . 2), and 
-(1 . (2 . (3 . ()))) becomes (1 2 3).
+    In general, the rule for printing a pair is as follows: use the dot notation always, but if the dot is immediately followed by an open parenthesis, then remove the dot, the open parenthesis, and the	matching close parenthesis. Thus, (0 . (1 . 2)) becomes (0 1 . 2), and (1 . (2 . (3 . ()))) becomes (1 2 3).
 {% endblockquote %}
 
 大意就是，如果pair的“点”紧接着小括号，则这个点和小括号都可以去掉。
