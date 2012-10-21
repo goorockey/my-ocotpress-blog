@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blog_link>
+	<blog>
+		<name>Dian</name>
+		<link>http://www.dian.org.cn</link>
+	</blog>
+	<blog>
+		<name>SeedClass</name>
+		<link>http://www.seedclass.com</link>
+	</blog>
+	<blog>
+		<name>ThankCreate</name>
+		<link>http://www.thankcreate.com</link>
+	</blog>
+</blog_link>

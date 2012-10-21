@@ -48,7 +48,7 @@ tag_dir: blog/tags
 
 blog_link_file: blog_link.xml	 
 
-original_url_pre: 原文链接
+original_url_pre: 转载请注明原文链接
 
 titlecase: true       # Converts page and post titles to titlecase
 
