@@ -12,4 +12,8 @@
 		<name>ThankCreate</name>
 		<link>http://www.thankcreate.com</link>
 	</blog>
+    <blog>
+        <name>BlogInCsdn</name>
+        <link>http://blog.csdn.net/kelvingu616</link>
+    </blog>
 </blog_link>
