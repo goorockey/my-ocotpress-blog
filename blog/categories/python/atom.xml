@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: python | Goorockey's Life]]></title>
-  <link href="http://www.goorockey.com/blog/categories/python/atom.xml" rel="self"/>
-  <link href="http://www.goorockey.com/"/>
-  <updated>2012-10-27T13:25:08+08:00</updated>
-  <id>http://www.goorockey.com/</id>
+  <link href="http://goorockey.github.com/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://goorockey.github.com/"/>
+  <updated>2012-10-28T17:50:23+08:00</updated>
+  <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[python发邮件脚本]]></title>
-    <link href="http://www.goorockey.com/blog/2012/09/30/python-send-mail/"/>
+    <link href="http://goorockey.github.com/blog/2012/09/30/python-send-mail/"/>
     <updated>2012-09-30T00:40:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/09/30/python-send-mail</id>
+    <id>http://goorockey.github.com/blog/2012/09/30/python-send-mail</id>
     <content type="html"><![CDATA[
 <p>项目组有每天值日搞卫生和发工作日报的规定，由于不提醒容易忘记，则想到通过内部邮件定时提醒，练练手。</p>
 

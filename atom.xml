@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Goorockey's Life]]></title>
-  <link href="http://www.goorockey.com/atom.xml" rel="self"/>
-  <link href="http://www.goorockey.com/"/>
-  <updated>2012-10-27T13:25:08+08:00</updated>
-  <id>http://www.goorockey.com/</id>
+  <link href="http://goorockey.github.com/atom.xml" rel="self"/>
+  <link href="http://goorockey.github.com/"/>
+  <updated>2012-10-28T17:50:23+08:00</updated>
+  <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[玩一下hadoop]]></title>
-    <link href="http://www.goorockey.com/blog/2012/10/21/try-hadoop/"/>
+    <link href="http://goorockey.github.com/blog/2012/10/21/try-hadoop/"/>
     <updated>2012-10-21T23:47:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/10/21/try-hadoop</id>
+    <id>http://goorockey.github.com/blog/2012/10/21/try-hadoop</id>
     <content type="html"><![CDATA[
 <p>由于某种原因，今天玩了一下<a href="http://hadoop.apache.org/" title="Hadoop">Hadoop</a>。正确来说，我是玩<a href="http://code.google.com/p/hop/" title="HOP">HOP</a>，一个Hadoop的修改版本。</p>
 
@@ -131,16 +131,16 @@
 <br />
             <br />
             转载请注明原文链接
-            <a href="http://www.goorockey.com/blog/2012/10/21/try-hadoop/">http://www.goorockey.com/blog/2012/10/21/try-hadoop/</a></p>
+            <a href="http://goorockey.github.com/blog/2012/10/21/try-hadoop/">http://goorockey.github.com/blog/2012/10/21/try-hadoop/</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[关于exploit exercise nebula level01]]></title>
-    <link href="http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/"/>
+    <link href="http://goorockey.github.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/"/>
     <updated>2012-10-10T23:26:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01</id>
+    <id>http://goorockey.github.com/blog/2012/10/10/about-exploit-exercise-nebula-level01</id>
     <content type="html"><![CDATA[<p>今天做<a href="http://exploit-exercises.com/">exploit exercise</a>的nebula <a href="http://exploit-exercises.com/nebula/level01">level01</a>，长见识了，记录一下。</p>
 
 <h3 id="section">题目</h3>
@@ -264,16 +264,16 @@
 <br />
             <br />
             转载请注明原文链接
-            <a href="http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/">http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/</a></p>
+            <a href="http://goorockey.github.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/">http://goorockey.github.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[python发邮件脚本]]></title>
-    <link href="http://www.goorockey.com/blog/2012/09/30/python-send-mail/"/>
+    <link href="http://goorockey.github.com/blog/2012/09/30/python-send-mail/"/>
     <updated>2012-09-30T00:40:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/09/30/python-send-mail</id>
+    <id>http://goorockey.github.com/blog/2012/09/30/python-send-mail</id>
     <content type="html"><![CDATA[
 <p>项目组有每天值日搞卫生和发工作日报的规定，由于不提醒容易忘记，则想到通过内部邮件定时提醒，练练手。</p>
 
@@ -574,16 +574,16 @@
 <p><br />
             <br />
             转载请注明原文链接
-            <a href="http://www.goorockey.com/blog/2012/09/30/python-send-mail/">http://www.goorockey.com/blog/2012/09/30/python-send-mail/</a></p>
+            <a href="http://goorockey.github.com/blog/2012/09/30/python-send-mail/">http://goorockey.github.com/blog/2012/09/30/python-send-mail/</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Scheme里面的pair和list]]></title>
-    <link href="http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme/"/>
+    <link href="http://goorockey.github.com/blog/2012/09/25/pair-and-list-in-scheme/"/>
     <updated>2012-09-25T22:41:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme</id>
+    <id>http://goorockey.github.com/blog/2012/09/25/pair-and-list-in-scheme</id>
     <content type="html"><![CDATA[<p>最近学scheme，总结一下pair和list的区别，主要是两点：</p>
 
 <h4 id="listpairnulllistpairlist">1. list一定是pair，但只有以null（空list）结尾的pair才是list</h4>
@@ -654,16 +654,16 @@
 <br />
             <br />
             转载请注明原文链接
-            <a href="http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme/">http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme/</a></p>
+            <a href="http://goorockey.github.com/blog/2012/09/25/pair-and-list-in-scheme/">http://goorockey.github.com/blog/2012/09/25/pair-and-list-in-scheme/</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[从Wordpress转到Octopress]]></title>
-    <link href="http://www.goorockey.com/blog/2012/09/09/try-octopress/"/>
+    <link href="http://goorockey.github.com/blog/2012/09/09/try-octopress/"/>
     <updated>2012-09-09T20:53:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/09/09/try-octopress</id>
+    <id>http://goorockey.github.com/blog/2012/09/09/try-octopress</id>
     <content type="html"><![CDATA[<p>想尝试<a href="http://octopress.org">Octopress</a>很久了。</p>
 
 <p><a href="http://octopress.org">Octopress</a>自称为A blogging framework for <strong>hackers</strong></p>
@@ -741,16 +741,16 @@ Liquid::Template.register_tag('blog_link', Jekyll::BlogLinkTag)
 <p><br />
             <br />
             转载请注明原文链接
-            <a href="http://www.goorockey.com/blog/2012/09/09/try-octopress/">http://www.goorockey.com/blog/2012/09/09/try-octopress/</a></p>
+            <a href="http://goorockey.github.com/blog/2012/09/09/try-octopress/">http://goorockey.github.com/blog/2012/09/09/try-octopress/</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[用VMWare组网，实验DNS隧道]]></title>
-    <link href="http://www.goorockey.com/blogs/77254"/>
+    <link href="http://goorockey.github.com/blogs/77254"/>
     <updated>2012-03-15T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77254</id>
+    <id>http://goorockey.github.com/blogs/77254</id>
     <content type="html"><![CDATA[<p>继续用VMWare来组网，这次要测试我想试很久的DNS隧道，之前碍于没有找到有独立ip的方法（当然是要免费的~~），现在用VMWare就可以了。</p>
 <p>DNS隧道是什么就不解释了。google一下DNS隧道能搜到风河、云风两个大牛相关的blog。这次我用iodine来实现DNS隧道。</p>
 <p><!--more--><br />
@@ -887,14 +887,14 @@ iodine是外国人写的开源DNS隧道工具，有linux版、windows版和Mac�
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77254'>http://www.goorockey.com/blogs/77254</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/77254'>http://goorockey.github.com/blogs/77254</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[VMWare组网实验(NAT)]]></title>
-    <link href="http://www.goorockey.com/blogs/77247"/>
+    <link href="http://goorockey.github.com/blogs/77247"/>
     <updated>2012-03-13T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77247</id>
+    <id>http://goorockey.github.com/blogs/77247</id>
     <content type="html"><![CDATA[<p>本着“干中学”的精神，看完资料，还是用VMWare来练习一下使用NAT，好加深认识。</p>
 <p>实验涉及：NAT，iptables，</p>
 <p>&nbsp;</p>
@@ -983,14 +983,14 @@ CentOS里面配置网卡方法就是修改/etc/sysconfig/network-scripts/ifcfg-e
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77247'>http://www.goorockey.com/blogs/77247</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/77247'>http://goorockey.github.com/blogs/77247</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[NAT学习总结]]></title>
-    <link href="http://www.goorockey.com/blogs/77213"/>
+    <link href="http://goorockey.github.com/blogs/77213"/>
     <updated>2012-03-11T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77213</id>
+    <id>http://goorockey.github.com/blogs/77213</id>
     <content type="html"><![CDATA[<p>最近要恶补一下计算机网络的基础知识，今天先总结一下NAT。</p>
 <p>&nbsp;<br />
 <h6><strong>1、NAT的背景</strong></h6><br />
@@ -1068,14 +1068,14 @@ NAT有四种转换方式：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77213'>http://www.goorockey.com/blogs/77213</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/77213'>http://goorockey.github.com/blogs/77213</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[再次用linux做宿主系统]]></title>
-    <link href="http://www.goorockey.com/blogs/77180"/>
+    <link href="http://goorockey.github.com/blogs/77180"/>
     <updated>2012-02-29T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77180</id>
+    <id>http://goorockey.github.com/blogs/77180</id>
     <content type="html"><![CDATA[<h3><strong>1、背景</strong></h3>
 <p>之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。</p>
 <p>最近也在微博上收集意见，发现用linux做宿主系统的人还是蛮多的。其实仔细想想，归根结底还是自己linux的操作还不熟练。</p>
@@ -1140,14 +1140,14 @@ NAT有四种转换方式：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77180'>http://www.goorockey.com/blogs/77180</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/77180'>http://goorockey.github.com/blogs/77180</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[SSH端口转发]]></title>
-    <link href="http://www.goorockey.com/blogs/77141"/>
+    <link href="http://goorockey.github.com/blogs/77141"/>
     <updated>2012-02-22T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77141</id>
+    <id>http://goorockey.github.com/blogs/77141</id>
     <content type="html"><![CDATA[<h4><strong>1、ssh端口转发是什么</strong></h4>
 <p>ssh端口转发也被叫ssh隧道，ssh代理。</p>
 <p>所谓隧道，就是用X协议封装Y协议的数据包，靠X协议来进行Y协议通信。</p>
@@ -1227,14 +1227,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77141'>http://www.goorockey.com/blogs/77141</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/77141'>http://goorockey.github.com/blogs/77141</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[在dotcloud上搭建wordpress]]></title>
-    <link href="http://www.goorockey.com/blogs/77117"/>
+    <link href="http://goorockey.github.com/blogs/77117"/>
     <updated>2012-02-07T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77117</id>
+    <id>http://goorockey.github.com/blogs/77117</id>
     <content type="html"><![CDATA[<p>之前在sourceforge搭建了wordpress，但SF有两点不好：<br />
 <ul><br />
 	<li>SF在防火墙禁止了对外连接，使得WP好多功能、插件都无法使用（如Akismet）</li><br />
@@ -1265,14 +1265,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77117'>http://www.goorockey.com/blogs/77117</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/77117'>http://goorockey.github.com/blogs/77117</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Code Swarm]]></title>
-    <link href="http://www.goorockey.com/blogs/77106"/>
+    <link href="http://goorockey.github.com/blogs/77106"/>
     <updated>2012-02-03T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77106</id>
+    <id>http://goorockey.github.com/blogs/77106</id>
     <content type="html"><![CDATA[<p>今天拿自己项目组svn的日志来小玩了一下code swarm。</p>
 <p>&nbsp;</p>
 <p>1、什么是code swarm?</p>
@@ -1332,14 +1332,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77106'>http://www.goorockey.com/blogs/77106</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/77106'>http://goorockey.github.com/blogs/77106</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[博客转移了（改用sourceforge+wordpress）]]></title>
-    <link href="http://www.goorockey.com/blogs/77069"/>
+    <link href="http://goorockey.github.com/blogs/77069"/>
     <updated>2012-01-28T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77069</id>
+    <id>http://goorockey.github.com/blogs/77069</id>
     <content type="html"><![CDATA[<p>这几天把博客从GAE+micolog转到了sourceforge+wordpress，主要是考虑到：<br />
 <ul><br />
 	<li>服务器：GAE现在对流量加大了限制，而sourceforge是没有流量或空间限制的</li><br />
@@ -1390,14 +1390,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77069'>http://www.goorockey.com/blogs/77069</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/77069'>http://goorockey.github.com/blogs/77069</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Apache和Tomcat]]></title>
-    <link href="http://www.goorockey.com/blogs/62001"/>
+    <link href="http://goorockey.github.com/blogs/62001"/>
     <updated>2011-11-22T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/62001</id>
+    <id>http://goorockey.github.com/blogs/62001</id>
     <content type="html"><![CDATA[<p>调研了一下Apache和Tomcat：</p>
 <p>1、apache 只是一个web服务器，负责响应客户端的请求。</p>
 <p>2、apache对于页面请求：<!--more--></p>
@@ -1412,14 +1412,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/62001'>http://www.goorockey.com/blogs/62001</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/62001'>http://goorockey.github.com/blogs/62001</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[CentOS下安装Apache+php+mysql Tomcat]]></title>
-    <link href="http://www.goorockey.com/blogs/60002"/>
+    <link href="http://goorockey.github.com/blogs/60002"/>
     <updated>2011-11-12T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/60002</id>
+    <id>http://goorockey.github.com/blogs/60002</id>
     <content type="html"><![CDATA[<p><strong><span style="color: #ff0000; font-size: medium;">一、安装及配置Apache+php+mysql</span></strong></p>
 <p><strong><span style="color: #9bbb59;">1、 安装Apache+php+mysql</span></strong></p>
 <p>(1) 安装Apache+php+Mysql，php连接mysql的组件<br />
@@ -1544,14 +1544,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/60002'>http://www.goorockey.com/blogs/60002</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/60002'>http://goorockey.github.com/blogs/60002</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[《Windows核心编程》读书笔记3--线程同步]]></title>
-    <link href="http://www.goorockey.com/blogs/45011"/>
+    <link href="http://goorockey.github.com/blogs/45011"/>
     <updated>2011-09-05T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/45011</id>
+    <id>http://goorockey.github.com/blogs/45011</id>
     <content type="html"><![CDATA[<p><span style="color: #9bbb59;">1、原子操作</span></p>
 <p>（1）能调用的原子操作：<br />
 <blockquote><span class="caps">LONG</span> <span style="color: #ff8080;">InterlockedExchangeAdd</span>(<span class="caps">PLONG</span> plAddend,<span class="caps">LONG</span> Increment);</p>
@@ -1702,14 +1702,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/45011'>http://www.goorockey.com/blogs/45011</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/45011'>http://goorockey.github.com/blogs/45011</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[《Windows核心编程》读书笔记2--进程、作业、线程]]></title>
-    <link href="http://www.goorockey.com/blogs/43008"/>
+    <link href="http://goorockey.github.com/blogs/43008"/>
     <updated>2011-09-03T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/43008</id>
+    <id>http://goorockey.github.com/blogs/43008</id>
     <content type="html"><![CDATA[<p><strong><span style="font-size: large;">一、摘要：</span></strong></p>
 <p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">1、进程只是线程的容器，存放数据和代码，但不执行代码。</span></span></p>
 <p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">2、线程才是执行代码的实体。</span></span></p>
@@ -1890,14 +1890,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/43008'>http://www.goorockey.com/blogs/43008</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/43008'>http://goorockey.github.com/blogs/43008</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[《Windows核心编程》读书笔记1--内核对象]]></title>
-    <link href="http://www.goorockey.com/blogs/48001"/>
+    <link href="http://goorockey.github.com/blogs/48001"/>
     <updated>2011-09-02T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/48001</id>
+    <id>http://goorockey.github.com/blogs/48001</id>
     <content type="html"><![CDATA[<p><span style="color: #ffff00;"><strong><span style="color: #c0c0c0; font-size: large;">一、摘要</span></strong></span></p>
 <p><span style="color: #ffff00;"><span style="color: #ff0000;">1、内核对象有使用计数，当计数减为0时，内核对象被销毁。</span></span></p>
 <p><span style="color: #ffff00;"><span style="color: #ff0000;">2、内核对象有安全描述符，控制该进程能做的操作。</span></span></p>
@@ -1968,14 +1968,14 @@ ssh端口转发有三种：<br />
 <br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/48001'>http://www.goorockey.com/blogs/48001</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/48001'>http://goorockey.github.com/blogs/48001</a></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[面试趣题]]></title>
-    <link href="http://www.goorockey.com/blogs/38007"/>
+    <link href="http://goorockey.github.com/blogs/38007"/>
     <updated>2011-08-24T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/38007</id>
+    <id>http://goorockey.github.com/blogs/38007</id>
     <content type="html"><![CDATA[<p><strong>题一、有一个整数数组，请求出两两之差绝对值最小的值</strong></p>
 
 <p>方法：先排序，再找差值最小的点对。</p>
@@ -2219,16 +2219,16 @@ void BreakLoop( LinkNode *pHead  )
 <p><br />
             <br />
             转载请注明原文链接
-            <a href="http://www.goorockey.com/blogs/38007">http://www.goorockey.com/blogs/38007</a></p>
+            <a href="http://goorockey.github.com/blogs/38007">http://goorockey.github.com/blogs/38007</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[不用除法运算符实现除法及其推广]]></title>
-    <link href="http://www.goorockey.com/blogs/28004"/>
+    <link href="http://goorockey.github.com/blogs/28004"/>
     <updated>2011-08-22T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/28004</id>
+    <id>http://goorockey.github.com/blogs/28004</id>
     <content type="html"><![CDATA[<p>两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。</p>
 <p>1、最简单的方法</p>
 <p>循环用x减y，知道x等于0。<br />
@@ -2387,7 +2387,7 @@ void BreakLoop( LinkNode *pHead  )
 <p><br/>
             <br/>
             转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/28004'>http://www.goorockey.com/blogs/28004</a></p>]]></content>
+            <a href='http://goorockey.github.com/blogs/28004'>http://goorockey.github.com/blogs/28004</a></p>]]></content>
   </entry>
   
 </feed>

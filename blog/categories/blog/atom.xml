@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: blog | Goorockey's Life]]></title>
-  <link href="http://www.goorockey.com/blog/categories/blog/atom.xml" rel="self"/>
-  <link href="http://www.goorockey.com/"/>
-  <updated>2012-10-27T13:25:08+08:00</updated>
-  <id>http://www.goorockey.com/</id>
+  <link href="http://goorockey.github.com/blog/categories/blog/atom.xml" rel="self"/>
+  <link href="http://goorockey.github.com/"/>
+  <updated>2012-10-28T17:50:23+08:00</updated>
+  <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[从Wordpress转到Octopress]]></title>
-    <link href="http://www.goorockey.com/blog/2012/09/09/try-octopress/"/>
+    <link href="http://goorockey.github.com/blog/2012/09/09/try-octopress/"/>
     <updated>2012-09-09T20:53:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/09/09/try-octopress</id>
+    <id>http://goorockey.github.com/blog/2012/09/09/try-octopress</id>
     <content type="html"><![CDATA[<p>想尝试<a href="http://octopress.org">Octopress</a>很久了。</p>
 
 <p><a href="http://octopress.org">Octopress</a>自称为A blogging framework for <strong>hackers</strong></p>
@@ -97,9 +97,9 @@ Liquid::Template.register_tag('blog_link', Jekyll::BlogLinkTag)
   
   <entry>
     <title type="html"><![CDATA[在dotcloud上搭建wordpress]]></title>
-    <link href="http://www.goorockey.com/blogs/77117"/>
+    <link href="http://goorockey.github.com/blogs/77117"/>
     <updated>2012-02-07T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77117</id>
+    <id>http://goorockey.github.com/blogs/77117</id>
     <content type="html"><![CDATA[<p>之前在sourceforge搭建了wordpress，但SF有两点不好：</p>
 <ul>
 	<li>SF在防火墙禁止了对外连接，使得WP好多功能、插件都无法使用（如Akismet）</li>
@@ -147,9 +147,9 @@ Liquid::Template.register_tag('blog_link', Jekyll::BlogLinkTag)
   
   <entry>
     <title type="html"><![CDATA[博客转移了（改用sourceforge+wordpress）]]></title>
-    <link href="http://www.goorockey.com/blogs/77069"/>
+    <link href="http://goorockey.github.com/blogs/77069"/>
     <updated>2012-01-28T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77069</id>
+    <id>http://goorockey.github.com/blogs/77069</id>
     <content type="html"><![CDATA[<p>这几天把博客从GAE+micolog转到了sourceforge+wordpress，主要是考虑到：</p>
 <ul>
 	<li>服务器：GAE现在对流量加大了限制，而sourceforge是没有流量或空间限制的</li>
@@ -221,9 +221,9 @@ Liquid::Template.register_tag('blog_link', Jekyll::BlogLinkTag)
   
   <entry>
     <title type="html"><![CDATA[终于把博客搞到墙内了！]]></title>
-    <link href="http://www.goorockey.com/blogs/24004"/>
+    <link href="http://goorockey.github.com/blogs/24004"/>
     <updated>2011-08-15T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/24004</id>
+    <id>http://goorockey.github.com/blogs/24004</id>
     <content type="html"><![CDATA[<p>终于把Micolog搞到墙内了！</p>
 <p>用chrome打开速度很理想！</p>
 <p>稍微修改一下Windows Live Writer的设置也能直接连到博客了！</p>
@@ -240,9 +240,9 @@ Liquid::Template.register_tag('blog_link', Jekyll::BlogLinkTag)
   
   <entry>
     <title type="html"><![CDATA[使用Windows Live Writer写Micolog博文]]></title>
-    <link href="http://www.goorockey.com/blogs/1007"/>
+    <link href="http://goorockey.github.com/blogs/1007"/>
     <updated>2011-05-17T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/1007</id>
+    <id>http://goorockey.github.com/blogs/1007</id>
     <content type="html"><![CDATA[<p>1、先下载并安装Live Writer，地址如下</p>
 <blockquote><strong>For Xp</strong> ：   <a href="http://explore.live.com/windows-live-writer-xp">http://explore.live.com/windows-live-writer-xp</a></blockquote>
 <blockquote><strong>For Other</strong>：<a href="http://explore.live.com/windows-live-writer?os=other">http://explore.live.com/windows-live-writer?os=other</a></blockquote>

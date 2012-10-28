@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: programming | Goorockey's Life]]></title>
-  <link href="http://www.goorockey.com/blog/categories/programming/atom.xml" rel="self"/>
-  <link href="http://www.goorockey.com/"/>
-  <updated>2012-10-27T13:25:08+08:00</updated>
-  <id>http://www.goorockey.com/</id>
+  <link href="http://goorockey.github.com/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://goorockey.github.com/"/>
+  <updated>2012-10-28T17:50:23+08:00</updated>
+  <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[面试趣题]]></title>
-    <link href="http://www.goorockey.com/blogs/38007"/>
+    <link href="http://goorockey.github.com/blogs/38007"/>
     <updated>2011-08-24T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/38007</id>
+    <id>http://goorockey.github.com/blogs/38007</id>
     <content type="html"><![CDATA[<p><strong>题一、有一个整数数组，请求出两两之差绝对值最小的值</strong></p>
 
 <p>方法：先排序，再找差值最小的点对。</p>
@@ -267,9 +267,9 @@ void BreakLoop( LinkNode *pHead  )
   
   <entry>
     <title type="html"><![CDATA[不用除法运算符实现除法及其推广]]></title>
-    <link href="http://www.goorockey.com/blogs/28004"/>
+    <link href="http://goorockey.github.com/blogs/28004"/>
     <updated>2011-08-22T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/28004</id>
+    <id>http://goorockey.github.com/blogs/28004</id>
     <content type="html"><![CDATA[<p>两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。</p>
 
 <p>1、最简单的方法</p>
@@ -444,9 +444,9 @@ void BreakLoop( LinkNode *pHead  )
   
   <entry>
     <title type="html"><![CDATA[自产生程序]]></title>
-    <link href="http://www.goorockey.com/blogs/20001"/>
+    <link href="http://goorockey.github.com/blogs/20001"/>
     <updated>2011-08-08T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/20001</id>
+    <id>http://goorockey.github.com/blogs/20001</id>
     <content type="html"><![CDATA[<blockquote>   <p>自产生程序：不通过任何输入，输出自己代码的程序。</p> </blockquote>
 <p />
 <p>很多语言都可以写出这样的程序。</p>
@@ -461,9 +461,9 @@ void BreakLoop( LinkNode *pHead  )
   
   <entry>
     <title type="html"><![CDATA[小记：不用第三个变量交换两数]]></title>
-    <link href="http://www.goorockey.com/blogs/18001"/>
+    <link href="http://goorockey.github.com/blogs/18001"/>
     <updated>2011-08-06T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/18001</id>
+    <id>http://goorockey.github.com/blogs/18001</id>
     <content type="html"><![CDATA[<p>经典的解法：</p>
 <blockquote>   <p>a += b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a+b</p>    <p>b = a – b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为a+b-b = a</p>    <p>a –= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a+b-a = b</p>    <p />    <p>存在的问题： </p>    <p>&nbsp;&nbsp; a+b太大的话会溢出</p> </blockquote>
 <p />

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: others | Goorockey's Life]]></title>
-  <link href="http://www.goorockey.com/blog/categories/others/atom.xml" rel="self"/>
-  <link href="http://www.goorockey.com/"/>
-  <updated>2012-10-27T13:25:08+08:00</updated>
-  <id>http://www.goorockey.com/</id>
+  <link href="http://goorockey.github.com/blog/categories/others/atom.xml" rel="self"/>
+  <link href="http://goorockey.github.com/"/>
+  <updated>2012-10-28T17:50:23+08:00</updated>
+  <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Code Swarm]]></title>
-    <link href="http://www.goorockey.com/blogs/77106"/>
+    <link href="http://goorockey.github.com/blogs/77106"/>
     <updated>2012-02-03T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77106</id>
+    <id>http://goorockey.github.com/blogs/77106</id>
     <content type="html"><![CDATA[<p>今天拿自己项目组svn的日志来小玩了一下code swarm。</p>
 
 <p> </p>

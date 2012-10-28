@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: linux | Goorockey's Life]]></title>
-  <link href="http://www.goorockey.com/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://www.goorockey.com/"/>
-  <updated>2012-10-27T13:25:08+08:00</updated>
-  <id>http://www.goorockey.com/</id>
+  <link href="http://goorockey.github.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://goorockey.github.com/"/>
+  <updated>2012-10-28T17:50:23+08:00</updated>
+  <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[关于exploit exercise nebula level01]]></title>
-    <link href="http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/"/>
+    <link href="http://goorockey.github.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/"/>
     <updated>2012-10-10T23:26:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01</id>
+    <id>http://goorockey.github.com/blog/2012/10/10/about-exploit-exercise-nebula-level01</id>
     <content type="html"><![CDATA[<p>今天做<a href="http://exploit-exercises.com/">exploit exercise</a>的nebula <a href="http://exploit-exercises.com/nebula/level01">level01</a>，长见识了，记录一下。</p>
 
 <h3 id="section">题目</h3>
@@ -142,9 +142,9 @@
   
   <entry>
     <title type="html"><![CDATA[再次用linux做宿主系统]]></title>
-    <link href="http://www.goorockey.com/blogs/77180"/>
+    <link href="http://goorockey.github.com/blogs/77180"/>
     <updated>2012-02-29T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77180</id>
+    <id>http://goorockey.github.com/blogs/77180</id>
     <content type="html"><![CDATA[<h3><strong>1、背景</strong></h3>
 <p>之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。</p>
 
@@ -236,9 +236,9 @@ $ sudo apt-get --purge remove network-manager-gnome</blockquote>
   
   <entry>
     <title type="html"><![CDATA[Apache和Tomcat]]></title>
-    <link href="http://www.goorockey.com/blogs/62001"/>
+    <link href="http://goorockey.github.com/blogs/62001"/>
     <updated>2011-11-22T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/62001</id>
+    <id>http://goorockey.github.com/blogs/62001</id>
     <content type="html"><![CDATA[<p>调研了一下Apache和Tomcat：</p>
 
 <p>1、apache 只是一个web服务器，负责响应客户端的请求。</p>
@@ -265,9 +265,9 @@ $ sudo apt-get --purge remove network-manager-gnome</blockquote>
   
   <entry>
     <title type="html"><![CDATA[CentOS下安装Apache+php+mysql Tomcat]]></title>
-    <link href="http://www.goorockey.com/blogs/60002"/>
+    <link href="http://goorockey.github.com/blogs/60002"/>
     <updated>2011-11-12T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/60002</id>
+    <id>http://goorockey.github.com/blogs/60002</id>
     <content type="html"><![CDATA[<p><strong><span style="color: #ff0000; font-size: medium;">一、安装及配置Apache+php+mysql</span></strong></p>
 
 <p><strong><span style="color: #9bbb59;">1、 安装Apache+php+mysql</span></strong></p>
@@ -444,9 +444,9 @@ chkconfig tomcat on</blockquote>
   
   <entry>
     <title type="html"><![CDATA[vim的统计功能]]></title>
-    <link href="http://www.goorockey.com/blogs/4012"/>
+    <link href="http://goorockey.github.com/blogs/4012"/>
     <updated>2011-05-19T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/4012</id>
+    <id>http://goorockey.github.com/blogs/4012</id>
     <content type="html"><![CDATA[<p> </p>
 
 <p><span style="font-size: medium;">(-_-)??今天遇到个问题：</span></p>

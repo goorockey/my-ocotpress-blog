@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: lisp | Goorockey's Life]]></title>
-  <link href="http://www.goorockey.com/blog/categories/lisp/atom.xml" rel="self"/>
-  <link href="http://www.goorockey.com/"/>
-  <updated>2012-10-27T13:25:08+08:00</updated>
-  <id>http://www.goorockey.com/</id>
+  <link href="http://goorockey.github.com/blog/categories/lisp/atom.xml" rel="self"/>
+  <link href="http://goorockey.github.com/"/>
+  <updated>2012-10-28T17:50:23+08:00</updated>
+  <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Scheme里面的pair和list]]></title>
-    <link href="http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme/"/>
+    <link href="http://goorockey.github.com/blog/2012/09/25/pair-and-list-in-scheme/"/>
     <updated>2012-09-25T22:41:00+08:00</updated>
-    <id>http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme</id>
+    <id>http://goorockey.github.com/blog/2012/09/25/pair-and-list-in-scheme</id>
     <content type="html"><![CDATA[<p>最近学scheme，总结一下pair和list的区别，主要是两点：</p>
 
 <h4 id="listpairnulllistpairlist">1. list一定是pair，但只有以null（空list）结尾的pair才是list</h4>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: network | Goorockey's Life]]></title>
-  <link href="http://www.goorockey.com/blog/categories/network/atom.xml" rel="self"/>
-  <link href="http://www.goorockey.com/"/>
-  <updated>2012-10-27T13:25:08+08:00</updated>
-  <id>http://www.goorockey.com/</id>
+  <link href="http://goorockey.github.com/blog/categories/network/atom.xml" rel="self"/>
+  <link href="http://goorockey.github.com/"/>
+  <updated>2012-10-28T17:50:23+08:00</updated>
+  <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[用VMWare组网，实验DNS隧道]]></title>
-    <link href="http://www.goorockey.com/blogs/77254"/>
+    <link href="http://goorockey.github.com/blogs/77254"/>
     <updated>2012-03-15T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77254</id>
+    <id>http://goorockey.github.com/blogs/77254</id>
     <content type="html"><![CDATA[<p>继续用VMWare来组网，这次要测试我想试很久的DNS隧道，之前碍于没有找到有独立ip的方法（当然是要免费的~~），现在用VMWare就可以了。</p>
 
 <p>DNS隧道是什么就不解释了。google一下DNS隧道能搜到风河、云风两个大牛相关的blog。这次我用iodine来实现DNS隧道。</p>
@@ -214,9 +214,9 @@
   
   <entry>
     <title type="html"><![CDATA[VMWare组网实验(NAT)]]></title>
-    <link href="http://www.goorockey.com/blogs/77247"/>
+    <link href="http://goorockey.github.com/blogs/77247"/>
     <updated>2012-03-13T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77247</id>
+    <id>http://goorockey.github.com/blogs/77247</id>
     <content type="html"><![CDATA[<p>本着“干中学”的精神，看完资料，还是用VMWare来练习一下使用NAT，好加深认识。</p>
 
 <p>实验涉及：NAT，iptables，</p>
@@ -354,9 +354,9 @@ D：192.168.4.234</blockquote>
   
   <entry>
     <title type="html"><![CDATA[NAT学习总结]]></title>
-    <link href="http://www.goorockey.com/blogs/77213"/>
+    <link href="http://goorockey.github.com/blogs/77213"/>
     <updated>2012-03-11T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77213</id>
+    <id>http://goorockey.github.com/blogs/77213</id>
     <content type="html"><![CDATA[<p>最近要恶补一下计算机网络的基础知识，今天先总结一下NAT。</p>
 
 <p> </p>
@@ -482,9 +482,9 @@ D：192.168.4.234</blockquote>
   
   <entry>
     <title type="html"><![CDATA[SSH端口转发]]></title>
-    <link href="http://www.goorockey.com/blogs/77141"/>
+    <link href="http://goorockey.github.com/blogs/77141"/>
     <updated>2012-02-22T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/77141</id>
+    <id>http://goorockey.github.com/blogs/77141</id>
     <content type="html"><![CDATA[<h4><strong>1、ssh端口转发是什么</strong></h4>
 <p>ssh端口转发也被叫ssh隧道，ssh代理。</p>
 
