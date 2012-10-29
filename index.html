@@ -9,7 +9,7 @@
   <meta name="author" content="Goorockey">
 
   
-  <meta name="description" content="由于某种原因，今天玩了一下Hadoop。正确来说，我是玩HOP，一个Hadoop的修改版本。 The Hadoop Online Prototype (HOP) is a modified version of Hadoop MapReduce that allows data to be &hellip;">
+  <meta name="description" content="最近在刷题，总想把题目保存下来，这样没网的时候也可以做题，放手机里也可以随时做了。所以就想着把题目抓下来保存为比较通用的pdf了。 一开始想的是先做类似整站下载，把文字和图片都抓下来，然后再做html转pdf。自己写工具抓下来的话，要抓图片、修改网页里面图片的链接，昨天调研了一下， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,81 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-29T23:46:00+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/10/29/grap-html-to-pdf/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+<p>最近在刷题，总想把题目保存下来，这样没网的时候也可以做题，放手机里也可以随时做了。所以就想着把题目抓下来保存为比较通用的pdf了。</p>
+
+<p>一开始想的是先做类似整站下载，把文字和图片都抓下来，然后再做html转pdf。自己写工具抓下来的话，要抓图片、修改网页里面图片的链接，昨天调研了一下，没找到用python有什么方便的办法，就放弃这条路了。</p>
+
+<p>今天突然找到，网上还是有很多直接网页保存为pdf的工具、网站的。最方便、强大的要数<a href="(http://pdfmyrul)" title="pdfmyurl">pdfmyurl</a>了。</p>
+
+<h3 id="pdfmyurl">pdfmyurl</h3>
+
+<p>可以通过http://pdfmyurl.com?url=&lt;siteurl&gt; ,来把指定链接的网页保存为pdf，而且是直接返回的，即用wget http://pdfmyurl.com?url=&lt;siteurl&gt;就可以直接得到所需的pdf，不用再按什么按钮之类的了。</p>
+
+<p>在官网上可以发现，pdfmyurl可以算是个api服务，可以通过传很多get参数来得到需要的pdf结果。比较常用的有：</p>
+
+<ul>
+  <li>&#8211;filename    输出的pdf文件名</li>
+  <li>&#8211;page-size   页面大小，默认是A4</li>
+  <li>&#8211;proxy       通过制定的代理访问该页面，–username –password还指定用户和密码</li>
+  <li>-b            使得到的pdf有目录、书签、页眉等书的样式，不过目录不咋地</li>
+</ul>
+
+<p>pdfmyurl已经很强大了，但每次只能完成一个网面的pdf，所以还得想办法做pdf的合并。</p>
+
+<h3 id="pdftk">pdftk</h3>
+
+<p><a href="(http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ pdftk 1.pdf 2.pdf cat output 12.pdf</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>但弄出来的pdf是没有目录的。</p>
+
+<p>所以更好的办法其实是用更强大的latex。不过latex还有待系统地研究，现在的再写个bash就已经满足我90%的要求了～</p>
+
+<p><br />
+            <br />
+            转载请注明原文链接
+            <a href="http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/">http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/</a></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -430,69 +505,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/09/try-octopress/">从Wordpress转到Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-09T20:53:00+08:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/09/09/try-octopress/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>想尝试<a href="http://octopress.org">Octopress</a>很久了。</p>
-
-<p><a href="http://octopress.org">Octopress</a>自称为A blogging framework for <strong>hackers</strong></p>
-
-<p>玩<a href="http://octopress.org">Octopress</a>主要会涉及到以下技术:</p>
-
-<ul>
-  <li>git </li>
-  <li>ruby</li>
-  <li>markdown</li>
-</ul>
-
-<p>这些技术对我来说还是很陌生，也好借此机会熟悉熟悉～</p>
-
-<p>总的来说，[Octopress］想对于Wordpress的优势有:</p>
-
-<ul>
-  <li>静态页面，速度快</li>
-  <li>分布式存储，保证数据的安全。而且即使不能上网，也能本地写博客和预览</li>
-  <li>支持用markdown（当然wordpress也有markdown的插件, 但Octopress在命令行写博客更cool)</li>
-</ul>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/09/09/try-octopress/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -506,20 +518,17 @@
     <section class="well">
   <ul id="categories" class="nav nav-list">
   <h1>Categories</h1>
-    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (1)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
-  </ul>
-</section>
-
-<section class="well">
-  <ul id="tag-cloud" class="nav nav-list">
-  <h1>Tag Cloud</h1>
-    <a href='/blog/tags/apache' style='font-size: 112.0%'>apache</a> <a href='/blog/tags/blog' style='font-size: 130.0%'>blog</a> <a href='/blog/tags/centos' style='font-size: 106.0%'>centos</a> <a href='/blog/tags/cpp' style='font-size: 112.0%'>cpp</a> <a href='/blog/tags/dotcloud' style='font-size: 106.0%'>dotcloud</a> <a href='/blog/tags/hadoop' style='font-size: 106.0%'>hadoop</a> <a href='/blog/tags/linux' style='font-size: 130.0%'>linux</a> <a href='/blog/tags/lisp' style='font-size: 106.0%'>lisp</a> <a href='/blog/tags/micolog' style='font-size: 112.0%'>micolog</a> <a href='/blog/tags/mysql' style='font-size: 106.0%'>mysql</a> <a href='/blog/tags/nat' style='font-size: 112.0%'>nat</a> <a href='/blog/tags/network' style='font-size: 124.0%'>network</a> <a href='/blog/tags/octopress' style='font-size: 106.0%'>octopress</a> <a href='/blog/tags/php' style='font-size: 106.0%'>php</a> <a href='/blog/tags/programming' style='font-size: 160.0%'>programming</a> <a href='/blog/tags/python' style='font-size: 106.0%'>python</a> <a href='/blog/tags/scheme' style='font-size: 106.0%'>scheme</a> <a href='/blog/tags/security' style='font-size: 106.0%'>security</a> <a href='/blog/tags/sourceforge' style='font-size: 106.0%'>sourceforge</a> <a href='/blog/tags/ssh' style='font-size: 106.0%'>ssh</a> <a href='/blog/tags/stl' style='font-size: 106.0%'>stl</a> <a href='/blog/tags/tomcat' style='font-size: 112.0%'>tomcat</a> <a href='/blog/tags/vc' style='font-size: 106.0%'>vc</a> <a href='/blog/tags/vim' style='font-size: 106.0%'>vim</a> <a href='/blog/tags/vmware' style='font-size: 112.0%'>vmware</a> <a href='/blog/tags/windows' style='font-size: 124.0%'>windows</a> <a href='/blog/tags/wordpress' style='font-size: 118.0%'>wordpress</a> <a href='/blog/tags/趣味' style='font-size: 106.0%'>趣味</a> <a href='/blog/tags/隧道' style='font-size: 106.0%'>隧道</a> <a href='/blog/tags/面试' style='font-size: 106.0%'>面试</a> 
+    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (2)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
   </ul>
 </section>
 
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/10/21/try-hadoop/">玩一下hadoop</a>
@@ -535,10 +544,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/25/pair-and-list-in-scheme/">Scheme里面的pair和list</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/09/try-octopress/">从Wordpress转到Octopress</a>
       </li>
     
   </ul>

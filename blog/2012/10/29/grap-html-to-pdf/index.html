@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>不能同时用static和const修饰一个成员函数 - Goorockey's Life</title>
+  <title>抓网页保存为pdf - Goorockey's Life</title>
   <meta name="author" content="Goorockey">
 
   
-  <meta name="description" content="普通的成员函数 编译器会自动为其添加一个this指针作为入参 该成员函数能修改成员变量 在成员函数后面加const(注意是后面！) 编译器会自动为其添加一个const *this指针作为入参 该成员函数不能修改成员变量 成员函数加static 编译器不会加this指针 &hellip;">
+  <meta name="description" content="最近在刷题，总想把题目保存下来，这样没网的时候也可以做题，放手机里也可以随时做了。所以就想着把题目抓下来保存为比较通用的pdf了。 一开始想的是先做类似整站下载，把文字和图片都抓下来，然后再做html转pdf。自己写工具抓下来的话，要抓图片、修改网页里面图片的链接，昨天调研了一下， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://goorockey.github.com/blogs/11001">
+  <link rel="canonical" href="http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,7 +79,7 @@
   
   <header>
     
-      <h1 class="entry-title">不能同时用static和const修饰一个成员函数</h1>
+      <h1 class="entry-title">抓网页保存为pdf</h1>
     
     
       <p class="meta">
@@ -95,7 +95,7 @@
   
 
 
-<time datetime="2011-08-02T00:00:00+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2011</time>
+<time datetime="2012-10-29T23:46:00+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -104,11 +104,45 @@
   </header>
 
 
-<div class="entry-content"><table border="0" cellpadding="2" cellspacing="0" width="570"><tbody>     <tr>       <td valign="top" width="159">普通的成员函数</td>        <td valign="top" width="173">编译器会自动为其添加一个this指针作为入参</td>        <td valign="top" width="236">该成员函数能修改成员变量</td>     <p></tr>      <tr>       <td valign="top" width="159">在成员函数后面加const(注意是后面！)</td>        <td valign="top" width="173">编译器会自动为其添加一个const *this指针作为入参</td>        <td valign="top" width="236">该成员函数不能修改成员变量</td>     </tr>      <tr>       <td valign="top" width="159">成员函数加static</td>        <td valign="top" width="173">编译器不会加this指针</td>        <td valign="top" width="236">该成员函数不能直接访问成员变量，只能访问静态成员变量</td>     </tr>   </tbody></table>  <p></p>  <p>所以在成员函数加static和后面加const是矛盾的，即不能同时这样修饰一个成员函数.</p><br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://goorockey.github.com/blogs/11001'>http://goorockey.github.com/blogs/11001</a></p></div>
+<div class="entry-content">
+<p>最近在刷题，总想把题目保存下来，这样没网的时候也可以做题，放手机里也可以随时做了。所以就想着把题目抓下来保存为比较通用的pdf了。</p>
+
+<p>一开始想的是先做类似整站下载，把文字和图片都抓下来，然后再做html转pdf。自己写工具抓下来的话，要抓图片、修改网页里面图片的链接，昨天调研了一下，没找到用python有什么方便的办法，就放弃这条路了。</p>
+
+<p>今天突然找到，网上还是有很多直接网页保存为pdf的工具、网站的。最方便、强大的要数<a href="(http://pdfmyrul)" title="pdfmyurl">pdfmyurl</a>了。</p>
+
+<h3 id="pdfmyurl">pdfmyurl</h3>
+
+<p>可以通过http://pdfmyurl.com?url=&lt;siteurl&gt; ,来把指定链接的网页保存为pdf，而且是直接返回的，即用wget http://pdfmyurl.com?url=&lt;siteurl&gt;就可以直接得到所需的pdf，不用再按什么按钮之类的了。</p>
+
+<p>在官网上可以发现，pdfmyurl可以算是个api服务，可以通过传很多get参数来得到需要的pdf结果。比较常用的有：</p>
+
+<ul>
+  <li>&#8211;filename    输出的pdf文件名</li>
+  <li>&#8211;page-size   页面大小，默认是A4</li>
+  <li>&#8211;proxy       通过制定的代理访问该页面，–username –password还指定用户和密码</li>
+  <li>-b            使得到的pdf有目录、书签、页眉等书的样式，不过目录不咋地</li>
+</ul>
+
+<p>pdfmyurl已经很强大了，但每次只能完成一个网面的pdf，所以还得想办法做pdf的合并。</p>
+
+<h3 id="pdftk">pdftk</h3>
+
+<p><a href="(http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ pdftk 1.pdf 2.pdf cat output 12.pdf</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>但弄出来的pdf是没有目录的。</p>
+
+<p>所以更好的办法其实是用更强大的latex。不过latex还有待系统地研究，现在的再写个bash就已经满足我90%的要求了～</p>
+
+<p><br />
+            <br />
+            转载请注明原文链接
+            <a href="http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/">http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/</a></p>
+
+</div>
 
 
   <footer>
@@ -130,12 +164,12 @@
   
 
 
-<time datetime="2011-08-02T00:00:00+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2011</time>
+<time datetime="2012-10-29T23:46:00+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cpp/'>cpp</a>
+    <a class='category' href='/blog/categories/others/'>others</a>
   
 </span>
 
@@ -144,7 +178,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://goorockey.github.com/blogs/11001" data-via="" data-counturl="http://goorockey.github.com/blogs/11001" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/" data-via="" data-counturl="http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/" >Tweet</a>
   
   
   
@@ -153,10 +187,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blogs/4012" title="Previous Post: vim的统计功能">&laquo; vim的统计功能</a>
+        <a class="basic-alignment left" href="/blog/2012/10/21/try-hadoop/" title="Previous Post: 玩一下hadoop">&laquo; 玩一下hadoop</a>
       
-      
-        <a class="basic-alignment right" href="/blogs/14001" title="Next Post: STL中用copy和ostream_iterator输出一个数组">STL中用copy和ostream_iterator输出一个数组 &raquo;</a>
       
     </p>
   </footer>
@@ -281,8 +313,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://goorockey.github.com/blogs/11001';
-        var disqus_url = 'http://goorockey.github.com/blogs/11001';
+        var disqus_identifier = 'http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/';
+        var disqus_url = 'http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/';
         var disqus_script = 'embed.js';
       
     (function () {

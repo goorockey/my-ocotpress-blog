@@ -9,11 +9,11 @@
   <meta name="author" content="Goorockey">
 
   
-  <meta name="description" content="1、原子操作
-（1）能调用的原子操作：
-LONG InterlockedExchangeAdd(PLONG plAddend,LONG Increment);
-LONG InterlockedExchange(PLONG plTarget, LONG lValue);
-PVOID &hellip;">
+  <meta name="description" content="一、安装及配置Apache+php+mysql
+1、 安装Apache+php+mysql
+(1) 安装Apache+php+Mysql，php连接mysql的组件
+yum -y install httpd php mysql mysql-server php-mysql
+(2) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,57 @@ PVOID &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blogs/60002">CentOS下安装Apache+php+mysql Tomcat</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-12T00:00:00+08:00" pubdate data-updated="true">Nov 12<span>th</span>, 2011</time>
+        
+         | <a href="/blogs/60002#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong><span style="color: #ff0000; font-size: medium;">一、安装及配置Apache+php+mysql</span></strong></p>
+<p><strong><span style="color: #9bbb59;">1、 安装Apache+php+mysql</span></strong></p>
+<p>(1) 安装Apache+php+Mysql，php连接mysql的组件<br />
+<blockquote>yum -y install httpd php mysql mysql-server php-mysql</blockquote><br />
+(2) 安装mysql扩展<br />
+<blockquote>yum -y install mysql-connector-odbc mysql-devel libdbi-dbd-mysql</blockquote><br />
+(3) 安装php的扩展<br />
+<blockquote>yum -y install php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</blockquote><br />
+(4) 安装apache扩展<br />
+<blockquote>yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql</blockquote></p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blogs/60002">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -287,78 +338,6 @@ PVOID &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blogs/28004">不用除法运算符实现除法及其推广</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-22T00:00:00+08:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2011</time>
-        
-         | <a href="/blogs/28004#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。</p>
-<p>1、最简单的方法</p>
-<p>循环用x减y，知道x等于0。<br />
-<div id="codeSnippetWrapper" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 20px 0px 10px; width: 97.5%; font-family: 'Courier New', courier, monospace; direction: ltr; max-height: 200px; font-size: 8pt; overflow: auto; cursor: text; border: silver 1px solid; padding: 4px;"><br />
-<div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 1:</span> <span style="color: #0000ff;">int</span> Div( <span style="color: #0000ff;">int</span> x, <span style="color: #0000ff;">int</span> y )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 2:</span> {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 3:</span>     <span style="color: #0000ff;">int</span> result = 0;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 4:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 5:</span>     <span style="color: #0000ff;">while</span> ( x &gt; y )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 6:</span>     {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 7:</span>         x -= y;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 8:</span>         result++;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 9:</span>     }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 10:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 11:</span>     <span style="color: #0000ff;">return</span> result;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 12:</span> }<br />
-&nbsp;</p>
-</div>
-</div>
-<p>时间复杂度O(n)</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blogs/28004">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -374,20 +353,17 @@ PVOID &hellip;">
     <section class="well">
   <ul id="categories" class="nav nav-list">
   <h1>Categories</h1>
-    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (1)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
-  </ul>
-</section>
-
-<section class="well">
-  <ul id="tag-cloud" class="nav nav-list">
-  <h1>Tag Cloud</h1>
-    <a href='/blog/tags/apache' style='font-size: 112.0%'>apache</a> <a href='/blog/tags/blog' style='font-size: 130.0%'>blog</a> <a href='/blog/tags/centos' style='font-size: 106.0%'>centos</a> <a href='/blog/tags/cpp' style='font-size: 112.0%'>cpp</a> <a href='/blog/tags/dotcloud' style='font-size: 106.0%'>dotcloud</a> <a href='/blog/tags/hadoop' style='font-size: 106.0%'>hadoop</a> <a href='/blog/tags/linux' style='font-size: 130.0%'>linux</a> <a href='/blog/tags/lisp' style='font-size: 106.0%'>lisp</a> <a href='/blog/tags/micolog' style='font-size: 112.0%'>micolog</a> <a href='/blog/tags/mysql' style='font-size: 106.0%'>mysql</a> <a href='/blog/tags/nat' style='font-size: 112.0%'>nat</a> <a href='/blog/tags/network' style='font-size: 124.0%'>network</a> <a href='/blog/tags/octopress' style='font-size: 106.0%'>octopress</a> <a href='/blog/tags/php' style='font-size: 106.0%'>php</a> <a href='/blog/tags/programming' style='font-size: 160.0%'>programming</a> <a href='/blog/tags/python' style='font-size: 106.0%'>python</a> <a href='/blog/tags/scheme' style='font-size: 106.0%'>scheme</a> <a href='/blog/tags/security' style='font-size: 106.0%'>security</a> <a href='/blog/tags/sourceforge' style='font-size: 106.0%'>sourceforge</a> <a href='/blog/tags/ssh' style='font-size: 106.0%'>ssh</a> <a href='/blog/tags/stl' style='font-size: 106.0%'>stl</a> <a href='/blog/tags/tomcat' style='font-size: 112.0%'>tomcat</a> <a href='/blog/tags/vc' style='font-size: 106.0%'>vc</a> <a href='/blog/tags/vim' style='font-size: 106.0%'>vim</a> <a href='/blog/tags/vmware' style='font-size: 112.0%'>vmware</a> <a href='/blog/tags/windows' style='font-size: 124.0%'>windows</a> <a href='/blog/tags/wordpress' style='font-size: 118.0%'>wordpress</a> <a href='/blog/tags/趣味' style='font-size: 106.0%'>趣味</a> <a href='/blog/tags/隧道' style='font-size: 106.0%'>隧道</a> <a href='/blog/tags/面试' style='font-size: 106.0%'>面试</a> 
+    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (2)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
   </ul>
 </section>
 
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/10/21/try-hadoop/">玩一下hadoop</a>
@@ -403,10 +379,6 @@ PVOID &hellip;">
     
       <li class="post">
         <a href="/blog/2012/09/25/pair-and-list-in-scheme/">Scheme里面的pair和list</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/09/try-octopress/">从Wordpress转到Octopress</a>
       </li>
     
   </ul>

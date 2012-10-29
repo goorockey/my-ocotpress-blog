@@ -9,7 +9,7 @@
   <meta name="author" content="Goorockey">
 
   
-  <meta name="description" content="普通的成员函数 编译器会自动为其添加一个this指针作为入参 该成员函数能修改成员变量 在成员函数后面加const(注意是后面！) 编译器会自动为其添加一个const *this指针作为入参 该成员函数不能修改成员变量 成员函数加static 编译器不会加this指针 &hellip;">
+  <meta name="description" content="#include &lt;iostream&gt; #include &lt;iterator&gt; #include &lt;algorithm&gt; int a[] = { 335, 33, 98, 39, 54, 24, 3 }; int nSize = sizeof( a) / &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,47 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blogs/14001">STL中用copy和ostream_iterator输出一个数组</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-02T00:00:00+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2011</time>
+        
+         | <a href="/blogs/14001#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote>   <p>#include &lt;iostream&gt;</p>    <p>#include &lt;iterator&gt;</p>    <p>#include &lt;algorithm&gt;</p><p><br /></p>    <p></p>    <p>int a[] = { 335, 33, 98, 39, 54, 24, 3 };</p>    <p>int nSize = sizeof( a) / sizeof( a[ 0]);</p><p><br /></p>    <p>// 输出数组a到标准输出，同时每个元素都以空格为结束（最后一个元素后面也会有空格）</p>    <p>std::copy( a, a + nSize, std::ostream_iterator&lt; int&gt;( std::cout, &quot; &quot;)); </p> <p></blockquote>  <p></p>  <blockquote>   <p>结果：</p>    <p>335 33 98 39 54 24 3</p> </blockquote>  <p></p>  <p>一个字：妙！！</p>  <p>(^0^)/ </p><br />
+<br/>
+            <br/>
+            转载请注明原文链接<br />
+            <a href='http://goorockey.github.com/blogs/14001'>http://goorockey.github.com/blogs/14001</a></p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -229,20 +270,17 @@
     <section class="well">
   <ul id="categories" class="nav nav-list">
   <h1>Categories</h1>
-    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (1)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
-  </ul>
-</section>
-
-<section class="well">
-  <ul id="tag-cloud" class="nav nav-list">
-  <h1>Tag Cloud</h1>
-    <a href='/blog/tags/apache' style='font-size: 112.0%'>apache</a> <a href='/blog/tags/blog' style='font-size: 130.0%'>blog</a> <a href='/blog/tags/centos' style='font-size: 106.0%'>centos</a> <a href='/blog/tags/cpp' style='font-size: 112.0%'>cpp</a> <a href='/blog/tags/dotcloud' style='font-size: 106.0%'>dotcloud</a> <a href='/blog/tags/hadoop' style='font-size: 106.0%'>hadoop</a> <a href='/blog/tags/linux' style='font-size: 130.0%'>linux</a> <a href='/blog/tags/lisp' style='font-size: 106.0%'>lisp</a> <a href='/blog/tags/micolog' style='font-size: 112.0%'>micolog</a> <a href='/blog/tags/mysql' style='font-size: 106.0%'>mysql</a> <a href='/blog/tags/nat' style='font-size: 112.0%'>nat</a> <a href='/blog/tags/network' style='font-size: 124.0%'>network</a> <a href='/blog/tags/octopress' style='font-size: 106.0%'>octopress</a> <a href='/blog/tags/php' style='font-size: 106.0%'>php</a> <a href='/blog/tags/programming' style='font-size: 160.0%'>programming</a> <a href='/blog/tags/python' style='font-size: 106.0%'>python</a> <a href='/blog/tags/scheme' style='font-size: 106.0%'>scheme</a> <a href='/blog/tags/security' style='font-size: 106.0%'>security</a> <a href='/blog/tags/sourceforge' style='font-size: 106.0%'>sourceforge</a> <a href='/blog/tags/ssh' style='font-size: 106.0%'>ssh</a> <a href='/blog/tags/stl' style='font-size: 106.0%'>stl</a> <a href='/blog/tags/tomcat' style='font-size: 112.0%'>tomcat</a> <a href='/blog/tags/vc' style='font-size: 106.0%'>vc</a> <a href='/blog/tags/vim' style='font-size: 106.0%'>vim</a> <a href='/blog/tags/vmware' style='font-size: 112.0%'>vmware</a> <a href='/blog/tags/windows' style='font-size: 124.0%'>windows</a> <a href='/blog/tags/wordpress' style='font-size: 118.0%'>wordpress</a> <a href='/blog/tags/趣味' style='font-size: 106.0%'>趣味</a> <a href='/blog/tags/隧道' style='font-size: 106.0%'>隧道</a> <a href='/blog/tags/面试' style='font-size: 106.0%'>面试</a> 
+    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (2)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
   </ul>
 </section>
 
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/10/21/try-hadoop/">玩一下hadoop</a>
@@ -258,10 +296,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/25/pair-and-list-in-scheme/">Scheme里面的pair和list</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/09/try-octopress/">从Wordpress转到Octopress</a>
       </li>
     
   </ul>
