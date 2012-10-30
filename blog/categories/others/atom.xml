@@ -4,7 +4,7 @@
   <title><![CDATA[categories: others | Goorockey's Life]]></title>
   <link href="http://goorockey.github.com/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://goorockey.github.com/"/>
-  <updated>2012-10-30T01:33:42+08:00</updated>
+  <updated>2012-10-31T07:54:11+08:00</updated>
   <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -44,13 +44,21 @@
 
 <p><a href="(http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
 
-<p>{% codeblock %}
-$ pdftk 1.pdf 2.pdf cat output 12.pdf
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ pdftk 1.pdf 2.pdf cat output 12.pdf</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>但弄出来的pdf是没有目录的。</p>
 
 <p>所以更好的办法其实是用更强大的latex。不过latex还有待系统地研究，现在的再写个bash就已经满足我90%的要求了～</p>
+
+<hr />
+
+<p>P.S
+1. 今天还是发现了一个用python抓oj的，有空参考一下，自己实现一个。</p>
+
+<ol>
+  <li>今天还发现，pdfmyurl似乎对单个ip一定时间内的请求做了限制，超过限制后，请求都会返回一个错误信息的pdf。我就借cjb的tor解决了这个问题（又用tor干了邪恶的事了）。</li>
+</ol>
 
 ]]></content>
   </entry>

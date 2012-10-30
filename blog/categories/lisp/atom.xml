@@ -4,7 +4,7 @@
   <title><![CDATA[categories: lisp | Goorockey's Life]]></title>
   <link href="http://goorockey.github.com/blog/categories/lisp/atom.xml" rel="self"/>
   <link href="http://goorockey.github.com/"/>
-  <updated>2012-10-30T01:33:42+08:00</updated>
+  <updated>2012-10-31T07:54:11+08:00</updated>
   <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -30,40 +30,60 @@
 
 <p>所以有：</p>
 
-<p>{% codeblock cmdline %}
-&gt; (define x ‘(1 2))
-&gt; x
-(1 2)
-&gt; (list? x)
-#t
-&gt; (cons? x)
-#t
-&gt; (cddr x) ; 以null结尾
-()</p>
-
-<blockquote>
-  <p>(define y (cons 1 2))
-(list? y)
-#f
-(cons? y)
-#f
-(set-cdr! y ‘()) ; 把y的cdr设为null，使y变成list
-y
-(1)
-(list? y) ; 变成了list
-#t
-(cons? y)
-#t
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>cmdline </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; (define x ‘(1 2))
+</span><span class='line'>&gt; x
+</span><span class='line'>(1 2)
+</span><span class='line'>&gt; (list? x)
+</span><span class='line'>#t
+</span><span class='line'>&gt; (cons? x)
+</span><span class='line'>#t
+</span><span class='line'>&gt; (cddr x) ; 以null结尾
+</span><span class='line'>()&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>
+</span><span class='line'>  &lt;p>(define y (cons 1 2))
+</span><span class='line'>(list? y)
+</span><span class='line'>#f
+</span><span class='line'>(cons? y)
+</span><span class='line'>#f
+</span><span class='line'>(set-cdr! y ‘()) ; 把y的cdr设为null，使y变成list
+</span><span class='line'>y
+</span><span class='line'>(1)
+</span><span class='line'>(list? y) ; 变成了list
+</span><span class='line'>#t
+</span><span class='line'>(cons? y)
+</span><span class='line'>#t</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 </blockquote>
 
 <h4 id="pair">2. pair的显示规则</h4>
 
 <p>引用<a href="http://download.plt-scheme.org/doc/html/guide/Pairs__Lists__and_Scheme_Syntax.html">这里</a>的解释：</p>
 
-<p>{% blockquote %}
-    In general, the rule for printing a pair is as follows: use the dot notation always, but if the dot is immediately followed by an open parenthesis, then remove the dot, the open parenthesis, and the	matching close parenthesis. Thus, (0 . (1 . 2)) becomes (0 1 . 2), and (1 . (2 . (3 . ()))) becomes (1 2 3).
-{% endblockquote %}</p>
+<p><blockquote><p>In general, the rule for printing a pair is as follows: use the dot notation always, but if the dot is immediately followed by an open parenthesis, then remove the dot, the open parenthesis, and the	matching close parenthesis. Thus, (0 . (1 . 2)) becomes (0 1 . 2), and (1 . (2 . (3 . ()))) becomes (1 2 3).</p></blockquote></p>
 
 <p>大意就是，如果pair的“点”紧接着小括号，则这个点和小括号都可以去掉。</p>
 
