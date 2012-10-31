@@ -44,7 +44,7 @@ $ pdftk 1.pdf 2.pdf cat output 12.pdf
 
 ---
 
-P.S
+
 1. 今天还是发现了一个用python抓oj的，有空参考一下，自己实现一个。
 
 2. 今天还发现，pdfmyurl似乎对单个ip一定时间内的请求做了限制，超过限制后，请求都会返回一个错误信息的pdf。我就借cjb的tor解决了这个问题（又用tor干了邪恶的事了）。
