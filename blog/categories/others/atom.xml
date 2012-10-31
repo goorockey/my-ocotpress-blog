@@ -4,7 +4,7 @@
   <title><![CDATA[categories: others | Goorockey's Life]]></title>
   <link href="http://goorockey.github.com/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://goorockey.github.com/"/>
-  <updated>2012-10-31T07:54:11+08:00</updated>
+  <updated>2012-10-31T07:58:32+08:00</updated>
   <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -53,11 +53,13 @@
 
 <hr />
 
-<p>P.S
-1. 今天还是发现了一个用python抓oj的，有空参考一下，自己实现一个。</p>
-
 <ol>
-  <li>今天还发现，pdfmyurl似乎对单个ip一定时间内的请求做了限制，超过限制后，请求都会返回一个错误信息的pdf。我就借cjb的tor解决了这个问题（又用tor干了邪恶的事了）。</li>
+  <li>
+    <p>今天还是发现了一个用python抓oj的，有空参考一下，自己实现一个。</p>
+  </li>
+  <li>
+    <p>今天还发现，pdfmyurl似乎对单个ip一定时间内的请求做了限制，超过限制后，请求都会返回一个错误信息的pdf。我就借cjb的tor解决了这个问题（又用tor干了邪恶的事了）。</p>
+  </li>
 </ol>
 
 ]]></content>
