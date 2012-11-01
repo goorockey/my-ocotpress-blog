@@ -162,25 +162,6 @@
 
 <p>就是多了pipeline（流水线）的Hadoop。分布式流水线可以有效加快各jobs在各节点的同步运算。</p>
 
-<h3 id="section">准备</h3>
-
-<p>我是在linux上弄的，windows下用cygwin也行。</p>
-
-<p>下载HOP压缩包后，看里面的docs就够了，同时src/example还有一些例子。</p>
-
-<p>确保ssh,sshd,rsync,jdk都有了。同时要保证ssh localhost不要输入密码的认证步骤。具体docs/quickstart也有说，可以这样：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
-</span><span class="line">$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>然后是设置jdk的目录，修改conf/hadoop-env.sh中JAVA_HOME。一般为/usr/lib/jvm/下的某个java目录，我就直接写成/usr/lib/jvm/default-java了。</p>
-
-<p>这时候执行bin/hadoop就会出现帮助信息了。</p>
-
-<h3 id="section-1">跑例程</h3>
-
 </div>
   
   

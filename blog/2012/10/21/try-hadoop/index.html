@@ -111,6 +111,8 @@
 
 <p>就是多了pipeline（流水线）的Hadoop。分布式流水线可以有效加快各jobs在各节点的同步运算。</p>
 
+<!-- more -->
+
 <h3 id="section">准备</h3>
 
 <p>我是在linux上弄的，windows下用cygwin也行。</p>
@@ -129,8 +131,6 @@
 <p>这时候执行bin/hadoop就会出现帮助信息了。</p>
 
 <h3 id="section-1">跑例程</h3>
-
-<!-- more -->
 
 <p>Hadoop的文件系统叫<a href="http://hadoop.apache.org/docs/stable/hdfs_design.html" title="HDFS">HDFS</a>（Hadoop distribution filesystem)，是一个分布式文件系统。每份数据都会在多个节点有备份，以容错、修复。所有数据都要先放进HDFS才能Hadoop处理。</p>
 
