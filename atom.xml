@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Life]]></title>
   <link href="http://goorockey.github.com/atom.xml" rel="self"/>
   <link href="http://goorockey.github.com/"/>
-  <updated>2012-10-31T08:03:18+08:00</updated>
+  <updated>2012-11-01T12:29:52+08:00</updated>
   <id>http://goorockey.github.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -24,6 +24,8 @@
 <p>一开始想的是先做类似整站下载，把文字和图片都抓下来，然后再做html转pdf。自己写工具抓下来的话，要抓图片、修改网页里面图片的链接，昨天调研了一下，没找到用python有什么方便的办法，就放弃这条路了。</p>
 
 <p>今天突然找到，网上还是有很多直接网页保存为pdf的工具、网站的。最方便、强大的要数<a href="(http://pdfmyrul)" title="pdfmyurl">pdfmyurl</a>了。</p>
+
+<!-- more -->
 
 <h3 id="pdfmyurl">pdfmyurl</h3>
 
@@ -52,6 +54,8 @@
 <p>所以更好的办法其实是用更强大的latex。不过latex还有待系统地研究，现在的再写个bash就已经满足我90%的要求了～</p>
 
 <hr />
+
+<p>更新：</p>
 
 <ol>
   <li>
