@@ -21,6 +21,8 @@ The Hadoop Online Prototype (HOP) is a modified version of Hadoop MapReduce that
 
 就是多了pipeline（流水线）的Hadoop。分布式流水线可以有效加快各jobs在各节点的同步运算。
 
+<!-- more -->
+
 ### 准备
 
 我是在linux上弄的，windows下用cygwin也行。
@@ -39,8 +41,6 @@ $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 这时候执行bin/hadoop就会出现帮助信息了。
 
 ### 跑例程
-
-<!-- more -->
 
 Hadoop的文件系统叫[HDFS]（Hadoop distribution filesystem)，是一个分布式文件系统。每份数据都会在多个节点有备份，以容错、修复。所有数据都要先放进HDFS才能Hadoop处理。
 

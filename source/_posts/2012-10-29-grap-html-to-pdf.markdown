@@ -16,6 +16,7 @@ tags: others pdf
 
 今天突然找到，网上还是有很多直接网页保存为pdf的工具、网站的。最方便、强大的要数[pdfmyurl]了。
 
+<!-- more -->
 
 ### pdfmyurl
 
@@ -44,6 +45,7 @@ $ pdftk 1.pdf 2.pdf cat output 12.pdf
 
 ---
 
+更新：
 
 1. 今天还是发现了一个用python抓oj的，有空参考一下，自己实现一个。
 
