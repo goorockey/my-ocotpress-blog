@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: programming | Goorockey's Life]]></title>
-  <link href="http://goorockey.github.com/blog/categories/programming/atom.xml" rel="self"/>
-  <link href="http://goorockey.github.com/"/>
-  <updated>2012-11-01T12:51:35+08:00</updated>
-  <id>http://goorockey.github.com/</id>
+  <link href="http://www.goorockey.com/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://www.goorockey.com/"/>
+  <updated>2012-11-02T13:10:09+08:00</updated>
+  <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[面试趣题]]></title>
-    <link href="http://goorockey.github.com/blogs/38007"/>
+    <link href="http://www.goorockey.com/blogs/38007"/>
     <updated>2011-08-24T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/38007</id>
+    <id>http://www.goorockey.com/blogs/38007</id>
     <content type="html"><![CDATA[<p><strong>题一、有一个整数数组，请求出两两之差绝对值最小的值</strong></p>
 
 <p>方法：先排序，再找差值最小的点对。</p>
@@ -83,35 +83,7 @@
 
 <p><em>代码：</em></p>
 
-<p><div><script src='https://gist.github.com/3712175.js?file='></script>
-<noscript><pre><code>bool TestLoop( LinkNode *pHead )
-{
-    LinkNode *pFast = pHead, *pSlow = pHead;
-
-    while ( 1 ) 
-    {   
-        if ( pFast &amp;&amp; pFast-&gt;pNext )
-        {   
-            pFast = pFast-&gt;pNext-&gt;pNext;
-        }   
-        else
-        {   
-            return false;
-        }   
-
-        if ( pSlow )
-        {   
-            pSlow = pSlow-&gt;pNext;
-        }   
-
-        if ( pSlow == pFast )
-        {   
-            return true;
-        }   
-    }   
-}
-</code></pre></noscript></div>
-</p>
+<p>{% gist 3712175 %}</p>
 
 <hr />
 <p><strong>推广一：有环单向链表中环的节点数</strong></p>
@@ -126,52 +98,7 @@
 
 <p><em>代码：</em></p>
 
-<p><div><script src='https://gist.github.com/3712217.js?file='></script>
-<noscript><pre><code>//计算有环单向链表中环的节点数
-intTestLoopLength(LinkNode*pHead)
-{
-    LinkNode*pSlow=pHead,*pFast=pHead;
-
-    //检查是否有环
-    while(1)
-    {   
-        if(pFast&amp;&amp;pFast-&gt;pNext)
-        {   
-            pFast=pFast-&gt;pNext-&gt;pNext;
-        }   
-        else
-        {   
-            return0;
-        }   
-
-        if(pSlow)
-        {   
-            pSlow=pSlow-&gt;pNext;
-        }   
-
-        if(pSlow==pFast)
-        {   
-            break;
-        }   
-    }   
-
-    //继续移动，并计数慢指针的移动节点数
-    intnLoopLength=0;
-    while(1)
-    {   
-        pFast=pFast-&gt;pNext-&gt;pNext;
-        pSlow=pSlow-&gt;pNext;
-        nLoopLength++;
-        if(pFast==pSlow)
-        {   
-            break;
-        }   
-    }   
-
-    returnnLoopLength;
-}
-</code></pre></noscript></div>
-</p>
+<p>{% gist 3712217 %}</p>
 
 <hr />
 <p><strong>推广二、找到有环单向链表中环首节点</strong></p>
@@ -201,44 +128,7 @@ intTestLoopLength(LinkNode*pHead)
 
 <p><em>代码：</em></p>
 
-<p><div><script src='https://gist.github.com/3712226.js?file='></script>
-<noscript><pre><code>// 破坏有环单向链表的环
-void BreakLoop( LinkNode *pHead  )
-{
-    // 计算环的节点数n 
-    int nLoopLength = TestLoopLength( pHead );
-
-    if ( nLoopLength &gt; 0 ) 
-    {   
-        LinkNode *pSlow = pHead, *pFast = pHead;
-
-        // 让一个指针先移动n个节点
-        for (int i = 0; i &lt; nLoopLength; ++i)
-        {   
-            pFast = pFast-&gt;pNext;
-        }   
-
-        // 同时移动两指针，会在环的首节点相遇
-        while ( pSlow != pFast )
-        {   
-            pFast = pFast-&gt;pNext;
-            pSlow = pSlow-&gt;pNext;
-        }   
-
-        // 遍历到环的尾节点
-        for (int i = 0; i &lt; nLoopLength - 1; ++i)
-        {   
-            pSlow = pSlow-&gt;pNext;
-        }   
-
-        assert( pSlow-&gt;pNext != pFast );
-
-        // 修改环尾节点的next指针
-        pSlow-&gt;pNext = NULL;
-    }   
-}
-</code></pre></noscript></div>
-</p>
+<p>{% gist 3712226 %}</p>
 
 <hr />
 <p><strong>题五、找到有序链表的中位值</strong></p>
@@ -247,29 +137,16 @@ void BreakLoop( LinkNode *pHead  )
 
 <p>更好的方法：用两个指针p1、p2，p1每次走两步，p2每次走一步，等到p1到链表尾时，p2所指即为中位值</p>
 
-<p><div><script src='https://gist.github.com/3824662.js?file='></script>
-<noscript><pre><code>void GetMiddle(Link ＊l, LinkNode **ppNode)
-{
-    LinkNode *p1 = l, *p2 = l;
-
-    while (p1 != NULL &amp;&amp; p1-&gt;next != NULL)
-    {
-        p1 = p1-&gt;next-&gt;next;
-        p2 = p2-&gt;next;
-    }
-
-    *ppNode = p2;
-}</code></pre></noscript></div>
-</p>
+<p>{% gist 3824662 %}</p>
 
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[不用除法运算符实现除法及其推广]]></title>
-    <link href="http://goorockey.github.com/blogs/28004"/>
+    <link href="http://www.goorockey.com/blogs/28004"/>
     <updated>2011-08-22T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/28004</id>
+    <id>http://www.goorockey.com/blogs/28004</id>
     <content type="html"><![CDATA[<p>两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。</p>
 
 <p>1、最简单的方法</p>
@@ -444,9 +321,9 @@ void BreakLoop( LinkNode *pHead  )
   
   <entry>
     <title type="html"><![CDATA[自产生程序]]></title>
-    <link href="http://goorockey.github.com/blogs/20001"/>
+    <link href="http://www.goorockey.com/blogs/20001"/>
     <updated>2011-08-08T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/20001</id>
+    <id>http://www.goorockey.com/blogs/20001</id>
     <content type="html"><![CDATA[<blockquote>   <p>自产生程序：不通过任何输入，输出自己代码的程序。</p> </blockquote>
 <p />
 <p>很多语言都可以写出这样的程序。</p>
@@ -461,9 +338,9 @@ void BreakLoop( LinkNode *pHead  )
   
   <entry>
     <title type="html"><![CDATA[小记：不用第三个变量交换两数]]></title>
-    <link href="http://goorockey.github.com/blogs/18001"/>
+    <link href="http://www.goorockey.com/blogs/18001"/>
     <updated>2011-08-06T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/18001</id>
+    <id>http://www.goorockey.com/blogs/18001</id>
     <content type="html"><![CDATA[<p>经典的解法：</p>
 <blockquote>   <p>a += b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a+b</p>    <p>b = a – b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为a+b-b = a</p>    <p>a –= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a+b-a = b</p>    <p />    <p>存在的问题： </p>    <p>&nbsp;&nbsp; a+b太大的话会溢出</p> </blockquote>
 <p />

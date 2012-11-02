@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: windows | Goorockey's Life]]></title>
-  <link href="http://goorockey.github.com/blog/categories/windows/atom.xml" rel="self"/>
-  <link href="http://goorockey.github.com/"/>
-  <updated>2012-11-01T12:51:35+08:00</updated>
-  <id>http://goorockey.github.com/</id>
+  <link href="http://www.goorockey.com/blog/categories/windows/atom.xml" rel="self"/>
+  <link href="http://www.goorockey.com/"/>
+  <updated>2012-11-02T13:10:09+08:00</updated>
+  <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[《Windows核心编程》读书笔记3--线程同步]]></title>
-    <link href="http://goorockey.github.com/blogs/45011"/>
+    <link href="http://www.goorockey.com/blogs/45011"/>
     <updated>2011-09-05T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/45011</id>
+    <id>http://www.goorockey.com/blogs/45011</id>
     <content type="html"><![CDATA[<p><span style="color: #9bbb59;">1、原子操作</span></p>
 
 <p>（1）能调用的原子操作：</p>
@@ -202,9 +202,9 @@ semaphore，允许指定数量的线程拥有，创建此object时可以指定�
   
   <entry>
     <title type="html"><![CDATA[《Windows核心编程》读书笔记2--进程、作业、线程]]></title>
-    <link href="http://goorockey.github.com/blogs/43008"/>
+    <link href="http://www.goorockey.com/blogs/43008"/>
     <updated>2011-09-03T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/43008</id>
+    <id>http://www.goorockey.com/blogs/43008</id>
     <content type="html"><![CDATA[<p><strong><span style="font-size: large;">一、摘要：</span></strong></p>
 
 <p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">1、进程只是线程的容器，存放数据和代码，但不执行代码。</span></span></p>
@@ -447,9 +447,9 @@ _endthreadex则是对应多做了清空关联数据结构的操作。</blockquot
   
   <entry>
     <title type="html"><![CDATA[《Windows核心编程》读书笔记1--内核对象]]></title>
-    <link href="http://goorockey.github.com/blogs/48001"/>
+    <link href="http://www.goorockey.com/blogs/48001"/>
     <updated>2011-09-02T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/48001</id>
+    <id>http://www.goorockey.com/blogs/48001</id>
     <content type="html"><![CDATA[<p><span style="color: #ffff00;"><strong><span style="color: #c0c0c0; font-size: large;">一、摘要</span></strong></span></p>
 
 <p><span style="color: #ffff00;"><span style="color: #ff0000;">1、内核对象有使用计数，当计数减为0时，内核对象被销毁。</span></span></p>
@@ -556,9 +556,9 @@ _endthreadex则是对应多做了清空关联数据结构的操作。</blockquot
   
   <entry>
     <title type="html"><![CDATA[VC中对WM_NOTIFY的处理]]></title>
-    <link href="http://goorockey.github.com/blogs/22004"/>
+    <link href="http://www.goorockey.com/blogs/22004"/>
     <updated>2011-08-19T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/22004</id>
+    <id>http://www.goorockey.com/blogs/22004</id>
     <content type="html"><![CDATA[<p>1、Reflect</p>
 
 <p>对于WM_NOTIFY消息：</p>

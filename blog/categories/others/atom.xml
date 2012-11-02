@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[categories: others | Goorockey's Life]]></title>
-  <link href="http://goorockey.github.com/blog/categories/others/atom.xml" rel="self"/>
-  <link href="http://goorockey.github.com/"/>
-  <updated>2012-11-01T12:51:35+08:00</updated>
-  <id>http://goorockey.github.com/</id>
+  <link href="http://www.goorockey.com/blog/categories/others/atom.xml" rel="self"/>
+  <link href="http://www.goorockey.com/"/>
+  <updated>2012-11-02T13:10:09+08:00</updated>
+  <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[抓网页保存为pdf]]></title>
-    <link href="http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf/"/>
+    <link href="http://www.goorockey.com/blog/2012/10/29/grap-html-to-pdf/"/>
     <updated>2012-10-29T23:46:00+08:00</updated>
-    <id>http://goorockey.github.com/blog/2012/10/29/grap-html-to-pdf</id>
+    <id>http://www.goorockey.com/blog/2012/10/29/grap-html-to-pdf</id>
     <content type="html"><![CDATA[
 <p>最近在刷题，总想把题目保存下来，这样没网的时候也可以做题，放手机里也可以随时做了。所以就想着把题目抓下来保存为比较通用的pdf了。</p>
 
@@ -46,8 +46,9 @@
 
 <p><a href="(http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ pdftk 1.pdf 2.pdf cat output 12.pdf</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+$ pdftk 1.pdf 2.pdf cat output 12.pdf
+{% endcodeblock %}</p>
 
 <p>但弄出来的pdf是没有目录的。</p>
 
@@ -71,9 +72,9 @@
   
   <entry>
     <title type="html"><![CDATA[Code Swarm]]></title>
-    <link href="http://goorockey.github.com/blogs/77106"/>
+    <link href="http://www.goorockey.com/blogs/77106"/>
     <updated>2012-02-03T00:00:00+08:00</updated>
-    <id>http://goorockey.github.com/blogs/77106</id>
+    <id>http://www.goorockey.com/blogs/77106</id>
     <content type="html"><![CDATA[<p>今天拿自己项目组svn的日志来小玩了一下code swarm。</p>
 
 <p> </p>
