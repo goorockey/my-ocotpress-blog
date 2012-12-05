@@ -4,7 +4,7 @@
   <title><![CDATA[categories: others | Goorockey's Life]]></title>
   <link href="http://www.goorockey.com/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2012-12-05T16:19:44+08:00</updated>
+  <updated>2012-12-06T01:54:40+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -46,9 +46,8 @@
 
 <p><a href="(http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
 
-<p>{% codeblock %}
-$ pdftk 1.pdf 2.pdf cat output 12.pdf
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ pdftk 1.pdf 2.pdf cat output 12.pdf</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>但弄出来的pdf是没有目录的。</p>
 

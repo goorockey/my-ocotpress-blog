@@ -4,7 +4,7 @@
   <title><![CDATA[categories: programming | Goorockey's Life]]></title>
   <link href="http://www.goorockey.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2012-12-05T16:19:44+08:00</updated>
+  <updated>2012-12-06T01:54:40+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -83,7 +83,35 @@
 
 <p><em>代码：</em></p>
 
-<p>{% gist 3712175 %}</p>
+<p><div><script src='https://gist.github.com/3712175.js?file='></script>
+<noscript><pre><code>bool TestLoop( LinkNode *pHead )
+{
+    LinkNode *pFast = pHead, *pSlow = pHead;
+
+    while ( 1 ) 
+    {   
+        if ( pFast &amp;&amp; pFast-&gt;pNext )
+        {   
+            pFast = pFast-&gt;pNext-&gt;pNext;
+        }   
+        else
+        {   
+            return false;
+        }   
+
+        if ( pSlow )
+        {   
+            pSlow = pSlow-&gt;pNext;
+        }   
+
+        if ( pSlow == pFast )
+        {   
+            return true;
+        }   
+    }   
+}
+</code></pre></noscript></div>
+</p>
 
 <hr />
 <p><strong>推广一：有环单向链表中环的节点数</strong></p>
@@ -98,7 +126,52 @@
 
 <p><em>代码：</em></p>
 
-<p>{% gist 3712217 %}</p>
+<p><div><script src='https://gist.github.com/3712217.js?file='></script>
+<noscript><pre><code>//计算有环单向链表中环的节点数
+intTestLoopLength(LinkNode*pHead)
+{
+    LinkNode*pSlow=pHead,*pFast=pHead;
+
+    //检查是否有环
+    while(1)
+    {   
+        if(pFast&amp;&amp;pFast-&gt;pNext)
+        {   
+            pFast=pFast-&gt;pNext-&gt;pNext;
+        }   
+        else
+        {   
+            return0;
+        }   
+
+        if(pSlow)
+        {   
+            pSlow=pSlow-&gt;pNext;
+        }   
+
+        if(pSlow==pFast)
+        {   
+            break;
+        }   
+    }   
+
+    //继续移动，并计数慢指针的移动节点数
+    intnLoopLength=0;
+    while(1)
+    {   
+        pFast=pFast-&gt;pNext-&gt;pNext;
+        pSlow=pSlow-&gt;pNext;
+        nLoopLength++;
+        if(pFast==pSlow)
+        {   
+            break;
+        }   
+    }   
+
+    returnnLoopLength;
+}
+</code></pre></noscript></div>
+</p>
 
 <hr />
 <p><strong>推广二、找到有环单向链表中环首节点</strong></p>
@@ -128,7 +201,44 @@
 
 <p><em>代码：</em></p>
 
-<p>{% gist 3712226 %}</p>
+<p><div><script src='https://gist.github.com/3712226.js?file='></script>
+<noscript><pre><code>// 破坏有环单向链表的环
+void BreakLoop( LinkNode *pHead  )
+{
+    // 计算环的节点数n 
+    int nLoopLength = TestLoopLength( pHead );
+
+    if ( nLoopLength &gt; 0 ) 
+    {   
+        LinkNode *pSlow = pHead, *pFast = pHead;
+
+        // 让一个指针先移动n个节点
+        for (int i = 0; i &lt; nLoopLength; ++i)
+        {   
+            pFast = pFast-&gt;pNext;
+        }   
+
+        // 同时移动两指针，会在环的首节点相遇
+        while ( pSlow != pFast )
+        {   
+            pFast = pFast-&gt;pNext;
+            pSlow = pSlow-&gt;pNext;
+        }   
+
+        // 遍历到环的尾节点
+        for (int i = 0; i &lt; nLoopLength - 1; ++i)
+        {   
+            pSlow = pSlow-&gt;pNext;
+        }   
+
+        assert( pSlow-&gt;pNext != pFast );
+
+        // 修改环尾节点的next指针
+        pSlow-&gt;pNext = NULL;
+    }   
+}
+</code></pre></noscript></div>
+</p>
 
 <hr />
 <p><strong>题五、找到有序链表的中位值</strong></p>
@@ -137,7 +247,20 @@
 
 <p>更好的方法：用两个指针p1、p2，p1每次走两步，p2每次走一步，等到p1到链表尾时，p2所指即为中位值</p>
 
-<p>{% gist 3824662 %}</p>
+<p><div><script src='https://gist.github.com/3824662.js?file='></script>
+<noscript><pre><code>void GetMiddle(Link ＊l, LinkNode **ppNode)
+{
+    LinkNode *p1 = l, *p2 = l;
+
+    while (p1 != NULL &amp;&amp; p1-&gt;next != NULL)
+    {
+        p1 = p1-&gt;next-&gt;next;
+        p2 = p2-&gt;next;
+    }
+
+    *ppNode = p2;
+}</code></pre></noscript></div>
+</p>
 
 ]]></content>
   </entry>

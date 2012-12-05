@@ -4,7 +4,7 @@
   <title><![CDATA[categories: blog | Goorockey's Life]]></title>
   <link href="http://www.goorockey.com/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2012-12-05T16:19:44+08:00</updated>
+  <updated>2012-12-06T01:54:40+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -44,7 +44,54 @@
 
 <p>仿照着，写了个友情链接侧栏的插件, 当然直接在source/_include/asides/ 写静态页面也可以，纯练手:</p>
 
-<p>{% gist 3689183 %}</p>
+<p><div><script src='https://gist.github.com/3689183.js?file='></script>
+<noscript><pre><code>################################# 
+#   File name:   blog_link.rb
+#   Description:    Plugin for Octopress to show link widget at sidebar
+#   Author: goorockey
+#   Usage:  1.put this file to plugins/
+#           2.write a xml file having your link information, and put it to source/.The format of xml file is &lt;xml&gt;&lt;blog&gt;&lt;name&gt;abc&lt;/name&gt;&lt;link&gt;http://abc.com&lt;link&gt;&lt;/blog&gt; ... &lt;/xml&gt;
+#           3.add &quot;blog_link_file: &quot; attribute to your _config.yml,which is your link xml file created at step 2
+#################################
+
+require 'rexml/document'
+require 'open-uri'
+
+module Jekyll
+  class BlogLinkTag &lt; Liquid::Tag
+    def render(context)
+    html = &quot;&quot;
+    blog_link_file = context.registers[:site].config['blog_link_file']
+    blog_link_url = context.registers[:site].config['url'] + &quot;/&quot; +  blog_link_file
+
+    if File.exists?(blog_link_file)
+      File.delete(blog_link_file)
+    end
+
+    File.open(blog_link_file, 'wb') do |output|
+        open(blog_link_url) do |input|
+            output &lt;&lt; input.read
+        end
+    end
+
+    if File.exists?(blog_link_file)
+      xml = REXML::Document.new(File.open(blog_link_file))
+
+      xml.each_element('//blog') do |elem|
+        blog_name = elem.elements['name'].text
+        blog_link = elem.elements['link'].text
+        html &lt;&lt; &quot;&lt;li class='blog_link'&gt;&lt;a href=#{blog_link}&gt;#{blog_name}&lt;/a&gt;&lt;/li&gt;&quot;
+      end
+
+    end
+    html
+    end
+  end
+end
+
+Liquid::Template.register_tag('blog_link', Jekyll::BlogLinkTag)
+</code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   
