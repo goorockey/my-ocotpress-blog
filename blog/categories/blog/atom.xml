@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[categories: blog | Goorockey's Life]]></title>
+  <link href="http://www.goorockey.com/blog/categories/blog/atom.xml" rel="self"/>
+  <link href="http://www.goorockey.com/"/>
+  <updated>2012-12-06T03:56:30+08:00</updated>
+  <id>http://www.goorockey.com/</id>
+  <author>
+    <name><![CDATA[Goorockey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[从Wordpress转到Octopress]]></title>
+    <link href="http://www.goorockey.com/blog/2012/09/09/try-octopress/"/>
+    <updated>2012-09-09T20:53:00+08:00</updated>
+    <id>http://www.goorockey.com/blog/2012/09/09/try-octopress</id>
+    <content type="html"><![CDATA[<p>想尝试<a href="http://octopress.org">Octopress</a>很久了。</p>
+
+<p><a href="http://octopress.org">Octopress</a>自称为A blogging framework for <strong>hackers</strong></p>
+
+<p>玩<a href="http://octopress.org">Octopress</a>主要会涉及到以下技术:</p>
+
+<ul>
+  <li>git </li>
+  <li>ruby</li>
+  <li>markdown</li>
+</ul>
+
+<p>这些技术对我来说还是很陌生，也好借此机会熟悉熟悉～</p>
+
+<p>总的来说，[Octopress］想对于Wordpress的优势有:</p>
+
+<ul>
+  <li>静态页面，速度快</li>
+  <li>分布式存储，保证数据的安全。而且即使不能上网，也能本地写博客和预览</li>
+  <li>支持用markdown（当然wordpress也有markdown的插件, 但Octopress在命令行写博客更cool)</li>
+</ul>
+
+<!--more-->
+
+<p>仿照着，写了个友情链接侧栏的插件, 当然直接在source/_include/asides/ 写静态页面也可以，纯练手:</p>
+
+<p><div><script src='https://gist.github.com/3689183.js?file='></script>
+<noscript><pre><code>################################# 
+#   File name:   blog_link.rb
+#   Description:    Plugin for Octopress to show link widget at sidebar
+#   Author: goorockey
+#   Usage:  1.put this file to plugins/
+#           2.write a xml file having your link information, and put it to source/.The format of xml file is &lt;xml&gt;&lt;blog&gt;&lt;name&gt;abc&lt;/name&gt;&lt;link&gt;http://abc.com&lt;link&gt;&lt;/blog&gt; ... &lt;/xml&gt;
+#           3.add &quot;blog_link_file: &quot; attribute to your _config.yml,which is your link xml file created at step 2
+#################################
+
+require 'rexml/document'
+require 'open-uri'
+
+module Jekyll
+  class BlogLinkTag &lt; Liquid::Tag
+    def render(context)
+    html = &quot;&quot;
+    blog_link_file = context.registers[:site].config['blog_link_file']
+    blog_link_url = context.registers[:site].config['url'] + &quot;/&quot; +  blog_link_file
+
+    if File.exists?(blog_link_file)
+      File.delete(blog_link_file)
+    end
+
+    File.open(blog_link_file, 'wb') do |output|
+        open(blog_link_url) do |input|
+            output &lt;&lt; input.read
+        end
+    end
+
+    if File.exists?(blog_link_file)
+      xml = REXML::Document.new(File.open(blog_link_file))
+
+      xml.each_element('//blog') do |elem|
+        blog_name = elem.elements['name'].text
+        blog_link = elem.elements['link'].text
+        html &lt;&lt; &quot;&lt;li class='blog_link'&gt;&lt;a href=#{blog_link}&gt;#{blog_name}&lt;/a&gt;&lt;/li&gt;&quot;
+      end
+
+    end
+    html
+    end
+  end
+end
+
+Liquid::Template.register_tag('blog_link', Jekyll::BlogLinkTag)
+</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在dotcloud上搭建wordpress]]></title>
+    <link href="http://www.goorockey.com/blogs/77117"/>
+    <updated>2012-02-07T00:00:00+08:00</updated>
+    <id>http://www.goorockey.com/blogs/77117</id>
+    <content type="html"><![CDATA[<p>之前在sourceforge搭建了wordpress，但SF有两点不好：</p>
+<ul>
+	<li>SF在防火墙禁止了对外连接，使得WP好多功能、插件都无法使用（如Akismet）</li>
+	<li>访问SF速度很慢很慢</li>
+</ul>
+<p>之后在寻找更好的方案时，偶遇dotcloud上搭建wordpress的文章，还看到了借dotcloud的ssh来翻x哦。</p>
+
+<!--more-->
+
+<p>1、dotcloud介绍</p>
+
+<p>dotcloud是PaaS(Platform as a Service)的云计算平台，类似的还有GAE、Heroku、国内的SAE。</p>
+
+<p>dotcloud支持几乎所有主流服务，php、java、python、ruby、mysql、postsql、node.js、Hadoop等等。详细参见：<a title="http://docs.dotcloud.com/firststeps/platform-overview/" href="http://docs.dotcloud.com/firststeps/platform-overview/">http://docs.dotcloud.com/firststeps/platform-overview/</a></p>
+
+<p>dotcloud对搭建的应用没有空间和流量限制，但现在有两个限制：</p>
+<ul>
+	<li>每个用户只能有两个应用（每个用户对应一个邮箱，有多个邮箱就可以多申请几个了嘛，呵呵）</li>
+	<li>网上流传数据库容量限制在10M（官网上没找到这个说法）</li>
+</ul>
+<p>dotcloud的访问速度还是很快的。</p>
+
+<p><br clear="all" />
+2、dotcloud使用</p>
+
+<p>搭建wordpress的话，网上资源很多，我主要是参考：</p>
+
+<p><a title="http://blog.yangtse.me/2011/10/wordpress-dotcloud/" href="http://blog.yangtse.me/2011/10/wordpress-dotcloud/">http://blog.yangtse.me/2011/10/wordpress-dotcloud/</a></p>
+
+<p><a title="http://olddocs.dotcloud.com/tutorials/wordpress/" href="http://olddocs.dotcloud.com/tutorials/wordpress/">http://olddocs.dotcloud.com/tutorials/wordpress/</a></p>
+
+<p>反正算蛮简单的。</p>
+
+<p> </p>
+
+<p><span style="color: #ff0000; font-size: large;">建议：</span></p>
+
+<p>不要用postinstall脚本连接的方法。由于dotcloud的push，是把原有的全部删除，重新建立一份，这个脚本是把wp-content移出current目录，防止push后把wp-content覆盖了。</p>
+
+<p>但由于wordpress的bug（其他应用不确定），一些插件会出现路径的错误。例子可见：<a title="http://blog.yangtse.me/2011/10/wordpress-dotcloud-habari-error/" href="http://blog.yangtse.me/2011/10/wordpress-dotcloud-habari-error/">http://blog.yangtse.me/2011/10/wordpress-dotcloud-habari-error/</a>。</p>
+
+<p>dotcloud的push我除了第一次上传代码用过，之后都是直接用ssh控制的。所以我就干脆不用postinstall脚本了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[博客转移了（改用sourceforge+wordpress）]]></title>
+    <link href="http://www.goorockey.com/blogs/77069"/>
+    <updated>2012-01-28T00:00:00+08:00</updated>
+    <id>http://www.goorockey.com/blogs/77069</id>
+    <content type="html"><![CDATA[<p>这几天把博客从GAE+micolog转到了sourceforge+wordpress，主要是考虑到：</p>
+<ul>
+	<li>服务器：GAE现在对流量加大了限制，而sourceforge是没有流量或空间限制的</li>
+	<li>博客系统：wordpress的资源币micolog的要多很多</li>
+</ul>
+<p>主要做了几件事：</p>
+<ul>
+	<li>sourceforge+wordpress建站</li>
+	<li>micolog数据导入到wordpress</li>
+	<li>优化wordpress：主题、插件、google analytics</li>
+</ul>
+<!--more-->
+
+<p>考虑到SEO的域名权重问题，就保留sourceforge的二级域名了。</p>
+
+<p> </p>
+
+<p>教程的话网上资源很多，值得记录的东西：</p>
+<ul>
+	<li>安装wordpress，及其主题、插件等资源时，最好用ssh登录到sourceforge，从sourceforge那边wget下载，而不要从自己机子下载。因为资源多在国外的服务器，这样速度快多了。</li>
+	<li>注意关闭sourceforge项目管理中不必要的访问权限，以免博客里的文件被在sourceforge中能被访问。</li>
+</ul>
+<p> </p>
+
+<p>感叹sourceforge真是太伟大了！</p>
+
+<p>感叹wordpress真的就两个字：折腾！！</p>
+
+<p> </p>
+
+<hr />
+
+<p><strong><span style="color: #ff0000;">2012.1.29 更新：</span></strong></p>
+
+<p>昨天还发现github+octopress这种免费建博客的形式。</p>
+
+<p>但建的是静态站点，即服务器存放的就只是html+css+js网页,没有php、asp等。</p>
+
+<p>优点：</p>
+<ul>
+	<li>最重要的优点是git的分布式管理，保证博文等数据不容易丢失；</li>
+	<li>git的其他各种优点</li>
+	<li>静态站点的优点：响应速度快，对服务器端的负荷小</li>
+</ul>
+<p>缺点:</p>
+<ul>
+	<li>我觉得缺点主要是静态站点的后期维护成本高！  因为到了后期，文章等数据多了，服务器就会存有大量网页，大大增加修改、备份等维护的成本！！</li>
+	<li>折腾octopress的成本。octopress的官网说其是"a blog framework for *HACKERS*"，本身是ruby应用，即折腾它要玩ruby。要折腾octopress似乎比较适合程序猿。（ruby折腾迷略过此条。。）</li>
+</ul>
+<p> </p>
+
+<p>考虑到静态站点的后期维护问题，我觉得还是SF+WP比较适合现在的我啦~~嘻嘻</p>
+
+<hr />
+
+<p><strong><span style="color: #ff0000;">2012.2.5 更新：</span></strong></p>
+
+<p>根据SF的官方规定，架在上面的服务的outbound connection会被禁止。详细请参看：</p>
+
+<p><span><a class="smarterwiki-linkify" href="http://sourceforge.net/apps/trac/sourceforge/wiki/Project%20web%20and%20developer%20web%20platform#Outboundconnectivity">http://sourceforge.net/apps/trac/sourceforge/wiki/Project%20web%20and%20developer%20web%20platform#Outboundconnectivity</a></span></p>
+
+<p>而因为很多WP的功能、插件等都会用到向外发送请求，所以在SF上架WP的时候，很多功能和插件都用不了的。</p>
+
+<p>例如，WP内置的更新ping服务器，Akismet， google sitemap，微博同步等等。。</p>
+
+<p>现在还没找到什么办法，唉。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[终于把博客搞到墙内了！]]></title>
+    <link href="http://www.goorockey.com/blogs/24004"/>
+    <updated>2011-08-15T00:00:00+08:00</updated>
+    <id>http://www.goorockey.com/blogs/24004</id>
+    <content type="html"><![CDATA[<p>终于把Micolog搞到墙内了！</p>
+<p>用chrome打开速度很理想！</p>
+<p>稍微修改一下Windows Live Writer的设置也能直接连到博客了！</p>
+<p />
+<p>=======================兴奋的分割线===============================</p>
+<p>具体方法参考了：</p>
+<blockquote><p><a title="http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html" href="http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html">http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html</a></p></blockquote>
+<p />
+<p>但由于<a href="http://dot.tk">dot.tk</a>对免费域名有限制：</p>
+<blockquote><p>在90天内少于25名用户访问时,免费域名会过期。</p></blockquote>
+<p>所以我改在<a href="http://www.co.cc/">co.cc</a>申请免费域名，操作跟dot.tk的对应，只是每次修改设置（如修改dns服务器）时并不一定立刻就生效，它也说了最多会在48小时内生效。其他都按照链接的方法做就OK了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用Windows Live Writer写Micolog博文]]></title>
+    <link href="http://www.goorockey.com/blogs/1007"/>
+    <updated>2011-05-17T00:00:00+08:00</updated>
+    <id>http://www.goorockey.com/blogs/1007</id>
+    <content type="html"><![CDATA[<p>1、先下载并安装Live Writer，地址如下</p>
+<blockquote><strong>For Xp</strong> ：   <a href="http://explore.live.com/windows-live-writer-xp">http://explore.live.com/windows-live-writer-xp</a></blockquote>
+<blockquote><strong>For Other</strong>：<a href="http://explore.live.com/windows-live-writer?os=other">http://explore.live.com/windows-live-writer?os=other</a></blockquote>
+<p>2、添加用户：</p>
+
+<p>(1) 选择“其他日志服务”</p>
+
+<p><a href="http://www.goorockey.com/uploads/2011/05/image11.png"><img class="alignnone size-medium wp-image-77045" title="image1" src="http://www.goorockey.com/uploads/2011/05/image11-300x254.png" alt="" width="300" height="254" /></a></p>
+
+<!--more-->
+
+<p>(2)设置博客地址、用户名和密码</p>
+<blockquote>用户名和密码是Micolog管理页面中设置的rpc用户和密码</blockquote>
+<p><a href="http://www.goorockey.com/uploads/2011/05/image21.png"><img class="alignnone size-medium wp-image-77046" title="image2" src="http://www.goorockey.com/uploads/2011/05/image21-300x256.png" alt="" width="300" height="256" /></a></p>
+
+<p>(3) 设置博客的类型</p>
+<blockquote>推介选择WordPress 2.2+
+
+发布的URL就是 “你的博客地址/rpc”</blockquote>
+<p><a href="http://www.goorockey.com/uploads/2011/05/image31.png"><img class="alignnone size-medium wp-image-77047" title="image3" src="http://www.goorockey.com/uploads/2011/05/image31-300x255.png" alt="" width="300" height="255" /></a></p>
+
+<p>(4)之后，等它配置完成就可以用Live Writer写Micolog了：）</p>
+
+<p>3、要注意的地方：</p>
+
+<p>(1)更改了博客主题后，要及时更新Live Writer的账户配置</p>
+<blockquote>【日志】-【编辑日志设置】，选择“更新账户配置”。</blockquote>
+<p>(2)设置自动保存和标题提醒</p>
+<blockquote>【工具】-【选项】-【编辑】，勾选“自动保存草稿间隔”</blockquote>
+<p><a href="http://www.goorockey.com/uploads/2011/05/image41.png"><img class="alignnone size-medium wp-image-77048" title="image4" src="http://www.goorockey.com/uploads/2011/05/image41-300x285.png" alt="" width="300" height="285" /></a></p>
+<blockquote>再选择【首选项】标签，勾选“发布前提醒我指定标签”</blockquote>
+<p><a href="http://www.goorockey.com/uploads/2011/05/image51.png"><img class="alignnone size-medium wp-image-77049" title="image5" src="http://www.goorockey.com/uploads/2011/05/image51-300x287.png" alt="" width="300" height="287" /></a></p>
+
+<p>(3)添加Ping服务器</p>
+
+<p>为了让新博文发布后能被人即时知道，可以设置Ping服务器</p>
+<blockquote>【工具】-【选项】-【Ping服务器】</blockquote>
+<p>以下是我的Ping服务器：</p>
+<blockquote><a href="http://www.feedsky.com/api/RPC2">http://www.feedsky.com/api/RPC2</a>
+<a href="http://ping.baidu.com/ping/RPC2">http://ping.baidu.com/ping/RPC2</a>
+<a href="http://blogsearch.google.com/ping/RPC2">http://blogsearch.google.com/ping/RPC2</a>
+<a href="http://www.zhuaxia.com/rpc/server.php">http://www.zhuaxia.com/rpc/server.php</a>
+<a href="http://www.xianguo.com/xmlrpc/ping.php">http://www.xianguo.com/xmlrpc/ping.php</a>
+<a href="http://so.blog.qihoo.com/pingblog.html">http://so.blog.qihoo.com/pingblog.html</a>
+<a href="http://api.my.yahoo.com/RPC2">http://api.my.yahoo.com/RPC2</a>
+<a href="http://search.msn.com/docs/submit.aspx">http://search.msn.com/docs/submit.aspx</a>
+<a href="http://www.sogou.com/feedback/blogfeedback.php">http://www.sogou.com/feedback/blogfeedback.php</a></blockquote>
+<p>Ping服务器的添加是在精不在多，太多无谓的Ping服务器只会徒增博文发布的时间。</p>
+
+<p>(4)由于GFW，使得无法直接连接appspot.com，我的话是用VPN来解决的。</p>
+<blockquote>&nbsp;</blockquote>
+]]></content>
+  </entry>
+  
+</feed>

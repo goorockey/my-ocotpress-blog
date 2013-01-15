@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>《Windows核心编程》读书笔记3--线程同步 - Goorockey's Life</title>
+  <meta name="author" content="Goorockey">
+
+  
+  <meta name="description" content="1、原子操作
+（1）能调用的原子操作：
+LONG InterlockedExchangeAdd(PLONG plAddend,LONG Increment);
+LONG InterlockedExchange(PLONG plTarget, LONG lValue);
+PVOID &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.goorockey.com/blogs/45011">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Life" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28958629-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Goorockey's Life</a></h1>
+  
+    <h2>玩技术，解决问题，提高效率</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feed.goorockey.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.goorockey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">《Windows核心编程》读书笔记3--线程同步</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-05T00:00:00+08:00" pubdate data-updated="true">Sep 5<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><span style="color: #9bbb59;">1、原子操作</span></p>
+<p>（1）能调用的原子操作：<br />
+<blockquote><span class="caps">LONG</span> <span style="color: #ff8080;">InterlockedExchangeAdd</span>(<span class="caps">PLONG</span> plAddend,<span class="caps">LONG</span> Increment);</p>
+<p><span class="caps">LONG</span> <span style="color: #ff8080;">InterlockedExchange</span>(<span class="caps">PLONG</span> plTarget, <span class="caps">LONG</span> lValue);</p>
+<p><span class="caps">PVOID</span> <span style="color: #ff8080;">InterlockedExchangePointer</span>(PVOID* ppvTarget, <span class="caps">PVOID</span> pvValue);</p>
+<p><span class="caps">PVOID</span> <span style="color: #ff8080;">InterlockedCompareExchange</span>(<span class="caps">PLONG</span> plDestination, <span class="caps">LONG</span> lExchange, <span class="caps">LONG</span> lComparand);</p>
+<p><span class="caps">PVOID</span> <span style="color: #ff8080;">InterlockedCompareExchangePointer</span>(PVOID* ppvDestination, <span class="caps">PVOID</span> pvExchange, <span class="caps">PVOID</span> pvComparand);</blockquote><br />
+<span style="color: #ffff00;"> <!--more--></span></p>
+<p><span style="color: #9bbb59;">2、以查询方式同步</span><br />
+<div id="codeSnippetWrapper"><br />
+<div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum1" style="color: #606060;"> 1:</span> <span style="color: #0000ff;">volatile</span> <span class="caps">BOOL</span> g_fFinishedCalculation = <span style="color: #0000ff;"><span class="caps">FALSE</span></span>;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum2" style="color: #606060;"> 2:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum3" style="color: #606060;"> 3:</span> <span style="color: #0000ff;">int</span> <span class="caps">WINAPI</span> WinMain(&#8230;)<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum4" style="color: #606060;"> 4:</span> {<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum5" style="color: #606060;"> 5:</span> CreateThread(&#8230;, RecalcFunc, &#8230;);<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum6" style="color: #606060;"> 6:</span> &#8230;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum7" style="color: #606060;"> 7:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum8" style="color: #606060;"> 8:</span> <span style="color: #008000;">//Wait for the recalculation to complete. </span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum9" style="color: #606060;"> 9:</span> <span style="color: #0000ff;">while</span>(!g_fFinishedCalculation)<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum10" style="color: #606060;"> 10:</span> ;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum11" style="color: #606060;"> 11:</span> &#8230;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum12" style="color: #606060;"> 12:</span> }<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum13" style="color: #606060;"> 13:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum14" style="color: #606060;"> 14:</span> <span class="caps">DWORD</span> <span class="caps">WINAPI</span> RecalcFunc(<span class="caps">PVOID</span> pvParam)<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum15" style="color: #606060;"> 15:</span> {<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum16" style="color: #606060;"> 16:</span> <span style="color: #008000;">//Perform the recalculation. </span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum17" style="color: #606060;"> 17:</span> &#8230;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum18" style="color: #606060;"> 18:</span> g_fFinishedCalculation = <span style="color: #0000ff;"><span class="caps">TRUE</span></span>;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum19" style="color: #606060;"> 19:</span> <span style="color: #0000ff;">return</span>(0);<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum20" style="color: #606060;"> 20:</span> }<br />
+&nbsp;</p>
+</div>
+</div>
+<p>（1）查询的线程一直处于可调度状态，浪费CPU时间</p>
+<p>（2）如果WinMain的线程优先级比ReclcFunc的线程要高，则g_fFinishedCalculation永远不会被置为TRUE。</p>
+<p>&nbsp;</p>
+<p><span style="color: #9bbb59;">3、关键代码段Critical_Section</span></p>
+<p>（1）使用前调用InitializeCriticalSection进行初始化，使用后用DeleteCriticalSection释放资源</p>
+<p>（2）在指向同一个Critical_Section的EnterCriticalSection和LeaveCriticalSection之间的代码，不会被多个线程同时调用</p>
+<p>（3）同一个线程多次重入EnterCriticalSection和LeaveCriticalSection之间的代码不会发生死锁。</p>
+<p>如下面代码不会有死锁：<br />
+<div id="codeSnippetWrapper"><br />
+<div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum1" style="color: #606060;"> 1:</span> <span style="color: #0000ff;">int</span> main(<span style="color: #0000ff;">int</span> argc, <span style="color: #0000ff;">char</span> **argv)<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum2" style="color: #606060;"> 2:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum3" style="color: #606060;"> 3:</span> {<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum4" style="color: #606060;"> 4:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum5" style="color: #606060;"> 5:</span>     CRITICAL_SECTION cs;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum6" style="color: #606060;"> 6:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum7" style="color: #606060;"> 7:</span>     InitializeCriticalSection(&amp;cs);<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum8" style="color: #606060;"> 8:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum9" style="color: #606060;"> 9:</span>     EnterCriticalSection(&amp;cs);<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum10" style="color: #606060;"> 10:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum11" style="color: #606060;"> 11:</span>     EnterCriticalSection(&amp;cs);<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum12" style="color: #606060;"> 12:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum13" style="color: #606060;"> 13:</span>     <span style="color: #0000ff;">while</span>(1)<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum14" style="color: #606060;"> 14:</span>     {<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum15" style="color: #606060;"> 15:</span>         cout &lt;&lt; <span style="color: #006080;">&#8220;testing&#8221;</span> &lt;&lt; endl;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum16" style="color: #606060;"> 16:</span>     }<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum17" style="color: #606060;"> 17:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum18" style="color: #606060;"> 18:</span>     LeaveCriticalSection(&amp;cs);<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum19" style="color: #606060;"> 19:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum20" style="color: #606060;"> 20:</span>     LeaveCriticalSection(&amp;cs);<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum21" style="color: #606060;"> 21:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum22" style="color: #606060;"> 22:</span>     <span style="color: #0000ff;">return</span> 0;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span id="lnum23" style="color: #606060;"> 23:</span> }<br />
+&nbsp;</p>
+</div>
+</div>
+<p>（4）考虑到线程进入等待状态时，要保护现场，这是非常耗时的。这可以用InitializeCriticalSectionAndSpinCount，它让想进入已被占用的关键代码段的线程先循环判断多次，才进入等待状态。</p>
+<p>（5）InitializeCriticalSectionAndSpinCount只对多个CPU起作用，单个CPU不起作用。</p>
+<p>（6）SetCriticalSectionSpinCount可以改变循环判断的次数</p>
+<p>（7）关键代码段是在用户态实现同步的方法，这样比内核态同步要快，因为不用做用户态和内核态之间的往返（往返一次需要占用x 8 6平台上的大约1 0 0 0个C P U周期）。</p>
+<p><span style="color: #ffff00;"> </span></p>
+<p><span style="color: #9bbb59;">4、内核对象同步</span></p>
+<p>（1）当内核对象是自动设置为有信号时，在所有等待该内核对象的线程中，只会有一个变为可调度，然后该内核对象又自动设为无信号。</p>
+<p>（2）当内核对象是手动设置为有信号时，除非手动设置该内核对象的状态，否则一直是有信号，这样所有等待该内核对象的线程都能变为可调度。</p>
+<p>&nbsp;</p>
+<p><span style="color: #9bbb59;">5、WaitableTimer</span></p>
+<p>（1）WaitableTimer能在规定时候或按规定的时间间隔变为有信号状态，就类似闹钟。</p>
+<p>（2）SetWaitableTimer设置开始定时的时间（如果传参是负数，则是相对于这个函数被调用的时间）、定时的间隔、定时间隔到时调用的函数</p>
+<p>（3）CancelWaitableTimer取消WaitableTimer的定时。</p>
+<p>&nbsp;</p>
+<p><span style="color: #9bbb59;">6、其他等待函数</span><br />
+<table width="571" border="0" cellspacing="0" cellpadding="2"><br />
+<tbody><br />
+<tr><br />
+<td valign="top" width="208">MsgWaitForMultipleObjects和MsgWaitForMultipleObjectsEx</td><br />
+<td valign="top" width="361">等待多个内核对象有信号、或指定类型消息到达线程的输入队列</td></p>
+</tr>
+<tr>
+<td valign="top" width="208">SingleObjectAndWait</td>
+<td valign="top" width="361">在一个原子操作完成设置一个内核对象为有信号，并进入等待另一个内核对象</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><span style="color: #9bbb59;">7、各同步的内核对象的理解</span></p>
+<p>（1）关键代码段:<br />
+<blockquote>critical section ,关键代码段之间的代码是原子操作，同一时间只能有一个线程执行该段代码，与别的同步object都是内核态的同步相比，它争取用用户态的方式进行同步，如果用户态的用户不行，才用内核态的同步，这样效率更高,花费较少</blockquote><br />
+（2）锁:<br />
+<blockquote>mutex，只允许一个线程拥有</p>
+<p>semaphore，允许指定数量的线程拥有，创建此object时可以指定能拥有的最多的线程数</blockquote><br />
+（3）信号：<br />
+<blockquote>event，不同于锁，就如它的名字是“信号”，当一个线程拥有锁的时候就会改变锁的状态以达到同步（`成功拥有mutex则使它无信号；成功拥有semaphore则使它计数减一，当计数为零，则semaphore变成无信号状态），手动设置的event的状态只有线程调用SetEvent或ResetEvent才会改变，线程则通过WaitForSingleObject等检测信号状态的函数来达到同步。</blockquote><br />
+<br/>
+            <br/>
+            转载请注明原文链接<br />
+            <a href='http://www.goorockey.com/blogs/45011'>http://www.goorockey.com/blogs/45011</a></p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Goorockey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-05T00:00:00+08:00" pubdate data-updated="true">Sep 5<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/windows/'>windows</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.goorockey.com/blogs/45011" data-via="" data-counturl="http://www.goorockey.com/blogs/45011" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blogs/43008" title="Previous Post: 《Windows核心编程》读书笔记2--进程、作业、线程">&laquo; 《Windows核心编程》读书笔记2--进程、作业、线程</a>
+      
+      
+        <a class="basic-alignment right" href="/blogs/60002" title="Next Post: CentOS下安装Apache+php+mysql Tomcat">CentOS下安装Apache+php+mysql Tomcat &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section class="well">
+  <ul id="categories" class="nav nav-list">
+  <h1>Categories</h1>
+    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (2)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/21/try-hadoop/">玩一下hadoop</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/10/about-exploit-exercise-nebula-level01/">关于exploit exercise nebula level01</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/python-send-mail/">python发邮件脚本</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/25/pair-and-list-in-scheme/">Scheme里面的pair和list</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="well">
+  <ul id="weibo" class="nav nav-list">
+	<h1>My Weibo</h1>
+	<li>
+        <iframe id="sina_widget_1796329305" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=1796329305&height=500&skin=wd_01&showpic=1"></iframe>
+	</li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="douban" class="nav nav-list">
+	<h1>My Douban</h1>
+	<li>
+	<script type="text/javascript" src="http://www.douban.com/service/badge/goorockey/?show=collection&amp;n=8&amp;columns=2&amp;hidelogo=yes" ></script> 
+	</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/goorockey">@goorockey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'goorockey',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+<section class="well">
+  <ul id="blog_link" class="nav nav-list">
+	<h1>Links</h1>
+	<li class='blog_link'><a href=http://www.dian.org.cn>Dian</a></li><li class='blog_link'><a href=http://www.seedclass.com>SeedClass</a></li><li class='blog_link'><a href=http://www.thankcreate.com>ThankCreate</a></li><li class='blog_link'><a href=http://blog.csdn.net/kelvingu616>My Blog In Csdn</a></li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Goorockey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'goorockeyslife';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.goorockey.com/blogs/45011';
+        var disqus_url = 'http://www.goorockey.com/blogs/45011';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

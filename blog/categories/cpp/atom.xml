@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[categories: cpp | Goorockey's Life]]></title>
+  <link href="http://www.goorockey.com/blog/categories/cpp/atom.xml" rel="self"/>
+  <link href="http://www.goorockey.com/"/>
+  <updated>2012-12-06T03:56:30+08:00</updated>
+  <id>http://www.goorockey.com/</id>
+  <author>
+    <name><![CDATA[Goorockey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[STL中用copy和ostream_iterator输出一个数组]]></title>
+    <link href="http://www.goorockey.com/blogs/14001"/>
+    <updated>2011-08-02T00:00:00+08:00</updated>
+    <id>http://www.goorockey.com/blogs/14001</id>
+    <content type="html"><![CDATA[<blockquote>   <p>#include &lt;iostream&gt;</p>    <p>#include &lt;iterator&gt;</p>    <p>#include &lt;algorithm&gt;</p><p><br /></p>    <p />    <p>int a[] = { 335, 33, 98, 39, 54, 24, 3 };</p>    <p>int nSize = sizeof( a) / sizeof( a[ 0]);</p><p><br /></p>    <p>// 输出数组a到标准输出，同时每个元素都以空格为结束（最后一个元素后面也会有空格）</p>    <p>std::copy( a, a + nSize, std::ostream_iterator&lt; int&gt;( std::cout, " ")); </p> </blockquote>
+<p />
+<blockquote>   <p>结果：</p>    <p>335 33 98 39 54 24 3</p> </blockquote>
+<p />
+<p>一个字：妙！！</p>
+<p>(^0^)/ </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[不能同时用static和const修饰一个成员函数]]></title>
+    <link href="http://www.goorockey.com/blogs/11001"/>
+    <updated>2011-08-02T00:00:00+08:00</updated>
+    <id>http://www.goorockey.com/blogs/11001</id>
+    <content type="html"><![CDATA[<table border="0" cellpadding="2" cellspacing="0" width="570"><tbody>     <tr>       <td valign="top" width="159">普通的成员函数</td>        <td valign="top" width="173">编译器会自动为其添加一个this指针作为入参</td>        <td valign="top" width="236">该成员函数能修改成员变量</td>     </tr>      <tr>       <td valign="top" width="159">在成员函数后面加const(注意是后面！)</td>        <td valign="top" width="173">编译器会自动为其添加一个const *this指针作为入参</td>        <td valign="top" width="236">该成员函数不能修改成员变量</td>     </tr>      <tr>       <td valign="top" width="159">成员函数加static</td>        <td valign="top" width="173">编译器不会加this指针</td>        <td valign="top" width="236">该成员函数不能直接访问成员变量，只能访问静态成员变量</td>     </tr>   </tbody></table>
+<p />
+<p>所以在成员函数加static和后面加const是矛盾的，即不能同时这样修饰一个成员函数.</p>
+]]></content>
+  </entry>
+  
+</feed>

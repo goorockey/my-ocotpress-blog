@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[categories: lisp | Goorockey's Life]]></title>
+  <link href="http://www.goorockey.com/blog/categories/lisp/atom.xml" rel="self"/>
+  <link href="http://www.goorockey.com/"/>
+  <updated>2012-12-06T03:56:30+08:00</updated>
+  <id>http://www.goorockey.com/</id>
+  <author>
+    <name><![CDATA[Goorockey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Scheme里面的pair和list]]></title>
+    <link href="http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme/"/>
+    <updated>2012-09-25T22:41:00+08:00</updated>
+    <id>http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme</id>
+    <content type="html"><![CDATA[<p>最近学scheme，总结一下pair和list的区别，主要是两点：</p>
+
+<h4 id="listpairnulllistpairlist">1. list一定是pair，但只有以null（空list）结尾的pair才是list</h4>
+
+<p>对于(define list1 (list a b c)),list1表现为(a b c),其实也可以写成(a . (b . ()))。</p>
+
+<p>可以看到list其实就是pair,而且是以null结尾的pair。</p>
+
+<p>对于像(a.(b.(c.d)))这样的连续pair，因为没有以空list结尾，所以不是list</p>
+
+<p>所以有：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>cmdline </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; (define x ‘(1 2))
+</span><span class='line'>&gt; x
+</span><span class='line'>(1 2)
+</span><span class='line'>&gt; (list? x)
+</span><span class='line'>#t
+</span><span class='line'>&gt; (cons? x)
+</span><span class='line'>#t
+</span><span class='line'>&gt; (cddr x) ; 以null结尾
+</span><span class='line'>()&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>
+</span><span class='line'>  &lt;p>(define y (cons 1 2))
+</span><span class='line'>(list? y)
+</span><span class='line'>#f
+</span><span class='line'>(cons? y)
+</span><span class='line'>#f
+</span><span class='line'>(set-cdr! y ‘()) ; 把y的cdr设为null，使y变成list
+</span><span class='line'>y
+</span><span class='line'>(1)
+</span><span class='line'>(list? y) ; 变成了list
+</span><span class='line'>#t
+</span><span class='line'>(cons? y)
+</span><span class='line'>#t</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</blockquote>
+
+<h4 id="pair">2. pair的显示规则</h4>
+
+<p>引用<a href="http://download.plt-scheme.org/doc/html/guide/Pairs__Lists__and_Scheme_Syntax.html">这里</a>的解释：</p>
+
+<p><blockquote><p>In general, the rule for printing a pair is as follows: use the dot notation always, but if the dot is immediately followed by an open parenthesis, then remove the dot, the open parenthesis, and the	matching close parenthesis. Thus, (0 . (1 . 2)) becomes (0 1 . 2), and (1 . (2 . (3 . ()))) becomes (1 2 3).</p></blockquote></p>
+
+<p>大意就是，如果pair的“点”紧接着小括号，则这个点和小括号都可以去掉。</p>
+
+<p>所以(a.(b.c))等价于(a b.c), (a.(b.(c.())))等价于(a b c)。</p>
+]]></content>
+  </entry>
+  
+</feed>

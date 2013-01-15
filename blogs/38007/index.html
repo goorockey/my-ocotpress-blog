@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>面试趣题 - Goorockey's Life</title>
+  <meta name="author" content="Goorockey">
+
+  
+  <meta name="description" content="题一、有一个整数数组，请求出两两之差绝对值最小的值 方法：先排序，再找差值最小的点对。 效率：时间复杂度O(nlogn) 题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑） 方法：根据x排序，用图解枚举所有情况， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.goorockey.com/blogs/38007">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Life" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28958629-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Goorockey's Life</a></h1>
+  
+    <h2>玩技术，解决问题，提高效率</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feed.goorockey.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.goorockey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">面试趣题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-24T00:00:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>题一、有一个整数数组，请求出两两之差绝对值最小的值</strong></p>
+
+<p>方法：先排序，再找差值最小的点对。</p>
+
+<p>效率：时间复杂度O(nlogn)</p>
+
+<hr />
+
+<p><strong>题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑）</strong></p>
+
+<p>方法：根据x排序，用图解枚举所有情况，能证明斜率最大的两点肯定是相邻的两点。</p>
+
+<p>效率：时间复杂度O(nlogn)</p>
+
+<hr />
+<p><strong>题三、一棵排序二叉树，令 f=(最大值+最小值)/2，设计一个算法，找出距离f值最近、大于f值的结点</strong></p>
+
+<p>方法：把f插入，中序排序</p>
+
+<p>效率：时间复杂度O(logn)</p>
+
+<!--more-->
+
+<hr />
+<p><strong>题四、找出两个字符串中最大公共子字符串,</strong></p>
+
+<p>如”abccade”,”dgcadde”的最大子串为”cad”</p>
+
+<p><em>方法一：</em></p>
+
+<p>从字符串一中遍历子串，并在字符串二中匹配。时间复杂度为O(n^3)。</p>
+
+<p><em>方法二：</em></p>
+
+<p>矩阵法：用矩阵表示两字符串，横竖字符相同的格置1，则在45度方向连续1最多的就是所求，时间复杂度O(n^2) 。</p>
+
+<hr />
+<p><strong>题五、检查单向链表中是否有环</strong></p>
+
+<p>这算是经典的面试题了，记录一下好的解法和推广。</p>
+
+<p><em>方法一：</em></p>
+
+<p>操作：把链表反向，当游标指针回到首节点时表示有环，否则无环。</p>
+
+<p>解释：如果有环，把链表反向后，游标指针会从环内回到环外，最后回到首节点。</p>
+
+<p>效率：时间复杂度O(n)，空间复杂度O(1)。</p>
+
+<p>不足：破坏原链表的结构，需要再遍历一次链表来恢复链表结构。</p>
+
+<p><em>方法二:</em></p>
+
+<p>操作：</p>
+
+<p>两个游标指针,一个慢指针每次移动一个节点，一个快指针每次移动两个节点。如果在快指针遍历到链表结尾前遇到慢指针，则链表有环，否则无环。</p>
+
+<p>解释：</p>
+
+<p>如果有环，当慢指针刚进入环时，设快指针与慢指针的距离为n（距离指慢指针不动是，快指针要经过几次节点达到慢指针），由于快指针每次都追上慢指针一个节点，则两者经过n次后总会相遇。</p>
+
+<p>效率：时间复杂度O(n)， 空间复杂度O(1)。</p>
+
+<p><em>代码：</em></p>
+
+<div><script src="https://gist.github.com/3712175.js?file="></script>
+<noscript><pre><code>bool TestLoop( LinkNode *pHead )
+{
+    LinkNode *pFast = pHead, *pSlow = pHead;
+
+    while ( 1 ) 
+    {   
+        if ( pFast &amp;&amp; pFast-&gt;pNext )
+        {   
+            pFast = pFast-&gt;pNext-&gt;pNext;
+        }   
+        else
+        {   
+            return false;
+        }   
+
+        if ( pSlow )
+        {   
+            pSlow = pSlow-&gt;pNext;
+        }   
+
+        if ( pSlow == pFast )
+        {   
+            return true;
+        }   
+    }   
+}
+</code></pre></noscript></div>
+
+<hr />
+<p><strong>推广一：有环单向链表中环的节点数</strong></p>
+
+<p>操作：</p>
+
+<p>还是用快慢指针，当快慢指针在环内相遇后，两指针继续移动，并对慢指针移动的节点计数。当两指针再次相遇时，计数的结果就是环的节点数。</p>
+
+<p>解释：</p>
+
+<p>还是题一中的思想。设环的节点数为n，当两指针第一次相遇时，可看做两指针的距离为n，则再慢指针再经过n个节点后，两指针会再次相遇，所以慢指针移动的节点数就是环的节点数。</p>
+
+<p><em>代码：</em></p>
+
+<div><script src="https://gist.github.com/3712217.js?file="></script>
+<noscript><pre><code>//计算有环单向链表中环的节点数
+intTestLoopLength(LinkNode*pHead)
+{
+    LinkNode*pSlow=pHead,*pFast=pHead;
+
+    //检查是否有环
+    while(1)
+    {   
+        if(pFast&amp;&amp;pFast-&gt;pNext)
+        {   
+            pFast=pFast-&gt;pNext-&gt;pNext;
+        }   
+        else
+        {   
+            return0;
+        }   
+
+        if(pSlow)
+        {   
+            pSlow=pSlow-&gt;pNext;
+        }   
+
+        if(pSlow==pFast)
+        {   
+            break;
+        }   
+    }   
+
+    //继续移动，并计数慢指针的移动节点数
+    intnLoopLength=0;
+    while(1)
+    {   
+        pFast=pFast-&gt;pNext-&gt;pNext;
+        pSlow=pSlow-&gt;pNext;
+        nLoopLength++;
+        if(pFast==pSlow)
+        {   
+            break;
+        }   
+    }   
+
+    returnnLoopLength;
+}
+</code></pre></noscript></div>
+
+<hr />
+<p><strong>推广二、找到有环单向链表中环首节点</strong></p>
+
+<p>如以下有环单向链表：</p>
+
+<p>1=&gt;2=&gt;3=&gt;4=&gt;5=&gt;6=&gt;7=&gt;9=&gt;4</p>
+
+<p>即第9节点的next指针指向第4节点，则环的首节点为第4节点</p>
+
+<p>操作：</p>
+
+<ol>
+  <li>先计算环的节点数n。</li>
+  <li>两个前后指针，前指针先移动n个节点，然后两指针一齐移动，每次都只移动一个的节点。</li>
+  <li>当两指针相遇时，两指针指向的节点就是所求的环首节点。</li>
+</ol>
+
+<p>解释：因为开始两指针相距n个节点，当后指针刚进入环时，肯定会与前指针在环的首节点相遇。</p>
+
+<hr />
+<p><strong>推广三、破坏有环单向链表的环</strong></p>
+
+<p>操作：</p>
+
+<p>在上面的基础上，当找到了环首节点和环内节点数n后，只要从环首节点移动n到达环的尾节点，修改环尾节点的next指针即可。</p>
+
+<p><em>代码：</em></p>
+
+<div><script src="https://gist.github.com/3712226.js?file="></script>
+<noscript><pre><code>// 破坏有环单向链表的环
+void BreakLoop( LinkNode *pHead  )
+{
+    // 计算环的节点数n 
+    int nLoopLength = TestLoopLength( pHead );
+
+    if ( nLoopLength &gt; 0 ) 
+    {   
+        LinkNode *pSlow = pHead, *pFast = pHead;
+
+        // 让一个指针先移动n个节点
+        for (int i = 0; i &lt; nLoopLength; ++i)
+        {   
+            pFast = pFast-&gt;pNext;
+        }   
+
+        // 同时移动两指针，会在环的首节点相遇
+        while ( pSlow != pFast )
+        {   
+            pFast = pFast-&gt;pNext;
+            pSlow = pSlow-&gt;pNext;
+        }   
+
+        // 遍历到环的尾节点
+        for (int i = 0; i &lt; nLoopLength - 1; ++i)
+        {   
+            pSlow = pSlow-&gt;pNext;
+        }   
+
+        assert( pSlow-&gt;pNext != pFast );
+
+        // 修改环尾节点的next指针
+        pSlow-&gt;pNext = NULL;
+    }   
+}
+</code></pre></noscript></div>
+
+<hr />
+<p><strong>题五、找到有序链表的中位值</strong></p>
+
+<p>常规方法：遍历一次链表得到链表长度length，再遍历一次链表到length/2的位置即为中位值</p>
+
+<p>更好的方法：用两个指针p1、p2，p1每次走两步，p2每次走一步，等到p1到链表尾时，p2所指即为中位值</p>
+
+<div><script src="https://gist.github.com/3824662.js?file="></script>
+<noscript><pre><code>void GetMiddle(Link ＊l, LinkNode **ppNode)
+{
+    LinkNode *p1 = l, *p2 = l;
+
+    while (p1 != NULL &amp;&amp; p1-&gt;next != NULL)
+    {
+        p1 = p1-&gt;next-&gt;next;
+        p2 = p2-&gt;next;
+    }
+
+    *ppNode = p2;
+}</code></pre></noscript></div>
+
+<p><br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blogs/38007">http://www.goorockey.com/blogs/38007</a></p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Goorockey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-24T00:00:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.goorockey.com/blogs/38007" data-via="" data-counturl="http://www.goorockey.com/blogs/38007" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blogs/28004" title="Previous Post: 不用除法运算符实现除法及其推广">&laquo; 不用除法运算符实现除法及其推广</a>
+      
+      
+        <a class="basic-alignment right" href="/blogs/48001" title="Next Post: 《Windows核心编程》读书笔记1--内核对象">《Windows核心编程》读书笔记1--内核对象 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section class="well">
+  <ul id="categories" class="nav nav-list">
+  <h1>Categories</h1>
+    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (2)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/21/try-hadoop/">玩一下hadoop</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/10/about-exploit-exercise-nebula-level01/">关于exploit exercise nebula level01</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/python-send-mail/">python发邮件脚本</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/25/pair-and-list-in-scheme/">Scheme里面的pair和list</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="well">
+  <ul id="weibo" class="nav nav-list">
+	<h1>My Weibo</h1>
+	<li>
+        <iframe id="sina_widget_1796329305" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=1796329305&height=500&skin=wd_01&showpic=1"></iframe>
+	</li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="douban" class="nav nav-list">
+	<h1>My Douban</h1>
+	<li>
+	<script type="text/javascript" src="http://www.douban.com/service/badge/goorockey/?show=collection&amp;n=8&amp;columns=2&amp;hidelogo=yes" ></script> 
+	</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/goorockey">@goorockey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'goorockey',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+<section class="well">
+  <ul id="blog_link" class="nav nav-list">
+	<h1>Links</h1>
+	<li class='blog_link'><a href=http://www.dian.org.cn>Dian</a></li><li class='blog_link'><a href=http://www.seedclass.com>SeedClass</a></li><li class='blog_link'><a href=http://www.thankcreate.com>ThankCreate</a></li><li class='blog_link'><a href=http://blog.csdn.net/kelvingu616>My Blog In Csdn</a></li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Goorockey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'goorockeyslife';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.goorockey.com/blogs/38007';
+        var disqus_url = 'http://www.goorockey.com/blogs/38007';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

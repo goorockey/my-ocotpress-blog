@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>SSH端口转发 - Goorockey's Life</title>
+  <meta name="author" content="Goorockey">
+
+  
+  <meta name="description" content="1、ssh端口转发是什么
+ssh端口转发也被叫ssh隧道，ssh代理。
+所谓隧道，就是用X协议封装Y协议的数据包，靠X协议来进行Y协议通信。
+总的来说ssh隧道提供了两个好处： 突破防火墙等，进行受限协议的通信。 使如telnet等不安全的协议传输经过ssh的加密通道，提高安全性。 2、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.goorockey.com/blogs/77141">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Life" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28958629-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Goorockey's Life</a></h1>
+  
+    <h2>玩技术，解决问题，提高效率</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feed.goorockey.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.goorockey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">SSH端口转发</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-22T00:00:00+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4><strong>1、ssh端口转发是什么</strong></h4>
+<p>ssh端口转发也被叫ssh隧道，ssh代理。</p>
+<p>所谓隧道，就是用X协议封装Y协议的数据包，靠X协议来进行Y协议通信。</p>
+<p>总的来说ssh隧道提供了两个好处：<br />
+<ul><br />
+	<li>突破防火墙等，进行受限协议的通信。</li><br />
+	<li>使如telnet等不安全的协议传输经过ssh的加密通道，提高安全性。</li></p>
+</ul>
+<p><!--more--><br />
+<h4><strong>2、三种ssh端口转发</strong></h4><br />
+ssh端口转发有三种：<br />
+<ul><br />
+	<li>本地转发</li><br />
+	<li>远程转发</li><br />
+	<li>动态转发</li></p>
+</ul>
+<p>&nbsp;<br />
+<h6>(1) 本地转发</h6><br />
+命令是：<br />
+<blockquote><span style="color: #222222;">$ ssh –L &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;ssh host&gt;</span></blockquote><br />
+考虑这样的场景：</p>
+<p><a href="http://www.goorockey.com/uploads/2012/02/image002.jpg"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image002" src="http://www.goorockey.com/uploads/2012/02/image002_thumb.jpg" alt="image002" width="410" height="287" border="0" /></a></p>
+<p>一个运行在服务器116.1.1.1的程序提供端口389的数据通信，但防火墙只允许其他计算机对服务器做ssh的通信。</p>
+<p>而客户端116.4.0.1为了完成通信，可以借助ssh的本地端口转发。</p>
+<p>在客户端执行：<br />
+<blockquote><span style="color: #222222;">$ ssh –L  7001:localhost:389     116.1.1.1</span></blockquote><br />
+同时把客户端程序输出到本机的7001端口。注意命令中的localhost是相对于116.1.1.1来说的。</p>
+<p>那么整个数据流会是：<br />
+<ul><br />
+	<li>客户端程序到数据输出到客户端的7001口</li><br />
+	<li>客户端的ssh一直检测7001口，但发现本机有数据包到达，则把数据包加密，并通过跟服务端116.1.1.1的ssh通路传输</li><br />
+	<li>服务端的sshd收到数据包后包解密，并转发到服务端的389口</li><br />
+	<li>服务端返回数据，并原路返回</li></p>
+</ul>
+<p>&nbsp;</p>
+<p>另外，在ssh本地转发命令中的remote host可以使任意的机子，包括本机或其他计算机。</p>
+<p>例如，考虑这样的场景，用本地转发来进行远程桌面：</p>
+<p><a href="http://www.goorockey.com/uploads/2012/02/image.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" src="http://www.goorockey.com/uploads/2012/02/image_thumb.png" alt="image" width="244" height="202" border="0" /></a></p>
+<p>现在要在机子A对机子C做远程桌面。但机子A和机子C都在不同的子网，不能直接通信，也都只能跟机子B用ssh通信。</p>
+<p>然后已知windows远程桌面的服务端端口是3389，这我们可以在机子A执行：<br />
+<blockquote><span style="color: #222222;">$ssh –L   13389:&lt;C hostname&gt;:3389     &lt;B hostname&gt;</span></blockquote><br />
+命令中的13389是任意的，但要注意只有管理员才能用1~1024的端口。</p>
+<p>然后在A机子执行yuan远程桌面：<br />
+<blockquote><span style="color: #222222;">mstsc /v:13389</span></blockquote><br />
+就能在A机子远程桌面控制C机子了。</p>
+<p>&nbsp;<br />
+<h6>(2) 远程转发</h6><br />
+其实远程转发跟本地转发是基本相同的。</p>
+<p>命令是：<br />
+<blockquote><span style="color: #222222;">$ ssh –R  &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt;    &lt;ssh host&gt;</span></blockquote><br />
+考虑这样的场景：</p>
+<p><a href="http://www.goorockey.com/uploads/2012/02/image003.jpg"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image003" src="http://www.goorockey.com/uploads/2012/02/image003_thumb.jpg" alt="image003" width="383" height="258" border="0" /></a></p>
+<p>客户端A和服务端B的端口都还是7001和389。</p>
+<p>跟本地转发时候不同的是，ssh连接的sshd在客户端A，ssh在服务端B。</p>
+<p>所以，远程转发可以应用在客户端A只允许对其做ssh连接的时候。</p>
+<p>如果客户端和服务端都允许ssh连接，那选择本地转发还是远程转发都可以。</p>
+<p>&nbsp;<br />
+<h6>(3) 动态转发</h6><br />
+命令是：<br />
+<blockquote><span style="color: #222222;">$ ssh –D &lt;local port&gt;  &lt;ssh host&gt;</span></blockquote><br />
+<a href="http://www.goorockey.com/uploads/2012/02/image005.jpg"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image005" src="http://www.goorockey.com/uploads/2012/02/image005_thumb.jpg" alt="image005" width="345" height="226" border="0" /></a></p>
+<p>跟其他两种端口转发不同的是，动态转发在数据包经过ssh通过到达服务端后，sshd会根据把封装数据包的协议，转发到对应的主机和端口。</p>
+<p>这时候ssh隧道是充当了SOCKS代理的作用。这就可以用来翻X之类了。</p>
+<p>&nbsp;<br />
+<h4><strong>3、Ending</strong></h4><br />
+总的来说，ssh是个好东西~~~</p>
+<p>&nbsp;</p>
+<p>&nbsp;<br />
+<h4><strong>相关资料</strong>：</h4><br />
+<ul><br />
+	<li><a title="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/" href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/">https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/</a></li><br />
+	<li><a title="http://lesca.me/blog/2011/03/01/ssh-port-forwarding-priciple-and-praticle-application/" href="http://lesca.me/blog/2011/03/01/ssh-port-forwarding-priciple-and-praticle-application/">http://lesca.me/blog/2011/03/01/ssh-port-forwarding-priciple-and-praticle-application/</a></li></p>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;<br />
+<br/>
+            <br/>
+            转载请注明原文链接<br />
+            <a href='http://www.goorockey.com/blogs/77141'>http://www.goorockey.com/blogs/77141</a></p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Goorockey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-22T00:00:00+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/network/'>network</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.goorockey.com/blogs/77141" data-via="" data-counturl="http://www.goorockey.com/blogs/77141" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blogs/77117" title="Previous Post: 在dotcloud上搭建wordpress">&laquo; 在dotcloud上搭建wordpress</a>
+      
+      
+        <a class="basic-alignment right" href="/blogs/77180" title="Next Post: 再次用linux做宿主系统">再次用linux做宿主系统 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section class="well">
+  <ul id="categories" class="nav nav-list">
+  <h1>Categories</h1>
+    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (2)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/21/try-hadoop/">玩一下hadoop</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/10/about-exploit-exercise-nebula-level01/">关于exploit exercise nebula level01</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/python-send-mail/">python发邮件脚本</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/25/pair-and-list-in-scheme/">Scheme里面的pair和list</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="well">
+  <ul id="weibo" class="nav nav-list">
+	<h1>My Weibo</h1>
+	<li>
+        <iframe id="sina_widget_1796329305" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=1796329305&height=500&skin=wd_01&showpic=1"></iframe>
+	</li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="douban" class="nav nav-list">
+	<h1>My Douban</h1>
+	<li>
+	<script type="text/javascript" src="http://www.douban.com/service/badge/goorockey/?show=collection&amp;n=8&amp;columns=2&amp;hidelogo=yes" ></script> 
+	</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/goorockey">@goorockey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'goorockey',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+<section class="well">
+  <ul id="blog_link" class="nav nav-list">
+	<h1>Links</h1>
+	<li class='blog_link'><a href=http://www.dian.org.cn>Dian</a></li><li class='blog_link'><a href=http://www.seedclass.com>SeedClass</a></li><li class='blog_link'><a href=http://www.thankcreate.com>ThankCreate</a></li><li class='blog_link'><a href=http://blog.csdn.net/kelvingu616>My Blog In Csdn</a></li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Goorockey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'goorockeyslife';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.goorockey.com/blogs/77141';
+        var disqus_url = 'http://www.goorockey.com/blogs/77141';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

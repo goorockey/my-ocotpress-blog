@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Code Swarm - Goorockey's Life</title>
+  <meta name="author" content="Goorockey">
+
+  
+  <meta name="description" content="今天拿自己项目组svn的日志来小玩了一下code swarm。
+&nbsp;
+1、什么是code swarm?
+code swarm是可以把svn、cvs、git等代码管理系统的日志，以可视化的形式展现的项目。
+swarm是蜂群的意思，code swarm会以蜂群的形式表示每个人上传的文件。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.goorockey.com/blogs/77106">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Life" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28958629-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Goorockey's Life</a></h1>
+  
+    <h2>玩技术，解决问题，提高效率</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feed.goorockey.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.goorockey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Code Swarm</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-03T00:00:00+08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>今天拿自己项目组svn的日志来小玩了一下code swarm。</p>
+<p>&nbsp;</p>
+<p>1、什么是code swarm?</p>
+<p>code swarm是可以把svn、cvs、git等代码管理系统的日志，以可视化的形式展现的项目。</p>
+<p>swarm是蜂群的意思，code swarm会以蜂群的形式表示每个人上传的文件。</p>
+<p><!--more--></p>
+<p>很多大的项目，如Apache、Python、豆瓣等，都做了自己的code swarm。<br />
+<blockquote><span style="color: #222222;">Apache、Python等：<a title="http://www.michaelogawa.com/code_swarm/" href="http://www.michaelogawa.com/code_swarm/">http://www.michaelogawa.com/code_swarm/</a></span></p>
+<p><span style="color: #222222;">豆瓣：<a title="http://v.youku.com/v_show/id_XMzQzNDc4MDk2.html" href="http://v.youku.com/v_show/id_XMzQzNDc4MDk2.html">http://v.youku.com/v_show/id_XMzQzNDc4MDk2.html</a></span></blockquote><br />
+我个人感觉，看别人的code swarm没什么特别的感受，只有看自己项目的才有感觉，呵呵。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>2、使用 code swarm</p>
+<p>可以从它google code 的主页中下载代码：<a title="http://code.google.com/p/codeswarm/downloads/list" href="http://code.google.com/p/codeswarm/downloads/list">http://code.google.com/p/codeswarm/downloads/list</a></p>
+<p>我参照别人博客，使用了code swarm别的fork：<a title="https://github.com/rictic/code_swarm" href="https://github.com/rictic/code_swarm">https://github.com/rictic/code_swarm</a>，它可以显示每个人的头像。</p>
+<p>根据wiki或下载包内的README，使用code swarm，要先安装java和ant。</p>
+<p>&nbsp;</p>
+<p>code swarm有可以通过run.bat或者runrepositoryfetch.bat来启动：run.bat需要我们手工把svn等软件的日志转为code swarm所需的xml，而runrepositoryfetch.bat可以输入reposition url，让code swarm自动下载日志并转换。</p>
+<p>我选择简单的runrepositoryfetch.bat方式。</p>
+<p>在命令行提示中选择配置文件后，code swarm就能呈现了，但还可以修改配置来达到自己的效果。</p>
+<p>&nbsp;</p>
+<p>3、配置code swarm</p>
+<p>我觉得关键的配置：<br />
+<ul><br />
+	<li><em><strong>InputFile</strong></em>：code swarm所需的xml文件</li><br />
+	<li><strong><em>TakeSnapshots</em></strong>：是否保存每一帧图片。code swarm不能直接输出视频，只能输出每一帧图片。所以我们要导出视频的话，需要自行把每一帧图片转换为视频。</li><br />
+	<li><strong><em>SnapshotLocation</em></strong>：保存输出图片的目录</li></p>
+</ul>
+<p>&nbsp;</p>
+<p>还有一些控制帧速度，显示项等等的配置。</p>
+<p>&nbsp;</p>
+<p>以下是fork中才有的配置：<br />
+<ul><br />
+	<li><em><strong>AvatarFetcher</strong></em>：每个人使用头像的来源。可以是NoAvatar（没有头像），GravatarFetcher（程序自己生成），LocalAvatar（提供本地目录，使用跟commiter id对应的头像）。</li><br />
+	<li><strong><em>LocalAvatarDirectory</em></strong>：LocalAvatar方式时，存放头像的目录，目录里如果有文件名与commiter id相同的图片，则使用该图片否则使用默认头像。如果没有默认头像，则程序会中断。</li><br />
+	<li><strong><em>LocalAvatarDefaultPic</em></strong>：默认头像</li><br />
+	<li><strong><em>AvatarSize</em></strong>：选择LocalAvatar方式时，每张头像的高或宽。这里要求每张头像图片的尺寸相同，且一定是正方形。</li><br />
+	<li><strong><em>CircularAvatars</em></strong>：用圆形截取头像图片，这会用到程序代码src下的mask.png图片，这里也要注意修改AvatarSize后，mask.png的尺寸也要改变，否则程序中断。</li></p>
+</ul>
+<p>&nbsp;</p>
+<p>4、把code swarm的图片合成为视频</p>
+<p>方法很多，抱着学习的心态，我试着按wiki的方法用mencoder。</p>
+<p>我要加背景音乐，所以加了参数-audiofile：<br />
+<blockquote>mencoder mf://*.png -mf fps=33:type=png -ovc lavc -oac copy –audiofile bg.mp3 -o my.avi</blockquote><br />
+这里可以通过修改fps的值来控制生成视频的帧速度。</p>
+<p>还可以用mencoder添加字幕，这个我就没做了。</p>
+<p>&nbsp;</p>
+<p>我的视频：<a href="http://v.youku.com/v_show/id_XMzQ4NjA5ODYw.html">http://v.youku.com/v_show/id_XMzQ4NjA5ODYw.html</a></p>
+<p>&nbsp;</p>
+<p>P.S.相关资料</p>
+<p>【code swarm wiki】 ：<a href="http://code.google.com/p/codeswarm/wiki/GeneratingAVideo">http://code.google.com/p/codeswarm/wiki/GeneratingAVideo</a></p>
+<p>【fork of code swarm】：<a href="https://github.com/rictic/code_swarm">https://github.com/rictic/code_swarm</a></p>
+<p>【制作code swarm】：<a href="http://blog.xupeng.me/2012/01/12/code-swarm/">http://blog.xupeng.me/2012/01/12/code-swarm/</a></p>
+<p>【用mencoder把多张图片合成为视频】：<a href="http://www.mplayerhq.hu/DOCS/HTML/en/menc-feat-enc-images.html">http://www.mplayerhq.hu/<span class="caps">DOCS</span>/<span class="caps">HTML</span>/en/menc-feat-enc-images.html</a></p>
+<p>【使用mencoder】：<a href="http://hi.baidu.com/creatives/blog/item/41f6c32ad06cdb2bd42af128.html">http://hi.baidu.com/creatives/blog/item/41f6c32ad06cdb2bd42af128.html</a></p>
+<p>【windows下安装mencoder】：<a href="http://hi.baidu.com/%D7%AF%D7%D3%C8%E7%CA%C7%CB%B5/blog/item/611a28b11abebd5f0823021b.html">http://hi.baidu.com/%D7%AF%D7%D3%C8%E7%CA%C7%CB%B5/blog/item/611a28b11abebd5f0823021b.html</a><br />
+<br/>
+            <br/>
+            转载请注明原文链接<br />
+            <a href='http://www.goorockey.com/blogs/77106'>http://www.goorockey.com/blogs/77106</a></p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Goorockey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-03T00:00:00+08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/others/'>others</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.goorockey.com/blogs/77106" data-via="" data-counturl="http://www.goorockey.com/blogs/77106" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blogs/77069" title="Previous Post: 博客转移了（改用sourceforge+wordpress）">&laquo; 博客转移了（改用sourceforge+wordpress）</a>
+      
+      
+        <a class="basic-alignment right" href="/blogs/77117" title="Next Post: 在dotcloud上搭建wordpress">在dotcloud上搭建wordpress &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section class="well">
+  <ul id="categories" class="nav nav-list">
+  <h1>Categories</h1>
+    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (2)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/21/try-hadoop/">玩一下hadoop</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/10/about-exploit-exercise-nebula-level01/">关于exploit exercise nebula level01</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/python-send-mail/">python发邮件脚本</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/25/pair-and-list-in-scheme/">Scheme里面的pair和list</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="well">
+  <ul id="weibo" class="nav nav-list">
+	<h1>My Weibo</h1>
+	<li>
+        <iframe id="sina_widget_1796329305" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=1796329305&height=500&skin=wd_01&showpic=1"></iframe>
+	</li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="douban" class="nav nav-list">
+	<h1>My Douban</h1>
+	<li>
+	<script type="text/javascript" src="http://www.douban.com/service/badge/goorockey/?show=collection&amp;n=8&amp;columns=2&amp;hidelogo=yes" ></script> 
+	</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/goorockey">@goorockey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'goorockey',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+<section class="well">
+  <ul id="blog_link" class="nav nav-list">
+	<h1>Links</h1>
+	<li class='blog_link'><a href=http://www.dian.org.cn>Dian</a></li><li class='blog_link'><a href=http://www.seedclass.com>SeedClass</a></li><li class='blog_link'><a href=http://www.thankcreate.com>ThankCreate</a></li><li class='blog_link'><a href=http://blog.csdn.net/kelvingu616>My Blog In Csdn</a></li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Goorockey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'goorockeyslife';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.goorockey.com/blogs/77106';
+        var disqus_url = 'http://www.goorockey.com/blogs/77106';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[categories: others | Goorockey's Life]]></title>
+  <link href="http://www.goorockey.com/blog/categories/others/atom.xml" rel="self"/>
+  <link href="http://www.goorockey.com/"/>
+  <updated>2012-12-06T03:56:30+08:00</updated>
+  <id>http://www.goorockey.com/</id>
+  <author>
+    <name><![CDATA[Goorockey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[抓网页保存为pdf]]></title>
+    <link href="http://www.goorockey.com/blog/2012/10/29/grap-html-to-pdf/"/>
+    <updated>2012-10-29T23:46:00+08:00</updated>
+    <id>http://www.goorockey.com/blog/2012/10/29/grap-html-to-pdf</id>
+    <content type="html"><![CDATA[
+<p>最近在刷题，总想把题目保存下来，这样没网的时候也可以做题，放手机里也可以随时做了。所以就想着把题目抓下来保存为比较通用的pdf了。</p>
+
+<p>一开始想的是先做类似整站下载，把文字和图片都抓下来，然后再做html转pdf。自己写工具抓下来的话，要抓图片、修改网页里面图片的链接，昨天调研了一下，没找到用python有什么方便的办法，就放弃这条路了。</p>
+
+<p>今天突然找到，网上还是有很多直接网页保存为pdf的工具、网站的。最方便、强大的要数<a href="(http://pdfmyrul)" title="pdfmyurl">pdfmyurl</a>了。</p>
+
+<!-- more -->
+
+<h3 id="pdfmyurl">pdfmyurl</h3>
+
+<p>可以通过http://pdfmyurl.com?url=&lt;siteurl&gt; ,来把指定链接的网页保存为pdf，而且是直接返回的，即用wget http://pdfmyurl.com?url=&lt;siteurl&gt;就可以直接得到所需的pdf，不用再按什么按钮之类的了。</p>
+
+<p>在官网上可以发现，pdfmyurl可以算是个api服务，可以通过传很多get参数来得到需要的pdf结果。比较常用的有：</p>
+
+<ul>
+  <li>--filename    输出的pdf文件名</li>
+  <li>--page-size   页面大小，默认是A4</li>
+  <li>--proxy       通过制定的代理访问该页面，–username –password还指定用户和密码</li>
+  <li>-b            使得到的pdf有目录、书签、页眉等书的样式，不过目录不咋地</li>
+</ul>
+
+<p>pdfmyurl已经很强大了，但每次只能完成一个网面的pdf，所以还得想办法做pdf的合并。</p>
+
+<h3 id="pdftk">pdftk</h3>
+
+<p><a href="(http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ pdftk 1.pdf 2.pdf cat output 12.pdf</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>但弄出来的pdf是没有目录的。</p>
+
+<p>所以更好的办法其实是用更强大的latex。不过latex还有待系统地研究，现在的再写个bash就已经满足我90%的要求了～</p>
+
+<hr />
+
+<p>更新：</p>
+
+<ol>
+  <li>
+    <p>今天还是发现了一个用python抓oj的，有空参考一下，自己实现一个。</p>
+  </li>
+  <li>
+    <p>今天还发现，pdfmyurl似乎对单个ip一定时间内的请求做了限制，超过限制后，请求都会返回一个错误信息的pdf。我就借cjb的tor解决了这个问题（又用tor干了邪恶的事了）。</p>
+  </li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code Swarm]]></title>
+    <link href="http://www.goorockey.com/blogs/77106"/>
+    <updated>2012-02-03T00:00:00+08:00</updated>
+    <id>http://www.goorockey.com/blogs/77106</id>
+    <content type="html"><![CDATA[<p>今天拿自己项目组svn的日志来小玩了一下code swarm。</p>
+
+<p> </p>
+
+<p>1、什么是code swarm?</p>
+
+<p>code swarm是可以把svn、cvs、git等代码管理系统的日志，以可视化的形式展现的项目。</p>
+
+<p>swarm是蜂群的意思，code swarm会以蜂群的形式表示每个人上传的文件。</p>
+
+<!--more-->
+
+<p>很多大的项目，如Apache、Python、豆瓣等，都做了自己的code swarm。</p>
+<blockquote><span style="color: #222222;">Apache、Python等：<a title="http://www.michaelogawa.com/code_swarm/" href="http://www.michaelogawa.com/code_swarm/">http://www.michaelogawa.com/code_swarm/</a></span>
+
+<span style="color: #222222;">豆瓣：<a title="http://v.youku.com/v_show/id_XMzQzNDc4MDk2.html" href="http://v.youku.com/v_show/id_XMzQzNDc4MDk2.html">http://v.youku.com/v_show/id_XMzQzNDc4MDk2.html</a></span></blockquote>
+<p>我个人感觉，看别人的code swarm没什么特别的感受，只有看自己项目的才有感觉，呵呵。</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>2、使用 code swarm</p>
+
+<p>可以从它google code 的主页中下载代码：<a title="http://code.google.com/p/codeswarm/downloads/list" href="http://code.google.com/p/codeswarm/downloads/list">http://code.google.com/p/codeswarm/downloads/list</a></p>
+
+<p>我参照别人博客，使用了code swarm别的fork：<a title="https://github.com/rictic/code_swarm" href="https://github.com/rictic/code_swarm">https://github.com/rictic/code_swarm</a>，它可以显示每个人的头像。</p>
+
+<p>根据wiki或下载包内的README，使用code swarm，要先安装java和ant。</p>
+
+<p> </p>
+
+<p>code swarm有可以通过run.bat或者runrepositoryfetch.bat来启动：run.bat需要我们手工把svn等软件的日志转为code swarm所需的xml，而runrepositoryfetch.bat可以输入reposition url，让code swarm自动下载日志并转换。</p>
+
+<p>我选择简单的runrepositoryfetch.bat方式。</p>
+
+<p>在命令行提示中选择配置文件后，code swarm就能呈现了，但还可以修改配置来达到自己的效果。</p>
+
+<p> </p>
+
+<p>3、配置code swarm</p>
+
+<p>我觉得关键的配置：</p>
+<ul>
+	<li><em><strong>InputFile</strong></em>：code swarm所需的xml文件</li>
+	<li><strong><em>TakeSnapshots</em></strong>：是否保存每一帧图片。code swarm不能直接输出视频，只能输出每一帧图片。所以我们要导出视频的话，需要自行把每一帧图片转换为视频。</li>
+	<li><strong><em>SnapshotLocation</em></strong>：保存输出图片的目录</li>
+</ul>
+<p> </p>
+
+<p>还有一些控制帧速度，显示项等等的配置。</p>
+
+<p> </p>
+
+<p>以下是fork中才有的配置：</p>
+<ul>
+	<li><em><strong>AvatarFetcher</strong></em>：每个人使用头像的来源。可以是NoAvatar（没有头像），GravatarFetcher（程序自己生成），LocalAvatar（提供本地目录，使用跟commiter id对应的头像）。</li>
+	<li><strong><em>LocalAvatarDirectory</em></strong>：LocalAvatar方式时，存放头像的目录，目录里如果有文件名与commiter id相同的图片，则使用该图片否则使用默认头像。如果没有默认头像，则程序会中断。</li>
+	<li><strong><em>LocalAvatarDefaultPic</em></strong>：默认头像</li>
+	<li><strong><em>AvatarSize</em></strong>：选择LocalAvatar方式时，每张头像的高或宽。这里要求每张头像图片的尺寸相同，且一定是正方形。</li>
+	<li><strong><em>CircularAvatars</em></strong>：用圆形截取头像图片，这会用到程序代码src下的mask.png图片，这里也要注意修改AvatarSize后，mask.png的尺寸也要改变，否则程序中断。</li>
+</ul>
+<p> </p>
+
+<p>4、把code swarm的图片合成为视频</p>
+
+<p>方法很多，抱着学习的心态，我试着按wiki的方法用mencoder。</p>
+
+<p>我要加背景音乐，所以加了参数-audiofile：</p>
+<blockquote>mencoder mf://*.png -mf fps=33:type=png -ovc lavc -oac copy –audiofile bg.mp3 -o my.avi</blockquote>
+<p>这里可以通过修改fps的值来控制生成视频的帧速度。</p>
+
+<p>还可以用mencoder添加字幕，这个我就没做了。</p>
+
+<p> </p>
+
+<p>我的视频：<a href="http://v.youku.com/v_show/id_XMzQ4NjA5ODYw.html">http://v.youku.com/v_show/id_XMzQ4NjA5ODYw.html</a></p>
+
+<p> </p>
+
+<p>P.S.相关资料</p>
+
+<p>【code swarm wiki】 ：<a href="http://code.google.com/p/codeswarm/wiki/GeneratingAVideo">http://code.google.com/p/codeswarm/wiki/GeneratingAVideo</a></p>
+
+<p>【fork of code swarm】：<a href="https://github.com/rictic/code_swarm">https://github.com/rictic/code_swarm</a></p>
+
+<p>【制作code swarm】：<a href="http://blog.xupeng.me/2012/01/12/code-swarm/">http://blog.xupeng.me/2012/01/12/code-swarm/</a></p>
+
+<p>【用mencoder把多张图片合成为视频】：<a href="http://www.mplayerhq.hu/DOCS/HTML/en/menc-feat-enc-images.html">http://www.mplayerhq.hu/DOCS/HTML/en/menc-feat-enc-images.html</a></p>
+
+<p>【使用mencoder】：<a href="http://hi.baidu.com/creatives/blog/item/41f6c32ad06cdb2bd42af128.html">http://hi.baidu.com/creatives/blog/item/41f6c32ad06cdb2bd42af128.html</a></p>
+
+<p>【windows下安装mencoder】：<a href="http://hi.baidu.com/%D7%AF%D7%D3%C8%E7%CA%C7%CB%B5/blog/item/611a28b11abebd5f0823021b.html">http://hi.baidu.com/%D7%AF%D7%D3%C8%E7%CA%C7%CB%B5/blog/item/611a28b11abebd5f0823021b.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>

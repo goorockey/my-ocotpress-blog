@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Goorockey's Life</title>
+  <meta name="author" content="Goorockey">
+
+  
+  <meta name="description" content="两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。
+1、最简单的方法
+循环用x减y，知道x等于0。 1: int Div( int x, int y )
+&nbsp; 2: {
+&nbsp; 3: int result = 0;
+&nbsp; 4:
+&nbsp; 5: while ( &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.goorockey.com/blog/page/5/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Life" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28958629-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Goorockey's Life</a></h1>
+  
+    <h2>玩技术，解决问题，提高效率</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feed.goorockey.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.goorockey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blogs/28004">不用除法运算符实现除法及其推广</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-22T00:00:00+08:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2011</time>
+        
+         | <a href="/blogs/28004#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。</p>
+<p>1、最简单的方法</p>
+<p>循环用x减y，知道x等于0。<br />
+<div id="codeSnippetWrapper" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 20px 0px 10px; width: 97.5%; font-family: 'Courier New', courier, monospace; direction: ltr; max-height: 200px; font-size: 8pt; overflow: auto; cursor: text; border: silver 1px solid; padding: 4px;"><br />
+<div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 1:</span> <span style="color: #0000ff;">int</span> Div( <span style="color: #0000ff;">int</span> x, <span style="color: #0000ff;">int</span> y )<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 2:</span> {<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 3:</span>     <span style="color: #0000ff;">int</span> result = 0;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 4:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 5:</span>     <span style="color: #0000ff;">while</span> ( x &gt; y )<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 6:</span>     {<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 7:</span>         x -= y;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 8:</span>         result++;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 9:</span>     }<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 10:</span><br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 11:</span>     <span style="color: #0000ff;">return</span> result;<br />
+&nbsp;<br />
+<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 12:</span> }<br />
+&nbsp;</p>
+</div>
+</div>
+<p>时间复杂度O(n)</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blogs/28004">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blogs/22004">VC中对WM_NOTIFY的处理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-19T00:00:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2011</time>
+        
+         | <a href="/blogs/22004#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1、Reflect</p>
+<p>对于WM_NOTIFY消息：<br />
+<blockquote>子控件没有Reflect，则由父窗口处理。</p>
+<p>只要子控件（即消息对应最直接的控件）有了ON_NOTIFY_REFLECT就会被子控件处理,不会被父窗口所处理。</blockquote><br />
+<strong><span style="color: #ff0000;">Reflect的意思就是把消息反射给子控件处理。</span></strong></p>
+<p>大概的就是这样：<br />
+<table width="567" border="0" cellspacing="0" cellpadding="2"><br />
+<tbody><br />
+<tr><br />
+<td align="center" valign="top" width="212">子控件有ON_NOTIFY_REFLECT</td><br />
+<td align="center" valign="top" width="155">父窗口有ON_NOTIFY</td><br />
+<td align="center" valign="top" width="198">效果</td></p>
+</tr>
+<tr>
+<td align="center" valign="top" width="212">N</td>
+<td align="center" valign="top" width="155">N</td>
+<td align="center" valign="top" width="198">WM_NOTIFY未被处理</td>
+</tr>
+<tr>
+<td align="center" valign="top" width="212">N</td>
+<td align="center" valign="top" width="155">Y</td>
+<td align="center" valign="top" width="198">WM_NOTIFY只被父窗口处理</td>
+</tr>
+<tr>
+<td align="center" valign="top" width="212">Y</td>
+<td align="center" valign="top" width="155">N</td>
+<td align="center" valign="top" width="198">WM_NOTIFY只被子控件处理</td>
+</tr>
+<tr>
+<td align="center" valign="top" width="212">Y</td>
+<td align="center" valign="top" width="155">Y</td>
+<td align="center" valign="top" width="198">WM_NOTIFY只被子控件处理</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blogs/22004">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blogs/24004">终于把博客搞到墙内了！</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-15T00:00:00+08:00" pubdate data-updated="true">Aug 15<span>th</span>, 2011</time>
+        
+         | <a href="/blogs/24004#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>终于把Micolog搞到墙内了！</p><p>用chrome打开速度很理想！</p><p>稍微修改一下Windows Live Writer的设置也能直接连到博客了！</p><p></p><p>=====兴奋的分割线=========</p><p>具体方法参考了：</p><blockquote><p><a title="http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html" href="http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html">http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html</a></p><p></blockquote><p></p><p>但由于<a href="http://dot.tk">dot.tk</a>对免费域名有限制：</p><blockquote><p>在90天内少于25名用户访问时,免费域名会过期。</p></blockquote><p>所以我改在<a href="http://www.co.cc/">co.cc</a>申请免费域名，操作跟dot.tk的对应，只是每次修改设置（如修改dns服务器）时并不一定立刻就生效，它也说了最多会在48小时内生效。其他都按照链接的方法做就OK了。</p><br />
+<br/>
+            <br/>
+            转载请注明原文链接<br />
+            <a href='http://www.goorockey.com/blogs/24004'>http://www.goorockey.com/blogs/24004</a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blogs/20001">自产生程序</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-08T00:00:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2011</time>
+        
+         | <a href="/blogs/20001#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote>   <p>自产生程序：不通过任何输入，输出自己代码的程序。</p> <p></blockquote>  <p></p>  <p>很多语言都可以写出这样的程序。</p>  <blockquote>   <p>C版本(只有一行)：</p>    <p>char s[] = &#8220;char s[] = %c%s%c;int main(){ printf(s, 34, s, 34);return 0;}&#8221;;int main(){ printf(s, 34, s, 34);return 0;}</p> </blockquote>  <p></p>  <p>虽然是写出来了，但里面还是有很多值得研究的东西的。</p>  <p></p>  <p>参考资料：</p>  <p><a href="http://www.nyx.net/~gthompso/quine.htm">http://www.nyx.net/~gthompso/quine.htm</a></p><br />
+<br/>
+            <br/>
+            转载请注明原文链接<br />
+            <a href='http://www.goorockey.com/blogs/20001'>http://www.goorockey.com/blogs/20001</a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blogs/18001">小记：不用第三个变量交换两数</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-06T00:00:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time>
+        
+         | <a href="/blogs/18001#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>经典的解法：</p>  <blockquote>   <p>a <ins>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a</ins>b</p>    <p>b = a – b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为a+b-b = a</p>    <p>a –= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a+b-a = b</p>    <p></p>    <p>存在的问题： </p>    <p>&nbsp;&nbsp; a+b太大的话会溢出</p> <p></blockquote>  <p></p>  <blockquote>   <p>a <sup>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a^b</p>    <p>b ^= a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为b</sup>(a^b) = a</p>    <p>a <sup>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a</sup>(a^b) = b</p>    <p>存在的问题：</p>    <p>&nbsp; a、b的值不能超过对方的位数所能表达的范围.</p>    <p>&nbsp; 如：</p>    <p>&nbsp;&nbsp; int a = 0&#215;10101010;&nbsp; // 设此时int为4个字节</p>    <p>&nbsp;&nbsp; short b = 0&#215;15;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>    <p>&nbsp;&nbsp; 就会出问题。</p> </blockquote>  <p></p>  <p>这个问题已经老生常谈了，不过今天还是遇到一个问题：</p>  <blockquote>   <p>当两个要交换的数其实是同一个变量（更准确的说是同一个内存）时两种解法都会出错，变量被置0。原因自己推算即可得出。</p> </blockquote>  <p></p>  <p>所以，我觉得更为保险的方法就是在交换之前先判断a、b是否相等，就既提高效率又防止出错。</p><br />
+<br/>
+            <br/>
+            转载请注明原文链接<br />
+            <a href='http://www.goorockey.com/blogs/18001'>http://www.goorockey.com/blogs/18001</a></p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/4/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section class="well">
+  <ul id="categories" class="nav nav-list">
+  <h1>Categories</h1>
+    <li><a href='/blog/categories/blog'>blog (5)</a></li><li><a href='/blog/categories/cpp'>cpp (2)</a></li><li><a href='/blog/categories/hadoop'>hadoop (1)</a></li><li><a href='/blog/categories/linux'>linux (5)</a></li><li><a href='/blog/categories/lisp'>lisp (1)</a></li><li><a href='/blog/categories/network'>network (4)</a></li><li><a href='/blog/categories/others'>others (2)</a></li><li><a href='/blog/categories/programming'>programming (4)</a></li><li><a href='/blog/categories/python'>python (1)</a></li><li><a href='/blog/categories/windows'>windows (4)</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/29/grap-html-to-pdf/">抓网页保存为pdf</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/21/try-hadoop/">玩一下hadoop</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/10/about-exploit-exercise-nebula-level01/">关于exploit exercise nebula level01</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/python-send-mail/">python发邮件脚本</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/25/pair-and-list-in-scheme/">Scheme里面的pair和list</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="well">
+  <ul id="weibo" class="nav nav-list">
+	<h1>My Weibo</h1>
+	<li>
+        <iframe id="sina_widget_1796329305" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=1796329305&height=500&skin=wd_01&showpic=1"></iframe>
+	</li>
+  </ul>
+</section>
+<section class="well">
+  <ul id="douban" class="nav nav-list">
+	<h1>My Douban</h1>
+	<li>
+	<script type="text/javascript" src="http://www.douban.com/service/badge/goorockey/?show=collection&amp;n=8&amp;columns=2&amp;hidelogo=yes" ></script> 
+	</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/goorockey">@goorockey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'goorockey',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+<section class="well">
+  <ul id="blog_link" class="nav nav-list">
+	<h1>Links</h1>
+	<li class='blog_link'><a href=http://www.dian.org.cn>Dian</a></li><li class='blog_link'><a href=http://www.seedclass.com>SeedClass</a></li><li class='blog_link'><a href=http://www.thankcreate.com>ThankCreate</a></li><li class='blog_link'><a href=http://blog.csdn.net/kelvingu616>My Blog In Csdn</a></li>
+  </ul>
+</section>
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Goorockey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'goorockeyslife';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
