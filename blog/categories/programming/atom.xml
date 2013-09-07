@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[categories: programming | Goorockey's Life]]></title>
+  <title><![CDATA[categories: programming | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2013-09-08T00:50:01+08:00</updated>
+  <updated>2013-09-08T00:54:12+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
