@@ -17,6 +17,10 @@ article{
 		a{
 			color: $color-gray01;
 		}
+
+        a:hover{
+            color: $color-main;
+        }
 	}
 	.entry-content{
 		line-height: 2;
