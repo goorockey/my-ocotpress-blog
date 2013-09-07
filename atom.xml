@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2013-09-08T02:10:16+08:00</updated>
+  <updated>2013-09-08T02:18:17+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -23,10 +23,12 @@
 
 <h2 id="section">使用感受</h2>
 
-<p>主流的浏览器都用过，坚持用firefox的原因主要是因为<a href="(http://www.vimperator.org)" title="vimperator">vimperator</a>，纯键盘地上网很cool很快捷，而且我用的时候会把地址栏、add-on bar等等都去掉，最大化可视范围。 
+<p>主流的浏览器都用过，坚持用firefox的原因主要是因为<a href="http://www.vimperator.org" title="vimperator">vimperator</a>，纯键盘地上网很cool很快捷，而且我用的时候会把地址栏、add-on bar等等都去掉，最大化可视范围。 
 虽然现在firefox在内存、响应速度上还是比不上chrome，但谁叫chrome的vim化插件不好用呢～</p>
 
 <p>另外用firefox写web的时候也比较方便，现在自带的“Responsive Design View”很方便地调试移动端的web体验。firefox每次升级都会有针对developer的new feature，足以看出它很重视开发者的功能。</p>
+
+<!-- more -->
 
 <h2 id="section-1">插件</h2>
 
@@ -60,7 +62,7 @@
 
 <ul>
   <li>主页设成空白页，这样每次打开都是自己主动获取信息，而不会在“自己以为有用的网站“上浪费时间和精力</li>
-  <li>autoproxy+<a href="(https://code.google.com/p/greatagent)" title="greatagent">greatagent</a>，配合https，科学上网</li>
+  <li>autoproxy+<a href="https://code.google.com/p/greatagent" title="greatagent">greatagent</a>，配合https，科学上网</li>
 </ul>
 
 <p>暂时就写到这吧～
@@ -82,7 +84,7 @@
 
 <p>一开始想的是先做类似整站下载，把文字和图片都抓下来，然后再做html转pdf。自己写工具抓下来的话，要抓图片、修改网页里面图片的链接，昨天调研了一下，没找到用python有什么方便的办法，就放弃这条路了。</p>
 
-<p>今天突然找到，网上还是有很多直接网页保存为pdf的工具、网站的。最方便、强大的要数<a href="(http://pdfmyrul)" title="pdfmyurl">pdfmyurl</a>了。</p>
+<p>今天突然找到，网上还是有很多直接网页保存为pdf的工具、网站的。最方便、强大的要数<a href="http://pdfmyrul" title="pdfmyurl">pdfmyurl</a>了。</p>
 
 <!-- more -->
 
@@ -103,7 +105,7 @@
 
 <h3 id="pdftk">pdftk</h3>
 
-<p><a href="(http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
+<p><a href="http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">$ pdftk 1.pdf 2.pdf cat output 12.pdf</span></code></pre></td></tr></table></div></figure></notextile></div>
