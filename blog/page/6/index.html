@@ -7,7 +7,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="#include &lt;iostream&gt; #include &lt;iterator&gt; #include &lt;algorithm&gt; int a[] = { 335, 33, 98, 39, 54, 24, 3 }; int nSize = sizeof( a) / &hellip;">
+	<meta name="description" content="经典的解法： a = b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成ab b = a – b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为a+b-b = a a –= b &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,52 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blogs/18001">
+		
+			小记：不用第三个变量交换两数</a>
+	</h2>
+	<div class="entry-content">
+		<p>经典的解法：</p>  <blockquote>   <p>a <ins>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a</ins>b</p>    <p>b = a – b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为a+b-b = a</p>    <p>a –= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a+b-a = b</p>    <p></p>    <p>存在的问题： </p>    <p>&nbsp;&nbsp; a+b太大的话会溢出</p> <p></blockquote>  <p></p>  <blockquote>   <p>a <sup>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a^b</p>    <p>b ^= a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为b</sup>(a^b) = a</p>    <p>a <sup>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a</sup>(a^b) = b</p>    <p>存在的问题：</p>    <p>&nbsp; a、b的值不能超过对方的位数所能表达的范围.</p>    <p>&nbsp; 如：</p>    <p>&nbsp;&nbsp; int a = 0&#215;10101010;&nbsp; // 设此时int为4个字节</p>    <p>&nbsp;&nbsp; short b = 0&#215;15;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>    <p>&nbsp;&nbsp; 就会出问题。</p> </blockquote>  <p></p>  <p>这个问题已经老生常谈了，不过今天还是遇到一个问题：</p>  <blockquote>   <p>当两个要交换的数其实是同一个变量（更准确的说是同一个内存）时两种解法都会出错，变量被置0。原因自己推算即可得出。</p> </blockquote>  <p></p>  <p>所以，我觉得更为保险的方法就是在交换之前先判断a、b是否相等，就既提高效率又防止出错。</p><br />
+<br/>
+            <br/>
+            转载请注明原文链接<br />
+            <a href='http://www.goorockey.com/blogs/18001'>http://www.goorockey.com/blogs/18001</a></p>
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-06T00:00:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/programming/'>programming</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blogs/18001#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">

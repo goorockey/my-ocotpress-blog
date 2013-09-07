@@ -7,13 +7,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。
-1、最简单的方法
-循环用x减y，知道x等于0。 1: int Div( int x, int y )
-&nbsp; 2: {
-&nbsp; 3: int result = 0;
-&nbsp; 4:
-&nbsp; 5: while &hellip;">
+	<meta name="description" content="题一、有一个整数数组，请求出两两之差绝对值最小的值 方法：先排序，再找差值最小的点对。 效率：时间复杂度O(nlogn) 题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑） 方法：根据x排序，用图解枚举所有情况， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -82,6 +76,69 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blogs/38007">
+		
+			面试趣题</a>
+	</h2>
+	<div class="entry-content">
+		<p><strong>题一、有一个整数数组，请求出两两之差绝对值最小的值</strong></p>
+
+<p>方法：先排序，再找差值最小的点对。</p>
+
+<p>效率：时间复杂度O(nlogn)</p>
+
+<hr />
+
+<p><strong>题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑）</strong></p>
+
+<p>方法：根据x排序，用图解枚举所有情况，能证明斜率最大的两点肯定是相邻的两点。</p>
+
+<p>效率：时间复杂度O(nlogn)</p>
+
+<hr />
+<p><strong>题三、一棵排序二叉树，令 f=(最大值+最小值)/2，设计一个算法，找出距离f值最近、大于f值的结点</strong></p>
+
+<p>方法：把f插入，中序排序</p>
+
+<p>效率：时间复杂度O(logn)</p>
+
+
+		
+		<a href="/blogs/38007" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-24T00:00:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/programming/'>programming</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blogs/38007#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -322,52 +379,6 @@
 </div>
 	
 	<div class="comments"><a href="/blogs/20001#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blogs/18001">
-		
-			小记：不用第三个变量交换两数</a>
-	</h2>
-	<div class="entry-content">
-		<p>经典的解法：</p>  <blockquote>   <p>a <ins>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a</ins>b</p>    <p>b = a – b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为a+b-b = a</p>    <p>a –= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a+b-a = b</p>    <p></p>    <p>存在的问题： </p>    <p>&nbsp;&nbsp; a+b太大的话会溢出</p> <p></blockquote>  <p></p>  <blockquote>   <p>a <sup>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a^b</p>    <p>b ^= a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为b</sup>(a^b) = a</p>    <p>a <sup>= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a</sup>(a^b) = b</p>    <p>存在的问题：</p>    <p>&nbsp; a、b的值不能超过对方的位数所能表达的范围.</p>    <p>&nbsp; 如：</p>    <p>&nbsp;&nbsp; int a = 0&#215;10101010;&nbsp; // 设此时int为4个字节</p>    <p>&nbsp;&nbsp; short b = 0&#215;15;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>    <p>&nbsp;&nbsp; 就会出问题。</p> </blockquote>  <p></p>  <p>这个问题已经老生常谈了，不过今天还是遇到一个问题：</p>  <blockquote>   <p>当两个要交换的数其实是同一个变量（更准确的说是同一个内存）时两种解法都会出错，变量被置0。原因自己推算即可得出。</p> </blockquote>  <p></p>  <p>所以，我觉得更为保险的方法就是在交换之前先判断a、b是否相等，就既提高效率又防止出错。</p><br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/18001'>http://www.goorockey.com/blogs/18001</a></p>
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-06T00:00:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/programming/'>programming</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blogs/18001#disqus_thread">Comments</a></div>
 	
 </div>
 </article>

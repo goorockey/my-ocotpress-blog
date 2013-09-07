@@ -4,7 +4,7 @@
   <title><![CDATA[categories: others | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2013-09-08T01:01:29+08:00</updated>
+  <updated>2013-09-08T02:10:16+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[我的firefox]]></title>
+    <link href="http://www.goorockey.com/blog/2013/09/08/my-firefox-config/"/>
+    <updated>2013-09-08T01:18:00+08:00</updated>
+    <id>http://www.goorockey.com/blog/2013/09/08/my-firefox-config</id>
+    <content type="html"><![CDATA[
+<p>好久好久没有更新blog了，markdown怎么用都忘了。。写blog总结还是很有用的。今天写一下答应过某人写自己firefox的状况。</p>
+
+<h2 id="section">使用感受</h2>
+
+<p>主流的浏览器都用过，坚持用firefox的原因主要是因为<a href="(http://www.vimperator.org)" title="vimperator">vimperator</a>，纯键盘地上网很cool很快捷，而且我用的时候会把地址栏、add-on bar等等都去掉，最大化可视范围。 
+虽然现在firefox在内存、响应速度上还是比不上chrome，但谁叫chrome的vim化插件不好用呢～</p>
+
+<p>另外用firefox写web的时候也比较方便，现在自带的“Responsive Design View”很方便地调试移动端的web体验。firefox每次升级都会有针对developer的new feature，足以看出它很重视开发者的功能。</p>
+
+<h2 id="section-1">插件</h2>
+
+<p>装插件折腾自己的firefox是必须的。当我看到有的人用firefox基本就是原装的，我都觉得他不适合用firefox，倒不如用另外国产标配好的浏览器让自己用得舒服一点。</p>
+
+<ul>
+  <li><strong>vimperator</strong>    神器</li>
+  <li><strong>firebug</strong>   神器</li>
+  <li><strong>greasemonkey</strong>  神器，firefox插件的扩展</li>
+  <li><strong>adblock plus</strong>  去广告</li>
+  <li><strong>All-in-One Sidebar</strong>    侧边栏管理插件，下载等等</li>
+  <li><strong>AutoPager</strong> 自动加载下一页</li>
+  <li><strong>AutoProxy</strong> 科学上网</li>
+  <li><strong>DownThemAll</strong> 下载管理</li>
+  <li><strong>feedly</strong>  rss reader</li>
+  <li><strong>flashblock</strong> 默认禁止页面的flash，加快加载，页面体验也爽些</li>
+  <li><strong>https finder</strong> 如果网页支持https，会自动用https</li>
+  <li><strong>instasaver</strong> instapaper的插件</li>
+  <li><strong>lastpass</strong> 密码管理</li>
+  <li><strong>memroy fox</strong> 优化firefox的内存</li>
+  <li><strong>quickdrag</strong> 鼠标拖拽</li>
+  <li><strong>refcontrol</strong> 修改refer，破防盗链</li>
+  <li><strong>stumbleupon</strong> 发现好网站、消磨时间必备神器</li>
+  <li><strong>tab mix plus</strong> 标签管理</li>
+  <li><strong>weibo_wc</strong>  重新定制新浪微博的样式，很整洁舒服</li>
+  <li><strong>wiktionary and google translate</strong> 翻译</li>
+  <li><strong>wiznote web clipper</strong> 为知插件</li>
+</ul>
+
+<h2 id="section-2">其他</h2>
+
+<ul>
+  <li>主页设成空白页，这样每次打开都是自己主动获取信息，而不会在“自己以为有用的网站“上浪费时间和精力</li>
+  <li>autoproxy+<a href="(https://code.google.com/p/greatagent)" title="greatagent">greatagent</a>，配合https，科学上网</li>
+</ul>
+
+<p>暂时就写到这吧～</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[抓网页保存为pdf]]></title>

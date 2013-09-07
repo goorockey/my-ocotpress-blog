@@ -7,7 +7,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="想尝试Octopress很久了。 Octopress自称为A blogging framework for hackers 玩Octopress主要会涉及到以下技术: git ruby markdown 这些技术对我来说还是很陌生，也好借此机会熟悉熟悉～ 总的来说，[Octopress］ &hellip;">
+	<meta name="description" content="最近学scheme，总结一下pair和list的区别，主要是两点： 1. list一定是pair，但只有以null（空list）结尾的pair才是list 对于(define list1 (list a b c)),list1表现为(a b c),其实也可以写成(a . (b . ()))。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,120 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/09/25/pair-and-list-in-scheme/">
+		
+			Scheme里面的pair和list</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近学scheme，总结一下pair和list的区别，主要是两点：</p>
+
+<h4 id="listpairnulllistpairlist">1. list一定是pair，但只有以null（空list）结尾的pair才是list</h4>
+
+<p>对于(define list1 (list a b c)),list1表现为(a b c),其实也可以写成(a . (b . ()))。</p>
+
+<p>可以看到list其实就是pair,而且是以null结尾的pair。</p>
+
+<p>对于像(a.(b.(c.d)))这样的连续pair，因为没有以空list结尾，所以不是list</p>
+
+<p>所以有：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>cmdline </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&gt; (define x '(1 2))
+</span><span class="line">&gt; x
+</span><span class="line">(1 2)
+</span><span class="line">&gt; (list? x)
+</span><span class="line">#t
+</span><span class="line">&gt; (cons? x)
+</span><span class="line">#t
+</span><span class="line">&gt; (cddr x) ; 以null结尾
+</span><span class="line">()
+</span><span class="line">
+</span><span class="line">&gt; (define y (cons 1 2))
+</span><span class="line">&gt; (list? y)
+</span><span class="line">#f
+</span><span class="line">&gt; (cons? y)
+</span><span class="line">#f
+</span><span class="line">&gt; (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
+</span><span class="line">&gt; y
+</span><span class="line">(1)
+</span><span class="line">&gt; (list? y) ; 变成了list
+</span><span class="line">#t
+</span><span class="line">&gt; (cons? y)
+</span><span class="line">#t</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="pair">2. pair的显示规则</h4>
+
+<p>引用<a href="http://download.plt-scheme.org/doc/html/guide/Pairs__Lists__and_Scheme_Syntax.html">这里</a>的解释：</p>
+
+<blockquote><p>In general, the rule for printing a pair is as follows: use the dot notation always, but if the dot is immediately followed by an open parenthesis, then remove the dot, the open parenthesis, and the	matching close parenthesis. Thus, (0 . (1 . 2)) becomes (0 1 . 2), and (1 . (2 . (3 . ()))) becomes (1 2 3).</p></blockquote>
+
+<p>大意就是，如果pair的“点”紧接着小括号，则这个点和小括号都可以去掉。</p>
+
+<p>所以(a.(b.c))等价于(a b.c), (a.(b.(c.())))等价于(a b c)。
+<br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme/">http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme/</a></p>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-25T22:41:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/lisp/'>lisp</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2012/09/25/pair-and-list-in-scheme/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -272,52 +386,6 @@
 </div>
 	
 	<div class="comments"><a href="/blogs/77213#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blogs/77180">
-		
-			再次用linux做宿主系统</a>
-	</h2>
-	<div class="entry-content">
-		<h3><strong>1、背景</strong></h3>
-<p>之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。</p>
-<p>最近也在微博上收集意见，发现用linux做宿主系统的人还是蛮多的。其实仔细想想，归根结底还是自己linux的操作还不熟练。</p>
-<p>还好最近一段时间自己多了在linux的工作，这几天又下定决心一次装了linux做宿主来玩了。然后就想写个blog记录一下。</p>
-<p>
-		
-		<a href="/blogs/77180" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-29T00:00:00+08:00" pubdate data-updated="true">Feb 29<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/linux/'>linux</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blogs/77180#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
