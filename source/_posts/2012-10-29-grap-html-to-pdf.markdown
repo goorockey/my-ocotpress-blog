@@ -7,8 +7,8 @@ categories: others
 tags: others pdf
 ---
 
-[pdfmyurl]: (http://pdfmyrul) "pdfmyurl"
-[pdftk]: (http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) "pdftk"
+[pdfmyurl]: http://pdfmyrul "pdfmyurl"
+[pdftk]: http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ "pdftk"
 
 最近在刷题，总想把题目保存下来，这样没网的时候也可以做题，放手机里也可以随时做了。所以就想着把题目抓下来保存为比较通用的pdf了。
 
