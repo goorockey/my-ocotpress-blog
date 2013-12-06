@@ -4,7 +4,7 @@
   <title><![CDATA[categories: programming | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2013-09-08T05:05:06+08:00</updated>
+  <updated>2013-12-06T23:09:33+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -84,7 +84,7 @@
 <p><em>代码：</em></p>
 
 <p><div><script src='https://gist.github.com/3712175.js?file='></script>
-<noscript><pre><code></code></pre></noscript></div>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712175&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 </p>
 
 <hr />
@@ -101,7 +101,7 @@
 <p><em>代码：</em></p>
 
 <p><div><script src='https://gist.github.com/3712217.js?file='></script>
-<noscript><pre><code></code></pre></noscript></div>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712217&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 </p>
 
 <hr />
@@ -133,7 +133,7 @@
 <p><em>代码：</em></p>
 
 <p><div><script src='https://gist.github.com/3712226.js?file='></script>
-<noscript><pre><code></code></pre></noscript></div>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712226&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 </p>
 
 <hr />
@@ -144,7 +144,7 @@
 <p>更好的方法：用两个指针p1、p2，p1每次走两步，p2每次走一步，等到p1到链表尾时，p2所指即为中位值</p>
 
 <p><div><script src='https://gist.github.com/3824662.js?file='></script>
-<noscript><pre><code></code></pre></noscript></div>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3824662&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 </p>
 
 ]]></content>
