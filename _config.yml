@@ -20,6 +20,7 @@ subscribe_rss: http://feed.goorockey.com
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:
+email_md5: 528f827a25aa809de1fc0f9064b44b55
 
 # ----------------------- #
 #    Jekyll & Plugins     #
