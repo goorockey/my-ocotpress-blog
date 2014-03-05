@@ -9,7 +9,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="Sep 8th, 2013 others Comments 我的firefox 好久好久没有更新blog了，markdown怎么用都忘了。。写blog总结还是很有用的。今天写一下答应过某人写自己firefox的状况。 使用感受 主流的浏览器都用过， &hellip;">
+	<meta name="description" content="Mar 5th, 2014 programming Comments 用Web-Harvest抓腾讯微博 前阵子要给别人出试题，偶然发现Web-Harvest(下称WH)这个抓网页的工具，它主要应用xpath和xquery抓网页，内置还定义了一套功能挺多的语法，就出了一道用WH抓微博的题目。 &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +102,49 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-05T21:31:00+08:00" data-updated="true" itemprop="datePublished">Mar 5<span>th</span>, 2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/programming/'>programming</a>
+
+
+</div>
+		
+			<span class="comments"><a href="/blog/2014/03/05/webharvest-4-tweibo/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/03/05/webharvest-4-tweibo/" itemprop="url">用Web-Harvest抓腾讯微博</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		
+<p>前阵子要给别人出试题，偶然发现Web-Harvest(下称WH)这个抓网页的工具，它主要应用xpath和xquery抓网页，内置还定义了一套功能挺多的语法，就出了一道用WH抓微博的题目。</p>
+
+<p>本来想抓新浪微博的，但发现它的微博内容都是js生成的，折腾了一下，还是可以用WH的函数提取出内容，但腾讯微博相对还是简单多了。</p>
+
+<p>题目其中一个内容是用WH抓几页邓紫棋的腾讯微博，排除包含她演唱会广告的和没有图片的微博。</p>
+
+
+		
+		<a href="/blog/2014/03/05/webharvest-4-tweibo/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -321,87 +364,6 @@
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-30T00:40:00+08:00" data-updated="true" itemprop="datePublished">Sep 30<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-		
-			<span class="comments"><a href="/blog/2012/09/30/python-send-mail/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2012/09/30/python-send-mail/" itemprop="url">Python发邮件脚本</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		
-<p>项目组有每天值日搞卫生和发工作日报的规定，由于不提醒容易忘记，则想到通过内部邮件定时提醒，练练手。</p>
-
-<p>整个“任务”可以分为发邮件+定时两部分。</p>
-
-<hr />
-
-<h3 id="section">1. 发邮件</h3>
-
-<p>由于服务器是windows系统，google得知，windows下有<a href="http://www.blat.net">blat</a>这发邮件的大杀器，所以刚开始是想用blat+批处理做的。</p>
-
-<p>执行blat -h 或者看官网上的帮助，使用blat发邮件还是很简单的（所以官网特别提醒不要用blat来发SPAM。。)</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>blat基本用法 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">blat &lt;邮件正文文件&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
-</span><span class="line">        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;
-</span><span class="line">
-</span><span class="line">blat - -body &lt;邮件正文&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
-</span><span class="line">        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>blat还可以通过-install把参数保存到注册表。blat确实是自动发邮件的大杀器！</p>
-
-<p><em>P.S 在linux实现自动发邮件，可以用msmtp,sendmail等～</em></p>
-
-<hr />
-
-<p>这本来是很简单的，但因为任务要根据星期几发送邮件给指定的人，而且我们是12个人分成两周，所以想到用一个二维数组存放成员来实现，这也没什么问题。</p>
-
-<p>问题在于在计算要提醒的人时，要根据今天离开始值日的天数，来从数组获取成员，而这求天数在windows用批处理可不好搞，因为要考虑每月不同天数和闰年啊。</p>
-
-<p>当然也不是不能完成，网上也有方法:</p>
-
-<ul>
-  <li>http://bbs.bathome.net/thread-11128-1-1.html</li>
-  <li>http://bbs.bathome.net/viewthread.php?tid=5659&amp;highlight=%2Bbatman</li>
-  <li>http://bbs.bathome.net/viewthread.php?tid=5682&amp;highlight=%2Bbatman</li>
-</ul>
-
-<p>嫌麻烦，我还是决定找有现成库的方法来做，所以就想到用有各种库的python实现了。</p>
-
-
-		
-		<a href="/blog/2012/09/30/python-send-mail/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
@@ -412,7 +374,7 @@
 </nav></div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2013 - Goorockey -
+  Copyright &copy; 2014 - Goorockey -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

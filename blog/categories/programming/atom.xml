@@ -4,7 +4,7 @@
   <title><![CDATA[categories: programming | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2013-12-06T23:34:20+08:00</updated>
+  <updated>2014-03-05T22:00:37+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用Web-Harvest抓腾讯微博]]></title>
+    <link href="http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/"/>
+    <updated>2014-03-05T21:31:00+08:00</updated>
+    <id>http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo</id>
+    <content type="html"><![CDATA[
+<p>前阵子要给别人出试题，偶然发现Web-Harvest(下称WH)这个抓网页的工具，它主要应用xpath和xquery抓网页，内置还定义了一套功能挺多的语法，就出了一道用WH抓微博的题目。</p>
+
+<p>本来想抓新浪微博的，但发现它的微博内容都是js生成的，折腾了一下，还是可以用WH的函数提取出内容，但腾讯微博相对还是简单多了。</p>
+
+<p>题目其中一个内容是用WH抓几页邓紫棋的腾讯微博，排除包含她演唱会广告的和没有图片的微博。</p>
+
+<!-- more -->
+
+<p>其中遇到的坑：</p>
+
+<ul>
+  <li>
+    <p>因为是包含中文，写入到文件时要用gbk编码</p>
+  </li>
+  <li>
+    <p>在xpath已经用li[@id]获取微博节点，但节点传到xquery里面时竟然还要再一次用li[@id]获取一级</p>
+  </li>
+</ul>
+
+<hr />
+<p>配置文件如下</p>
+
+<p><div><script src='https://gist.github.com/9368146.js?file='></script>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/9368146&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
+</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[面试趣题]]></title>

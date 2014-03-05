@@ -9,7 +9,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="Sep 25th, 2012 lisp Comments Scheme里面的pair和list 最近学scheme，总结一下pair和list的区别，主要是两点： 1. list一定是pair，但只有以null（空list）结尾的pair才是list 对于(define list1 (list &hellip;">
+	<meta name="description" content="Sep 30th, 2012 python Comments Python发邮件脚本 项目组有每天值日搞卫生和发工作日报的规定，由于不提醒容易忘记，则想到通过内部邮件定时提醒，练练手。 整个“任务”可以分为发邮件+定时两部分。 1. 发邮件 由于服务器是windows系统，google得知， &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +102,87 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-30T00:40:00+08:00" data-updated="true" itemprop="datePublished">Sep 30<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+		
+			<span class="comments"><a href="/blog/2012/09/30/python-send-mail/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/09/30/python-send-mail/" itemprop="url">Python发邮件脚本</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		
+<p>项目组有每天值日搞卫生和发工作日报的规定，由于不提醒容易忘记，则想到通过内部邮件定时提醒，练练手。</p>
+
+<p>整个“任务”可以分为发邮件+定时两部分。</p>
+
+<hr />
+
+<h3 id="section">1. 发邮件</h3>
+
+<p>由于服务器是windows系统，google得知，windows下有<a href="http://www.blat.net">blat</a>这发邮件的大杀器，所以刚开始是想用blat+批处理做的。</p>
+
+<p>执行blat -h 或者看官网上的帮助，使用blat发邮件还是很简单的（所以官网特别提醒不要用blat来发SPAM。。)</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>blat基本用法 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">blat &lt;邮件正文文件&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
+</span><span class="line">        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;
+</span><span class="line">
+</span><span class="line">blat - -body &lt;邮件正文&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
+</span><span class="line">        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>blat还可以通过-install把参数保存到注册表。blat确实是自动发邮件的大杀器！</p>
+
+<p><em>P.S 在linux实现自动发邮件，可以用msmtp,sendmail等～</em></p>
+
+<hr />
+
+<p>这本来是很简单的，但因为任务要根据星期几发送邮件给指定的人，而且我们是12个人分成两周，所以想到用一个二维数组存放成员来实现，这也没什么问题。</p>
+
+<p>问题在于在计算要提醒的人时，要根据今天离开始值日的天数，来从数组获取成员，而这求天数在windows用批处理可不好搞，因为要考虑每月不同天数和闰年啊。</p>
+
+<p>当然也不是不能完成，网上也有方法:</p>
+
+<ul>
+  <li>http://bbs.bathome.net/thread-11128-1-1.html</li>
+  <li>http://bbs.bathome.net/viewthread.php?tid=5659&amp;highlight=%2Bbatman</li>
+  <li>http://bbs.bathome.net/viewthread.php?tid=5682&amp;highlight=%2Bbatman</li>
+</ul>
+
+<p>嫌麻烦，我还是决定找有现成库的方法来做，所以就想到用有各种库的python实现了。</p>
+
+
+		
+		<a href="/blog/2012/09/30/python-send-mail/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -346,46 +427,6 @@
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-11T00:00:00+08:00" data-updated="true" itemprop="datePublished">Mar 11<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/network/'>network</a>
-
-
-</div>
-		
-			<span class="comments"><a href="/blogs/77213#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blogs/77213" itemprop="url">NAT学习总结</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>最近要恶补一下计算机网络的基础知识，今天先总结一下NAT。</p>
-<p>&nbsp;<br />
-<h6><strong>1、NAT的背景</strong></h6><br />
-随着Internet的普及，网络中的ip资源是越来越紧张。而NAT就是为了解决这个问题的方案。</p>
-<p>NAT是Network Address Translation,网络地址转换，会在网关中实现局域网内部ip和外网ip之间转换。
-		
-		<a href="/blogs/77213" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
@@ -398,7 +439,7 @@
 </nav></div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2013 - Goorockey -
+  Copyright &copy; 2014 - Goorockey -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

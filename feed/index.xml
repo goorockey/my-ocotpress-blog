@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/feed" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2013-12-06T23:34:20+08:00</updated>
+  <updated>2014-03-05T22:00:37+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用Web-Harvest抓腾讯微博]]></title>
+    <link href="http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/"/>
+    <updated>2014-03-05T21:31:00+08:00</updated>
+    <id>http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo</id>
+    <content type="html"><![CDATA[
+<p>前阵子要给别人出试题，偶然发现Web-Harvest(下称WH)这个抓网页的工具，它主要应用xpath和xquery抓网页，内置还定义了一套功能挺多的语法，就出了一道用WH抓微博的题目。</p>
+
+<p>本来想抓新浪微博的，但发现它的微博内容都是js生成的，折腾了一下，还是可以用WH的函数提取出内容，但腾讯微博相对还是简单多了。</p>
+
+<p>题目其中一个内容是用WH抓几页邓紫棋的腾讯微博，排除包含她演唱会广告的和没有图片的微博。</p>
+
+<!-- more -->
+
+<p>其中遇到的坑：</p>
+
+<ul>
+  <li>
+    <p>因为是包含中文，写入到文件时要用gbk编码</p>
+  </li>
+  <li>
+    <p>在xpath已经用li[@id]获取微博节点，但节点传到xquery里面时竟然还要再一次用li[@id]获取一级</p>
+  </li>
+</ul>
+
+<hr />
+<p>配置文件如下</p>
+
+<div><script src="https://gist.github.com/9368146.js?file="></script>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/9368146&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
+
+<p><br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/">http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[我的firefox]]></title>
@@ -1968,84 +2007,6 @@ ssh端口转发有三种：<br />
             <br/>
             转载请注明原文链接<br />
             <a href='http://www.goorockey.com/blogs/43008'>http://www.goorockey.com/blogs/43008</a></p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[《Windows核心编程》读书笔记1--内核对象]]></title>
-    <link href="http://www.goorockey.com/blogs/48001"/>
-    <updated>2011-09-02T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/48001</id>
-    <content type="html"><![CDATA[<p><span style="color: #ffff00;"><strong><span style="color: #c0c0c0; font-size: large;">一、摘要</span></strong></span></p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">1、内核对象有使用计数，当计数减为0时，内核对象被销毁。</span></span></p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">2、内核对象有安全描述符，控制该进程能做的操作。</span></span></p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、每个进程内有内核对象句柄表，记录使用中的内核对象。</span></span></p>
-<p><span style="color: #ffff00;"><strong> </strong></span></p>
-<p><span style="color: #ffff00;"><strong><span style="color: #c0c0c0; font-size: large;">二、内核对象</span></strong></span></p>
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">1、对内核对象的操作,只能通过调API</span></strong></span></p>
-<p>（1）应用程序无法在内存中找到表示内核对象的数据结构,也就无法直接修改其状态。</p>
-<p>（2）要对内核对象操作，只能先获得其句柄，然后调用window定义好的API<!--more--></p>
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">2、内核对象的使用计数，记录在使用它的进程数</span></strong></span></p>
-<p>（1）内核对象是属于内核的，而不属于任何一个进程，包括创建它的哪个进程。</p>
-<p>（2）内核对象中有一个使用计数的数据，记录在使用它的进程数。</p>
-<p>（3）只有当使用计数为零时，该内核对象才会被销毁。</p>
-<p>（4）即使创建它的进程终止了，该内核对象的使用计数不为零就不会被销毁。</p>
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">3、内核对象的安全描述符，控制进程对其的使用权</span></strong></span></p>
-<p>（1）在创建内核对象的API中，都有一个“安全描述符”的参数，是用来控制对这个内核对象的使用权的</p>
-<p>例如创建文件内存映射CreateFileMapping就有一个PSECURITY_ATTRIBUTES的参数。</p>
-<p>（2）而在获取该内核对象的API OpenFileMapping中，会有一个表征获取该对象做什么操作的参数。</p>
-<p>如果该用户允许对该内核对象做该操作，则成功返回该内核对象句柄，否则返回NULL</p>
-<p>（3）分辨一个对象是否为内核对象的标志是，创建该对象的API是否有“安全描述符”这个参数。</p>
-<p>如创建GDI就没有该参数，所以GDI不是内核对象</p>
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">4、进程的内核对象句柄表，记录使用的内核对象</span></strong></span></p>
-<p>内核对象句柄表结构：<br />
-<table width="563" border="1" cellspacing="0" cellpadding="2"><br />
-<tbody><br />
-<tr><br />
-<td valign="top" width="102">索引<br />
-(Handle)</td><br />
-<td valign="top" width="159"><span style="color: #ff8080;">内核对象内存块的指针</span></td><br />
-<td valign="top" width="150">访问屏蔽<br />
-（标志位的DWORD）</td><br />
-<td valign="top" width="150">继承标志<br />
-（标志位的DWORD ）</td></p>
-</tr>
-<tr>
-<td valign="top" width="102">1</td>
-<td valign="top" width="159">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-</tr>
-<tr>
-<td valign="top" width="102">2</td>
-<td valign="top" width="159">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-</tr>
-<tr>
-<td valign="top" width="102">…</td>
-<td valign="top" width="159">…</td>
-<td valign="top" width="151">…</td>
-<td valign="top" width="151">…</td>
-</tr>
-</tbody>
-</table>
-<p>（1）每个进程内都有一个内核对象句柄表来记录它在使用的内核对象，表中包含该内核对象内存块的指针。</p>
-<p>在内核对象的句柄就是该内核对象在此表中的索引值。</p>
-<p>（2）创建内核对象时，会在表中寻找空白项，并添加新项，并通过该内核对象指针对它的使用计数置1.</p>
-<p>（3）用CloseHandle释放进程对该内核对象使用权时，就通过该指针对使用计数减1</p>
-<p>（4）即使没有用CloseHandle，当进程终止时，会对句柄表中没有释放使用权的内核对象计数减1</p>
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">5、进程间访问内核对象</span></strong></span></p>
-<p>（1）设置子进程继承父进程的内核对象</p>
-<p>（2）创建有名字的内核对象，并通过内核对象名字访问它。</p>
-<p>（3）DuplicateHandle 复制内核对象</p>
-<p><strong><span style="color: #ff0000;">6、当用Create*（如CreateMutex）创建有名字的内核对象</span></strong></p>
-<p>（1）如果<span style="color: #ff8080;">同名字</span>、<span style="color: #ff8080;">同类</span>的内核对象已存在，则返回该内核对象的Handle；</p>
-<p>（2）如果<span style="color: #ff8080;">同名字</span>、<span style="color: #ff8080;">不同类</span>的内核对象已存在，则创建失败，并返回NULL</p>
-<p>（3）如果没有同名字的内核对象存在，则创建新内核对象<br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/48001'>http://www.goorockey.com/blogs/48001</a></p>]]></content>
   </entry>
   
 </feed>

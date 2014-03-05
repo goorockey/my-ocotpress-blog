@@ -5,11 +5,11 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>categories: cpp - Goorockey's Blog</title>
+	<title>用Web-Harvest抓腾讯微博 - Goorockey's Blog</title>
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="Category: cpp">
+	<meta name="description" content="用Web-Harvest抓腾讯微博 前阵子要给别人出试题，偶然发现Web-Harvest(下称WH)这个抓网页的工具，它主要应用xpath和xquery抓网页，内置还定义了一套功能挺多的语法，就出了一道用WH抓微博的题目。 本来想抓新浪微博的，但发现它的微博内容都是js生成的，折腾了一下， &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
 
 	<link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Blog" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://www.goorockey.comblog/categories/cpp/">
+	<link rel="canonical" href="http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -100,53 +100,62 @@
 				
 			
 			<div class="mid-col-container">
-				<div id="content" class="inner">
-	
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">用Web-Harvest抓腾讯微博</h1>
+	<div class="entry-content" itemprop="articleBody">
+<p>前阵子要给别人出试题，偶然发现Web-Harvest(下称WH)这个抓网页的工具，它主要应用xpath和xquery抓网页，内置还定义了一套功能挺多的语法，就出了一道用WH抓微博的题目。</p>
 
+<p>本来想抓新浪微博的，但发现它的微博内容都是js生成的，折腾了一下，还是可以用WH的函数提取出内容，但腾讯微博相对还是简单多了。</p>
 
-	
-	
-	<section class="archives"><h1 class="year">2011</h1>
+<p>题目其中一个内容是用WH抓几页邓紫棋的腾讯微博，排除包含她演唱会广告的和没有图片的微博。</p>
 
-<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<span class="date"><time datetime="2011-08-02T00:00:00+08:00" itemprop="datePublished">Aug  2</time></span>
-		<br>
-		<span class="tags">
+<!-- more -->
 
+<p>其中遇到的坑：</p>
 
-	<a class='category' href='/blog/categories/cpp/'>cpp</a>
+<ul>
+  <li>
+    <p>因为是包含中文，写入到文件时要用gbk编码</p>
+  </li>
+  <li>
+    <p>在xpath已经用li[@id]获取微博节点，但节点传到xquery里面时竟然还要再一次用li[@id]获取一级</p>
+  </li>
+</ul>
 
+<hr />
+<p>配置文件如下</p>
 
-</span>
-	    
-	    <span class="comments"><a href="/blogs/14001#disqus_thread">Comments</a></span>
-	    
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blogs/14001">STL中用copy和ostream_iterator输出一个数组</a></h1>
+<div><script src="https://gist.github.com/9368146.js?file="></script>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/9368146&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
+
+<p><br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/">http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/</a></p>
+
+</div>
+
 </article>
 
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
-
-
-<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<span class="date"><time datetime="2011-08-02T00:00:00+08:00" itemprop="datePublished">Aug  2</time></span>
-		<br>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/cpp/'>cpp</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blogs/11001#disqus_thread">Comments</a></span>
-	    
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-	<h1 class="title" itemprop="name"><a href="/blogs/11001">不能同时用static和const修饰一个成员函数</a></h1>
-</article>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
 
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
 </div>
 			</div>
 			<footer id="footer" class="inner"><p>
@@ -161,7 +170,10 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
       var disqus_shortname = 'goorockeyslife';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/';
+        var disqus_url = 'http://www.goorockey.com/blog/2014/03/05/webharvest-4-tweibo/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
