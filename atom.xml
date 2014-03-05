@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-03-05T22:00:37+08:00</updated>
+  <updated>2014-03-05T22:02:07+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -38,7 +38,6 @@
   </li>
 </ul>
 
-<hr />
 <p>配置文件如下</p>
 
 <div><script src="https://gist.github.com/9368146.js?file="></script>
