@@ -4,7 +4,7 @@ title: "用Web-Harvest抓腾讯微博"
 date: 2014-03-05 21:31
 comments: true
 categories: programming
-tags: programming network
+tags: programming Web-Harvest 
 ---
 
 [Web-Harvest]: http://web-harvest.sourceforge.net "Web-Harvest"

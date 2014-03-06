@@ -4,7 +4,7 @@ title: "我的firefox"
 date: 2013-09-08 01:18
 comments: true
 categories: others
-tags: 
+tags: firefox
 ---
 
 [vimperator]: http://www.vimperator.org "vimperator"
@@ -49,6 +49,7 @@ tags:
 - **wiznote web clipper** 为知插件
 
 ## 其他
+
 
 - 主页设成空白页，这样每次打开都是自己主动获取信息，而不会在“自己以为有用的网站“上浪费时间和精力
 - autoproxy+[greatagent]，配合https，科学上网
