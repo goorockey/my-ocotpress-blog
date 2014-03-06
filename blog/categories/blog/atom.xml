@@ -4,7 +4,7 @@
   <title><![CDATA[categories: blog | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-03-06T10:04:14+08:00</updated>
+  <updated>2014-03-06T10:30:12+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -182,11 +182,11 @@
     <content type="html"><![CDATA[<p>终于把Micolog搞到墙内了！</p>
 <p>用chrome打开速度很理想！</p>
 <p>稍微修改一下Windows Live Writer的设置也能直接连到博客了！</p>
-<p />
+<p></p>
 <p>=======================兴奋的分割线===============================</p>
 <p>具体方法参考了：</p>
 <blockquote><p><a title="http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html" href="http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html">http://gae.v2find.tk/2011/06/23/micolog-gae-tk.html</a></p></blockquote>
-<p />
+<p></p>
 <p>但由于<a href="http://dot.tk">dot.tk</a>对免费域名有限制：</p>
 <blockquote><p>在90天内少于25名用户访问时,免费域名会过期。</p></blockquote>
 <p>所以我改在<a href="http://www.co.cc/">co.cc</a>申请免费域名，操作跟dot.tk的对应，只是每次修改设置（如修改dns服务器）时并不一定立刻就生效，它也说了最多会在48小时内生效。其他都按照链接的方法做就OK了。</p>

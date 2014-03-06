@@ -1,112 +1,89 @@
 
 <!DOCTYPE HTML>
-
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<title>VMWare组网实验(NAT) - Goorockey's Blog</title>
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="VMWare组网实验(NAT) 本着“干中学”的精神，看完资料，还是用VMWare来练习一下使用NAT，好加深认识。
+	<meta name="description" content="本着“干中学”的精神，看完资料，还是用VMWare来练习一下使用NAT，好加深认识。
 实验涉及：NAT，iptables，
 &nbsp; 1、实验目标
 这次我要用iptables实现NAT功能（SNAT和DNAT）。
-先上拓扑图（可能有点不规范）： &hellip;">
+先上拓扑图（可能有点不规范）： 如图分别有4台机子：A、B在内网， &hellip;">
 	
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<link href="http://feed.goorockey.com" rel="alternate" title="Goorockey's Blog" type="application/atom+xml">
-	
-	<link rel="canonical" href="http://www.goorockey.com/blogs/77247">
+	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-28958629-1']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-
-
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
 </head>
 
 
 <body>
-	<div class="container">
-		<div class="left-col">
-			<div class="intrude-less">
-			<header id="header" class="inner"><div class="profilepic">
-	
-	<img src="http://www.gravatar.com/avatar/528f827a25aa809de1fc0f9064b44b55?s=160" alt="Profile Picture" style="width: 160px;" />
-	
-</div>
-<hgroup>
-  <h1><a href="/">Goorockey's Blog</a></h1>
-  
-    <h2>我的世界</h2>
-  
-</hgroup>
-
-<nav id="main-nav"><ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+	<header id="header" class="inner"><h1><a href="/">Goorockey's Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/links.html">Links</a></li>
 </ul>
-
 </nav>
-<nav id="sub-nav">
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/links.html">Links</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.goorockey.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
 	<div class="social">
 		
 		
 		
 		
+		<a class="github" href="https://github.com/goorockey" title="GitHub">GitHub</a>
 		
-			<a class="github" href="https://github.com/goorockey" title="GitHub">GitHub</a>
-		
-		
-		
+    
 		
 		
 		
 		
 		
-		<a class="douban" href="https://www.douban.com/people/goorockey" title="Douban">Douban</a>
+		<a class="rss" href="http://feed.goorockey.com" title="RSS">RSS</a>
 		
-		
-			<a class="rss" href="http://feed.goorockey.com" title="RSS">RSS</a>
-		
+    
 	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.goorockey.com">
+	</form>
 </nav>
-</header>				
-			</div>
-		</div>	
-		<div class="mid-col">
-			
-				
-			
-			<div class="mid-col-container">
-				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">VMWare组网实验(NAT)</h1>
-	<div class="entry-content" itemprop="articleBody"><p>本着“干中学”的精神，看完资料，还是用VMWare来练习一下使用NAT，好加深认识。</p>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">VMWare组网实验(NAT)</h2>
+	<div class="entry-content"><p>本着“干中学”的精神，看完资料，还是用VMWare来练习一下使用NAT，好加深认识。</p>
 <p>实验涉及：NAT，iptables，</p>
 <p>&nbsp;</p>
 <p><!--more--><br />
@@ -196,36 +173,67 @@ CentOS里面配置网卡方法就是修改/etc/sysconfig/network-scripts/ifcfg-e
             转载请注明原文链接<br />
             <a href='http://www.goorockey.com/blogs/77247'>http://www.goorockey.com/blogs/77247</a></p></div>
 
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-13T00:00:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/network/'>network</a>
+
+
+</div>
+	
+	<div class="comments"><a href="#disqus_thread">Comments</a></div>
+	
+</div>
 </article>
 
 	<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">
-	
-	
-	<a class="addthis_button_tweet"></a>
-	
-	
-	<a class="addthis_counter addthis_pill_style"></a>
+		
+		
+		<a class="addthis_button_tweet"></a>
+		
+		
+		
 	</div>
-  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+	
 </div>
 
 
 
 <section id="comment">
-    <h1 class="title">Comments</h1>
+    <h2 class="title">Comments</h2>
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
 </section>
 </div>
-			</div>
-			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2014 - Goorockey -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
+	<footer id="footer" class="inner">Copyright &copy; 2014
 
-Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
-			
+    Goorockey
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
 
 <script type="text/javascript">
       var disqus_shortname = 'goorockeyslife';
@@ -238,32 +246,26 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//go.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-28958629-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-		</div>
-	</div>
 </body>
 </html>

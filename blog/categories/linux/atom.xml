@@ -4,7 +4,7 @@
   <title><![CDATA[categories: linux | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-03-06T10:04:14+08:00</updated>
+  <updated>2014-03-06T10:30:12+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -45,7 +45,7 @@
 </span><span class='line'><span class="cp">#include &lt;unistd.h&gt;</span>
 </span><span class='line'><span class="cp">#include &lt;string.h&gt;</span>
 </span><span class='line'><span class="cp">#include &amp;lt;sys/types.h&amp;gt;</span>
-</span><span class='line'><span class="cp">#include &lt;stdio.h /&gt;&lt;/string.h&gt;&lt;/unistd.h&gt;&lt;/stdlib.h&gt;&lt;/p&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;stdio.h&gt;&lt;/stdio.h&gt;&lt;/string.h&gt;&lt;/unistd.h&gt;&lt;/stdlib.h&gt;&lt;/p&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>

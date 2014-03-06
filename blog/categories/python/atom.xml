@@ -4,7 +4,7 @@
   <title><![CDATA[categories: python | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-03-06T10:04:14+08:00</updated>
+  <updated>2014-03-06T10:30:12+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -38,7 +38,7 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>blat &lt;邮件正文文件> -from &lt;发送地址> -to &lt;接受地址> -subject &lt;邮件标题> 
-</span><span class='line'>        -server &lt;smtp服务器地址> -username &lt;登录服务器用户名> -password &lt;密码 />&lt;/登录服务器用户名>&lt;/smtp服务器地址>&lt;/邮件标题>&lt;/接受地址>&lt;/发送地址>&lt;/邮件正文文件>&lt;/p>
+</span><span class='line'>        -server &lt;smtp服务器地址> -username &lt;登录服务器用户名> -password &lt;密码>&lt;/密码>&lt;/登录服务器用户名>&lt;/smtp服务器地址>&lt;/邮件标题>&lt;/接受地址>&lt;/发送地址>&lt;/邮件正文文件>&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>blat - -body &lt;邮件正文> -from &lt;发送地址> -to &lt;接受地址> -subject &lt;邮件标题> 
 </span><span class='line'>        -server &lt;smtp服务器地址> -username &lt;登录服务器用户名> -password &lt;密码></span></code></pre></td></tr></table></div></figure></notextile></div></密码></登录服务器用户名></smtp服务器地址></邮件标题></接受地址></发送地址></邮件正文></p>

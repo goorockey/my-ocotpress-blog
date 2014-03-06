@@ -4,7 +4,7 @@
   <title><![CDATA[categories: network | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/network/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-03-06T10:04:14+08:00</updated>
+  <updated>2014-03-06T10:30:12+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -23,7 +23,7 @@
 <p>DNS隧道是什么就不解释了。google一下DNS隧道能搜到风河、云风两个大牛相关的blog。这次我用iodine来实现DNS隧道。</p>
 
 <!--more-->
-<h6><strong /> </h6>
+<h6><strong></strong> </h6>
 <h6><strong>1、场景</strong> </h6>
 <p>现在情况是，用户只能跟外界有DNS通路，想借此进行平常的http、ftp等通信。</p>
 
@@ -43,7 +43,7 @@
 	<li>DNS代理把数据包解封，并转发给外网的目标地址</li>
 	<li>外网回复的数据包原路返回，这样就完成通讯了。</li>
 </ul>
-<p><strong /> </p>
+<p><strong></strong> </p>
 <h6><strong>2、VMWare环境模拟</strong></h6>
 <p>这次我用了三台机子，系统还是CentOS 6.0：</p>
 
@@ -76,7 +76,7 @@
 
 <p>需要在HostC执行以下命令，安装DNS服务器所需的bind和caching-nameserver：</p>
 <blockquote><span style="color: #222222;">$ yum install –y bind bind-utils bind-chroot caching-nameserver</span></blockquote>
-<p><strong /> </p>
+<p><strong></strong> </p>
 
 <p><strong>（2）修改named的conf文件（/etc/named.conf）</strong></p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[categories: programming | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-03-06T10:04:14+08:00</updated>
+  <updated>2014-03-06T10:30:12+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -369,12 +369,12 @@
     <updated>2011-08-08T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/20001</id>
     <content type="html"><![CDATA[<blockquote>   <p>自产生程序：不通过任何输入，输出自己代码的程序。</p> </blockquote>
-<p />
+<p></p>
 <p>很多语言都可以写出这样的程序。</p>
 <blockquote>   <p>C版本(只有一行)：</p>    <p>char s[] = "char s[] = %c%s%c;int main(){ printf(s, 34, s, 34);return 0;}";int main(){ printf(s, 34, s, 34);return 0;}</p> </blockquote>
-<p />
+<p></p>
 <p>虽然是写出来了，但里面还是有很多值得研究的东西的。</p>
-<p />
+<p></p>
 <p>参考资料：</p>
 <p><a href="http://www.nyx.net/~gthompso/quine.htm">http://www.nyx.net/~gthompso/quine.htm</a></p>
 ]]></content>
@@ -386,13 +386,13 @@
     <updated>2011-08-06T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/18001</id>
     <content type="html"><![CDATA[<p>经典的解法：</p>
-<blockquote>   <p>a += b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a+b</p>    <p>b = a – b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为a+b-b = a</p>    <p>a –= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a+b-a = b</p>    <p />    <p>存在的问题： </p>    <p>&nbsp;&nbsp; a+b太大的话会溢出</p> </blockquote>
-<p />
+<blockquote>   <p>a += b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a+b</p>    <p>b = a – b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为a+b-b = a</p>    <p>a –= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a+b-a = b</p>    <p></p>    <p>存在的问题： </p>    <p>&nbsp;&nbsp; a+b太大的话会溢出</p> </blockquote>
+<p></p>
 <blockquote>   <p>a ^= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成a^b</p>    <p>b ^= a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b变成原来的a，因为b^(a^b) = a</p>    <p>a ^= b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a变成原来的b，因为a^(a^b) = b</p>    <p>存在的问题：</p>    <p>&nbsp; a、b的值不能超过对方的位数所能表达的范围.</p>    <p>&nbsp; 如：</p>    <p>&nbsp;&nbsp; int a = 0x10101010;&nbsp; // 设此时int为4个字节</p>    <p>&nbsp;&nbsp; short b = 0x15;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>    <p>&nbsp;&nbsp; 就会出问题。</p> </blockquote>
-<p />
+<p></p>
 <p>这个问题已经老生常谈了，不过今天还是遇到一个问题：</p>
 <blockquote>   <p>当两个要交换的数其实是同一个变量（更准确的说是同一个内存）时两种解法都会出错，变量被置0。原因自己推算即可得出。</p> </blockquote>
-<p />
+<p></p>
 <p>所以，我觉得更为保险的方法就是在交换之前先判断a、b是否相等，就既提高效率又防止出错。</p>
 ]]></content>
   </entry>
