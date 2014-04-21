@@ -114,7 +114,7 @@
 
 <h3 id="section">对话框资源的移植</h3>
 
-<p>在MFC中，对话框资源都保存在rc文件中。而对应到wxWidgets，每个对话框以xml格式保存成各自的xrc文件，跟rc有一定区别。MFC大部分控件在wxWidgets都能找到。对于对话框资源的移植，我们是用脚本批量完成的，中间一个坑是转换时候对话框和控件的大小在MFC的rc和wxWidgets的xrc不是1:1的，要乘一个比例。</p>
+<p>在MFC中，对话框资源都保存在rc文件中。而对应到wxWidgets，每个对话框以xml格式保存成各自的xrc文件，跟rc有一定区别。MFC大部分控件在wxWidgets都能找到。对于对话框资源的移植，我们是用脚本批量完成的，中间一个坑是转换时候对话框和控件的大小在MFC的rc和wxWidgets的xrc不是1:1的，要乘一个比例，1.5左右。</p>
 
 <h3 id="all-in-all">ALL IN ALL</h3>
 
