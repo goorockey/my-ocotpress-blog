@@ -1,6 +1,6 @@
 --- 
 layout: post
-title: "使用wxWidgets的总结"
+title: "用wxWidgets做移植的总结"
 date: 2014-04-21 10:41
 comments: true
 categories: programming
@@ -13,7 +13,7 @@ tags: programming wxwidgets cpp
 
 wxWidgets库在总的结构上跟MFC相似，比如消息响应、相关类的命名。它现在已经出到了3.0，总体还是比较成熟了，但还是好些不完善的地方，这个在看它源码的时候就会发现挺多TODO comment。不过它的官方论坛和stackoverflow上相关问题还是挺活跃的，在上面提问很快就能得到一些资深程序员的答复。有一次我误以为发现了它的一个bug（其实是我理解错了），在上面提问，回复的人不仅有文字的讲解，还附上了自己写的测试用例，让我真心赞叹对方好负责任啊。
 
-现在总结一些项目过程中遇到的问题吧。
+现在总结一些项目移植过程中遇到的问题吧。
 
 <!-- more -->
 
@@ -35,12 +35,16 @@ Windows的CRect要替换成wxWidgets的wxRect真不能简单的替换，因为�
 
 wxWidgets在从剪切板wxClipboard取回图片数据wxBitmapDataObject时，会丢失了透明信息，即Alpha channel。具体来看就是原来用RGBA表示的有透明信息的图片，通过剪切板传递之后，RGBA的A都变成255了。
 
-我通过查看wxWidgets的源码，发现确实是个bug，wxWidgets在Mac这边调用Cocoa接口从剪切板获取像素数据保存为图片时，没有关注Alpha channel。这个我通过修改它源码解决了。
+我通过查看wxWidgets的源码，发现确实是个bug，wxWidgets在Mac这边调用Cocoa接口从剪切板获取像素数据保存为图片时，没有关注Alpha channel。这个我通过修改它源码解决了。详见我提交到官方的这个[ticket](http://trac.wxwidgets.org/ticket/16198)。
 
 ### wxDC在Unix下不是线程安全的
 
 wxDC是wxWidgets的绘制上下文，对应于Windows下的CDC。官方资料说了，wxDC在Unix平台下是非线程安全的。这里指的Unix平台具体是GTK(Linux)和OSX(Mac)。所以绘制的时候最好是下wxPaintEvent的响应函数里面做。在子线程做绘制不保证正确，即使是用wxWidgets的wxGuiEnter/wxGuiLeave加锁也是不行。
 
+### 对话框资源的移植
+
+在MFC中，对话框资源都保存在rc文件中。而对应到wxWidgets，每个对话框以xml格式保存成各自的xrc文件，跟rc有一定区别。MFC大部分控件在wxWidgets都能找到。对于对话框资源的移植，我们是用脚本批量完成的，中间一个坑是转换时候对话框和控件的大小在MFC的rc和wxWidgets的xrc不是1:1的，要乘一个比例。
+
 ### ALL IN ALL
 
-以上是暂时记得的问题，总的来说，wxWidgets是个强大的跨平台库，用着真心方便，常用的操作也都覆盖了，代码也整洁漂亮，社区也活跃，还是可以放心选用的。而且作为一个开源库，有什么问题都能自己定位自己修改解决，开源万岁～
+以上是暂时记得的问题。总的来说，wxWidgets是个强大的跨平台库，用着真心方便，常用的操作也都覆盖了，代码也整洁漂亮，社区也活跃，还是可以放心选用的。而且作为一个开源库，有什么问题都能自己定位自己修改解决，开源万岁～
