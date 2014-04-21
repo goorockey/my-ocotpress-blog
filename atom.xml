@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-03-06T10:35:39+08:00</updated>
+  <updated>2014-04-21T11:59:36+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用wxWidgets的总结]]></title>
+    <link href="http://www.goorockey.com/blog/2014/04/21/summary-of-using-wxwidgets/"/>
+    <updated>2014-04-21T10:41:00+08:00</updated>
+    <id>http://www.goorockey.com/blog/2014/04/21/summary-of-using-wxwidgets</id>
+    <content type="html"><![CDATA[
+<p>这几个月做的项目是把一个承载在MFC的软件从Windows移植到Mac，网上调研了一下，决定用wxWidgets这个跨平台的开源库来帮助移植。总的来说，只要把原软件对Windows API的调用都改为对wxWidgets的调用，基本就完成了移植。但基于wxWidgets和MFC一些设计上的差异和原软件特殊的功能，还不是简单的全局替换就能了事的，甚至还得改wxWidgets的源码。</p>
+
+<p>wxWidgets库在总的结构上跟MFC相似，比如消息响应、相关类的命名。它现在已经出到了3.0，总体还是比较成熟了，但还是好些不完善的地方，这个在看它源码的时候就会发现挺多TODO comment。不过它的官方论坛和stackoverflow上相关问题还是挺活跃的，在上面提问很快就能得到一些资深程序员的答复。有一次我误以为发现了它的一个bug（其实是我理解错了），在上面提问，回复的人不仅有文字的讲解，还附上了自己写的测试用例，让我真心赞叹对方好负责任啊。</p>
+
+<p>现在总结一些项目过程中遇到的问题吧。</p>
+
+<!-- more -->
+
+<h3 id="wxrectcrect">wxRect和CRect</h3>
+
+<p>Windows的CRect要替换成wxWidgets的wxRect真不能简单的替换，因为两者内部设计不一样。</p>
+
+<p>第一，两者对应接口的入参有不同，最经典的是两者的构造函数，CRect是传left,top,right,bottom，wxWidget是传left,top,width,height，等于说所有构造CRect的地方都要把第三、第四个参数做减法。</p>
+
+<p>第二，wxRect定义自己所表示的矩形，范围是[left, right - 1]和[top, bottom - 1]，意思就是右边界和下边界是不属于矩形一部分的，这个从其源码能看到。官方说法是不承认width或height为1的矩形，那应该视为线段。这在移植一些矩形操作时，会跟CRect的有些差异。</p>
+
+<p>第三，也是我觉得最坑的，CRect内部直接保存left,top,right,bottom来定义矩形，而wxRect内部保存left,top,width,height来定义矩形，即wxWidgets要GetRight的时候，是返回left + width，SetRight的时候set的是width，其他的同理。这看着没什么问题。但如果我们先SetRight，再SetLeft，wxRect的行为就跟CRect的不一样了。</p>
+
+<p>例如对一个(left,top,right,bottom)=(1,1,5,5)的CRect，对应的wxRect是(left,top,width,height)=(1,1,4,4)，我们对其依次执行SetRight(10)和SetLeft(3)，得到CRect是(left,top,right,bottom)=(3,1,10,5)，wxRect是(left,top,width,height)=(3,1,9,4)，换算过来wxRect是(left,top,right,bottom)=(3,1,12,5)，跟得到的CRect不同！原因就是SetLeft的时候，wxRect只改left，没改width，但等于right还是改了，其实是使整个矩形做了偏移；CRect的行为则是修改左边界，右边界不会动，其实是使整个矩形做压缩。真是坑啊！注意到这一点之后，原软件每个连续SetLeft、SetRight，SetTop、SetBottom的地方，都要注意执行的顺序。</p>
+
+<p>鉴于wxRect和CRect以上的差异，其实移植的时候最好的做法是自己写一个封装了wxRect的MyRect类，把wxRect和CRect的差异在MyRect里面做转换。这其实是应用了Adaptor Pattern。</p>
+
+<h3 id="macwxbitmapwxclipboardalpha">Mac下wxBitmap在剪切板wxClipboard取回时，Alpha信息丢失</h3>
+
+<p>wxWidgets在从剪切板wxClipboard取回图片数据wxBitmapDataObject时，会丢失了透明信息，即Alpha channel。具体来看就是原来用RGBA表示的有透明信息的图片，通过剪切板传递之后，RGBA的A都变成255了。</p>
+
+<p>我通过查看wxWidgets的源码，发现确实是个bug，wxWidgets在Mac这边调用Cocoa接口从剪切板获取像素数据保存为图片时，没有关注Alpha channel。这个我通过修改它源码解决了。</p>
+
+<h3 id="wxdcunix">wxDC在Unix下不是线程安全的</h3>
+
+<p>wxDC是wxWidgets的绘制上下文，对应于Windows下的CDC。官方资料说了，wxDC在Unix平台下是非线程安全的。这里指的Unix平台具体是GTK(Linux)和OSX(Mac)。所以绘制的时候最好是下wxPaintEvent的响应函数里面做。在子线程做绘制不保证正确，即使是用wxWidgets的wxGuiEnter/wxGuiLeave加锁也是不行。</p>
+
+<h3 id="all-in-all">ALL IN ALL</h3>
+
+<p>以上是暂时记得的问题，总的来说，wxWidgets是个强大的跨平台库，用着真心方便，常用的操作也都覆盖了，代码也整洁漂亮，社区也活跃，还是可以放心选用的。而且作为一个开源库，有什么问题都能自己定位自己修改解决，开源万岁～
+<br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blog/2014/04/21/summary-of-using-wxwidgets/">http://www.goorockey.com/blog/2014/04/21/summary-of-using-wxwidgets/</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Web-Harvest抓腾讯微博]]></title>
@@ -1820,194 +1869,6 @@ ssh端口转发有三种：<br />
             <br/>
             转载请注明原文链接<br />
             <a href='http://www.goorockey.com/blogs/45011'>http://www.goorockey.com/blogs/45011</a></p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[《Windows核心编程》读书笔记2--进程、作业、线程]]></title>
-    <link href="http://www.goorockey.com/blogs/43008"/>
-    <updated>2011-09-03T00:00:00+08:00</updated>
-    <id>http://www.goorockey.com/blogs/43008</id>
-    <content type="html"><![CDATA[<p><strong><span style="font-size: large;">一、摘要：</span></strong></p>
-<p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">1、进程只是线程的容器，存放数据和代码，但不执行代码。</span></span></p>
-<p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">2、线程才是执行代码的实体。</span></span></p>
-<p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">3、作业是对一个或多个进程的统一管理，能添加一般无法添加的限制。</span></span></p>
-<p><strong><span style="font-size: large;">二、进程</span></strong></p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">1、概念</span></span></p>
-<p><span style="color: #c0c0c0;"><span style="color: #ff8080;">进程只是线程的容器</span>，为线程执行代码提供资源、营造运行环境。<!--more--></span></p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">2、进程的构成</span></span></p>
-<p>（1）关键：<br />
-<blockquote>一块内存地址空间，用以存放代码和数据；</p>
-<p>一个内核对象句柄表，记录使用中的内核对象。</blockquote><br />
-（2）更详尽的构成</p>
-<p>（来自MSDN <a href="http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx">http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx</a>）：<br />
-<blockquote>a virtual address space,</p>
-<p>executable code,</p>
-<p>open handles to system objects,</p>
-<p>a security context,</p>
-<p>a unique process identifier,</p>
-<p>environment variables,</p>
-<p>a priority class,</p>
-<p>minimum and maximum working set sizes,</p>
-<p>at least one thread of execution.</blockquote><br />
-<span style="color: #ffff00;"><span style="color: #ff0000;">3、进程的终止</span></span></p>
-<p>（1）全部线程都结束。即使主线程退出了，如果还有线程存在，该进程仍然不会销毁。</p>
-<p>（2）ExitProcess，有可能造成内存泄露，因为C/C++ Runtime Library没有被清空，则全局变量等资源就不会被释放。</p>
-<p>（3）TerminateProcess，跟ExitProcess一样是可能造成内存泄露的。另外它是异步的，即只是通知要终止目标进程，返回后并不代表它已结束。</p>
-<p><strong><span style="font-size: large;">三、作业</span></strong></p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">1、基本概念</span></span></p>
-<p>（1）<span style="color: #ff8080;">作业是进程的容器</span>，对一个或多个进程附加一定的限制，进行统一管理。</p>
-<p>（2）即使作业只包含了一个进程也是有用的，因为这样能做一些普通不能进行的限制</p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、主要的API：</span></span><br />
-<table width="439" border="0" cellspacing="0" cellpadding="2"><br />
-<tbody><br />
-<tr><br />
-<td valign="top" width="200"><span class="caps">API</span></td><br />
-<td valign="top" width="237">功能</td></p>
-</tr>
-<tr>
-<td valign="top" width="200">CreateJobObject</td>
-<td valign="top" width="237">创建作业内核对象</td>
-</tr>
-<tr>
-<td valign="top" width="200">OpenJobObject</td>
-<td valign="top" width="237">根据Handle打开作业内核对象</td>
-</tr>
-<tr>
-<td valign="top" width="200">IsProcessInJob</td>
-<td valign="top" width="237">验证某一个进程是否存在于作业中</td>
-</tr>
-<tr>
-<td valign="top" width="200">SetInformationJobObject</td>
-<td valign="top" width="237">给作业加上各种限制</td>
-</tr>
-<tr>
-<td valign="top" width="200">QueryInformationJobObject</td>
-<td valign="top" width="237">查询作业对象的信息</td>
-</tr>
-<tr>
-<td valign="top" width="200">AssignProcessToJobObject</td>
-<td valign="top" width="237">将进程放入作业</td>
-</tr>
-<tr>
-<td valign="top" width="200">TerminateJobObject</td>
-<td valign="top" width="237">终止作业内所有进程</td>
-</tr>
-</tbody>
-</table>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、用于作业对象的基本用户界面限制的位标志</span> </span><br />
-<table width="618" border="0" cellspacing="0" cellpadding="2"><br />
-<tbody><br />
-<tr><br />
-<td valign="top" width="188">标志</td><br />
-<td valign="top" width="428">描述</td></p>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_EXITWINDOWS</td>
-<td valign="top" width="428">用于防止进程通过ExitWindowsEx函数退出、关闭、重新引导或关闭系统电源</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_READCLIPBOARD</td>
-<td valign="top" width="428">防止进程读取剪贴板的内容</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_WRITECLIPBOARD</td>
-<td valign="top" width="428">防止进程删除剪贴板的内容</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS</td>
-<td valign="top" width="428">防止进程通过SystemParametersInfor函数来改变系统参数</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_DISPLAYSETTINGS</td>
-<td valign="top" width="428">防止进程通过ChangeDisplaySettings函数来改变显示设置</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_GLOBALATOMS</td>
-<td valign="top" width="428">为作业赋予它自己的基本结构表，使作业中的进程只能访问该作业的表</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_DESKTOP</td>
-<td valign="top" width="428">防止进程使用CreateDesktop或SwitchDesktop函数创建或转换桌面</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_HANDLES</td>
-<td valign="top" width="428">防止作业中的进程使用同一作业外部的进程创建的USER对象（如HWND）</td>
-</tr>
-</tbody>
-</table>
-<p><strong><span style="font-size: large;">四、线程</span></strong></p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">1、基本概念</span></span></p>
-<p>（1）进程不执行代码的，<span style="color: #ff8080;">是线程在进程地址空间内执行代码</span>，并对进程地址空间内的数据做操作。</p>
-<p>（2）多个线程共享进程内的地址空间，包括进程的内核对象句柄表，因为句柄表的存在依赖于进程，而不是线程。</p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">2、线程的构成</span></span></p>
-<p>（1）关键：<br />
-<blockquote>一个堆栈、</p>
-<p>一些用于保护线程的寄存器、</p>
-<p>一个指令寄存器（IP）、</p>
-<p>堆栈指针寄存器（SP）</blockquote><br />
-（2）更详尽的构成</p>
-<p>（来自MSDN <a href="http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx">http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx</a>）：<br />
-<blockquote>All threads of a process share its virtual address space and system resources.</p>
-<p>In addition, each thread maintains exception handlers, a scheduling priority, thread local storage, a unique thread identifier, and a set of structures the system will use to save the thread context until it is scheduled.</p>
-<p>The thread context includes the thread&#8217;s set of machine registers, the kernel stack, a thread environment block, and a user stack in the address space of the thread&#8217;s process.</p>
-<p>Threads can also have their own security context, which can be used for impersonating clients.</blockquote><br />
-<span style="color: #ffff00;"><span style="color: #ff0000;">3、线程的启动</span></span></p>
-<p>(1)初始化线程时会把 线程函数的入参(pvParam)、线程函数的指针(pfnStartAddrj) 压栈。</p>
-<p><a href="http://www.goorockey.com/uploads/2011/09/clip_image0011.png"><img class="alignnone size-full wp-image-77043" title="clip_image001" src="http://www.goorockey.com/uploads/2011/09/clip_image0011.png" alt="" width="252" height="205" /></a></p>
-<p>（2）、每个线程还有一个指令寄存器（IP）和堆栈指针寄存器（SP）。IP初始指向BaseThreadStart函数，它包含在Kernel32.dll中。</p>
-<p>它主要是调用线程函数，并把函数返回值传给ExitThread：<br />
-<div id="codeSnippetWrapper"><br />
-<div id="codeSnippet" style="text-align: left; line-height: 12pt; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 1:</span> <span class="caps">VOID</span> BaseThreadStart(PTHREAD_START_ROUTINE pfnStartAddr,<span class="caps">PVOID</span> pvParam)<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 2:</span> {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 3:</span> __try<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 4:</span> {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 5:</span> ExitThread((pfnStartAddr)(pvParam));<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 6:</span> }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 7:</span> __except(UnhandledExceptionFilter(GetExceptionInformation()))<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 8:</span> {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 9:</span> ExitProcess(GetExceptionCode());<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 10:</span> }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 11:</span><span style="color: #008000;">//<span class="caps">NOTE</span>: We never get here. </span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"><span style="color: #606060;"> 12:</span> }<br />
-&nbsp;</p>
-</div>
-</div>
-<p><span style="color: #c0c0c0;">（3）</span>之所以pfnStartAddr和pvParam压栈，就是因为线程开始运行时，CPU跳到IP指向BaseThreadStart，然后把pfnStartAddr和pvParam出栈，就把它们当做形参传给BaseThreadStart了。</p>
-<p><span style="color: #c0c0c0; font-size: large;"><strong>五、其他</strong></span></p>
-<p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">1、C/C++ Runtime Library的多线程版本</span></span></p>
-<p>（1）在C/C++ Runtime Library中，有一些全局变量。它们有可能同时被多个线程访问，使它们的值无法确定。</p>
-<p>（2）C/C++ Runtime Library为了适应多线程，出现多线程(MT)版本，改变一些全局变量和函数的特性。</p>
-<p>（3）主要思路是为每个线程关联一个数据结构<span style="color: #ff8080;">tiddata块</span>，里面都有各全局变量对于这个线程的副本。即每个线程访问的是属于自己的“全局变量”，有属于自己的独立环境。</p>
-<p>（4）而相关的函数对这些全局变量的操作也会改为对于<span style="color: #c0c0c0;">tiddata块</span>对于值的操作。<br />
-<blockquote>例如：</p>
-<p><em>beginthreadex就是在调用CreateThread来创建线程的基础上，在线程初始化时创建线程关联的<span style="color: #c0c0c0;">tiddata块</span>，并把这些全局变量拷贝到里面。所以</em>beginthreadex比CreateThread要安全。</p>
-<p>_endthreadex则是对应多做了清空关联数据结构的操作。</blockquote><br />
-（5）如果在多线程版本的C/C++ Runtime Library中，用了CreateThread来创建线程，则线程初始化时不会有<span style="color: #c0c0c0;">tiddata块</span>。而当函数要访问<span style="color: #c0c0c0;">tiddata块</span>的时候，开始会访问失败，然后会自动生成一个，并把它与线程关联起来。但在一些情况下调用CreateThread就可能出现错误。</p>
-<p>（6）_beginthread比_beginthreadex、以及_endthread比_endthreadex的参数要少，少了对线程安全访问权的控制。</p>
-<p><span style="color: #ff0000;"> </span><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">2、伪句柄</span></span></p>
-<p>（1）用GetCurrentThread和GetCurrentProcess得到句柄是自己句柄的引用，并不会使线程进程的使用计数加1，它们返回的句柄叫伪句柄。</p>
-<p>（2）用CloseHandle关闭伪句柄时，会返回FALSE。</p>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、纤程</span></span></p>
-<p>（1）UNIX服务器应用程序属于单线程程序（Windows定义），但其内部仿真了多线程工作。为了方便把UNIX服务器应用程序移植到Windows，就推出了纤程。</p>
-<p>（2）ConvertThreadToFiber 把线程转换为纤程。</p>
-<p>（2）纤程不应该返回，返回会使线程和该线程所有的纤程都撤销。</p>
-<p>（3）在单个线程里，每次只能运行一个纤程。可以用SwtichToFiber来切换纤程<br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/43008'>http://www.goorockey.com/blogs/43008</a></p>]]></content>
   </entry>
   
 </feed>
