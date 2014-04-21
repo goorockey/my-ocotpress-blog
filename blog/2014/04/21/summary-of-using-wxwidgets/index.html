@@ -80,7 +80,7 @@
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">使用wxWidgets的总结</h2>
 	<div class="entry-content">
-<p>这几个月做的项目是把一个承载在MFC的软件从Windows移植到Mac，网上调研了一下，决定用wxWidgets这个跨平台的开源库来帮助移植。总的来说，只要把原软件对Windows API的调用都改为对wxWidgets的调用，基本就完成了移植。但基于wxWidgets和MFC一些设计上的差异和原软件特殊的功能，还不是简单的全局替换就能了事的，甚至还得改wxWidgets的源码。</p>
+<p>这几个月做的项目是把一个承载在MFC的软件从Windows移植到Mac，网上调研了一下，决定用<a href="http://www.wxwidgets.org" title="wxWidgets">wxWidgets</a>这个跨平台的开源库来帮助移植。总的来说，只要把原软件对Windows API的调用都改为对wxWidgets的调用，基本就完成了移植。但基于wxWidgets和MFC一些设计上的差异和原软件特殊的功能，还不是简单的全局替换就能了事的，甚至还得改wxWidgets的源码。</p>
 
 <p>wxWidgets库在总的结构上跟MFC相似，比如消息响应、相关类的命名。它现在已经出到了3.0，总体还是比较成熟了，但还是好些不完善的地方，这个在看它源码的时候就会发现挺多TODO comment。不过它的官方论坛和stackoverflow上相关问题还是挺活跃的，在上面提问很快就能得到一些资深程序员的答复。有一次我误以为发现了它的一个bug（其实是我理解错了），在上面提问，回复的人不仅有文字的讲解，还附上了自己写的测试用例，让我真心赞叹对方好负责任啊。</p>
 
@@ -92,7 +92,7 @@
 
 <p>Windows的CRect要替换成wxWidgets的wxRect真不能简单的替换，因为两者内部设计不一样。</p>
 
-<p>第一，两者对应接口的入参有不同，最经典的是两者的构造函数，CRect是传left,top,right,bottom，wxWidget是传left,top,width,height，等于说所有构造CRect的地方都要把第三、第四个参数做减法。</p>
+<p>第一，两者对应接口的入参有不同，最经典的是两者的构造函数，CRect是传left,top,right,bottom，wxWidgets是传left,top,width,height，等于说所有构造CRect的地方都要把第三、第四个参数做减法。</p>
 
 <p>第二，wxRect定义自己所表示的矩形，范围是[left, right - 1]和[top, bottom - 1]，意思就是右边界和下边界是不属于矩形一部分的，这个从其源码能看到。官方说法是不承认width或height为1的矩形，那应该视为线段。这在移植一些矩形操作时，会跟CRect的有些差异。</p>
 
