@@ -1,4 +1,4 @@
---- 
+---
 layout: post
 title: "用wxWidgets做移植的总结"
 date: 2014-04-21 10:41
