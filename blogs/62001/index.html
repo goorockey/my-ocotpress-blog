@@ -7,10 +7,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="调研了一下Apache和Tomcat：
-1、apache 只是一个web服务器，负责响应客户端的请求。
-2、apache对于页面请求：
-如果是静态页面请求，会立刻返回相应的页面；
+	<meta name="description" content="调研了一下Apache和Tomcat： 1.apache 只是一个web服务器，负责响应客户端的请求。 2.apache对于页面请求： 如果是静态页面请求，会立刻返回相应的页面；
 如果是动态页面请求，apache会根据httpd.conf中AddType的配置， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -84,20 +81,34 @@
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Apache和Tomcat</h2>
 	<div class="entry-content"><p>调研了一下Apache和Tomcat：</p>
-<p>1、apache 只是一个web服务器，负责响应客户端的请求。</p>
-<p>2、apache对于页面请求：<!--more--></p>
-<p>如果是静态页面请求，会立刻返回相应的页面；</p>
-<p>如果是动态页面请求，apache会根据httpd.conf中AddType的配置，把请求提交给合适的动态脚本解析程序来处理，处理后生成的静态页面返回给apache，再返回给客户端。所以在配置php和jsp这样的环境的时候，都要在httd.conf中添加对应的AddTpye语句。</p>
-<p>3、tomcat侧重于是一个Servlet/JSP的容器，但也能可以独立于apache运行，响应html请求</p>
-<p>4、tomcat响应静态页面较apache要慢</p>
-<p>5、整合apache和tomcat可以有三种方法:JK,http_proxy,ajp_proxy</p>
-<p>具体介绍见：<a href="http://www.ibm.com/developerworks/cn/opensource/os-lo-apache-tomcat/">http://www.ibm.com/developerworks/cn/opensource/os-lo-apache-tomcat/</a></p>
+
+<p>1.apache 只是一个web服务器，负责响应客户端的请求。</p>
+
+<p>2.apache对于页面请求：</p>
+
+<!--more-->
+
+<pre><code>如果是静态页面请求，会立刻返回相应的页面；
+如果是动态页面请求，apache会根据httpd.conf中AddType的配置，把请求提交给合适的动态脚本解析程序来处理，处理后生成的静态页面返回给apache，再返回给客户端。所以在配置php和jsp这样的环境的时候，都要在httd.conf中添加对应的AddTpye语句。
+</code></pre>
+
+<p>3.tomcat侧重于是一个Servlet/JSP的容器，但也能可以独立于apache运行，响应html请求</p>
+
+<p>4.tomcat响应静态页面较apache要慢</p>
+
+<p>5.整合apache和tomcat可以有三种方法:JK,http_proxy,ajp_proxy</p>
+
+<p>具体介绍见：<a href="http://www.ibm.com/developerworks/cn/opensource/os-lo-apache-tomcat">http://www.ibm.com/developerworks/cn/opensource/os-lo-apache-tomcat</a></p>
+
 <p>JK较老，相对比较稳定，配置比较麻烦</p>
-<p>两种proxy模式原理都是让apache做tomcat的代理，配置简单<br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/62001'>http://www.goorockey.com/blogs/62001</a></p></div>
+
+<p>两种proxy模式原理都是让apache做tomcat的代理，配置简单
+<br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blogs/62001">http://www.goorockey.com/blogs/62001</a></p>
+
+</div>
 
 
 <div class="meta">

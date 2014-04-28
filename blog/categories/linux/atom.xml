@@ -4,7 +4,7 @@
   <title><![CDATA[categories: linux | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-28T20:24:45+08:00</updated>
+  <updated>2014-04-28T21:59:32+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -241,21 +241,23 @@ $ sudo apt-get --purge remove network-manager-gnome</blockquote>
     <id>http://www.goorockey.com/blogs/62001</id>
     <content type="html"><![CDATA[<p>调研了一下Apache和Tomcat：</p>
 
-<p>1、apache 只是一个web服务器，负责响应客户端的请求。</p>
+<p>1.apache 只是一个web服务器，负责响应客户端的请求。</p>
 
-<p>2、apache对于页面请求：<!--more--></p>
+<p>2.apache对于页面请求：</p>
 
-<p>如果是静态页面请求，会立刻返回相应的页面；</p>
+<!--more-->
 
-<p>如果是动态页面请求，apache会根据httpd.conf中AddType的配置，把请求提交给合适的动态脚本解析程序来处理，处理后生成的静态页面返回给apache，再返回给客户端。所以在配置php和jsp这样的环境的时候，都要在httd.conf中添加对应的AddTpye语句。</p>
+<pre><code>如果是静态页面请求，会立刻返回相应的页面；
+如果是动态页面请求，apache会根据httpd.conf中AddType的配置，把请求提交给合适的动态脚本解析程序来处理，处理后生成的静态页面返回给apache，再返回给客户端。所以在配置php和jsp这样的环境的时候，都要在httd.conf中添加对应的AddTpye语句。
+</code></pre>
 
-<p>3、tomcat侧重于是一个Servlet/JSP的容器，但也能可以独立于apache运行，响应html请求</p>
+<p>3.tomcat侧重于是一个Servlet/JSP的容器，但也能可以独立于apache运行，响应html请求</p>
 
-<p>4、tomcat响应静态页面较apache要慢</p>
+<p>4.tomcat响应静态页面较apache要慢</p>
 
-<p>5、整合apache和tomcat可以有三种方法:JK,http_proxy,ajp_proxy</p>
+<p>5.整合apache和tomcat可以有三种方法:JK,http_proxy,ajp_proxy</p>
 
-<p>具体介绍见：<a href="http://www.ibm.com/developerworks/cn/opensource/os-lo-apache-tomcat/">http://www.ibm.com/developerworks/cn/opensource/os-lo-apache-tomcat/</a></p>
+<p>具体介绍见：<a href="http://www.ibm.com/developerworks/cn/opensource/os-lo-apache-tomcat">http://www.ibm.com/developerworks/cn/opensource/os-lo-apache-tomcat</a></p>
 
 <p>JK较老，相对比较稳定，配置比较麻烦</p>
 
@@ -268,27 +270,43 @@ $ sudo apt-get --purge remove network-manager-gnome</blockquote>
     <link href="http://www.goorockey.com/blogs/60002"/>
     <updated>2011-11-12T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/60002</id>
-    <content type="html"><![CDATA[<p><strong><span style="color: #ff0000; font-size: medium;">一、安装及配置Apache+php+mysql</span></strong></p>
+    <content type="html"><![CDATA[<h3 id="apachephpmysql">一、安装及配置Apache+php+mysql</h3>
 
-<p><strong><span style="color: #9bbb59;">1、 安装Apache+php+mysql</span></strong></p>
+<p>1.安装Apache+php+mysql</p>
 
-<p>(1) 安装Apache+php+Mysql，php连接mysql的组件</p>
-<blockquote>yum -y install httpd php mysql mysql-server php-mysql</blockquote>
-<p>(2) 安装mysql扩展</p>
-<blockquote>yum -y install mysql-connector-odbc mysql-devel libdbi-dbd-mysql</blockquote>
-<p>(3) 安装php的扩展</p>
-<blockquote>yum -y install php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</blockquote>
-<p>(4) 安装apache扩展</p>
-<blockquote>yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql</blockquote>
+<ul>
+  <li>
+    <p>安装Apache+php+Mysql，php连接mysql的组件</p>
+
+    <p>yum -y install httpd php mysql mysql-server php-mysql</p>
+  </li>
+  <li>
+    <p>安装mysql扩展</p>
+
+    <p>yum -y install mysql-connector-odbc mysql-devel libdbi-dbd-mysql</p>
+  </li>
+  <li>
+    <p>安装php的扩展</p>
+
+    <p>yum -y install php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</p>
+  </li>
+  <li>
+    <p>安装apache扩展</p>
+
+    <p>yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql</p>
+  </li>
+</ul>
 
 <!--more-->
 
 <p>或者一次性粘贴安装:</p>
-<blockquote>yum -y install httpd php mysql mysql-server php-mysql httpd-manual mod_ssl mod_perl mod_auth_mysql php-mcrypt php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc mysql-connector-odbc mysql-devel libdbi-dbd-mysql</blockquote>
-<p><span style="color: #80ff00;"><strong> </strong></span></p>
 
-<p><strong><span style="color: #9bbb59;">2、配置Apache+php+mysql</span></strong>
-&lt;table width="502" border="0" cellspacing="0" cellpadding="2"&gt;</p>
+<pre><code>yum -y install httpd php mysql mysql-server php-mysql httpd-manual mod_ssl mod_perl mod_auth_mysql php-mcrypt php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc mysql-connector-odbc mysql-devel libdbi-dbd-mysql
+</code></pre>
+
+<p>2.配置Apache+php+mysql</p>
+
+<table width="502" border="0" cellspacing="0" cellpadding="2">
 <tbody>
 <tr>
 <td valign="top" width="223">设置apache为自启动</td>
@@ -311,132 +329,152 @@ $ sudo apt-get --purge remove network-manager-gnome</blockquote>
 <td valign="top" width="277">service mysqld start</td>
 </tr>
 </tbody>
-<p>&lt;/table&gt;
- </p>
+</table>
 
-<p><span style="color: #ff0000; font-size: medium;"><strong>二、安装和配置Tomcat：</strong></span></p>
+<h3 id="tomcat">二、安装和配置Tomcat：</h3>
 
-<p><strong><span style="color: #9bbb59;">1、安装JDK：</span></strong></p>
+<p>1.安装JDK：</p>
 
 <p>为了默认使用Sun的javac作为Java的编译器，首先删除CentOS系统默认的Java编译器–gcj。</p>
 
-<p>（1）查看:</p>
-<blockquote>[root@localhost ~ ]#rpm –qa |grep gcj
+<ul>
+  <li>
+    <p>查看:</p>
 
-java-1.5.0-gcj-1.5.0.0-29.1.el6.i686
+    <p>[root@localhost ~ ]#rpm –qa |grep gcj
+  java-1.5.0-gcj-1.5.0.0-29.1.el6.i686
+  libgcj-4.4.4-13.el6.i686</p>
+  </li>
+  <li>
+    <p>卸载</p>
 
-libgcj-4.4.4-13.el6.i686</blockquote>
-<p>（2）卸载</p>
-<blockquote>[root@localhost ~ ]#rpm –e java-1.5.0-gcj-1.5.0.0-29.1.el6.i686 --nodeps
+    <p>[root@localhost ~ ]#rpm –e java-1.5.0-gcj-1.5.0.0-29.1.el6.i686 –nodeps
+  [root@localhost ~ ]#rpm –e libgcj-4.4.4-13.el6.i686 –nodeps</p>
+  </li>
+  <li>
+    <p>检测</p>
 
-[root@localhost ~ ]#rpm –e libgcj-4.4.4-13.el6.i686 --nodeps</blockquote>
-<p>（3）检测</p>
-<blockquote>[root@localhost ~]# java --version</blockquote>
-<p>会出现-bash: /usr/bin/java: No such file or directory</p>
+    <p>[root@localhost ~]# java –version</p>
+  </li>
+</ul>
+
+<p>会出现</p>
+
+<pre><code>-bash: /usr/bin/java: No such file or directory
+</code></pre>
 
 <p>表示卸载成功</p>
 
-<p>（4）安装jdk</p>
+<ul>
+  <li>安装jdk</li>
+</ul>
 
-<p>从Jdk官网下载安装包，如：</p>
+<p>从Jdk官网下载安装包，如:<code>jdk-6u27-linux-i586-rpm.bin</code></p>
 
-<p>jdk-6u27-linux-i586-rpm.bin</p>
-<blockquote>P.S.
-
+<pre><code>P.S.
 由于我的CentOS没有图形界面，下载不方便，
-
 我是先在Windows上访问JDK官网下载安装包，
-
-然后再用Winscp传到CentOS的</blockquote>
-<p> </p>
+然后再用Winscp传到CentOS的
+</code></pre>
 
 <p>比如安装包保存在/opt/tmp</p>
 
 <p>跳到该目录添加可执行的权限，并执行</p>
-<blockquote>chmod 777 jdk-6u27-linux-i586-rpm.bin
 
-./jdk-6u27-linux-i586-rpm.bin</blockquote>
-<p>（5）添加环境变量</p>
+<pre><code>chmod 777 jdk-6u27-linux-i586-rpm.bin
+./jdk-6u27-linux-i586-rpm.bin
+</code></pre>
 
-<p>vi /etc/profile</p>
+<ul>
+  <li>添加环境变量</li>
+</ul>
+
+<p>vim /etc/profile</p>
 
 <p>添加以下内容：</p>
-<blockquote>export JAVA_HOME=/usr/java/jdk1.6.0_27
 
+<pre><code>export JAVA_HOME=/usr/java/jdk1.6.0_27
 export JAVA_BIN=/usr/java/jdk1.6.0_27/bin
-
 export PATH=$PATH:$JAVA_HOME/bin
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+</code></pre>
 
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</blockquote>
 <p>保存后，执行java -version 如果有类似以下显示，则表示安装成功：</p>
 
-<p>java version “1.6.0_27”</p>
+<pre><code>java version "1.6.0_27"
+</code></pre>
 
-<p> </p>
+<p>2.安装Tomcat：</p>
 
-<p><strong><span style="color: #9bbb59;">2、安装Tomcat：</span></strong></p>
+<ul>
+  <li>
+    <p>从Tomcat官网下载 安装包，如：apache-tomcat-7.0.22.tar.gz</p>
+  </li>
+  <li>
+    <p>把该压缩包拷贝到/usr/local</p>
 
-<p>（1）从Tomcat官网下载 安装包，如：</p>
+    <p>cp apache-tomcat-7.0.22.tar.gz /usr/local</p>
+  </li>
+  <li>
+    <p>跳转到/usr/local，并解压压缩包</p>
 
-<p>apache-tomcat-7.0.22.tar.gz</p>
+    <p>cd /usr/local
+  tar -zxvf apache-tomcat-7.0.22.tar.gz</p>
+  </li>
+  <li>
+    <p>把解压出来的目录改名为tomcat,并删除拷贝过来的压缩包</p>
 
-<p>（2）把该压缩包拷贝到/usr/local</p>
-<blockquote>cp apache-tomcat-7.0.22.tar.gz /usr/local</blockquote>
-<p>（3）跳转到/usr/local，并解压压缩包</p>
-<blockquote>cd /usr/local
-
-tar -zxvf apache-tomcat-7.0.22.tar.gz</blockquote>
-<p>（4）把解压出来的目录改名为tomcat,并删除拷贝过来的压缩包</p>
-<blockquote>rm apache-tomcat-7.0.22 tomcat</blockquote>
-<p>（5）执行/usr/local/tomcat/bin/startup.sh ，自动添加环境变量，</p>
-
-<p>（6）测试</p>
+    <p>rm apache-tomcat-7.0.22 tomcat</p>
+  </li>
+  <li>
+    <p>执行/usr/local/tomcat/bin/startup.sh ，自动添加环境变量，</p>
+  </li>
+  <li>
+    <p>测试</p>
+  </li>
+</ul>
 
 <p>访问<a href="http://localhost:8080">http://localhost:8080</a>，出现tomcat默认页面，则表示tomcat安装成功</p>
 
-<p> </p>
+<p>3.配置Tomcat为开机自启动：</p>
 
-<p><strong><span style="color: #9bbb59;">3、配置Tomcat为开机自启动：</span></strong></p>
-
-<p>（1）添加开机daomon脚本</p>
+<ul>
+  <li>添加开机daomon脚本</li>
+</ul>
 
 <p>把/usr/local/tomcat/bin/catalina.sh拷贝到/etc/init.d，并命名为tomcat</p>
-<blockquote>cp /usr/local/tomcat/bin/catalina.sh /etc/init.d/tomcat</blockquote>
-<p>（2）在/etc/init.d/tomcat添加内容：</p>
-<blockquote>#!/bin/sh
 
-<span style="color: #ff0000;"># chkconfig: 2345 10 90</span>
+<pre><code>cp /usr/local/tomcat/bin/catalina.sh /etc/init.d/tomcat
+</code></pre>
 
-<span style="color: #ff0000;"># description:Tomcat service</span>
+<ul>
+  <li>
+    <p>在/etc/init.d/tomcat添加内容：</p>
 
-# Licensed to the Apache Software Foundation (ASF) under one or more
+    <p>#!/bin/sh
+  # chkconfig: 2345 10 90
+  # description:Tomcat service
+  # Licensed to the Apache Software Foundation (ASF) under one or more</p>
 
-&nbsp;
+    <p>……</p>
 
-……
+    <p># $Id: catalina.sh 1073891 2011-02-23 19:23:59Z markt $
+  # ————————————————————————</p>
 
-&nbsp;
+    <p>CATALINA_HOME=/opt/tomcat 
+  JAVA_HOME=/opt/jdk1.6.0_23</p>
 
-# $Id: catalina.sh 1073891 2011-02-23 19:23:59Z markt $
+    <p>……</p>
+  </li>
+  <li>
+    <p>添加tomcat服务</p>
 
-# ------------------------------------------------------------------------
-
-<span style="color: #ff0000;">CATALINA_HOME=/opt/tomcat </span>
-
-<span style="color: #ff0000;">JAVA_HOME=/opt/jdk1.6.0_23</span>
-
-&nbsp;
-
-……</blockquote>
-<p>（3）添加tomcat服务</p>
-<blockquote>chkconfig --add tomcat
-
-service tomcat stop
-
-service tomcat start
-
-chkconfig tomcat on</blockquote>
-<p> </p>
+    <p>chkconfig –add tomcat
+  service tomcat stop
+  service tomcat start
+  chkconfig tomcat on</p>
+  </li>
+</ul>
 
 <p>搞定！！</p>
 ]]></content>

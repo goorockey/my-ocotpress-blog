@@ -264,8 +264,12 @@ code swarm是可以把svn、cvs、git等代码管理系统的日志，以可视�
 
 <div class="entry-content clearfix">
   <p>调研了一下Apache和Tomcat：</p>
-<p>1、apache 只是一个web服务器，负责响应客户端的请求。</p>
-<p>2、apache对于页面请求：
+
+<p>1.apache 只是一个web服务器，负责响应客户端的请求。</p>
+
+<p>2.apache对于页面请求：</p>
+
+
   <a class="btn pull-right" href="/blogs/62001">Read on &rarr;</a>
 </div>
 
@@ -322,17 +326,34 @@ code swarm是可以把svn、cvs、git等代码管理系统的日志，以可视�
 
 
 <div class="entry-content clearfix">
-  <p><strong><span style="color: #ff0000; font-size: medium;">一、安装及配置Apache+php+mysql</span></strong></p>
-<p><strong><span style="color: #9bbb59;">1、 安装Apache+php+mysql</span></strong></p>
-<p>(1) 安装Apache+php+Mysql，php连接mysql的组件<br />
-<blockquote>yum -y install httpd php mysql mysql-server php-mysql</blockquote><br />
-(2) 安装mysql扩展<br />
-<blockquote>yum -y install mysql-connector-odbc mysql-devel libdbi-dbd-mysql</blockquote><br />
-(3) 安装php的扩展<br />
-<blockquote>yum -y install php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</blockquote><br />
-(4) 安装apache扩展<br />
-<blockquote>yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql</blockquote></p>
-<p>
+  <h3 id="apachephpmysql">一、安装及配置Apache+php+mysql</h3>
+
+<p>1.安装Apache+php+mysql</p>
+
+<ul>
+  <li>
+    <p>安装Apache+php+Mysql，php连接mysql的组件</p>
+
+    <p>yum -y install httpd php mysql mysql-server php-mysql</p>
+  </li>
+  <li>
+    <p>安装mysql扩展</p>
+
+    <p>yum -y install mysql-connector-odbc mysql-devel libdbi-dbd-mysql</p>
+  </li>
+  <li>
+    <p>安装php的扩展</p>
+
+    <p>yum -y install php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</p>
+  </li>
+  <li>
+    <p>安装apache扩展</p>
+
+    <p>yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql</p>
+  </li>
+</ul>
+
+
   <a class="btn pull-right" href="/blogs/60002">Read on &rarr;</a>
 </div>
 
