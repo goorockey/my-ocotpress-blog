@@ -133,10 +133,6 @@
         <lastmod>2014-04-21T20:47:44+08:00</lastmod>
     </url>
     <url>
-        <loc>http://www.goorockey.com/links.html</loc>
-        <lastmod>2014-04-21T11:58:56+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://www.goorockey.com/</loc>
         <lastmod>2014-04-21T20:47:44+08:00</lastmod>
     </url>
@@ -159,5 +155,9 @@
     <url>
         <loc>http://www.goorockey.com/robots.txt</loc>
         <lastmod>2014-04-17T13:18:28+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://www.goorockey.com/links/</loc>
+        <lastmod>2014-04-28T14:43:41+08:00</lastmod>
     </url>
 </urlset>
