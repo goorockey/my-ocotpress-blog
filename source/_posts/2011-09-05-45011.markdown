@@ -9,7 +9,7 @@ tags: windows programming
 tags: windows programming
 ---
 
-1.原子操作
+### 原子操作
 
 能调用的原子操作
 
@@ -21,7 +21,7 @@ tags: windows programming
 
 <!--more-->
 
-2.以查询方式同步
+### 以查询方式同步
 
     volatile BOOL g_fFinishedCalculation = FALSE;
 
@@ -49,7 +49,7 @@ tags: windows programming
 
 - 如果WinMain的线程优先级比ReclcFunc的线程要高，则g\_fFinishedCalculation永远不会被置为TRUE。
 
-3.关键代码段Critical\_Section
+### 关键代码段Critical\_Section
 
 - 使用前调用InitializeCriticalSection进行初始化，使用后用DeleteCriticalSection释放资源
 
@@ -86,13 +86,13 @@ tags: windows programming
 
 - 关键代码段是在用户态实现同步的方法，这样比内核态同步要快，因为不用做用户态和内核态之间的往返（往返一次需要占用x 8 6平台上的大约1 0 0 0个C P U周期）。
 
-4.内核对象同步
+### 内核对象同步
 
 - 当内核对象是自动设置为有信号时，在所有等待该内核对象的线程中，只会有一个变为可调度，然后该内核对象又自动设为无信号。
 
 - 当内核对象是手动设置为有信号时，除非手动设置该内核对象的状态，否则一直是有信号，这样所有等待该内核对象的线程都能变为可调度。
 
-5.WaitableTimer
+### WaitableTimer
 
 - WaitableTimer能在规定时候或按规定的时间间隔变为有信号状态，就类似闹钟。
 
@@ -100,7 +100,7 @@ tags: windows programming
 
 - CancelWaitableTimer取消WaitableTimer的定时。
 
-6.其他等待函数
+### 其他等待函数
 
 <table width="571" border="0" cellspacing="0" cellpadding="2">
 <tbody>
@@ -115,7 +115,7 @@ tags: windows programming
 </tbody>
 </table>
 
-7.各同步的内核对象的理解
+### 各同步的内核对象的理解
 
 - 关键代码段:
 
