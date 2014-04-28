@@ -51,10 +51,10 @@ tags: linux vim
 
 (~0~)/ vim真强大啊，掌声加鬼吼！！
 
-    更多详见 
-    `:h count-items`
-    `:h su`
-    `:h search-pattern`
+更多详见 
+`:h count-items`
+`:h su`
+`:h search-pattern`
 
 ### P.S.
 
