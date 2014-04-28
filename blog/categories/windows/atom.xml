@@ -4,7 +4,7 @@
   <title><![CDATA[categories: windows | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/windows/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-28T23:08:24+08:00</updated>
+  <updated>2014-04-29T00:38:00+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -386,7 +386,7 @@ Threads can also have their own security context, which can be used for imperson
   <li>初始化线程时会把 线程函数的入参(pvParam)、线程函数的指针(pfnStartAddrj) 压栈。</li>
 </ul>
 
-<p><img class="left" src="http://www.goorockey.com/uploads/2011/09/clip_image0011.png"></p>
+<p><img src="http://www.goorockey.com/uploads/2011/09/clip_image0011.png" alt="" /></p>
 
 <ul>
   <li>每个线程还有一个指令寄存器（IP）和堆栈指针寄存器（SP）。IP初始指向BaseThreadStart函数，它包含在Kernel32.dll中。</li>

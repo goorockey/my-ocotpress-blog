@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/feed" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-28T23:08:24+08:00</updated>
+  <updated>2014-04-29T00:38:00+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -932,7 +932,7 @@
 
 <p>简单的拓扑图如下：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/image_thumb2.png" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/image_thumb2.png" alt="" /></p>
 
 <p>整个回路就是：</p>
 
@@ -1072,7 +1072,7 @@ goorockey.go IN A 192.168.126.130
 
 <p>则在HostC用nslookup能成功返回DNS信息：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/20594453_thumb.png" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/20594453_thumb.png" alt="" /></p>
 
 <p>但还要配置iptables，使其他机子可以访问DNS服务的端口。</p>
 
@@ -1162,7 +1162,7 @@ $ iptables –I INPUT -p udp --dport 53 -j ACCEPT
 
 <p>先上拓扑图（可能有点不规范）：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/image_thumb.png" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/image_thumb.png" alt="" /></p>
 
 <p>如图分别有4台机子：A、B在内网，但在不同的网段中，C做网关，控制网段间的访问。D在外网。</p>
 
@@ -1192,7 +1192,7 @@ $ iptables –I INPUT -p udp --dport 53 -j ACCEPT
 
 <p>VMWare新建几张网卡（菜单栏【edit】-【Virtual Network Editor】），要求一张为Bridged（NAT应该也行），两张为Host-only。</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/151306312_thumb.png" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/151306312_thumb.png" alt="" /></p>
 
 <p>设置A、B网卡分别为VMnet1和VMnet2，这是为了使它们原始都不能互访。</p>
 
@@ -1312,7 +1312,7 @@ C则都能跟它们三个互访
 
 <p>NAT是Network Address Translation,网络地址转换，会在网关中实现局域网内部ip和外网ip之间转换。</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/nat.png" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/nat.png" alt="" /></p>
 
 <p>如上图，局域网内部网段是192.168.1.X，这些ip只在这个局域网内有意义，外网无法根据这些ip定位计算机。</p>
 
@@ -1378,7 +1378,7 @@ C则都能跟它们三个互访
 
 <p>1.Static NAT</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/nat-static.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/nat-static.jpg" alt="" /></p>
 
 <p>局域网有多个外网ip，数量等于或多于内网ip数。</p>
 
@@ -1388,7 +1388,7 @@ C则都能跟它们三个互访
 
 <p>2.Dynamic NAT</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/nat-dynamic.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/nat-dynamic.jpg" alt="" /></p>
 
 <p>局域网有多个外网ip，但数量少于内网ip数。</p>
 
@@ -1398,7 +1398,7 @@ C则都能跟它们三个互访
 
 <p>3.Overload NAT</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/nat-overload.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/nat-overload.jpg" alt="" /></p>
 
 <p>如果局域网只有一个外网ip，每个内网ip都映射到这个外网ip，但端口口会不同。</p>
 
@@ -1406,7 +1406,7 @@ C则都能跟它们三个互访
 
 <p>4.Overlap NAT</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/03/nat-overlap.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/03/nat-overlap.jpg" alt="" /></p>
 
 <p>当内网的ip在外网中已经注册且已被其他机子使用时，网关要在选择一个外网中已注册但未被使用的ip做转换。</p>
 
@@ -1607,7 +1607,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>考虑这样的场景：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/02/image002_thumb.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/02/image002_thumb.jpg" alt="" /></p>
 
 <p>一个运行在服务器116.1.1.1的程序提供端口389的数据通信，但防火墙只允许其他计算机对服务器做ssh的通信。</p>
 
@@ -1641,7 +1641,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>例如，考虑这样的场景，用本地转发来进行远程桌面：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/02/image_thumb.png" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/02/image_thumb.png" alt="" /></p>
 
 <p>现在要在机子A对机子C做远程桌面。但机子A和机子C都在不同的子网，不能直接通信，也都只能跟机子B用ssh通信。</p>
 
@@ -1670,7 +1670,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>考虑这样的场景：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/02/image003_thumb.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/02/image003_thumb.jpg" alt="" /></p>
 
 <p>客户端A和服务端B的端口都还是7001和389。</p>
 
@@ -1686,7 +1686,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 <pre><code>$ ssh –D &lt;local port&gt;  &lt;ssh host&gt;
 </code></pre>
 
-<p><img src="http://www.goorockey.com/uploads/2012/02/image005_thumb.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/02/image005_thumb.jpg" alt="" /></p>
 
 <p>跟其他两种端口转发不同的是，动态转发在数据包经过ssh通过到达服务端后，sshd会根据把封装数据包的协议，转发到对应的主机和端口。</p>
 

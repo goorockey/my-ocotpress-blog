@@ -123,7 +123,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 
 <p>考虑这样的场景：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/02/image002_thumb.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/02/image002_thumb.jpg" alt="" /></p>
 
 <p>一个运行在服务器116.1.1.1的程序提供端口389的数据通信，但防火墙只允许其他计算机对服务器做ssh的通信。</p>
 
@@ -157,7 +157,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 
 <p>例如，考虑这样的场景，用本地转发来进行远程桌面：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/02/image_thumb.png" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/02/image_thumb.png" alt="" /></p>
 
 <p>现在要在机子A对机子C做远程桌面。但机子A和机子C都在不同的子网，不能直接通信，也都只能跟机子B用ssh通信。</p>
 
@@ -186,7 +186,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 
 <p>考虑这样的场景：</p>
 
-<p><img src="http://www.goorockey.com/uploads/2012/02/image003_thumb.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/02/image003_thumb.jpg" alt="" /></p>
 
 <p>客户端A和服务端B的端口都还是7001和389。</p>
 
@@ -202,7 +202,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 <pre><code>$ ssh –D &lt;local port&gt;  &lt;ssh host&gt;
 </code></pre>
 
-<p><img src="http://www.goorockey.com/uploads/2012/02/image005_thumb.jpg" /></p>
+<p><img src="http://www.goorockey.com/uploads/2012/02/image005_thumb.jpg" alt="" /></p>
 
 <p>跟其他两种端口转发不同的是，动态转发在数据包经过ssh通过到达服务端后，sshd会根据把封装数据包的协议，转发到对应的主机和端口。</p>
 
