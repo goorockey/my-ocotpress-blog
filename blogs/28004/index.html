@@ -7,13 +7,8 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。
-1、最简单的方法
-循环用x减y，知道x等于0。 1: int Div( int x, int y )
-&nbsp; 2: {
-&nbsp; 3: int result = 0;
-&nbsp; 4:
-&nbsp; 5: while ( &hellip;">
+	<meta name="description" content="两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。 1、最简单的方法 循环用x减y，知道x等于0。 int Div( int x, int y )
+{ int result = 0; while ( x &gt; y ) { x -= y; result++; } return &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -86,164 +81,114 @@
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">不用除法运算符实现除法及其推广</h2>
 	<div class="entry-content"><p>两个正整数x、y，x是y的倍数，不用除法运算符实现x / y。</p>
+
 <p>1、最简单的方法</p>
-<p>循环用x减y，知道x等于0。<br />
-<div id="codeSnippetWrapper" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 20px 0px 10px; width: 97.5%; font-family: 'Courier New', courier, monospace; direction: ltr; max-height: 200px; font-size: 8pt; overflow: auto; cursor: text; border: silver 1px solid; padding: 4px;"><br />
-<div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 1:</span> <span style="color: #0000ff;">int</span> Div( <span style="color: #0000ff;">int</span> x, <span style="color: #0000ff;">int</span> y )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 2:</span> {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 3:</span>     <span style="color: #0000ff;">int</span> result = 0;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 4:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 5:</span>     <span style="color: #0000ff;">while</span> ( x &gt; y )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 6:</span>     {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 7:</span>         x -= y;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 8:</span>         result++;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 9:</span>     }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 10:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 11:</span>     <span style="color: #0000ff;">return</span> result;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 12:</span> }<br />
-&nbsp;</p>
-</div>
-</div>
-<p>时间复杂度O(n)<!--more--></p>
+
+<p>循环用x减y，知道x等于0。</p>
+
+<pre><code>int Div( int x, int y )
+{
+    int result = 0;
+
+    while ( x &gt; y )
+    {
+        x -= y;
+        result++;
+    }
+
+    return result;
+}
+</code></pre>
+
+<p>时间复杂度<code>O(n)</code></p>
+
+<!--more-->
+
 <p>2、用移位实现</p>
+
 <p>与很多优化算法相似，用2次幂实现加速。</p>
+
 <p>考虑到x是y的倍数，设x = y * k</p>
-<p>因为我们可以用二进制表示任意整数，所以任意整数都可表示成2次幂的和，即：<br />
-<blockquote>k = 2^t1 + 2^t2 + …. + 2^tn;</blockquote><br />
-所以有x = y * (2^t1 + 2^t2 + … + 2^tn)，即我们要的结果就是2^t1 + 2^t2 + … + 2^tn</p>
-<p>由此，我们可以先找到一个刚好不大于x的s1 = y*(2^t1)，即有y*2^t1 &lt;= x &lt; y*2^(t1+1)，</p>
-<p>然后令x2 = x &#8211; s1 = y * (2^t2 + … + 2^tn)，从而继续递归直到xn – sn = 0。<br />
-<div id="codeSnippetWrapper"><br />
-<div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 1:</span> <span style="color: #0000ff;">int</span> Div( <span style="color: #0000ff;">int</span> x, <span style="color: #0000ff;">int</span> y )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 2:</span> {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 3:</span>     <span style="color: #0000ff;">int</span> i = 1;          <span style="color: #008000;">// 2次幂计数器</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 4:</span>     <span style="color: #0000ff;">int</span> product = y;    <span style="color: #008000;">// 中间乘积，等于y*2^t，即product = y * i</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 5:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 6:</span>     <span style="color: #008000;">// 找到刚好不大于x的product = y*i满足y*i &lt;= x &lt; y*(i+1)</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 7:</span>     <span style="color: #0000ff;">while</span> ( product &lt;&lt; 1 &lt;= x )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 8:</span>     {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 9:</span>         i  &lt;&lt;= 1;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 10:</span>         product &lt;&lt;= 1;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 11:</span>     }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 14:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 15:</span>     <span style="color: #008000;">// 递归得到结果</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 16:</span>     <span style="color: #0000ff;">int</span> result = 0;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 17:</span>     <span style="color: #0000ff;">for</span> ( ; x &gt; 0; i &gt;&gt;= 1, product &gt;&gt;= 1 )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 18:</span>     {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 19:</span>         <span style="color: #008000;">// product自除2来寻找新的product，满足刚好不大于x</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 20:</span>         <span style="color: #0000ff;">if</span> ( x &gt;= product )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 21:</span>         {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 22:</span>             result += i;     <span style="color: #008000;">// 累加结果result = 2^t1 + 2^t2 &#8230; + 2^t(k-1)</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 23:</span>             x -= product;    <span style="color: #008000;">// 相减得到新的x = y*(2^tk + &#8230; + 2^tn)</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 24:</span>         }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 25:</span>     }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 26:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 27:</span>     <span style="color: #0000ff;">return</span> result;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 28:</span> }<br />
-&nbsp;</p>
-</div>
-</div>
-<p>时间复杂度O(logn)</p>
-<p>3、推广 &#8211; 不用开方运算符求幂数：</p>
+
+<p>因为我们可以用二进制表示任意整数，所以任意整数都可表示成2次幂的和，即：</p>
+
+<pre><code>k = 2^t1 + 2^t2 + …. + 2^tn;
+</code></pre>
+
+<p>所以有x = y * (2^t1 + 2^t2 + … + 2^tn)，即我们要的结果就是2^t1 + 2^t2 + … + 2^tn</p>
+
+<p>由此，我们可以先找到一个刚好不大于x的s1 = y*(2^t1)，即有<code>y*2^t1 &lt;= x &lt; y*2^(t1+1)</code>,</p>
+
+<p>然后令x2 = x - s1 = y * (2^t2 + … + 2^tn)，从而继续递归直到xn – sn = 0。</p>
+
+<pre><code>int Div( int x, int y )
+{
+    int i = 1;          // 2次幂计数器
+    int product = y;    // 中间乘积，等于y*2^t，即product = y * i
+
+    // 找到刚好不大于x的product = y*i满足y*i &lt;= x &lt; y*(i+1)
+    while ( product &lt;&lt; 1 &lt;= x )
+    {
+        i  &lt;&lt;= 1;
+        product &lt;&lt;= 1;
+    }
+
+    // 递归得到结果
+    int result = 0;
+    for ( ; x &gt; 0; i &gt;&gt;= 1, product &gt;&gt;= 1 )
+    {
+        // product自除2来寻找新的product，满足刚好不大于x
+        if ( x &gt;= product )
+        {
+            result += i;     // 累加结果result = 2^t1 + 2^t2 … + 2^t(k-1)
+            x -= product;    // 相减得到新的x = y*(2^tk + … + 2^tn)
+        }
+    }
+
+    return result;
+}
+</code></pre>
+
+<p>时间复杂度<code>O(logn)</code></p>
+
+<p>3、推广 - 不用开方运算符求幂数：</p>
+
 <p>两个正整数x、y，不用开方运算符求x是y的几次幂。</p>
-<p>思想与方法二类似。<br />
-<div id="codeSnippetWrapper"><br />
-<div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 1:</span> <span style="color: #cc6633;">#include</span> <span style="color: #006080;">&#8220;math.h&#8221;</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 2:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 3:</span> <span style="color: #0000ff;">int</span> Extract( <span style="color: #0000ff;">int</span> x, <span style="color: #0000ff;">int</span> y )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 4:</span> {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 5:</span>     <span style="color: #0000ff;">int</span> i = 1, power = y;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 6:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 7:</span>     <span style="color: #0000ff;">while</span> ( power * power &lt;= x )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 8:</span>     {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 9:</span>         i &lt;&lt;= 1;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 10:</span>         power *= power;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 11:</span>     }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 12:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 13:</span>     <span style="color: #0000ff;">int</span> result = 0;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 14:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 15:</span>     <span style="color: #0000ff;">for</span> ( ; x &gt; 1; i &gt;&gt;= 1, power /= pow( y, i ))<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 16:</span>     {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 17:</span>         <span style="color: #0000ff;">if</span> ( x &gt;= power )<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 18:</span>         {<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 19:</span>             x /= power;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 20:</span>             result += i;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 21:</span>         }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 22:</span>     }<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 23:</span><br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 24:</span>     <span style="color: #0000ff;">return</span> result;<br />
-&nbsp;<br />
-<pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"><span style="color: #606060;"> 25:</span> }<br />
-&nbsp;</p>
+
+<p>思想与方法二类似。</p>
+
+<pre><code>#include "math.h"
+
+int Extract( int x, int y )
+{
+    int i = 1, power = y;
+    while ( power * power &lt;= x )
+    {
+        i &lt;&lt;= 1;
+        power *= power;
+    }
+
+    int result = 0;
+    for ( ; x &gt; 1; i &gt;&gt;= 1, power /= pow( y, i ))
+    {
+        if ( x &gt;= power )
+        {
+             x /= power;
+             result += i;
+        }
+    }
+
+    return result;
+}
+</code></pre>
+
+<p>时间复杂度<code>O(logn)</code>
+<br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blogs/28004">http://www.goorockey.com/blogs/28004</a></p>
+
 </div>
-</div>
-<div>时间复杂度O(logn)</div>
-<p><br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/28004'>http://www.goorockey.com/blogs/28004</a></p></div>
 
 
 <div class="meta">

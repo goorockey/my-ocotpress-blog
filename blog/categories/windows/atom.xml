@@ -4,7 +4,7 @@
   <title><![CDATA[categories: windows | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/windows/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-28T17:58:42+08:00</updated>
+  <updated>2014-04-28T20:23:17+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -18,162 +18,132 @@
     <link href="http://www.goorockey.com/blogs/45011"/>
     <updated>2011-09-05T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/45011</id>
-    <content type="html"><![CDATA[<p><span style="color: #9bbb59;">1、原子操作</span></p>
+    <content type="html"><![CDATA[<p>1.原子操作</p>
 
-<p>（1）能调用的原子操作：</p>
-<blockquote>LONG <span style="color: #ff8080;">InterlockedExchangeAdd</span>(PLONG plAddend,LONG Increment);
+<p>能调用的原子操作</p>
 
-LONG <span style="color: #ff8080;">InterlockedExchange</span>(PLONG plTarget, LONG lValue);
+<pre><code>LONG InterlockedExchangeAdd(PLONG plAddend,LONG Increment);
+LONG InterlockedExchange(PLONG plTarget, LONG lValue);
+PVOID InterlockedExchangePointer(PVOID* ppvTarget, PVOID pvValue);
+PVOID InterlockedCompareExchange(PLONG plDestination, LONG lExchange, LONG lComparand);
+PVOID InterlockedCompareExchangePointer(PVOID* ppvDestination, PVOID pvExchange, PVOID pvComparand);
+</code></pre>
 
-PVOID <span style="color: #ff8080;">InterlockedExchangePointer</span>(PVOID* ppvTarget, PVOID pvValue);
+<!--more-->
 
-PVOID <span style="color: #ff8080;">InterlockedCompareExchange</span>(PLONG plDestination, LONG lExchange, LONG lComparand);
+<p>2.以查询方式同步</p>
 
-PVOID <span style="color: #ff8080;">InterlockedCompareExchangePointer</span>(PVOID* ppvDestination, PVOID pvExchange, PVOID pvComparand);</blockquote>
-<p><span style="color: #ffff00;"> <!--more--></span></p>
+<pre><code>volatile BOOL g_fFinishedCalculation = FALSE;
 
-<p><span style="color: #9bbb59;">2、以查询方式同步</span>
-&lt;div id="codeSnippetWrapper"&gt;
-&lt;div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum1" style="color: #606060;"> 1:</span> <span style="color: #0000ff;">volatile</span> BOOL g_fFinishedCalculation = <span style="color: #0000ff;">FALSE</span>;
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum2" style="color: #606060;"> 2:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum3" style="color: #606060;"> 3:</span> <span style="color: #0000ff;">int</span> WINAPI WinMain(…)
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum4" style="color: #606060;"> 4:</span> {
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum5" style="color: #606060;"> 5:</span> CreateThread(…, RecalcFunc, …);
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum6" style="color: #606060;"> 6:</span> …
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum7" style="color: #606060;"> 7:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum8" style="color: #606060;"> 8:</span> <span style="color: #008000;">//Wait for the recalculation to complete. </span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum9" style="color: #606060;"> 9:</span> <span style="color: #0000ff;">while</span>(!g_fFinishedCalculation)
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum10" style="color: #606060;"> 10:</span> ;
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum11" style="color: #606060;"> 11:</span> …
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum12" style="color: #606060;"> 12:</span> }
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum13" style="color: #606060;"> 13:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum14" style="color: #606060;"> 14:</span> DWORD WINAPI RecalcFunc(PVOID pvParam)
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum15" style="color: #606060;"> 15:</span> {
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum16" style="color: #606060;"> 16:</span> <span style="color: #008000;">//Perform the recalculation. </span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum17" style="color: #606060;"> 17:</span> …
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum18" style="color: #606060;"> 18:</span> g_fFinishedCalculation = <span style="color: #0000ff;">TRUE</span>;
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum19" style="color: #606060;"> 19:</span> <span style="color: #0000ff;">return</span>(0);
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum20" style="color: #606060;"> 20:</span> }
- </p>
+int WINAPI WinMain(…)
+{
+    CreateThread(…, RecalcFunc, …);
+    …
 
-<p>&lt;/div&gt;
-&lt;/div&gt;
-（1）查询的线程一直处于可调度状态，浪费CPU时间</p>
+    //Wait for the recalculation to complete. 
+    while(!g_fFinishedCalculation);
+    …
+}
 
-<p>（2）如果WinMain的线程优先级比ReclcFunc的线程要高，则g_fFinishedCalculation永远不会被置为TRUE。</p>
+DWORD WINAPI RecalcFunc(PVOID pvParam)
+{
+    //Perform the recalculation. 
+    …
 
-<p> </p>
+    g_fFinishedCalculation = TRUE;
 
-<p><span style="color: #9bbb59;">3、关键代码段Critical_Section</span></p>
+    return(0);
+}
+</code></pre>
 
-<p>（1）使用前调用InitializeCriticalSection进行初始化，使用后用DeleteCriticalSection释放资源</p>
+<ul>
+  <li>
+    <p>查询的线程一直处于可调度状态，浪费CPU时间</p>
+  </li>
+  <li>
+    <p>如果WinMain的线程优先级比ReclcFunc的线程要高，则g_fFinishedCalculation永远不会被置为TRUE。</p>
+  </li>
+</ul>
 
-<p>（2）在指向同一个Critical_Section的EnterCriticalSection和LeaveCriticalSection之间的代码，不会被多个线程同时调用</p>
+<p>3.关键代码段Critical_Section</p>
 
-<p>（3）同一个线程多次重入EnterCriticalSection和LeaveCriticalSection之间的代码不会发生死锁。</p>
+<ul>
+  <li>
+    <p>使用前调用InitializeCriticalSection进行初始化，使用后用DeleteCriticalSection释放资源</p>
+  </li>
+  <li>
+    <p>在指向同一个Critical_Section的EnterCriticalSection和LeaveCriticalSection之间的代码，不会被多个线程同时调用</p>
+  </li>
+  <li>
+    <p>同一个线程多次重入EnterCriticalSection和LeaveCriticalSection之间的代码不会发生死锁。</p>
+  </li>
+</ul>
 
-<p>如下面代码不会有死锁：
-&lt;div id="codeSnippetWrapper"&gt;
-&lt;div id="codeSnippet" style="text-align: left; line-height: 12pt; background-color: #f4f4f4; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum1" style="color: #606060;"> 1:</span> <span style="color: #0000ff;">int</span> main(<span style="color: #0000ff;">int</span> argc, <span style="color: #0000ff;">char</span> **argv)
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum2" style="color: #606060;"> 2:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum3" style="color: #606060;"> 3:</span> {
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum4" style="color: #606060;"> 4:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum5" style="color: #606060;"> 5:</span>     CRITICAL_SECTION cs;
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum6" style="color: #606060;"> 6:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum7" style="color: #606060;"> 7:</span>     InitializeCriticalSection(&amp;cs);
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum8" style="color: #606060;"> 8:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum9" style="color: #606060;"> 9:</span>     EnterCriticalSection(&amp;cs);
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum10" style="color: #606060;"> 10:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum11" style="color: #606060;"> 11:</span>     EnterCriticalSection(&amp;cs);
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum12" style="color: #606060;"> 12:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum13" style="color: #606060;"> 13:</span>     <span style="color: #0000ff;">while</span>(1)
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum14" style="color: #606060;"> 14:</span>     {
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum15" style="color: #606060;"> 15:</span>         cout &lt;&lt; <span style="color: #006080;">“testing”</span> &lt;&lt; endl;
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum16" style="color: #606060;"> 16:</span>     }
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum17" style="color: #606060;"> 17:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum18" style="color: #606060;"> 18:</span>     LeaveCriticalSection(&amp;cs);
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum19" style="color: #606060;"> 19:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum20" style="color: #606060;"> 20:</span>     LeaveCriticalSection(&amp;cs);
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum21" style="color: #606060;"> 21:</span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: #f4f4f4; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum22" style="color: #606060;"> 22:</span>     <span style="color: #0000ff;">return</span> 0;
- 
-&lt;pre style="text-align: left; line-height: 12pt; background-color: white; margin: 0em; width: 100%; font-family: 'Courier New', courier, monospace; direction: ltr; color: black; font-size: 8pt; overflow: visible; border-style: none; padding: 0px;"&gt;<span id="lnum23" style="color: #606060;"> 23:</span> }
- </p>
+<p>如下面代码不会有死锁：</p>
 
-<p>&lt;/div&gt;
-&lt;/div&gt;
-（4）考虑到线程进入等待状态时，要保护现场，这是非常耗时的。这可以用InitializeCriticalSectionAndSpinCount，它让想进入已被占用的关键代码段的线程先循环判断多次，才进入等待状态。</p>
+<pre><code>int main(int argc, char **argv)
+{
+    CRITICAL_SECTION cs;
 
-<p>（5）InitializeCriticalSectionAndSpinCount只对多个CPU起作用，单个CPU不起作用。</p>
+    InitializeCriticalSection(&amp;cs);
+    EnterCriticalSection(&amp;cs);
+    EnterCriticalSection(&amp;cs);
 
-<p>（6）SetCriticalSectionSpinCount可以改变循环判断的次数</p>
+    while(1)
+    {
+        cout &lt;&lt; “testing” &lt;&lt; endl;
+    }
 
-<p>（7）关键代码段是在用户态实现同步的方法，这样比内核态同步要快，因为不用做用户态和内核态之间的往返（往返一次需要占用x 8 6平台上的大约1 0 0 0个C P U周期）。</p>
+    LeaveCriticalSection(&amp;cs);
+    LeaveCriticalSection(&amp;cs);
 
-<p><span style="color: #ffff00;"> </span></p>
+    return 0;
+}
+</code></pre>
 
-<p><span style="color: #9bbb59;">4、内核对象同步</span></p>
+<ul>
+  <li>
+    <p>考虑到线程进入等待状态时，要保护现场，这是非常耗时的。这可以用InitializeCriticalSectionAndSpinCount，它让想进入已被占用的关键代码段的线程先循环判断多次，才进入等待状态。</p>
+  </li>
+  <li>
+    <p>InitializeCriticalSectionAndSpinCount只对多个CPU起作用，单个CPU不起作用。</p>
+  </li>
+  <li>
+    <p>SetCriticalSectionSpinCount可以改变循环判断的次数</p>
+  </li>
+  <li>
+    <p>关键代码段是在用户态实现同步的方法，这样比内核态同步要快，因为不用做用户态和内核态之间的往返（往返一次需要占用x 8 6平台上的大约1 0 0 0个C P U周期）。</p>
+  </li>
+</ul>
 
-<p>（1）当内核对象是自动设置为有信号时，在所有等待该内核对象的线程中，只会有一个变为可调度，然后该内核对象又自动设为无信号。</p>
+<p>4.内核对象同步</p>
 
-<p>（2）当内核对象是手动设置为有信号时，除非手动设置该内核对象的状态，否则一直是有信号，这样所有等待该内核对象的线程都能变为可调度。</p>
+<ul>
+  <li>
+    <p>当内核对象是自动设置为有信号时，在所有等待该内核对象的线程中，只会有一个变为可调度，然后该内核对象又自动设为无信号。</p>
+  </li>
+  <li>
+    <p>当内核对象是手动设置为有信号时，除非手动设置该内核对象的状态，否则一直是有信号，这样所有等待该内核对象的线程都能变为可调度。</p>
+  </li>
+</ul>
 
-<p> </p>
+<p>5.WaitableTimer</p>
 
-<p><span style="color: #9bbb59;">5、WaitableTimer</span></p>
+<ul>
+  <li>
+    <p>WaitableTimer能在规定时候或按规定的时间间隔变为有信号状态，就类似闹钟。</p>
+  </li>
+  <li>
+    <p>SetWaitableTimer设置开始定时的时间（如果传参是负数，则是相对于这个函数被调用的时间）、定时的间隔、定时间隔到时调用的函数</p>
+  </li>
+  <li>
+    <p>CancelWaitableTimer取消WaitableTimer的定时。</p>
+  </li>
+</ul>
 
-<p>（1）WaitableTimer能在规定时候或按规定的时间间隔变为有信号状态，就类似闹钟。</p>
+<p>6.其他等待函数</p>
 
-<p>（2）SetWaitableTimer设置开始定时的时间（如果传参是负数，则是相对于这个函数被调用的时间）、定时的间隔、定时间隔到时调用的函数</p>
-
-<p>（3）CancelWaitableTimer取消WaitableTimer的定时。</p>
-
-<p> </p>
-
-<p><span style="color: #9bbb59;">6、其他等待函数</span>
-&lt;table width="571" border="0" cellspacing="0" cellpadding="2"&gt;</p>
+<table width="571" border="0" cellspacing="0" cellpadding="2">
 <tbody>
 <tr>
 <td valign="top" width="208">MsgWaitForMultipleObjects和MsgWaitForMultipleObjectsEx</td>
@@ -184,19 +154,28 @@ PVOID <span style="color: #ff8080;">InterlockedCompareExchangePointer</span>(PVO
 <td valign="top" width="361">在一个原子操作完成设置一个内核对象为有信号，并进入等待另一个内核对象</td>
 </tr>
 </tbody>
-<p>&lt;/table&gt;
- </p>
+</table>
 
-<p><span style="color: #9bbb59;">7、各同步的内核对象的理解</span></p>
+<p>7.各同步的内核对象的理解</p>
 
-<p>（1）关键代码段:</p>
-<blockquote>critical section ,关键代码段之间的代码是原子操作，同一时间只能有一个线程执行该段代码，与别的同步object都是内核态的同步相比，它争取用用户态的方式进行同步，如果用户态的用户不行，才用内核态的同步，这样效率更高,花费较少</blockquote>
-<p>（2）锁:</p>
-<blockquote>mutex，只允许一个线程拥有
+<ul>
+  <li>
+    <p>关键代码段:</p>
 
-semaphore，允许指定数量的线程拥有，创建此object时可以指定能拥有的最多的线程数</blockquote>
-<p>（3）信号：</p>
-<blockquote>event，不同于锁，就如它的名字是“信号”，当一个线程拥有锁的时候就会改变锁的状态以达到同步（`成功拥有mutex则使它无信号；成功拥有semaphore则使它计数减一，当计数为零，则semaphore变成无信号状态），手动设置的event的状态只有线程调用SetEvent或ResetEvent才会改变，线程则通过WaitForSingleObject等检测信号状态的函数来达到同步。</blockquote>
+    <p>critical section ,关键代码段之间的代码是原子操作，同一时间只能有一个线程执行该段代码，与别的同步object都是内核态的同步相比，它争取用用户态的方式进行同步，如果用户态的用户不行，才用内核态的同步，这样效率更高,花费较少</p>
+  </li>
+  <li>
+    <p>锁:</p>
+
+    <p>mutex，只允许一个线程拥有
+  semaphore，允许指定数量的线程拥有，创建此object时可以指定能拥有的最多的线程数</p>
+  </li>
+  <li>
+    <p>信号：</p>
+
+    <p>event，不同于锁，就如它的名字是“信号”，当一个线程拥有锁的时候就会改变锁的状态以达到同步（`成功拥有mutex则使它无信号；成功拥有semaphore则使它计数减一，当计数为零，则semaphore变成无信号状态），手动设置的event的状态只有线程调用SetEvent或ResetEvent才会改变，线程则通过WaitForSingleObject等检测信号状态的函数来达到同步。</p>
+  </li>
+</ul>
 ]]></content>
   </entry>
   
@@ -205,64 +184,86 @@ semaphore，允许指定数量的线程拥有，创建此object时可以指定�
     <link href="http://www.goorockey.com/blogs/43008"/>
     <updated>2011-09-03T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/43008</id>
-    <content type="html"><![CDATA[<p><strong><span style="font-size: large;">一、摘要：</span></strong></p>
+    <content type="html"><![CDATA[<h3 id="section">一、摘要：</h3>
 
-<p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">1、进程只是线程的容器，存放数据和代码，但不执行代码。</span></span></p>
+<ul>
+  <li>
+    <p>进程只是线程的容器，存放数据和代码，但不执行代码。</p>
+  </li>
+  <li>
+    <p>线程才是执行代码的实体。</p>
+  </li>
+  <li>
+    <p>作业是对一个或多个进程的统一管理，能添加一般无法添加的限制。</p>
+  </li>
+</ul>
 
-<p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">2、线程才是执行代码的实体。</span></span></p>
+<h3 id="section-1">二、进程</h3>
 
-<p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">3、作业是对一个或多个进程的统一管理，能添加一般无法添加的限制。</span></span></p>
+<p>1.概念</p>
 
-<p><strong><span style="font-size: large;">二、进程</span></strong></p>
+<p><strong>进程只是线程的容器</strong>，为线程执行代码提供资源、营造运行环境。</p>
 
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">1、概念</span></span></p>
+<!--more-->
 
-<p><span style="color: #c0c0c0;"><span style="color: #ff8080;">进程只是线程的容器</span>，为线程执行代码提供资源、营造运行环境。<!--more--></span></p>
+<p>2.进程的构成</p>
 
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">2、进程的构成</span></span></p>
+<ul>
+  <li>关键：</li>
+</ul>
 
-<p>（1）关键：</p>
-<blockquote>一块内存地址空间，用以存放代码和数据；
+<blockquote>
+  <p>一块内存地址空间，用以存放代码和数据；
+一个内核对象句柄表，记录使用中的内核对象。</p>
+</blockquote>
 
-一个内核对象句柄表，记录使用中的内核对象。</blockquote>
-<p>（2）更详尽的构成</p>
+<ul>
+  <li>更详尽的构成</li>
+</ul>
 
-<p>（来自MSDN <a href="http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx">http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx</a>）：</p>
-<blockquote>a virtual address space,
+<p>(来自MSDN <a href="http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx">http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx</a>):</p>
 
+<pre><code>a virtual address space,
 executable code,
-
 open handles to system objects,
-
 a security context,
-
 a unique process identifier,
-
 environment variables,
-
 a priority class,
-
 minimum and maximum working set sizes,
+at least one thread of execution.
+</code></pre>
 
-at least one thread of execution.</blockquote>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、进程的终止</span></span></p>
+<p>3.进程的终止</p>
 
-<p>（1）全部线程都结束。即使主线程退出了，如果还有线程存在，该进程仍然不会销毁。</p>
+<ul>
+  <li>
+    <p>全部线程都结束。即使主线程退出了，如果还有线程存在，该进程仍然不会销毁。</p>
+  </li>
+  <li>
+    <p>ExitProcess，有可能造成内存泄露，因为C/C++ Runtime Library没有被清空，则全局变量等资源就不会被释放。</p>
+  </li>
+  <li>
+    <p>TerminateProcess，跟ExitProcess一样是可能造成内存泄露的。另外它是异步的，即只是通知要终止目标进程，返回后并不代表它已结束。</p>
+  </li>
+</ul>
 
-<p>（2）ExitProcess，有可能造成内存泄露，因为C/C++ Runtime Library没有被清空，则全局变量等资源就不会被释放。</p>
+<h3 id="section-2">三、作业</h3>
 
-<p>（3）TerminateProcess，跟ExitProcess一样是可能造成内存泄露的。另外它是异步的，即只是通知要终止目标进程，返回后并不代表它已结束。</p>
+<p>1.基本概念</p>
 
-<p><strong><span style="font-size: large;">三、作业</span></strong></p>
+<ul>
+  <li>
+    <p><strong>作业是进程的容器</strong>，对一个或多个进程附加一定的限制，进行统一管理。</p>
+  </li>
+  <li>
+    <p>即使作业只包含了一个进程也是有用的，因为这样能做一些普通不能进行的限制</p>
+  </li>
+</ul>
 
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">1、基本概念</span></span></p>
+<p>2.主要的API:</p>
 
-<p>（1）<span style="color: #ff8080;">作业是进程的容器</span>，对一个或多个进程附加一定的限制，进行统一管理。</p>
-
-<p>（2）即使作业只包含了一个进程也是有用的，因为这样能做一些普通不能进行的限制</p>
-
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、主要的API：</span></span>
-&lt;table width="439" border="0" cellspacing="0" cellpadding="2"&gt;</p>
+<table width="439" border="0" cellspacing="0" cellpadding="2">
 <tbody>
 <tr>
 <td valign="top" width="200">API</td>
@@ -297,9 +298,11 @@ at least one thread of execution.</blockquote>
 <td valign="top" width="237">终止作业内所有进程</td>
 </tr>
 </tbody>
-<p>&lt;/table&gt;
-<span style="color: #ffff00;"><span style="color: #ff0000;">3、用于作业对象的基本用户界面限制的位标志</span> </span>
-&lt;table width="618" border="0" cellspacing="0" cellpadding="2"&gt;</p>
+</table>
+
+<p>3.用于作业对象的基本用户界面限制的位标志</p>
+
+<table width="618" border="0" cellspacing="0" cellpadding="2">
 <tbody>
 <tr>
 <td valign="top" width="188">标志</td>
@@ -338,110 +341,138 @@ at least one thread of execution.</blockquote>
 <td valign="top" width="428">防止作业中的进程使用同一作业外部的进程创建的USER对象（如HWND）</td>
 </tr>
 </tbody>
-<p>&lt;/table&gt;
-<strong><span style="font-size: large;">四、线程</span></strong></p>
+</table>
 
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">1、基本概念</span></span></p>
+<h3 id="section-3">四、线程</h3>
 
-<p>（1）进程不执行代码的，<span style="color: #ff8080;">是线程在进程地址空间内执行代码</span>，并对进程地址空间内的数据做操作。</p>
+<p>1.基本概念</p>
 
-<p>（2）多个线程共享进程内的地址空间，包括进程的内核对象句柄表，因为句柄表的存在依赖于进程，而不是线程。</p>
+<ul>
+  <li>
+    <p>进程不执行代码的，<strong>是线程在进程地址空间内执行代码</strong>，并对进程地址空间内的数据做操作。</p>
+  </li>
+  <li>
+    <p>多个线程共享进程内的地址空间，包括进程的内核对象句柄表，因为句柄表的存在依赖于进程，而不是线程。</p>
+  </li>
+</ul>
 
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">2、线程的构成</span></span></p>
+<p>2.线程的构成</p>
 
-<p>（1）关键：</p>
-<blockquote>一个堆栈、
+<ul>
+  <li>
+    <p>关键：</p>
 
-一些用于保护线程的寄存器、
-
-一个指令寄存器（IP）、
-
-堆栈指针寄存器（SP）</blockquote>
-<p>（2）更详尽的构成</p>
+    <p>一个堆栈、
+  一些用于保护线程的寄存器、
+  一个指令寄存器（IP）、
+  堆栈指针寄存器（SP）</p>
+  </li>
+  <li>
+    <p>更详尽的构成</p>
+  </li>
+</ul>
 
 <p>（来自MSDN <a href="http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx">http://msdn.microsoft.com/zh-cn/library/ms681917(v=vs.85).aspx</a>）：</p>
-<blockquote>All threads of a process share its virtual address space and system resources.
 
+<pre><code>All threads of a process share its virtual address space and system resources.
 In addition, each thread maintains exception handlers, a scheduling priority, thread local storage, a unique thread identifier, and a set of structures the system will use to save the thread context until it is scheduled.
-
 The thread context includes the thread's set of machine registers, the kernel stack, a thread environment block, and a user stack in the address space of the thread's process.
+Threads can also have their own security context, which can be used for impersonating clients.
+</code></pre>
 
-Threads can also have their own security context, which can be used for impersonating clients.</blockquote>
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、线程的启动</span></span></p>
+<p>3.线程的启动</p>
 
-<p>(1)初始化线程时会把 线程函数的入参(pvParam)、线程函数的指针(pfnStartAddrj) 压栈。</p>
+<ul>
+  <li>初始化线程时会把 线程函数的入参(pvParam)、线程函数的指针(pfnStartAddrj) 压栈。</li>
+</ul>
 
-<p><a href="http://www.goorockey.com/uploads/2011/09/clip_image0011.png"><img class="alignnone size-full wp-image-77043" title="clip_image001" src="http://www.goorockey.com/uploads/2011/09/clip_image0011.png" alt="" width="252" height="205" /></a></p>
+<p><img class="left" src="http://www.goorockey.com/uploads/2011/09/clip_image0011.png"></p>
 
-<p>（2）、每个线程还有一个指令寄存器（IP）和堆栈指针寄存器（SP）。IP初始指向BaseThreadStart函数，它包含在Kernel32.dll中。</p>
+<ul>
+  <li>每个线程还有一个指令寄存器（IP）和堆栈指针寄存器（SP）。IP初始指向BaseThreadStart函数，它包含在Kernel32.dll中。</li>
+</ul>
 
-<p>它主要是调用线程函数，并把函数返回值传给ExitThread：
-&lt;div id="codeSnippetWrapper"&gt;
-&lt;div id="codeSnippet" style="text-align: left; line-height: 12pt; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 1:</span> VOID BaseThreadStart(PTHREAD_START_ROUTINE pfnStartAddr,PVOID pvParam)
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 2:</span> {
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 3:</span> __try
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 4:</span> {
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 5:</span> ExitThread((pfnStartAddr)(pvParam));
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 6:</span> }
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 7:</span> __except(UnhandledExceptionFilter(GetExceptionInformation()))
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 8:</span> {
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 9:</span> ExitProcess(GetExceptionCode());
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 10:</span> }
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 11:</span><span style="color: #008000;">//NOTE: We never get here. </span>
- 
-&lt;pre style="text-align: left; line-height: 12pt; margin: 0em; width: 100%; font-family: ; color: black; overflow: visible; padding: 0px;"&gt;<span style="color: #606060;"> 12:</span> }
- </p>
+<p>它主要是调用线程函数，并把函数返回值传给ExitThread：</p>
 
-<p>&lt;/div&gt;
-&lt;/div&gt;
-<span style="color: #c0c0c0;">（3）</span>之所以pfnStartAddr和pvParam压栈，就是因为线程开始运行时，CPU跳到IP指向BaseThreadStart，然后把pfnStartAddr和pvParam出栈，就把它们当做形参传给BaseThreadStart了。</p>
+<pre><code>VOID BaseThreadStart(PTHREAD_START_ROUTINE pfnStartAddr,PVOID pvParam)
+{
+    __try
+    {
+        ExitThread((pfnStartAddr)(pvParam));
+    }
+    __except(UnhandledExceptionFilter(GetExceptionInformation()))
+    {
+        ExitProcess(GetExceptionCode());
+    }
+    //NOTE: We never get here. 
+}
+</code></pre>
 
-<p><span style="color: #c0c0c0; font-size: large;"><strong>五、其他</strong></span></p>
+<ul>
+  <li>之所以pfnStartAddr和pvParam压栈，就是因为线程开始运行时，CPU跳到IP指向BaseThreadStart，然后把pfnStartAddr和pvParam出栈，就把它们当做形参传给BaseThreadStart了。</li>
+</ul>
 
-<p><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">1、C/C++ Runtime Library的多线程版本</span></span></p>
+<h3 id="section-4">五、其他</h3>
 
-<p>（1）在C/C++ Runtime Library中，有一些全局变量。它们有可能同时被多个线程访问，使它们的值无法确定。</p>
+<p>1.C/C++ Runtime Library的多线程版本</p>
 
-<p>（2）C/C++ Runtime Library为了适应多线程，出现多线程(MT)版本，改变一些全局变量和函数的特性。</p>
+<ul>
+  <li>
+    <p>在C/C++ Runtime Library中，有一些全局变量。它们有可能同时被多个线程访问，使它们的值无法确定。</p>
+  </li>
+  <li>
+    <p>C/C++ Runtime Library为了适应多线程，出现多线程(MT)版本，改变一些全局变量和函数的特性。</p>
+  </li>
+  <li>
+    <p>主要思路是为每个线程关联一个数据结构<strong>tiddata块</strong>，里面都有各全局变量对于这个线程的副本。即每个线程访问的是属于自己的“全局变量”，有属于自己的独立环境。</p>
+  </li>
+  <li>
+    <p>而相关的函数对这些全局变量的操作也会改为对于<strong>tiddata块</strong>对于值的操作。</p>
+  </li>
+</ul>
 
-<p>（3）主要思路是为每个线程关联一个数据结构<span style="color: #ff8080;">tiddata块</span>，里面都有各全局变量对于这个线程的副本。即每个线程访问的是属于自己的“全局变量”，有属于自己的独立环境。</p>
+<p>例如：</p>
 
-<p>（4）而相关的函数对这些全局变量的操作也会改为对于<span style="color: #c0c0c0;">tiddata块</span>对于值的操作。</p>
-<blockquote>例如：
+<pre><code>_beginthreadex就是在调用CreateThread来创建线程的基础上，在线程初始化时创建线程关联的**tiddata块**，并把这些全局变量拷贝到里面。所以_beginthreadex比CreateThread要安全。
+_endthreadex则是对应多做了清空关联数据结构的操作。
+</code></pre>
 
-_beginthreadex就是在调用CreateThread来创建线程的基础上，在线程初始化时创建线程关联的<span style="color: #c0c0c0;">tiddata块</span>，并把这些全局变量拷贝到里面。所以_beginthreadex比CreateThread要安全。
+<ul>
+  <li>
+    <p>如果在多线程版本的C/C++ Runtime Library中，用了CreateThread来创建线程，则线程初始化时不会有<strong>tiddata块</strong>。而当函数要访问<strong>tiddata块</strong>的时候，开始会访问失败，然后会自动生成一个，并把它与线程关联起来。但在一些情况下调用CreateThread就可能出现错误。</p>
+  </li>
+  <li>
+    <p>_beginthread比_beginthreadex、以及_endthread比_endthreadex的参数要少，少了对线程安全访问权的控制。</p>
+  </li>
+</ul>
 
-_endthreadex则是对应多做了清空关联数据结构的操作。</blockquote>
-<p>（5）如果在多线程版本的C/C++ Runtime Library中，用了CreateThread来创建线程，则线程初始化时不会有<span style="color: #c0c0c0;">tiddata块</span>。而当函数要访问<span style="color: #c0c0c0;">tiddata块</span>的时候，开始会访问失败，然后会自动生成一个，并把它与线程关联起来。但在一些情况下调用CreateThread就可能出现错误。</p>
+<p>2.伪句柄</p>
 
-<p>（6）_beginthread比_beginthreadex、以及_endthread比_endthreadex的参数要少，少了对线程安全访问权的控制。</p>
+<ul>
+  <li>
+    <p>用GetCurrentThread和GetCurrentProcess得到句柄是自己句柄的引用，并不会使线程进程的使用计数加1，它们返回的句柄叫伪句柄。</p>
+  </li>
+  <li>
+    <p>用CloseHandle关闭伪句柄时，会返回FALSE。</p>
+  </li>
+</ul>
 
-<p><span style="color: #ff0000;"> </span><span style="color: #ffff00; font-size: x-small;"><span style="color: #ff0000; font-size: x-small;">2、伪句柄</span></span></p>
+<p>3.纤程</p>
 
-<p>（1）用GetCurrentThread和GetCurrentProcess得到句柄是自己句柄的引用，并不会使线程进程的使用计数加1，它们返回的句柄叫伪句柄。</p>
-
-<p>（2）用CloseHandle关闭伪句柄时，会返回FALSE。</p>
-
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、纤程</span></span></p>
-
-<p>（1）UNIX服务器应用程序属于单线程程序（Windows定义），但其内部仿真了多线程工作。为了方便把UNIX服务器应用程序移植到Windows，就推出了纤程。</p>
-
-<p>（2）ConvertThreadToFiber 把线程转换为纤程。</p>
-
-<p>（2）纤程不应该返回，返回会使线程和该线程所有的纤程都撤销。</p>
-
-<p>（3）在单个线程里，每次只能运行一个纤程。可以用SwtichToFiber来切换纤程</p>
+<ul>
+  <li>
+    <p>UNIX服务器应用程序属于单线程程序（Windows定义），但其内部仿真了多线程工作。为了方便把UNIX服务器应用程序移植到Windows，就推出了纤程。</p>
+  </li>
+  <li>
+    <p>ConvertThreadToFiber 把线程转换为纤程。</p>
+  </li>
+  <li>
+    <p>纤程不应该返回，返回会使线程和该线程所有的纤程都撤销。</p>
+  </li>
+  <li>
+    <p>在单个线程里，每次只能运行一个纤程。可以用SwtichToFiber来切换纤程</p>
+  </li>
+</ul>
 ]]></content>
   </entry>
   
@@ -450,52 +481,68 @@ _endthreadex则是对应多做了清空关联数据结构的操作。</blockquot
     <link href="http://www.goorockey.com/blogs/48001"/>
     <updated>2011-09-02T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/48001</id>
-    <content type="html"><![CDATA[<p><span style="color: #ffff00;"><strong><span style="color: #c0c0c0; font-size: large;">一、摘要</span></strong></span></p>
+    <content type="html"><![CDATA[<h3 id="section">一、摘要</h3>
 
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">1、内核对象有使用计数，当计数减为0时，内核对象被销毁。</span></span></p>
+<p>1.内核对象有使用计数，当计数减为0时，内核对象被销毁。</p>
 
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">2、内核对象有安全描述符，控制该进程能做的操作。</span></span></p>
+<p>2.内核对象有安全描述符，控制该进程能做的操作。</p>
 
-<p><span style="color: #ffff00;"><span style="color: #ff0000;">3、每个进程内有内核对象句柄表，记录使用中的内核对象。</span></span></p>
+<p>3.每个进程内有内核对象句柄表，记录使用中的内核对象。</p>
 
-<p><span style="color: #ffff00;"><strong> </strong></span></p>
+<h3 id="section-1">二、内核对象</h3>
 
-<p><span style="color: #ffff00;"><strong><span style="color: #c0c0c0; font-size: large;">二、内核对象</span></strong></span></p>
+<p>1.对内核对象的操作,只能通过调API</p>
 
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">1、对内核对象的操作,只能通过调API</span></strong></span></p>
+<ul>
+  <li>
+    <p>应用程序无法在内存中找到表示内核对象的数据结构,也就无法直接修改其状态。</p>
+  </li>
+  <li>
+    <p>要对内核对象操作，只能先获得其句柄，然后调用window定义好的API</p>
+  </li>
+</ul>
 
-<p>（1）应用程序无法在内存中找到表示内核对象的数据结构,也就无法直接修改其状态。</p>
+<!--more-->
 
-<p>（2）要对内核对象操作，只能先获得其句柄，然后调用window定义好的API<!--more--></p>
+<p>2.内核对象的使用计数，记录在使用它的进程数</p>
 
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">2、内核对象的使用计数，记录在使用它的进程数</span></strong></span></p>
+<ul>
+  <li>
+    <p>内核对象是属于内核的，而不属于任何一个进程，包括创建它的哪个进程。</p>
+  </li>
+  <li>
+    <p>内核对象中有一个使用计数的数据，记录在使用它的进程数。</p>
+  </li>
+  <li>
+    <p>只有当使用计数为零时，该内核对象才会被销毁。</p>
+  </li>
+  <li>
+    <p>即使创建它的进程终止了，该内核对象的使用计数不为零就不会被销毁。</p>
+  </li>
+</ul>
 
-<p>（1）内核对象是属于内核的，而不属于任何一个进程，包括创建它的哪个进程。</p>
+<p>3.内核对象的安全描述符，控制进程对其的使用权</p>
 
-<p>（2）内核对象中有一个使用计数的数据，记录在使用它的进程数。</p>
+<ul>
+  <li>
+    <p>在创建内核对象的API中，都有一个“安全描述符”的参数，是用来控制对这个内核对象的使用权的
+例如创建文件内存映射CreateFileMapping就有一个PSECURITY_ATTRIBUTES的参数。</p>
+  </li>
+  <li>
+    <p>而在获取该内核对象的API OpenFileMapping中，会有一个表征获取该对象做什么操作的参数。
+如果该用户允许对该内核对象做该操作，则成功返回该内核对象句柄，否则返回NULL</p>
+  </li>
+  <li>
+    <p>分辨一个对象是否为内核对象的标志是，创建该对象的API是否有“安全描述符”这个参数。
+如创建GDI就没有该参数，所以GDI不是内核对象</p>
+  </li>
+</ul>
 
-<p>（3）只有当使用计数为零时，该内核对象才会被销毁。</p>
+<p>4.进程的内核对象句柄表，记录使用的内核对象</p>
 
-<p>（4）即使创建它的进程终止了，该内核对象的使用计数不为零就不会被销毁。</p>
+<p>内核对象句柄表结构：</p>
 
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">3、内核对象的安全描述符，控制进程对其的使用权</span></strong></span></p>
-
-<p>（1）在创建内核对象的API中，都有一个“安全描述符”的参数，是用来控制对这个内核对象的使用权的</p>
-
-<p>例如创建文件内存映射CreateFileMapping就有一个PSECURITY_ATTRIBUTES的参数。</p>
-
-<p>（2）而在获取该内核对象的API OpenFileMapping中，会有一个表征获取该对象做什么操作的参数。</p>
-
-<p>如果该用户允许对该内核对象做该操作，则成功返回该内核对象句柄，否则返回NULL</p>
-
-<p>（3）分辨一个对象是否为内核对象的标志是，创建该对象的API是否有“安全描述符”这个参数。</p>
-
-<p>如创建GDI就没有该参数，所以GDI不是内核对象</p>
-
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">4、进程的内核对象句柄表，记录使用的内核对象</span></strong></span></p>
-
-<p>内核对象句柄表结构：
-&lt;table width="563" border="1" cellspacing="0" cellpadding="2"&gt;</p>
+<table width="563" border="1" cellspacing="0" cellpadding="2">
 <tbody>
 <tr>
 <td valign="top" width="102">索引
@@ -525,32 +572,51 @@ _endthreadex则是对应多做了清空关联数据结构的操作。</blockquot
 <td valign="top" width="151">…</td>
 </tr>
 </tbody>
-<p>&lt;/table&gt;
-（1）每个进程内都有一个内核对象句柄表来记录它在使用的内核对象，表中包含该内核对象内存块的指针。</p>
+</table>
 
-<p>在内核对象的句柄就是该内核对象在此表中的索引值。</p>
+<ul>
+  <li>
+    <p>每个进程内都有一个内核对象句柄表来记录它在使用的内核对象，表中包含该内核对象内存块的指针。
+在内核对象的句柄就是该内核对象在此表中的索引值。</p>
+  </li>
+  <li>
+    <p>创建内核对象时，会在表中寻找空白项，并添加新项，并通过该内核对象指针对它的使用计数置1.</p>
+  </li>
+  <li>
+    <p>用CloseHandle释放进程对该内核对象使用权时，就通过该指针对使用计数减1</p>
+  </li>
+  <li>
+    <p>即使没有用CloseHandle，当进程终止时，会对句柄表中没有释放使用权的内核对象计数减1</p>
+  </li>
+</ul>
 
-<p>（2）创建内核对象时，会在表中寻找空白项，并添加新项，并通过该内核对象指针对它的使用计数置1.</p>
+<p>5.进程间访问内核对象</p>
 
-<p>（3）用CloseHandle释放进程对该内核对象使用权时，就通过该指针对使用计数减1</p>
+<ul>
+  <li>
+    <p>设置子进程继承父进程的内核对象</p>
+  </li>
+  <li>
+    <p>创建有名字的内核对象，并通过内核对象名字访问它。</p>
+  </li>
+  <li>
+    <p>DuplicateHandle 复制内核对象</p>
+  </li>
+</ul>
 
-<p>（4）即使没有用CloseHandle，当进程终止时，会对句柄表中没有释放使用权的内核对象计数减1</p>
+<p>6.当用Create*（如CreateMutex）创建有名字的内核对象</p>
 
-<p><span style="color: #ffff00;"><strong><span style="color: #ff0000;">5、进程间访问内核对象</span></strong></span></p>
-
-<p>（1）设置子进程继承父进程的内核对象</p>
-
-<p>（2）创建有名字的内核对象，并通过内核对象名字访问它。</p>
-
-<p>（3）DuplicateHandle 复制内核对象</p>
-
-<p><strong><span style="color: #ff0000;">6、当用Create*（如CreateMutex）创建有名字的内核对象</span></strong></p>
-
-<p>（1）如果<span style="color: #ff8080;">同名字</span>、<span style="color: #ff8080;">同类</span>的内核对象已存在，则返回该内核对象的Handle；</p>
-
-<p>（2）如果<span style="color: #ff8080;">同名字</span>、<span style="color: #ff8080;">不同类</span>的内核对象已存在，则创建失败，并返回NULL</p>
-
-<p>（3）如果没有同名字的内核对象存在，则创建新内核对象</p>
+<ul>
+  <li>
+    <p>如果<strong>同名字</strong>、<strong>同类</strong>的内核对象已存在，则返回该内核对象的Handle；</p>
+  </li>
+  <li>
+    <p>如果<strong>同名字</strong>、<strong>不同类</strong>的内核对象已存在，则创建失败，并返回NULL</p>
+  </li>
+  <li>
+    <p>如果没有同名字的内核对象存在，则创建新内核对象</p>
+  </li>
+</ul>
 ]]></content>
   </entry>
   
@@ -559,16 +625,20 @@ _endthreadex则是对应多做了清空关联数据结构的操作。</blockquot
     <link href="http://www.goorockey.com/blogs/22004"/>
     <updated>2011-08-19T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/22004</id>
-    <content type="html"><![CDATA[<p>1、Reflect</p>
+    <content type="html"><![CDATA[<p>1.Reflect</p>
 
 <p>对于WM_NOTIFY消息：</p>
-<blockquote>子控件没有Reflect，则由父窗口处理。
 
-只要子控件（即消息对应最直接的控件）有了ON_NOTIFY_REFLECT就会被子控件处理,不会被父窗口所处理。</blockquote>
-<p><strong><span style="color: #ff0000;">Reflect的意思就是把消息反射给子控件处理。</span></strong></p>
+<blockquote>
+  <p>子控件没有Reflect，则由父窗口处理。
+只要子控件（即消息对应最直接的控件）有了ON_NOTIFY_REFLECT就会被子控件处理,不会被父窗口所处理。</p>
+</blockquote>
 
-<p>大概的就是这样：
-&lt;table width="567" border="0" cellspacing="0" cellpadding="2"&gt;</p>
+<p><em>Reflect的意思就是把消息反射给子控件处理。</em></p>
+
+<p>大概的就是这样：</p>
+
+<table width="567" border="0" cellspacing="0" cellpadding="2">
 <tbody>
 <tr>
 <td align="center" valign="top" width="212">子控件有ON_NOTIFY_REFLECT</td>
@@ -596,24 +666,27 @@ _endthreadex则是对应多做了清空关联数据结构的操作。</blockquot
 <td align="center" valign="top" width="198">WM_NOTIFY只被子控件处理</td>
 </tr>
 </tbody>
-<p>&lt;/table&gt;
- </p>
+</table>
 
 <!--more-->
 
-<p>2、EX
-ON_NOTIFY和ON_NOTIFY_EX 以及 ON_NOTIFY_REFLECT和ON_NOTIFY_REFLECT_EX</p>
+<p>2.EX</p>
+
+<p>ON_NOTIFY和ON_NOTIFY_EX 以及 ON_NOTIFY_REFLECT和ON_NOTIFY_REFLECT_EX</p>
 
 <p>区别是：</p>
-<blockquote>EX版本的处理函数有BOOL型返回值，表示处理的消息是否继续消息传递
 
+<blockquote>
+  <p>EX版本的处理函数有BOOL型返回值，表示处理的消息是否继续消息传递
 返回TRUE，表示不继续；
+返回FALSE，表示继续，即其他控件可以对它做处理。</p>
+</blockquote>
 
-返回FALSE，表示继续，即其他控件可以对它做处理。</blockquote>
-<p><strong><span style="color: #ff0000;">则EX的意思就是把消息重新放到消息循环，继续遍历别的CmdTargetObject。</span></strong></p>
+<p><em>则EX的意思就是把消息重新放到消息循环，继续遍历别的CmdTargetObject。</em></p>
 
-<p>大概是这样：
-&lt;table width="610" border="0" cellspacing="0" cellpadding="2"&gt;</p>
+<p>大概是这样：</p>
+
+<table width="610" border="0" cellspacing="0" cellpadding="2">
 <tbody>
 <tr>
 <td align="center" valign="top" width="220">子控件ON_NOTIFY_REFLECT_EX返回值</td>
@@ -641,7 +714,7 @@ ON_NOTIFY和ON_NOTIFY_EX 以及 ON_NOTIFY_REFLECT和ON_NOTIFY_REFLECT_EX</p>
 <td align="center" valign="top" width="244">WM_NOTIFY被子控件和父窗口处理</td>
 </tr>
 </tbody>
-<p>&lt;/table&gt;</p>
+</table>
 ]]></content>
   </entry>
   

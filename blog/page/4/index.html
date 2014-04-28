@@ -389,14 +389,18 @@ code swarm是可以把svn、cvs、git等代码管理系统的日志，以可视�
 
 
 <div class="entry-content clearfix">
-  <p><span style="color: #9bbb59;">1、原子操作</span></p>
-<p>（1）能调用的原子操作：<br />
-<blockquote><span class="caps">LONG</span> <span style="color: #ff8080;">InterlockedExchangeAdd</span>(<span class="caps">PLONG</span> plAddend,<span class="caps">LONG</span> Increment);</p>
-<p><span class="caps">LONG</span> <span style="color: #ff8080;">InterlockedExchange</span>(<span class="caps">PLONG</span> plTarget, <span class="caps">LONG</span> lValue);</p>
-<p><span class="caps">PVOID</span> <span style="color: #ff8080;">InterlockedExchangePointer</span>(PVOID* ppvTarget, <span class="caps">PVOID</span> pvValue);</p>
-<p><span class="caps">PVOID</span> <span style="color: #ff8080;">InterlockedCompareExchange</span>(<span class="caps">PLONG</span> plDestination, <span class="caps">LONG</span> lExchange, <span class="caps">LONG</span> lComparand);</p>
-<p><span class="caps">PVOID</span> <span style="color: #ff8080;">InterlockedCompareExchangePointer</span>(PVOID* ppvDestination, <span class="caps">PVOID</span> pvExchange, <span class="caps">PVOID</span> pvComparand);</blockquote><br />
-<span style="color: #ffff00;"> 
+  <p>1.原子操作</p>
+
+<p>能调用的原子操作</p>
+
+<pre><code>LONG InterlockedExchangeAdd(PLONG plAddend,LONG Increment);
+LONG InterlockedExchange(PLONG plTarget, LONG lValue);
+PVOID InterlockedExchangePointer(PVOID* ppvTarget, PVOID pvValue);
+PVOID InterlockedCompareExchange(PLONG plDestination, LONG lExchange, LONG lComparand);
+PVOID InterlockedCompareExchangePointer(PVOID* ppvDestination, PVOID pvExchange, PVOID pvComparand);
+</code></pre>
+
+
   <a class="btn pull-right" href="/blogs/45011">Read on &rarr;</a>
 </div>
 

@@ -7,7 +7,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="普通的成员函数 编译器会自动为其添加一个this指针作为入参 该成员函数能修改成员变量 在成员函数后面加const(注意是后面！) 编译器会自动为其添加一个const *this指针作为入参 该成员函数不能修改成员变量 成员函数加static 编译器不会加this指针 &hellip;">
+	<meta name="description" content="1.普通的成员函数 编译器会自动为其添加一个this指针作为入参 该成员函数能修改成员变量 2.在成员函数后面加const(注意是后面！) 编译器会自动为其添加一个const *this指针作为入参 该成员函数不能修改成员变量 3.成员函数加static 编译器不会加this指针 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,11 +79,46 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">不能同时用static和const修饰一个成员函数</h2>
-	<div class="entry-content"><table border="0" cellpadding="2" cellspacing="0" width="570"><tbody>     <tr>       <td valign="top" width="159">普通的成员函数</td>        <td valign="top" width="173">编译器会自动为其添加一个this指针作为入参</td>        <td valign="top" width="236">该成员函数能修改成员变量</td>     <p></tr>      <tr>       <td valign="top" width="159">在成员函数后面加const(注意是后面！)</td>        <td valign="top" width="173">编译器会自动为其添加一个const *this指针作为入参</td>        <td valign="top" width="236">该成员函数不能修改成员变量</td>     </tr>      <tr>       <td valign="top" width="159">成员函数加static</td>        <td valign="top" width="173">编译器不会加this指针</td>        <td valign="top" width="236">该成员函数不能直接访问成员变量，只能访问静态成员变量</td>     </tr>   </tbody></table>  <p></p>  <p>所以在成员函数加static和后面加const是矛盾的，即不能同时这样修饰一个成员函数.</p><br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/11001'>http://www.goorockey.com/blogs/11001</a></p></div>
+	<div class="entry-content"><p>1.普通的成员函数 </p>
+
+<ul>
+  <li>
+    <p>编译器会自动为其添加一个<code>this指针</code>作为入参 </p>
+  </li>
+  <li>
+    <p>该成员函数能修改成员变量</p>
+  </li>
+</ul>
+
+<p>2.在成员函数后面加<code>const</code>(注意是后面！) </p>
+
+<ul>
+  <li>
+    <p>编译器会自动为其添加一个<code>const *this指针</code>作为入参 </p>
+  </li>
+  <li>
+    <p>该成员函数不能修改成员变量</p>
+  </li>
+</ul>
+
+<p>3.成员函数加<code>static</code></p>
+
+<ul>
+  <li>
+    <p>编译器不会加<code>this指针</code></p>
+  </li>
+  <li>
+    <p>该成员函数不能直接访问成员变量，只能访问静态成员变量</p>
+  </li>
+</ul>
+
+<p>所以在成员函数加<code>static</code>和后面加<code>const</code>是矛盾的，即不能同时这样修饰一个成员函数.
+<br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blogs/11001">http://www.goorockey.com/blogs/11001</a></p>
+
+</div>
 
 
 <div class="meta">

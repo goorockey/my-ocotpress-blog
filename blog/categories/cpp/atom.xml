@@ -4,7 +4,7 @@
   <title><![CDATA[categories: cpp | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/cpp/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-28T17:58:42+08:00</updated>
+  <updated>2014-04-28T20:23:17+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -18,12 +18,20 @@
     <link href="http://www.goorockey.com/blogs/14001"/>
     <updated>2011-08-02T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/14001</id>
-    <content type="html"><![CDATA[<blockquote>   <p>#include &lt;iostream&gt;</p>    <p>#include &lt;iterator&gt;</p>    <p>#include &lt;algorithm&gt;</p><p><br /></p>    <p></p>    <p>int a[] = { 335, 33, 98, 39, 54, 24, 3 };</p>    <p>int nSize = sizeof( a) / sizeof( a[ 0]);</p><p><br /></p>    <p>// 输出数组a到标准输出，同时每个元素都以空格为结束（最后一个元素后面也会有空格）</p>    <p>std::copy( a, a + nSize, std::ostream_iterator&lt; int&gt;( std::cout, " ")); </p> </blockquote>
-<p></p>
-<blockquote>   <p>结果：</p>    <p>335 33 98 39 54 24 3</p> </blockquote>
-<p></p>
-<p>一个字：妙！！</p>
-<p>(^0^)/ </p>
+    <content type="html"><![CDATA[<pre><code>#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+#include &lt;algorithm&gt;
+
+int a[] = { 335, 33, 98, 39, 54, 24, 3 };
+int nSize = sizeof(a) / sizeof(a[0]);    
+
+// 输出数组a到标准输出，同时每个元素都以空格为结束（最后一个元素后面也会有空格）
+std::copy(a, a + nSize, std::ostream_iterator&lt;int&gt;(std::cout, " ")); 
+</code></pre>
+
+<p>结果：335 33 98 39 54 24 3</p>
+
+<p>一个字：妙！！(^0^)/ </p>
 ]]></content>
   </entry>
   
@@ -32,9 +40,40 @@
     <link href="http://www.goorockey.com/blogs/11001"/>
     <updated>2011-08-02T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/11001</id>
-    <content type="html"><![CDATA[<table border="0" cellpadding="2" cellspacing="0" width="570"><tbody>     <tr>       <td valign="top" width="159">普通的成员函数</td>        <td valign="top" width="173">编译器会自动为其添加一个this指针作为入参</td>        <td valign="top" width="236">该成员函数能修改成员变量</td>     </tr>      <tr>       <td valign="top" width="159">在成员函数后面加const(注意是后面！)</td>        <td valign="top" width="173">编译器会自动为其添加一个const *this指针作为入参</td>        <td valign="top" width="236">该成员函数不能修改成员变量</td>     </tr>      <tr>       <td valign="top" width="159">成员函数加static</td>        <td valign="top" width="173">编译器不会加this指针</td>        <td valign="top" width="236">该成员函数不能直接访问成员变量，只能访问静态成员变量</td>     </tr>   </tbody></table>
-<p></p>
-<p>所以在成员函数加static和后面加const是矛盾的，即不能同时这样修饰一个成员函数.</p>
+    <content type="html"><![CDATA[<p>1.普通的成员函数 </p>
+
+<ul>
+  <li>
+    <p>编译器会自动为其添加一个<code>this指针</code>作为入参 </p>
+  </li>
+  <li>
+    <p>该成员函数能修改成员变量</p>
+  </li>
+</ul>
+
+<p>2.在成员函数后面加<code>const</code>(注意是后面！) </p>
+
+<ul>
+  <li>
+    <p>编译器会自动为其添加一个<code>const *this指针</code>作为入参 </p>
+  </li>
+  <li>
+    <p>该成员函数不能修改成员变量</p>
+  </li>
+</ul>
+
+<p>3.成员函数加<code>static</code></p>
+
+<ul>
+  <li>
+    <p>编译器不会加<code>this指针</code></p>
+  </li>
+  <li>
+    <p>该成员函数不能直接访问成员变量，只能访问静态成员变量</p>
+  </li>
+</ul>
+
+<p>所以在成员函数加<code>static</code>和后面加<code>const</code>是矛盾的，即不能同时这样修饰一个成员函数.</p>
 ]]></content>
   </entry>
   

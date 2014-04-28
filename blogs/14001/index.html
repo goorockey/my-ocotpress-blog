@@ -7,7 +7,10 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="#include &lt;iostream&gt; #include &lt;iterator&gt; #include &lt;algorithm&gt; int a[] = { 335, 33, 98, 39, 54, 24, 3 }; int nSize = sizeof( a) / &hellip;">
+	<meta name="description" content="#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+#include &lt;algorithm&gt; int a[] = { 335, 33, 98, 39, 54, 24, 3 };
+int nSize = sizeof(a) / &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,11 +82,26 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">STL中用copy和ostream_iterator输出一个数组</h2>
-	<div class="entry-content"><blockquote>   <p>#include &lt;iostream&gt;</p>    <p>#include &lt;iterator&gt;</p>    <p>#include &lt;algorithm&gt;</p><p><br /></p>    <p></p>    <p>int a[] = { 335, 33, 98, 39, 54, 24, 3 };</p>    <p>int nSize = sizeof( a) / sizeof( a[ 0]);</p><p><br /></p>    <p>// 输出数组a到标准输出，同时每个元素都以空格为结束（最后一个元素后面也会有空格）</p>    <p>std::copy( a, a + nSize, std::ostream_iterator&lt; int&gt;( std::cout, &quot; &quot;)); </p> <p></blockquote>  <p></p>  <blockquote>   <p>结果：</p>    <p>335 33 98 39 54 24 3</p> </blockquote>  <p></p>  <p>一个字：妙！！</p>  <p>(^0^)/ </p><br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/14001'>http://www.goorockey.com/blogs/14001</a></p></div>
+	<div class="entry-content"><pre><code>#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+#include &lt;algorithm&gt;
+
+int a[] = { 335, 33, 98, 39, 54, 24, 3 };
+int nSize = sizeof(a) / sizeof(a[0]);    
+
+// 输出数组a到标准输出，同时每个元素都以空格为结束（最后一个元素后面也会有空格）
+std::copy(a, a + nSize, std::ostream_iterator&lt;int&gt;(std::cout, " ")); 
+</code></pre>
+
+<p>结果：335 33 98 39 54 24 3</p>
+
+<p>一个字：妙！！(^0^)/ 
+<br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blogs/14001">http://www.goorockey.com/blogs/14001</a></p>
+
+</div>
 
 
 <div class="meta">

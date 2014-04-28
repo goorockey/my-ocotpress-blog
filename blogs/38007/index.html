@@ -79,22 +79,19 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">面试趣题</h2>
-	<div class="entry-content"><p><strong>题一、有一个整数数组，请求出两两之差绝对值最小的值</strong></p>
+	<div class="entry-content"><h4 id="section">题一、有一个整数数组，请求出两两之差绝对值最小的值</h4>
 
 <p>方法：先排序，再找差值最小的点对。</p>
 
 <p>效率：时间复杂度O(nlogn)</p>
 
-<hr />
-
-<p><strong>题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑）</strong></p>
+<h4 id="n">题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑）</h4>
 
 <p>方法：根据x排序，用图解枚举所有情况，能证明斜率最大的两点肯定是相邻的两点。</p>
 
 <p>效率：时间复杂度O(nlogn)</p>
 
-<hr />
-<p><strong>题三、一棵排序二叉树，令 f=(最大值+最小值)/2，设计一个算法，找出距离f值最近、大于f值的结点</strong></p>
+<h4 id="f2ff">题三、一棵排序二叉树，令 f=(最大值+最小值)/2，设计一个算法，找出距离f值最近、大于f值的结点</h4>
 
 <p>方法：把f插入，中序排序</p>
 
@@ -102,8 +99,7 @@
 
 <!--more-->
 
-<hr />
-<p><strong>题四、找出两个字符串中最大公共子字符串,</strong></p>
+<h4 id="section-1">题四、找出两个字符串中最大公共子字符串</h4>
 
 <p>如”abccade”,”dgcadde”的最大子串为”cad”</p>
 
@@ -115,8 +111,7 @@
 
 <p>矩阵法：用矩阵表示两字符串，横竖字符相同的格置1，则在45度方向连续1最多的就是所求，时间复杂度O(n^2) 。</p>
 
-<hr />
-<p><strong>题五、检查单向链表中是否有环</strong></p>
+<h4 id="section-2">题五、检查单向链表中是否有环</h4>
 
 <p>这算是经典的面试题了，记录一下好的解法和推广。</p>
 
@@ -142,13 +137,10 @@
 
 <p>效率：时间复杂度O(n)， 空间复杂度O(1)。</p>
 
-<p><em>代码：</em></p>
-
 <div><script src="https://gist.github.com/3712175.js?file="></script>
 <noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712175&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 
-<hr />
-<p><strong>推广一：有环单向链表中环的节点数</strong></p>
+<h4 id="section-3">推广一：有环单向链表中环的节点数</h4>
 
 <p>操作：</p>
 
@@ -158,44 +150,37 @@
 
 <p>还是题一中的思想。设环的节点数为n，当两指针第一次相遇时，可看做两指针的距离为n，则再慢指针再经过n个节点后，两指针会再次相遇，所以慢指针移动的节点数就是环的节点数。</p>
 
-<p><em>代码：</em></p>
-
 <div><script src="https://gist.github.com/3712217.js?file="></script>
 <noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712217&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 
-<hr />
-<p><strong>推广二、找到有环单向链表中环首节点</strong></p>
+<h4 id="section-4">推广二、找到有环单向链表中环首节点</h4>
 
 <p>如以下有环单向链表：</p>
 
-<p>1=&gt;2=&gt;3=&gt;4=&gt;5=&gt;6=&gt;7=&gt;9=&gt;4</p>
+<pre><code>1=&gt;2=&gt;3=&gt;4=&gt;5=&gt;6=&gt;7=&gt;9=&gt;4
+</code></pre>
 
 <p>即第9节点的next指针指向第4节点，则环的首节点为第4节点</p>
 
 <p>操作：</p>
 
-<ol>
-  <li>先计算环的节点数n。</li>
-  <li>两个前后指针，前指针先移动n个节点，然后两指针一齐移动，每次都只移动一个的节点。</li>
-  <li>当两指针相遇时，两指针指向的节点就是所求的环首节点。</li>
-</ol>
+<pre><code>先计算环的节点数n。
+两个前后指针，前指针先移动n个节点，然后两指针一齐移动，每次都只移动一个的节点。
+当两指针相遇时，两指针指向的节点就是所求的环首节点。
+</code></pre>
 
 <p>解释：因为开始两指针相距n个节点，当后指针刚进入环时，肯定会与前指针在环的首节点相遇。</p>
 
-<hr />
-<p><strong>推广三、破坏有环单向链表的环</strong></p>
+<h4 id="section-5">推广三、破坏有环单向链表的环</h4>
 
 <p>操作：</p>
 
 <p>在上面的基础上，当找到了环首节点和环内节点数n后，只要从环首节点移动n到达环的尾节点，修改环尾节点的next指针即可。</p>
 
-<p><em>代码：</em></p>
-
 <div><script src="https://gist.github.com/3712226.js?file="></script>
 <noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712226&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 
-<hr />
-<p><strong>题五、找到有序链表的中位值</strong></p>
+<h4 id="section-6">题五、找到有序链表的中位值</h4>
 
 <p>常规方法：遍历一次链表得到链表长度length，再遍历一次链表到length/2的位置即为中位值</p>
 
