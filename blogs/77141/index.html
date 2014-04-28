@@ -7,10 +7,8 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="1、ssh端口转发是什么
-ssh端口转发也被叫ssh隧道，ssh代理。
-所谓隧道，就是用X协议封装Y协议的数据包，靠X协议来进行Y协议通信。
-总的来说ssh隧道提供了两个好处： 突破防火墙等，进行受限协议的通信。 使如telnet等不安全的协议传输经过ssh的加密通道，提高安全性。 2、 &hellip;">
+	<meta name="description" content="ssh端口转发是什么
+ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议封装Y协议的数据包，靠X协议来进行Y协议通信。 总的来说ssh隧道提供了两个好处： 突破防火墙等，进行受限协议的通信。 使如telnet等不安全的协议传输经过ssh的加密通道，提高安全性。 三种ssh端口转发 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -82,86 +80,154 @@ ssh端口转发也被叫ssh隧道，ssh代理。
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">SSH端口转发</h2>
-	<div class="entry-content"><h4><strong>1、ssh端口转发是什么</strong></h4>
+	<div class="entry-content"><h3 id="ssh">ssh端口转发是什么</h3>
 <p>ssh端口转发也被叫ssh隧道，ssh代理。</p>
+
 <p>所谓隧道，就是用X协议封装Y协议的数据包，靠X协议来进行Y协议通信。</p>
-<p>总的来说ssh隧道提供了两个好处：<br />
-<ul><br />
-	<li>突破防火墙等，进行受限协议的通信。</li><br />
-	<li>使如telnet等不安全的协议传输经过ssh的加密通道，提高安全性。</li></p>
+
+<p>总的来说ssh隧道提供了两个好处：</p>
+
+<ul>
+  <li>
+    <p>突破防火墙等，进行受限协议的通信。</p>
+  </li>
+  <li>
+    <p>使如telnet等不安全的协议传输经过ssh的加密通道，提高安全性。</p>
+  </li>
 </ul>
-<p><!--more--><br />
-<h4><strong>2、三种ssh端口转发</strong></h4><br />
-ssh端口转发有三种：<br />
-<ul><br />
-	<li>本地转发</li><br />
-	<li>远程转发</li><br />
-	<li>动态转发</li></p>
+
+<!-- more -->
+
+<h3 id="ssh-1">三种ssh端口转发</h3>
+
+<p>ssh端口转发有三种：</p>
+
+<ul>
+  <li>
+    <p>本地转发</p>
+  </li>
+  <li>
+    <p>远程转发</p>
+  </li>
+  <li>
+    <p>动态转发</p>
+  </li>
 </ul>
-<p>&nbsp;<br />
-<h6>(1) 本地转发</h6><br />
-命令是：<br />
-<blockquote><span style="color: #222222;">$ ssh –L &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;ssh host&gt;</span></blockquote><br />
-考虑这样的场景：</p>
-<p><a href="http://www.goorockey.com/uploads/2012/02/image002.jpg"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image002" src="http://www.goorockey.com/uploads/2012/02/image002_thumb.jpg" alt="image002" width="410" height="287" border="0" /></a></p>
+
+<h3 id="section">本地转发</h3>
+
+<p>命令是：</p>
+
+<pre><code>$ ssh –L &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;ssh host&gt;
+</code></pre>
+
+<p>考虑这样的场景：</p>
+
+<p><img src="http://www.goorockey.com/uploads/2012/02/image002_thumb.jpg" /></p>
+
 <p>一个运行在服务器116.1.1.1的程序提供端口389的数据通信，但防火墙只允许其他计算机对服务器做ssh的通信。</p>
+
 <p>而客户端116.4.0.1为了完成通信，可以借助ssh的本地端口转发。</p>
-<p>在客户端执行：<br />
-<blockquote><span style="color: #222222;">$ ssh –L  7001:localhost:389     116.1.1.1</span></blockquote><br />
-同时把客户端程序输出到本机的7001端口。注意命令中的localhost是相对于116.1.1.1来说的。</p>
-<p>那么整个数据流会是：<br />
-<ul><br />
-	<li>客户端程序到数据输出到客户端的7001口</li><br />
-	<li>客户端的ssh一直检测7001口，但发现本机有数据包到达，则把数据包加密，并通过跟服务端116.1.1.1的ssh通路传输</li><br />
-	<li>服务端的sshd收到数据包后包解密，并转发到服务端的389口</li><br />
-	<li>服务端返回数据，并原路返回</li></p>
+
+<p>在客户端执行：</p>
+
+<pre><code>$ ssh –L  7001:localhost:389     116.1.1.1
+</code></pre>
+
+<p>同时把客户端程序输出到本机的7001端口。注意命令中的localhost是相对于116.1.1.1来说的。</p>
+
+<p>那么整个数据流会是：</p>
+
+<ul>
+  <li>
+    <p>客户端程序到数据输出到客户端的7001口</p>
+  </li>
+  <li>
+    <p>客户端的ssh一直检测7001口，但发现本机有数据包到达，则把数据包加密，并通过跟服务端116.1.1.1的ssh通路传输</p>
+  </li>
+  <li>
+    <p>服务端的sshd收到数据包后包解密，并转发到服务端的389口</p>
+  </li>
+  <li>
+    <p>服务端返回数据，并原路返回</p>
+  </li>
 </ul>
-<p>&nbsp;</p>
+
 <p>另外，在ssh本地转发命令中的remote host可以使任意的机子，包括本机或其他计算机。</p>
+
 <p>例如，考虑这样的场景，用本地转发来进行远程桌面：</p>
-<p><a href="http://www.goorockey.com/uploads/2012/02/image.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" src="http://www.goorockey.com/uploads/2012/02/image_thumb.png" alt="image" width="244" height="202" border="0" /></a></p>
+
+<p><img src="http://www.goorockey.com/uploads/2012/02/image_thumb.png" /></p>
+
 <p>现在要在机子A对机子C做远程桌面。但机子A和机子C都在不同的子网，不能直接通信，也都只能跟机子B用ssh通信。</p>
-<p>然后已知windows远程桌面的服务端端口是3389，这我们可以在机子A执行：<br />
-<blockquote><span style="color: #222222;">$ssh –L   13389:&lt;C hostname&gt;:3389     &lt;B hostname&gt;</span></blockquote><br />
-命令中的13389是任意的，但要注意只有管理员才能用1~1024的端口。</p>
-<p>然后在A机子执行yuan远程桌面：<br />
-<blockquote><span style="color: #222222;">mstsc /v:13389</span></blockquote><br />
-就能在A机子远程桌面控制C机子了。</p>
-<p>&nbsp;<br />
-<h6>(2) 远程转发</h6><br />
-其实远程转发跟本地转发是基本相同的。</p>
-<p>命令是：<br />
-<blockquote><span style="color: #222222;">$ ssh –R  &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt;    &lt;ssh host&gt;</span></blockquote><br />
-考虑这样的场景：</p>
-<p><a href="http://www.goorockey.com/uploads/2012/02/image003.jpg"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image003" src="http://www.goorockey.com/uploads/2012/02/image003_thumb.jpg" alt="image003" width="383" height="258" border="0" /></a></p>
+
+<p>然后已知windows远程桌面的服务端端口是3389，这我们可以在机子A执行：</p>
+
+<pre><code>$ssh –L   13389:&lt;C hostname&gt;:3389     &lt;B hostname&gt;
+</code></pre>
+
+<p>命令中的13389是任意的，但要注意只有管理员才能用1~1024的端口。</p>
+
+<p>然后在A机子执行yuan远程桌面：</p>
+
+<pre><code>mstsc /v:13389
+</code></pre>
+
+<p>就能在A机子远程桌面控制C机子了。</p>
+
+<h3 id="section-1">远程转发</h3>
+
+<p>其实远程转发跟本地转发是基本相同的。</p>
+
+<p>命令是：</p>
+
+<pre><code>$ ssh –R  &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt;    &lt;ssh host&gt;
+</code></pre>
+
+<p>考虑这样的场景：</p>
+
+<p><img src="http://www.goorockey.com/uploads/2012/02/image003_thumb.jpg" /></p>
+
 <p>客户端A和服务端B的端口都还是7001和389。</p>
+
 <p>跟本地转发时候不同的是，ssh连接的sshd在客户端A，ssh在服务端B。</p>
+
 <p>所以，远程转发可以应用在客户端A只允许对其做ssh连接的时候。</p>
+
 <p>如果客户端和服务端都允许ssh连接，那选择本地转发还是远程转发都可以。</p>
-<p>&nbsp;<br />
-<h6>(3) 动态转发</h6><br />
-命令是：<br />
-<blockquote><span style="color: #222222;">$ ssh –D &lt;local port&gt;  &lt;ssh host&gt;</span></blockquote><br />
-<a href="http://www.goorockey.com/uploads/2012/02/image005.jpg"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image005" src="http://www.goorockey.com/uploads/2012/02/image005_thumb.jpg" alt="image005" width="345" height="226" border="0" /></a></p>
+
+<h3 id="section-2">动态转发</h3>
+<p>命令是：</p>
+
+<pre><code>$ ssh –D &lt;local port&gt;  &lt;ssh host&gt;
+</code></pre>
+
+<p><img src="http://www.goorockey.com/uploads/2012/02/image005_thumb.jpg" /></p>
+
 <p>跟其他两种端口转发不同的是，动态转发在数据包经过ssh通过到达服务端后，sshd会根据把封装数据包的协议，转发到对应的主机和端口。</p>
+
 <p>这时候ssh隧道是充当了SOCKS代理的作用。这就可以用来翻X之类了。</p>
-<p>&nbsp;<br />
-<h4><strong>3、Ending</strong></h4><br />
-总的来说，ssh是个好东西~~~</p>
-<p>&nbsp;</p>
-<p>&nbsp;<br />
-<h4><strong>相关资料</strong>：</h4><br />
-<ul><br />
-	<li><a title="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/" href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/">https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/</a></li><br />
-	<li><a title="http://lesca.me/blog/2011/03/01/ssh-port-forwarding-priciple-and-praticle-application/" href="http://lesca.me/blog/2011/03/01/ssh-port-forwarding-priciple-and-praticle-application/">http://lesca.me/blog/2011/03/01/ssh-port-forwarding-priciple-and-praticle-application/</a></li></p>
+
+<h3 id="ending">Ending</h3>
+
+<p>总的来说，ssh是个好东西~~~</p>
+
+<h3 id="section-3">相关资料：</h3>
+
+<ul>
+  <li>
+    <p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/">https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/</a></p>
+  </li>
+  <li>
+    <p><a href="http://lesca.me/blog/2011/03/01/ssh-port-forwarding-priciple-and-praticle-application/">http://lesca.me/blog/2011/03/01/ssh-port-forwarding-priciple-and-praticle-application/</a>
+<br />
+          <br />
+          转载请注明原文链接
+          <a href="http://www.goorockey.com/blogs/77141">http://www.goorockey.com/blogs/77141</a></p>
+  </li>
 </ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;<br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77141'>http://www.goorockey.com/blogs/77141</a></p></div>
+
+</div>
 
 
 <div class="meta">

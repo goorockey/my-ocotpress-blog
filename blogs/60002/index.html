@@ -150,26 +150,29 @@
   <li>
     <p>查看:</p>
 
-    <p>[root@localhost ~ ]#rpm –qa |grep gcj
+    <pre><code>  [root@localhost ~ ]#rpm –qa |grep gcj
   java-1.5.0-gcj-1.5.0.0-29.1.el6.i686
-  libgcj-4.4.4-13.el6.i686</p>
+  libgcj-4.4.4-13.el6.i686
+</code></pre>
   </li>
   <li>
     <p>卸载</p>
 
-    <p>[root@localhost ~ ]#rpm –e java-1.5.0-gcj-1.5.0.0-29.1.el6.i686 –nodeps
-  [root@localhost ~ ]#rpm –e libgcj-4.4.4-13.el6.i686 –nodeps</p>
+    <pre><code>  [root@localhost ~ ]#rpm –e java-1.5.0-gcj-1.5.0.0-29.1.el6.i686 --nodeps
+  [root@localhost ~ ]#rpm –e libgcj-4.4.4-13.el6.i686 --nodeps
+</code></pre>
   </li>
   <li>
     <p>检测</p>
 
-    <p>[root@localhost ~]# java –version</p>
+    <pre><code>  [root@localhost ~]# java --version
+</code></pre>
   </li>
 </ul>
 
 <p>会出现</p>
 
-<pre><code>-bash: /usr/bin/java: No such file or directory
+<pre><code>    -bash: /usr/bin/java: No such file or directory
 </code></pre>
 
 <p>表示卸载成功</p>
@@ -222,18 +225,21 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
   <li>
     <p>把该压缩包拷贝到/usr/local</p>
 
-    <p>cp apache-tomcat-7.0.22.tar.gz /usr/local</p>
+    <pre><code>  cp apache-tomcat-7.0.22.tar.gz /usr/local
+</code></pre>
   </li>
   <li>
     <p>跳转到/usr/local，并解压压缩包</p>
 
-    <p>cd /usr/local
-  tar -zxvf apache-tomcat-7.0.22.tar.gz</p>
+    <pre><code>  cd /usr/local
+  tar -zxvf apache-tomcat-7.0.22.tar.gz
+</code></pre>
   </li>
   <li>
     <p>把解压出来的目录改名为tomcat,并删除拷贝过来的压缩包</p>
 
-    <p>rm apache-tomcat-7.0.22 tomcat</p>
+    <pre><code>  rm apache-tomcat-7.0.22 tomcat
+</code></pre>
   </li>
   <li>
     <p>执行/usr/local/tomcat/bin/startup.sh ，自动添加环境变量，</p>
@@ -260,20 +266,21 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
   <li>
     <p>在/etc/init.d/tomcat添加内容：</p>
 
-    <p>#!/bin/sh
+    <pre><code>  #!/bin/sh
   # chkconfig: 2345 10 90
   # description:Tomcat service
-  # Licensed to the Apache Software Foundation (ASF) under one or more</p>
+  # Licensed to the Apache Software Foundation (ASF) under one or more
 
-    <p>……</p>
+  ……
 
-    <p># $Id: catalina.sh 1073891 2011-02-23 19:23:59Z markt $
-  # ————————————————————————</p>
+  # $Id: catalina.sh 1073891 2011-02-23 19:23:59Z markt $
+  # ------------------------------------------------------------------------
 
-    <p>CATALINA_HOME=/opt/tomcat 
-  JAVA_HOME=/opt/jdk1.6.0_23</p>
+  CATALINA_HOME=/opt/tomcat 
+  JAVA_HOME=/opt/jdk1.6.0_23
 
-    <p>……</p>
+  ……
+</code></pre>
   </li>
   <li>
     <p>添加tomcat服务</p>

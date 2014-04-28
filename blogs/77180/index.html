@@ -7,9 +7,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="1、背景
-之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。
-最近也在微博上收集意见，发现用linux做宿主系统的人还是蛮多的。其实仔细想想， &hellip;">
+	<meta name="description" content="背景 之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。 最近也在微博上收集意见，发现用linux做宿主系统的人还是蛮多的。其实仔细想想，归根结底还是自己linux的操作还不熟练 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -81,71 +79,124 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">再次用linux做宿主系统</h2>
-	<div class="entry-content"><h3><strong>1、背景</strong></h3>
+	<div class="entry-content"><h3 id="section">背景</h3>
+
 <p>之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。</p>
+
 <p>最近也在微博上收集意见，发现用linux做宿主系统的人还是蛮多的。其实仔细想想，归根结底还是自己linux的操作还不熟练。</p>
+
 <p>还好最近一段时间自己多了在linux的工作，这几天又下定决心一次装了linux做宿主来玩了。然后就想写个blog记录一下。</p>
-<p><!--more--><br />
-<h3><strong>2、系统</strong></h3><br />
-这次选的linux的linux mint(64bit)，一个基于ubuntu的linux发行版。</p>
+
+<!-- more -->
+
+<h3 id="section-1">系统</h3>
+
+<p>这次选的linux的linux mint(64bit)，一个基于ubuntu的linux发行版。</p>
+
 <p>官方说其目标是成为有windows那样市场占有率的linux发行版。</p>
+
 <p>我不大喜欢ubuntu现在的natty，所以就在虚拟机试用了一下linux mint，感觉比ubuntu方便。</p>
-<p>&nbsp;<br />
-<h3><strong>3、工具</strong></h3><br />
-<ul><br />
-	<li>浏览器：firefox。一直用firefox，插件强大。</li><br />
-	<li>知识管理：evernote。本地用nevernote，它是evernote的linux版；网页摘取用firefox的evernote clip。</li><br />
-	<li>X windows:awesome。一种平铺窗口管理器。本来想用musca，但我没编译成功。唉~~</li><br />
-	<li>BT下载：utorrent。utorrent有linux版，但是web gui版。</li><br />
-	<li>虚拟机：virtualbox。在virtualbox装了xp，感觉比vmware快多了。。</li></p>
+
+<h3 id="section-2">工具</h3>
+
+<ul>
+  <li>
+    <p><strong>浏览器</strong>：firefox。一直用firefox，插件强大。</p>
+  </li>
+  <li>
+    <p><strong>知识管理</strong>：evernote。本地用nevernote，它是evernote的linux版；网页摘取用firefox的evernote clip。</p>
+  </li>
+  <li>
+    <p><strong>X windows</strong>: awesome。一种平铺窗口管理器。本来想用musca，但我没编译成功。唉~~</p>
+  </li>
+  <li>
+    <p><strong>BT下载</strong>：utorrent。utorrent有linux版，但是web gui版。</p>
+  </li>
+  <li>
+    <p><strong>虚拟机</strong>：virtualbox。在virtualbox装了xp，感觉比vmware快多了。。</p>
+  </li>
 </ul>
-<p>&nbsp;<br />
-<h3><strong>4、日常应用</strong></h3><br />
-（1）网络管理</p>
-<p>ubuntu(包括linux mint)现在都是默认用NetworkManager来管理网络。我用了几次都不适应。这次立刻就把它卸载了，直接用脚本来管理网络。卸载命令：<br />
-<blockquote>$ sudo apt-get &#8212;purge remove network-manager</p>
-<p>$ sudo apt-get &#8212;purge remove network-manager-gnome</blockquote><br />
-然后就直接对/etc/network/interfaces和/etc/resolv.conf做修改，来配置网络了。</p>
-<p>&nbsp;</p>
-<p>（2）ADSL连接</p>
+
+<h3 id="section-3">日常应用</h3>
+
+<p>1.网络管理</p>
+
+<p>ubuntu(包括linux mint)现在都是默认用NetworkManager来管理网络。我用了几次都不适应。这次立刻就把它卸载了，直接用脚本来管理网络。卸载命令：</p>
+
+<pre><code>$ sudo apt-get --purge remove network-manager
+$ sudo apt-get --purge remove network-manager-gnome
+</code></pre>
+
+<p>然后就直接对/etc/network/interfaces和/etc/resolv.conf做修改，来配置网络了。</p>
+
+<p>2.ADSL连接</p>
+
 <p>寝室是用电信上网，如果不用路由拨号，就要自己电脑直接连到网口，自己拨号。</p>
-<p>配置命令：<br />
-<blockquote>$ sudo pppoeconf</blockquote><br />
-在弹出的窗口中输入帐号和密码，注意之后有个提示选择是否开机时就自动拨号，如果不时总是直接连网口的，就不选吧。</p>
-<p>配置完回到命令行，输入拨号命令就可以上网了：<br />
-<blockquote>$ sudo pon dsl-provider</blockquote><br />
-断开链接的命令则是：<br />
-<blockquote>$ sudo pppoe-stop</blockquote><br />
-&nbsp;</p>
-<p>（3）连wifi<br />
-<blockquote><span><a class="smarterwiki-linkify" href="http://www.jiangmiao.org/blog/1781.html">http://www.jiangmiao.org/blog/1781.html</a></span></blockquote><br />
-&nbsp;</p>
-<p>（4）做AP，共享wifi<br />
-<blockquote><span><a class="smarterwiki-linkify" href="http://blog.csdn.net/feifei454498130/article/details/6642140">http://blog.csdn.net/feifei454498130/article/details/6642140</a></span></blockquote><br />
-&nbsp;</p>
-<p>（5）截图<br />
-<blockquote>$ scrot -bst [file]</blockquote><br />
-然后用鼠标框主目标即可。如果没有制定输出文件路径file，默认输出到用户主目录，并以时间命名。</p>
-<p>&nbsp;</p>
-<p>路漫漫其修远兮，吾将上下而求索~~~</p>
-<p>O(&gt;0&lt;)O</p>
-<p>&nbsp;</p>
-<p>2012.7.12 更新</p>
+
+<p>配置命令：</p>
+
+<pre><code>$ sudo pppoeconf
+</code></pre>
+
+<p>在弹出的窗口中输入帐号和密码，注意之后有个提示选择是否开机时就自动拨号，如果不时总是直接连网口的，就不选吧。</p>
+
+<p>配置完回到命令行，输入拨号命令就可以上网了：</p>
+
+<pre><code>$ sudo pon dsl-provider
+</code></pre>
+
+<p>断开链接的命令则是：</p>
+
+<pre><code>$ sudo pppoe-stop
+</code></pre>
+
+<p>3.连wifi</p>
+
+<p><a href="http://www.jiangmiao.org/blog/1781.html">http://www.jiangmiao.org/blog/1781.html</a></p>
+
+<p>4.做AP，共享wifi</p>
+
+<p><a href="http://blog.csdn.net/feifei454498130/article/details/6642140">http://blog.csdn.net/feifei454498130/article/details/6642140</a></p>
+
+<p>5.截图</p>
+
+<pre><code>$ scrot -bst [file]
+</code></pre>
+
+<p>然后用鼠标框主目标即可。如果没有制定输出文件路径file，默认输出到用户主目录，并以时间命名。</p>
+
+<hr />
+
+<p><strong>2012.7.12 更新</strong></p>
+
 <p>找到一篇介绍自己只使用命令行经验的博文，好正点！</p>
-<p>http://blog.chavezgu.com/2012/03/07/the-command-line-challenge/</p>
-<p>赞同里面循序渐进脱离GUI的方法；<br />
-<ul><br />
-	<li>坚持一天只使用命令行！</li><br />
-	<li>坚持一周！！</li><br />
-	<li>坚持一个月！！！</li><br />
-	<li>坚持半年！！！！</li></p>
+
+<p><a href="http://blog.chavezgu.com/2012/03/07/the-command-line-challenge/">http://blog.chavezgu.com/2012/03/07/the-command-line-challenge/</a></p>
+
+<p>赞同里面循序渐进脱离GUI的方法；</p>
+
+<ul>
+  <li>
+    <p>坚持一天只使用命令行！</p>
+  </li>
+  <li>
+    <p>坚持一周！！</p>
+  </li>
+  <li>
+    <p>坚持一个月！！！</p>
+  </li>
+  <li>
+    <p>坚持半年！！！！</p>
+  </li>
 </ul>
-<p>呵呵～～</p>
-<p>&nbsp;<br />
-<br/>
-            <br/>
-            转载请注明原文链接<br />
-            <a href='http://www.goorockey.com/blogs/77180'>http://www.goorockey.com/blogs/77180</a></p></div>
+
+<p>呵呵～～
+<br />
+            <br />
+            转载请注明原文链接
+            <a href="http://www.goorockey.com/blogs/77180">http://www.goorockey.com/blogs/77180</a></p>
+
+</div>
 
 
 <div class="meta">
