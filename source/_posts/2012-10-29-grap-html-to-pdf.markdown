@@ -35,9 +35,7 @@ pdfmyurl已经很强大了，但每次只能完成一个网面的pdf，所以还
 
 [pdftk]也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:
 
-{% codeblock %}
-$ pdftk 1.pdf 2.pdf cat output 12.pdf
-{% endcodeblock %}
+    $ pdftk 1.pdf 2.pdf cat output 12.pdf
 
 但弄出来的pdf是没有目录的。
 

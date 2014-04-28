@@ -22,13 +22,11 @@ tags: python
 
 执行blat -h 或者看官网上的帮助，使用blat发邮件还是很简单的（所以官网特别提醒不要用blat来发SPAM。。)
 
-{% codeblock blat基本用法 %}
-blat <邮件正文文件> -from <发送地址> -to <接受地址> -subject <邮件标题> 
-        -server <smtp服务器地址> -username <登录服务器用户名> -password <密码>
+    blat <邮件正文文件> -from <发送地址> -to <接受地址> -subject <邮件标题> 
+            -server <smtp服务器地址> -username <登录服务器用户名> -password <密码>
 
-blat - -body <邮件正文> -from <发送地址> -to <接受地址> -subject <邮件标题> 
-        -server <smtp服务器地址> -username <登录服务器用户名> -password <密码>
-{% endcodeblock %}
+    blat - -body <邮件正文> -from <发送地址> -to <接受地址> -subject <邮件标题> 
+            -server <smtp服务器地址> -username <登录服务器用户名> -password <密码>
 
 blat还可以通过-install把参数保存到注册表。blat确实是自动发邮件的大杀器！
 
@@ -54,23 +52,19 @@ blat还可以通过-install把参数保存到注册表。blat确实是自动发�
 
 python有[smtplib](http://docs.python.org/library/smtplib.html "smtplib")库实现smtp发邮件，核心代码也很简单：
 
-{% codeblock using smtplib lang:python %}
-import smtplib
-# some code ...
-smtp = smtplib.SMTP()
-smtp.connect(server)
-smtp.login(username, password)
-smtp.sendmail(sender, receiver, msg)
-smtp.quit()
-{% endcodeblock %}
+    import smtplib
+    # some code ...
+    smtp = smtplib.SMTP()
+    smtp.connect(server)
+    smtp.login(username, password)
+    smtp.sendmail(sender, receiver, msg)
+    smtp.quit()
 
 而用python计算相差的天数更是简单不过：
 
-{% codeblock lang:python %}
-import datetime
-# some code ...
-days = (datetime.datetime.now() - datetime.datetime(2012,9,30)).days
-{% endcodeblock %}
+    import datetime
+    # some code ...
+    days = (datetime.datetime.now() - datetime.datetime(2012,9,30)).days
 
 
 ###2.定时###
@@ -80,112 +74,109 @@ P.S 在linux可以用cron实现
 
 
 ###3.整个代码###
-{% codeblock lang:python%}
 
-#coding=utf-8
-import smtplib
-import datetime
-import sys
-
-from email.mime.text import MIMEText
-from email.header import Header
-
-
-member = (('member1', 'member2', 'member3', 'member4', 'member5', 'member6'),
-        ('member7', 'member8', 'member9', 'member10', 'member11', 'member12'))
-
-suffix = '@abc.com'
-
-def send_mail(receiver, content_filename,
-            sender = 'admin@abc.com',
-            server = '192.168.1.1',
-            username = 'admin@abc.com',
-            password = 'admin'):
-
-    subject = ''
-    content = ''
-
-    # 从文件读取邮件正文
-    try:
-        content_file = open(content_filename, 'r')
+    #coding=utf-8
+    import smtplib
+    import datetime
+    import sys
+    
+    from email.mime.text import MIMEText
+    from email.header import Header
+    
+    
+    member = (('member1', 'member2', 'member3', 'member4', 'member5', 'member6'),
+            ('member7', 'member8', 'member9', 'member10', 'member11', 'member12'))
+    
+    suffix = '@abc.com'
+    
+    def send_mail(receiver, content_filename,
+                sender = 'admin@abc.com',
+                server = '192.168.1.1',
+                username = 'admin@abc.com',
+                password = 'admin'):
+    
+        subject = ''
+        content = ''
+    
+        # 从文件读取邮件正文
         try:
-            subject = content_file.readline()
-            content = content_file.read()
-
-            # 转为utf-8
-            subject = subject.decode('gbk', 'ignore').encode('utf-8')
-            content = content.decode('gbk', 'ignore').encode('utf-8')
-        finally:
-            content_file.close()
-    except IOError, e:
-        sys.stderr.write("cannot open file " + content_filename)
-        return
-
-    content = content + "\n\n系统生成，请勿回复 :)"
-    #print content
-
-    # 构造邮件
-    msg = MIMEText(content, 'plain', 'utf-8')
-    msg['Subject'] = Header(subject, 'utf-8')
-    msg['From'] = sender
-    msg['To'] = receiver
-
-
-    if (len(msg) > 0):
-        try:
-            # stmp模块发送邮件
-            smtp = smtplib.SMTP()
-            smtp.connect(server)
-            smtp.login(username, password)
-            smtp.sendmail(sender, receiver, msg.as_string())
-            smtp.quit()
-
-            print "Success"
-            return True
-
-        except Exception, e:
-            print str(e)
-            return False
-
-
-def get_on_duty():
-    receiver = ''
-    days = (datetime.datetime.now() - datetime.datetime(2012,10,8)).days
-
-    if days > 0:
-        days = days + 1 # 提前一天提醒
-        week = (days / 7) % 2
-        date = (days % 7)
-
-        # 周六发周一的值日
-        if date == 6:
-            date = 0
-
-        if week < len(member) and date < len(member[week]) and len(member[week][date]) > 1:
-            receiver = member[week][date] + suffix
-
-    return receiver
-
-
-if __name__ == '__main__':
-
-    if len(sys.argv) > 1:
-        job = sys.argv[1]
-
-        # 值日
-        if job == 'duty':
-            receiver = get_on_duty()
-            print receiver
-
-            content_filename = 'duty.txt'
-            if datetime.datetime.now().weekday() == 5:
-                content_filename = 'duty_Sat.txt'
-
-            if len(receiver) > len(suffix):
-                send_mail(receiver = receiver, content_filename = content_filename)
-
-        # 每天日报提醒
-        elif job == 'daily':
-            send_mail(receiver = 'partner', content_filename = 'daily_alert.txt')
-
-{% endcodeblock %}
+            content_file = open(content_filename, 'r')
+            try:
+                subject = content_file.readline()
+                content = content_file.read()
+    
+                # 转为utf-8
+                subject = subject.decode('gbk', 'ignore').encode('utf-8')
+                content = content.decode('gbk', 'ignore').encode('utf-8')
+            finally:
+                content_file.close()
+        except IOError, e:
+            sys.stderr.write("cannot open file " + content_filename)
+            return
+    
+        content = content + "\n\n系统生成，请勿回复 :)"
+        #print content
+    
+        # 构造邮件
+        msg = MIMEText(content, 'plain', 'utf-8')
+        msg['Subject'] = Header(subject, 'utf-8')
+        msg['From'] = sender
+        msg['To'] = receiver
+    
+    
+        if (len(msg) > 0):
+            try:
+                # stmp模块发送邮件
+                smtp = smtplib.SMTP()
+                smtp.connect(server)
+                smtp.login(username, password)
+                smtp.sendmail(sender, receiver, msg.as_string())
+                smtp.quit()
+    
+                print "Success"
+                return True
+    
+            except Exception, e:
+                print str(e)
+                return False
+    
+    
+    def get_on_duty():
+        receiver = ''
+        days = (datetime.datetime.now() - datetime.datetime(2012,10,8)).days
+    
+        if days > 0:
+            days = days + 1 # 提前一天提醒
+            week = (days / 7) % 2
+            date = (days % 7)
+    
+            # 周六发周一的值日
+            if date == 6:
+                date = 0
+    
+            if week < len(member) and date < len(member[week]) and len(member[week][date]) > 1:
+                receiver = member[week][date] + suffix
+    
+        return receiver
+    
+    
+    if __name__ == '__main__':
+    
+        if len(sys.argv) > 1:
+            job = sys.argv[1]
+    
+            # 值日
+            if job == 'duty':
+                receiver = get_on_duty()
+                print receiver
+    
+                content_filename = 'duty.txt'
+                if datetime.datetime.now().weekday() == 5:
+                    content_filename = 'duty_Sat.txt'
+    
+                if len(receiver) > len(suffix):
+                    send_mail(receiver = receiver, content_filename = content_filename)
+    
+            # 每天日报提醒
+            elif job == 'daily':
+                send_mail(receiver = 'partner', content_filename = 'daily_alert.txt')

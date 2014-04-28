@@ -20,31 +20,28 @@ tags: lisp scheme
 
 所以有：
 
-{% codeblock cmdline %}
-> (define x '(1 2))
-> x
-(1 2)
-> (list? x)
-#t
-> (cons? x)
-#t
-> (cddr x) ; 以null结尾
-()
+    > (define x '(1 2))
+    > x
+    (1 2)
+    > (list? x)
+    #t
+    > (cons? x)
+    #t
+    > (cddr x) ; 以null结尾
+    ()
 
-> (define y (cons 1 2))
-> (list? y)
-#f
-> (cons? y)
-#f
-> (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
-> y
-(1)
-> (list? y) ; 变成了list
-#t
-> (cons? y)
-#t
-{% endcodeblock %}
-	
+    > (define y (cons 1 2))
+    > (list? y)
+    #f
+    > (cons? y)
+    #f
+    > (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
+    > y
+    (1)
+    > (list? y) ; 变成了list
+    #t
+    > (cons? y)
+    #t
 
 ####2. pair的显示规则
 
