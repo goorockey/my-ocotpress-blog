@@ -7,9 +7,7 @@
 	<meta name="author" content="Goorockey">
 
 	
-	<meta name="description" content="关于exploit exercise nebula level01 Oct 10th, 2012 linux Comments 今天做exploit exercise的nebula level01，长见识了，记录一下。 题目 题目提供了/home/flag01/下flag01的源码： 1
-2
-3 &hellip;">
+	<meta name="description" content="关于exploit exercise nebula level01 Oct 10th, 2012 linux Comments 今天做exploit exercise的nebula level01，长见识了，记录一下。 题目 题目提供了/home/flag01/下flag01的源码： # &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -138,43 +136,25 @@
 
 <p>题目提供了/home/flag01/下flag01的源码：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="cp">#include &lt;stdlib.h&gt;</span>
-</span><span class="line"><span class="cp">#include &lt;unistd.h&gt;</span>
-</span><span class="line"><span class="cp">#include &lt;string.h&gt;</span>
-</span><span class="line"><span class="cp">#include &lt;sys/types.h&gt;</span>
-</span><span class="line"><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
-</span><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="n">gid_t</span> <span class="n">gid</span><span class="p">;</span>
-</span><span class="line">    <span class="n">uid_t</span> <span class="n">uid</span><span class="p">;</span>
-</span><span class="line">    <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
-</span><span class="line">    <span class="n">uid</span> <span class="o">=</span> <span class="n">geteuid</span><span class="p">();</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
-</span><span class="line">    <span class="n">setresuid</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">system</span><span class="p">(</span><span class="s">&quot;/usr/bin/env echo and now what?&quot;</span><span class="p">);</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char **argv, char **envp)
+{
+    gid_t gid;
+    uid_t uid;
+    gid = getegid();
+    uid = geteuid();
+
+    setresgid(gid, gid, gid);
+    setresuid(uid, uid, uid);
+
+    system("/usr/bin/env echo and now what?");
+}
+</code></pre>
 
 <p>flag01的权限：</p>
 
@@ -252,17 +232,12 @@
 
 <p>执行blat -h 或者看官网上的帮助，使用blat发邮件还是很简单的（所以官网特别提醒不要用blat来发SPAM。。)</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>blat基本用法 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">blat &lt;邮件正文文件&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
-</span><span class="line">        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;
-</span><span class="line">
-</span><span class="line">blat - -body &lt;邮件正文&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
-</span><span class="line">        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>blat &lt;邮件正文文件&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
+        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;
+
+blat - -body &lt;邮件正文&gt; -from &lt;发送地址&gt; -to &lt;接受地址&gt; -subject &lt;邮件标题&gt; 
+        -server &lt;smtp服务器地址&gt; -username &lt;登录服务器用户名&gt; -password &lt;密码&gt;
+</code></pre>
 
 <p>blat还可以通过-install把参数保存到注册表。blat确实是自动发邮件的大杀器！</p>
 
@@ -352,51 +327,29 @@
 
 <p>所以有：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>cmdline </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&gt; (define x '(1 2))
-</span><span class="line">&gt; x
-</span><span class="line">(1 2)
-</span><span class="line">&gt; (list? x)
-</span><span class="line">#t
-</span><span class="line">&gt; (cons? x)
-</span><span class="line">#t
-</span><span class="line">&gt; (cddr x) ; 以null结尾
-</span><span class="line">()
-</span><span class="line">
-</span><span class="line">&gt; (define y (cons 1 2))
-</span><span class="line">&gt; (list? y)
-</span><span class="line">#f
-</span><span class="line">&gt; (cons? y)
-</span><span class="line">#f
-</span><span class="line">&gt; (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
-</span><span class="line">&gt; y
-</span><span class="line">(1)
-</span><span class="line">&gt; (list? y) ; 变成了list
-</span><span class="line">#t
-</span><span class="line">&gt; (cons? y)
-</span><span class="line">#t</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>&gt; (define x '(1 2))
+&gt; x
+(1 2)
+&gt; (list? x)
+#t
+&gt; (cons? x)
+#t
+&gt; (cddr x) ; 以null结尾
+()
+
+&gt; (define y (cons 1 2))
+&gt; (list? y)
+#f
+&gt; (cons? y)
+#f
+&gt; (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
+&gt; y
+(1)
+&gt; (list? y) ; 变成了list
+#t
+&gt; (cons? y)
+#t
+</code></pre>
 
 <h4 id="pair">2. pair的显示规则</h4>
 

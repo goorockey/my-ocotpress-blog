@@ -91,51 +91,29 @@
 
 <p>所以有：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>cmdline </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&gt; (define x '(1 2))
-</span><span class="line">&gt; x
-</span><span class="line">(1 2)
-</span><span class="line">&gt; (list? x)
-</span><span class="line">#t
-</span><span class="line">&gt; (cons? x)
-</span><span class="line">#t
-</span><span class="line">&gt; (cddr x) ; 以null结尾
-</span><span class="line">()
-</span><span class="line">
-</span><span class="line">&gt; (define y (cons 1 2))
-</span><span class="line">&gt; (list? y)
-</span><span class="line">#f
-</span><span class="line">&gt; (cons? y)
-</span><span class="line">#f
-</span><span class="line">&gt; (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
-</span><span class="line">&gt; y
-</span><span class="line">(1)
-</span><span class="line">&gt; (list? y) ; 变成了list
-</span><span class="line">#t
-</span><span class="line">&gt; (cons? y)
-</span><span class="line">#t</span></code></pre></td></tr></table></div></figure></notextile></div>
+<pre><code>&gt; (define x '(1 2))
+&gt; x
+(1 2)
+&gt; (list? x)
+#t
+&gt; (cons? x)
+#t
+&gt; (cddr x) ; 以null结尾
+()
+
+&gt; (define y (cons 1 2))
+&gt; (list? y)
+#f
+&gt; (cons? y)
+#f
+&gt; (set-cdr! y '()) ; 把y的cdr设为null，使y变成list
+&gt; y
+(1)
+&gt; (list? y) ; 变成了list
+#t
+&gt; (cons? y)
+#t
+</code></pre>
 
 <h4 id="pair">2. pair的显示规则</h4>
 
