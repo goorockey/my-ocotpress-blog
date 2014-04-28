@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/feed" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-28T20:23:17+08:00</updated>
+  <updated>2014-04-28T20:24:45+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -1722,7 +1722,7 @@ ssh端口转发有三种：<br />
     <link href="http://www.goorockey.com/blogs/45011"/>
     <updated>2011-09-05T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/45011</id>
-    <content type="html"><![CDATA[<p>1.原子操作</p>
+    <content type="html"><![CDATA[<h3 id="section">原子操作</h3>
 
 <p>能调用的原子操作</p>
 
@@ -1735,7 +1735,7 @@ PVOID InterlockedCompareExchangePointer(PVOID* ppvDestination, PVOID pvExchange,
 
 <!--more-->
 
-<p>2.以查询方式同步</p>
+<h3 id="section-1">以查询方式同步</h3>
 
 <pre><code>volatile BOOL g_fFinishedCalculation = FALSE;
 
@@ -1769,7 +1769,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<p>3.关键代码段Critical_Section</p>
+<h3 id="criticalsection">关键代码段Critical_Section</h3>
 
 <ul>
   <li>
@@ -1820,7 +1820,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<p>4.内核对象同步</p>
+<h3 id="section-2">内核对象同步</h3>
 
 <ul>
   <li>
@@ -1831,7 +1831,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<p>5.WaitableTimer</p>
+<h3 id="waitabletimer">WaitableTimer</h3>
 
 <ul>
   <li>
@@ -1845,7 +1845,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<p>6.其他等待函数</p>
+<h3 id="section-3">其他等待函数</h3>
 
 <table width="571" border="0" cellspacing="0" cellpadding="2">
 <tbody>
@@ -1860,7 +1860,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
 </tbody>
 </table>
 
-<p>7.各同步的内核对象的理解</p>
+<h3 id="section-4">各同步的内核对象的理解</h3>
 
 <ul>
   <li>
