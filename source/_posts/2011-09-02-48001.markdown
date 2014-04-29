@@ -9,7 +9,7 @@ tags: windows programming
 tags: windows programming
 ---
 
-### 一、摘要
+## 一、摘要
 
 1.内核对象有使用计数，当计数减为0时，内核对象被销毁。
 
@@ -17,7 +17,7 @@ tags: windows programming
 
 3.每个进程内有内核对象句柄表，记录使用中的内核对象。
 
-### 二、内核对象
+## 二、内核对象
 
 1.对内核对象的操作,只能通过调API
 

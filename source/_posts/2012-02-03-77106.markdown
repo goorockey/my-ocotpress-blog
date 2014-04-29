@@ -10,7 +10,7 @@ tags: 趣味
 
 今天拿自己项目组svn的日志来小玩了一下code swarm。
 
-### 什么是code swarm?
+## 什么是code swarm?
 
 code swarm是可以把svn、cvs、git等代码管理系统的日志，以可视化的形式展现的项目。
 
@@ -26,7 +26,7 @@ swarm是蜂群的意思，code swarm会以蜂群的形式表示每个人上传�
 
 我个人感觉，看别人的code swarm没什么特别的感受，只有看自己项目的才有感觉，呵呵。
 
-### 使用 code swarm
+## 使用 code swarm
 
 可以从它google code 的主页中下载代码：<http://code.google.com/p/codeswarm/downloads/list>
 
@@ -38,7 +38,7 @@ code swarm有可以通过run.bat或者runrepositoryfetch.bat来启动。run.bat�
 
 在命令行提示中选择配置文件后，code swarm就能呈现了，但还可以修改配置来达到自己的效果。
 
-### 配置code swarm
+## 配置code swarm
 
 我觉得关键的配置：
 
@@ -62,7 +62,7 @@ code swarm有可以通过run.bat或者runrepositoryfetch.bat来启动。run.bat�
  
 - **CircularAvatars** 用圆形截取头像图片，这会用到程序代码src下的mask.png图片，这里也要注意修改AvatarSize后，mask.png的尺寸也要改变，否则程序中断。
 
-### 把code swarm的图片合成为视频
+## 把code swarm的图片合成为视频
 
 方法很多，抱着学习的心态，我试着按wiki的方法用mencoder。
 

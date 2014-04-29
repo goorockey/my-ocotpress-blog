@@ -8,7 +8,7 @@ categories: linux
 tags: linux 
 ---
 
-### 背景
+## 背景
 
 之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。
 
@@ -18,7 +18,7 @@ tags: linux
 
 <!-- more -->
 
-### 系统
+## 系统
 
 这次选的linux的linux mint(64bit)，一个基于ubuntu的linux发行版。
 
@@ -26,7 +26,7 @@ tags: linux
 
 我不大喜欢ubuntu现在的natty，所以就在虚拟机试用了一下linux mint，感觉比ubuntu方便。
 
-### 工具
+## 工具
 
 - **浏览器**：firefox。一直用firefox，插件强大。
 
@@ -38,7 +38,7 @@ tags: linux
 
 - **虚拟机**：virtualbox。在virtualbox装了xp，感觉比vmware快多了。。
 
-### 日常应用
+## 日常应用
 
 1.网络管理
 

@@ -12,7 +12,7 @@ tags: linux vim
 
     想要知道文章里面有多少个单词，要怎么做呢？
 
-### 直接用vim的命令
+## 直接用vim的命令
 
 命令模式下按： `g <Ctrl-g>`
 
@@ -24,7 +24,7 @@ tags: linux vim
 
 <!--more-->
 
-### 巧用替换功能
+## 巧用替换功能
 
 1.统计字段
 
@@ -56,7 +56,7 @@ tags: linux vim
 `:h su`
 `:h search-pattern`
 
-### P.S.
+## P.S.
 
 由于我配置了set hlsearch，每次匹配完都会高亮匹配，直到下一次匹配。 
 

@@ -18,7 +18,7 @@ tags: blog dotcloud wordpress
 
 <!-- more -->
 
-### dotcloud介绍
+## dotcloud介绍
 
 dotcloud是PaaS(Platform as a Service)的云计算平台，类似的还有GAE、Heroku、国内的SAE。
 
@@ -32,7 +32,7 @@ dotcloud对搭建的应用没有空间和流量限制，但现在有两个限制
 
 dotcloud的访问速度还是很快的。
 
-### dotcloud使用
+## dotcloud使用
 
 搭建wordpress的话，网上资源很多，我主要是参考：
 
@@ -42,7 +42,7 @@ dotcloud的访问速度还是很快的。
 
 反正算蛮简单的。
 
-### 建议：
+## 建议：
 
 不要用postinstall脚本连接的方法。由于dotcloud的push，是把原有的全部删除，重新建立一份，这个脚本是把wp-content移出current目录，防止push后把wp-content覆盖了。
 

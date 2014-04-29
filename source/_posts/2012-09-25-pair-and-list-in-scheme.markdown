@@ -10,7 +10,7 @@ tags: lisp scheme
 最近学scheme，总结一下pair和list的区别，主要是两点：
 
 
-####1. list一定是pair，但只有以null（空list）结尾的pair才是list
+###1. list一定是pair，但只有以null（空list）结尾的pair才是list
 
 对于(define list1 (list a b c)),list1表现为(a b c),其实也可以写成(a . (b . ()))。
 
@@ -43,7 +43,7 @@ tags: lisp scheme
     > (cons? y)
     #t
 
-####2. pair的显示规则
+###2. pair的显示规则
 
 引用[这里](http://download.plt-scheme.org/doc/html/guide/Pairs__Lists__and_Scheme_Syntax.html)的解释：
 

@@ -18,7 +18,7 @@ tags: others pdf
 
 <!-- more -->
 
-### pdfmyurl
+## pdfmyurl
 
 可以通过http://pdfmyurl.com?url=\<siteurl\> ,来把指定链接的网页保存为pdf，而且是直接返回的，即用wget http://pdfmyurl.com?url=\<siteurl\>就可以直接得到所需的pdf，不用再按什么按钮之类的了。
 
@@ -31,7 +31,7 @@ tags: others pdf
 
 pdfmyurl已经很强大了，但每次只能完成一个网面的pdf，所以还得想办法做pdf的合并。
 
-### pdftk
+## pdftk
 
 [pdftk]也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:
 

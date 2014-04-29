@@ -8,7 +8,7 @@ categories: linux
 tags: linux centos apache php mysql tomcat
 ---
 
-### 一、安装及配置Apache+php+mysql
+## 一、安装及配置Apache+php+mysql
 
 1.安装Apache+php+mysql
 
@@ -46,7 +46,7 @@ tags: linux centos apache php mysql tomcat
 
 - 自启动mysqld服务 service mysqld start
 
-### 二、安装和配置Tomcat：
+## 二、安装和配置Tomcat：
 
 1.安装JDK：
 

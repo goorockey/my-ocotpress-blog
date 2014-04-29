@@ -16,7 +16,7 @@ tags: python
 
 ---
 
-###1. 发邮件###
+##1. 发邮件##
 
 由于服务器是windows系统，google得知，windows下有[blat]这发邮件的大杀器，所以刚开始是想用blat+批处理做的。
 
@@ -67,13 +67,13 @@ python有[smtplib](http://docs.python.org/library/smtplib.html "smtplib")库实�
     days = (datetime.datetime.now() - datetime.datetime(2012,9,30)).days
 
 
-###2.定时###
+##2.定时##
 定时在windows可以用计划任务实现
 
 P.S 在linux可以用cron实现
 
 
-###3.整个代码###
+##3.整个代码##
 
     #coding=utf-8
     import smtplib

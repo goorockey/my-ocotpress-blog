@@ -9,7 +9,7 @@ tags: windows programming
 tags: windows programming
 ---
 
-### 一、摘要：
+## 一、摘要：
 
 - 进程只是线程的容器，存放数据和代码，但不执行代码。
 
@@ -17,7 +17,7 @@ tags: windows programming
 
 - 作业是对一个或多个进程的统一管理，能添加一般无法添加的限制。
 
-### 二、进程
+## 二、进程
 
 1.概念
 
@@ -54,7 +54,7 @@ tags: windows programming
 
 - TerminateProcess，跟ExitProcess一样是可能造成内存泄露的。另外它是异步的，即只是通知要终止目标进程，返回后并不代表它已结束。
 
-### 三、作业
+## 三、作业
 
 1.基本概念
 
@@ -87,7 +87,7 @@ JOB\_OBJECT\_UILIMIT\_GLOBALATOMS | 为作业赋予它自己的基本结构表�
 JOB\_OBJECT\_UILIMIT\_DESKTOP | 防止进程使用CreateDesktop或SwitchDesktop函数创建或转换桌面
 JOB\_OBJECT\_UILIMIT\_HANDLES | 防止作业中的进程使用同一作业外部的进程创建的USER对象（如HWND）
 
-### 四、线程
+## 四、线程
 
 1.基本概念
 
@@ -138,7 +138,7 @@ JOB\_OBJECT\_UILIMIT\_HANDLES | 防止作业中的进程使用同一作业外部
 
 - 之所以pfnStartAddr和pvParam压栈，就是因为线程开始运行时，CPU跳到IP指向BaseThreadStart，然后把pfnStartAddr和pvParam出栈，就把它们当做形参传给BaseThreadStart了。
 
-### 五、其他
+## 五、其他
 
 1.C/C++ Runtime Library的多线程版本
 

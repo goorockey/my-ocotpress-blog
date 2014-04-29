@@ -21,7 +21,7 @@ tags: hadoop programming
 
 <!-- more -->
 
-### 准备
+## 准备
 
 我是在linux上弄的，windows下用cygwin也行。
 
@@ -36,7 +36,7 @@ tags: hadoop programming
 
 这时候执行bin/hadoop就会出现帮助信息了。
 
-### 跑例程
+## 跑例程
 
 Hadoop的文件系统叫[HDFS]（Hadoop distribution filesystem)，是一个分布式文件系统。每份数据都会在多个节点有备份，以容错、修复。所有数据都要先放进HDFS才能Hadoop处理。
 
@@ -63,7 +63,7 @@ Hadoop的分布式体系中，有一个NameNode，是master的角色，负责主
     $ bin/hadoop fs -ls output
     $ bin/hadoop fs -cat output/*
 
-### WordCount例子
+## WordCount例子
 
 [WordCount]是hadoop中的另一个例子
 
@@ -90,6 +90,6 @@ Hadoop是通过[MapReduce]机制来处理大数据的。Map阶段分割输入的
 
     $ bin/hadoop fs -cat output/*  # 打印结果
 
-### 结语
+## 结语
 
 尝试了一下Hadoop，还有更多有待研究

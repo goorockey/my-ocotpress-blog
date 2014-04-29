@@ -12,7 +12,7 @@ tags: network vmware nat
 
 实验涉及：NAT，iptables，
 
-### 实验目标
+## 实验目标
 
 这次我要用iptables实现NAT功能（SNAT和DNAT）。
 
@@ -30,13 +30,13 @@ tags: network vmware nat
 
 - D能通过C访问到A、B的服务
 
-### 环境
+## 环境
 
 用VMWare虚拟出这4台机子，VMWare的版本为8.0
 
 每台机子都跑CentOS 6.0
 
-### VMWare环境配置
+## VMWare环境配置
 
 安装4个虚拟机，都装上CentOS，主机名分别定为hostA、hostB、hostC、hostD，对应A、B、C、D。
 
@@ -72,7 +72,7 @@ CentOS里面配置网卡方法就是修改/etc/sysconfig/network-scripts/ifcfg-e
 	ABD都不能互访，因为在不同的网段
 	C则都能跟它们三个互访
 
-### 配置网关C的iptables，实现NAT
+## 配置网关C的iptables，实现NAT
 
 到关键也是好玩的地方了。
 
@@ -128,7 +128,7 @@ SNAT可以看看我的博文。 嘻嘻……
 
 现在D可以通过ssh到C的19991口来ssh到A了。
 
-### 小结
+## 小结
 
 整个实验搞完，对iptables，NAT的原理还是深刻了不少。
 
