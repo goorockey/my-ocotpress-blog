@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/feed" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-29T10:51:03+08:00</updated>
+  <updated>2014-04-29T10:53:20+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -483,9 +483,9 @@ blat - -body &lt;邮件正文&gt; -from &lt;发送地址&gt; -to &lt;接受地�
 <p>当然也不是不能完成，网上也有方法:</p>
 
 <ul>
-  <li>http://bbs.bathome.net/thread-11128-1-1.html</li>
-  <li>http://bbs.bathome.net/viewthread.php?tid=5659&amp;highlight=%2Bbatman</li>
-  <li>http://bbs.bathome.net/viewthread.php?tid=5682&amp;highlight=%2Bbatman</li>
+  <li><a href="http://bbs.bathome.net/thread-11128-1-1.html">http://bbs.bathome.net/thread-11128-1-1.html</a></li>
+  <li><a href="http://bbs.bathome.net/viewthread.php?tid=5659&amp;highlight=%2Bbatman">http://bbs.bathome.net/viewthread.php?tid=5659&amp;highlight=%2Bbatman</a></li>
+  <li><a href="http://bbs.bathome.net/viewthread.php?tid=5682&amp;highlight=%2Bbatman">http://bbs.bathome.net/viewthread.php?tid=5682&amp;highlight=%2Bbatman</a></li>
 </ul>
 
 <p>嫌麻烦，我还是决定找有现成库的方法来做，所以就想到用有各种库的python实现了。</p>
