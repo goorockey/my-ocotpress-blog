@@ -394,7 +394,9 @@
   
 <p>由于某种原因，今天玩了一下<a href="http://hadoop.apache.org/" title="Hadoop">Hadoop</a>。正确来说，我是玩<a href="http://code.google.com/p/hop/" title="HOP">HOP</a>，一个Hadoop的修改版本。</p>
 
-<blockquote><p>The Hadoop Online Prototype (HOP) is a modified version of Hadoop MapReduce that allows data to be pipelined between tasks and between jobs. This can enable better cluster utilization and increased parallelism, and allows new functionality: online aggregation (approximate answers as a job runs), and stream processing (MapReduce jobs that run continuously, processing new data as it arrives).</p></blockquote>
+<blockquote>
+  <p>The Hadoop Online Prototype (HOP) is a modified version of Hadoop MapReduce that allows data to be pipelined between tasks and between jobs. This can enable better cluster utilization and increased parallelism, and allows new functionality: online aggregation (approximate answers as a job runs), and stream processing (MapReduce jobs that run continuously, processing new data as it arrives). </p>
+</blockquote>
 
 <p>就是多了pipeline（流水线）的Hadoop。分布式流水线可以有效加快各jobs在各节点的同步运算。</p>
 

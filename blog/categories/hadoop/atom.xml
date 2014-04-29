@@ -4,7 +4,7 @@
   <title><![CDATA[categories: hadoop | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/hadoop/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-29T01:13:44+08:00</updated>
+  <updated>2014-04-29T10:51:03+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -21,7 +21,9 @@
     <content type="html"><![CDATA[
 <p>由于某种原因，今天玩了一下<a href="http://hadoop.apache.org/" title="Hadoop">Hadoop</a>。正确来说，我是玩<a href="http://code.google.com/p/hop/" title="HOP">HOP</a>，一个Hadoop的修改版本。</p>
 
-<p><blockquote><p>The Hadoop Online Prototype (HOP) is a modified version of Hadoop MapReduce that allows data to be pipelined between tasks and between jobs. This can enable better cluster utilization and increased parallelism, and allows new functionality: online aggregation (approximate answers as a job runs), and stream processing (MapReduce jobs that run continuously, processing new data as it arrives).</p></blockquote></p>
+<blockquote>
+  <p>The Hadoop Online Prototype (HOP) is a modified version of Hadoop MapReduce that allows data to be pipelined between tasks and between jobs. This can enable better cluster utilization and increased parallelism, and allows new functionality: online aggregation (approximate answers as a job runs), and stream processing (MapReduce jobs that run continuously, processing new data as it arrives). </p>
+</blockquote>
 
 <p>就是多了pipeline（流水线）的Hadoop。分布式流水线可以有效加快各jobs在各节点的同步运算。</p>
 
@@ -61,15 +63,13 @@ $ cp conf/*.xml input/
 
 $ bin/hadoop fs -put intput input   # 把当前文件系统input目录复制为HDFS的input
 $ bin/hadoop jar hadoop-*-examples.jar grep input output 'dfs[a-z.]+'  # 执行所有example.jar，后面的是参数
-</code></pre>
 
-<h1 id="section-2">一段时间后，执行完毕</h1>
-<pre><code>$ bin/hadoop fs -get output output # 把HDFS中的output目录复制为当前文件系统的ouput
+# 一段时间后，执行完毕 #
+$ bin/hadoop fs -get output output # 把HDFS中的output目录复制为当前文件系统的ouput
 $ cat output/* # 打印结果
-</code></pre>
 
-<h1 id="hdfs">或者直接对HDFS操作</h1>
-<pre><code>$ bin/hadoop fs -ls output
+# 或者直接对HDFS操作 #
+$ bin/hadoop fs -ls output
 $ bin/hadoop fs -cat output/*
 </code></pre>
 
@@ -95,7 +95,6 @@ $ jar -cvf wordcount.jar -C wordcount_classes/ .
 $ bin/hadoop fs -rmr output/
 
 $ bin/hadoop fs -put input input # 把输入文件目录input重新放到HDFS中
-
 $ bin/hadoop jar wordcount.jar org.myorg.WordCount input output  # 执行wordcount.jar
 
 # 执行一段时间后完毕 #
@@ -103,7 +102,7 @@ $ bin/hadoop jar wordcount.jar org.myorg.WordCount input output  # 执行wordcou
 $ bin/hadoop fs -cat output/*  # 打印结果
 </code></pre>
 
-<h3 id="section-3">结语</h3>
+<h3 id="section-2">结语</h3>
 
 <p>尝试了一下Hadoop，还有更多有待研究</p>
 ]]></content>
