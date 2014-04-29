@@ -1,1 +1,1 @@
-My Blog:http://www.goorockey.com
+My Octopress Blog
