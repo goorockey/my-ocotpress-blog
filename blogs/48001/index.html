@@ -140,36 +140,35 @@
 
 <p>内核对象句柄表结构：</p>
 
-<table width="563" border="1" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td valign="top" width="102">索引
-(Handle)</td>
-<td valign="top" width="159"><span style="color: #ff8080;">内核对象内存块的指针</span></td>
-<td valign="top" width="150">访问屏蔽
-（标志位的DWORD）</td>
-<td valign="top" width="150">继承标志
-（标志位的DWORD ）</td>
-</tr>
-<tr>
-<td valign="top" width="102">1</td>
-<td valign="top" width="159">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-</tr>
-<tr>
-<td valign="top" width="102">2</td>
-<td valign="top" width="159">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-</tr>
-<tr>
-<td valign="top" width="102">…</td>
-<td valign="top" width="159">…</td>
-<td valign="top" width="151">…</td>
-<td valign="top" width="151">…</td>
-</tr>
-</tbody>
+<table>
+  <thead>
+    <tr>
+      <th>索引 (Handle)</th>
+      <th>内核对象内存块的指针</th>
+      <th>访问屏蔽（标志位的DWORD）</th>
+      <th>继承标志（标志位的DWORD ）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+    </tr>
+    <tr>
+      <td>…</td>
+      <td>…</td>
+      <td>…</td>
+      <td>…</td>
+    </tr>
+  </tbody>
 </table>
 
 <ul>

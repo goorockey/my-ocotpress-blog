@@ -4,7 +4,7 @@
   <title><![CDATA[categories: windows | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/windows/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-29T10:53:20+08:00</updated>
+  <updated>2014-04-29T12:00:03+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -143,17 +143,17 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
 
 <h3 id="section-3">其他等待函数</h3>
 
-<table width="571" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td valign="top" width="208">MsgWaitForMultipleObjects和MsgWaitForMultipleObjectsEx</td>
-<td valign="top" width="361">等待多个内核对象有信号、或指定类型消息到达线程的输入队列</td>
-</tr>
-<tr>
-<td valign="top" width="208">SingleObjectAndWait</td>
-<td valign="top" width="361">在一个原子操作完成设置一个内核对象为有信号，并进入等待另一个内核对象</td>
-</tr>
-</tbody>
+<table>
+  <tbody>
+    <tr>
+      <td>MsgWaitForMultipleObjects和MsgWaitForMultipleObjectsEx</td>
+      <td>等待多个内核对象有信号、或指定类型消息到达线程的输入队列</td>
+    </tr>
+    <tr>
+      <td>SingleObjectAndWait</td>
+      <td>在一个原子操作完成设置一个内核对象为有信号，并进入等待另一个内核对象</td>
+    </tr>
+  </tbody>
 </table>
 
 <h3 id="section-4">各同步的内核对象的理解</h3>
@@ -263,84 +263,88 @@ at least one thread of execution.
 
 <p>2.主要的API:</p>
 
-<table width="439" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td valign="top" width="200">API</td>
-<td valign="top" width="237">功能</td>
-</tr>
-<tr>
-<td valign="top" width="200">CreateJobObject</td>
-<td valign="top" width="237">创建作业内核对象</td>
-</tr>
-<tr>
-<td valign="top" width="200">OpenJobObject</td>
-<td valign="top" width="237">根据Handle打开作业内核对象</td>
-</tr>
-<tr>
-<td valign="top" width="200">IsProcessInJob</td>
-<td valign="top" width="237">验证某一个进程是否存在于作业中</td>
-</tr>
-<tr>
-<td valign="top" width="200">SetInformationJobObject</td>
-<td valign="top" width="237">给作业加上各种限制</td>
-</tr>
-<tr>
-<td valign="top" width="200">QueryInformationJobObject</td>
-<td valign="top" width="237">查询作业对象的信息</td>
-</tr>
-<tr>
-<td valign="top" width="200">AssignProcessToJobObject</td>
-<td valign="top" width="237">将进程放入作业</td>
-</tr>
-<tr>
-<td valign="top" width="200">TerminateJobObject</td>
-<td valign="top" width="237">终止作业内所有进程</td>
-</tr>
-</tbody>
+<table>
+  <thead>
+    <tr>
+      <th>API</th>
+      <th>功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CreateJobObject</td>
+      <td>创建作业内核对象</td>
+    </tr>
+    <tr>
+      <td>OpenJobObject</td>
+      <td>根据Handle打开作业内核对象</td>
+    </tr>
+    <tr>
+      <td>IsProcessInJob</td>
+      <td>验证某一个进程是否存在于作业中</td>
+    </tr>
+    <tr>
+      <td>SetInformationJobObject</td>
+      <td>给作业加上各种限制</td>
+    </tr>
+    <tr>
+      <td>QueryInformationJobObject</td>
+      <td>查询作业对象的信息</td>
+    </tr>
+    <tr>
+      <td>AssignProcessToJobObject</td>
+      <td>将进程放入作业</td>
+    </tr>
+    <tr>
+      <td>TerminateJobObject</td>
+      <td>终止作业内所有进程</td>
+    </tr>
+  </tbody>
 </table>
 
 <p>3.用于作业对象的基本用户界面限制的位标志</p>
 
-<table width="618" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td valign="top" width="188">标志</td>
-<td valign="top" width="428">描述</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_EXITWINDOWS</td>
-<td valign="top" width="428">用于防止进程通过ExitWindowsEx函数退出、关闭、重新引导或关闭系统电源</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_READCLIPBOARD</td>
-<td valign="top" width="428">防止进程读取剪贴板的内容</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_WRITECLIPBOARD</td>
-<td valign="top" width="428">防止进程删除剪贴板的内容</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS</td>
-<td valign="top" width="428">防止进程通过SystemParametersInfor函数来改变系统参数</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_DISPLAYSETTINGS</td>
-<td valign="top" width="428">防止进程通过ChangeDisplaySettings函数来改变显示设置</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_GLOBALATOMS</td>
-<td valign="top" width="428">为作业赋予它自己的基本结构表，使作业中的进程只能访问该作业的表</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_DESKTOP</td>
-<td valign="top" width="428">防止进程使用CreateDesktop或SwitchDesktop函数创建或转换桌面</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_HANDLES</td>
-<td valign="top" width="428">防止作业中的进程使用同一作业外部的进程创建的USER对象（如HWND）</td>
-</tr>
-</tbody>
+<table>
+  <thead>
+    <tr>
+      <th>标志</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>JOB_OBJECT_UILIMIT_EXITWINDOWS</td>
+      <td>用于防止进程通过ExitWindowsEx函数退出、关闭、重新引导或关闭系统电源</td>
+    </tr>
+    <tr>
+      <td>JOB_OBJECT_UILIMIT_READCLIPBOARD</td>
+      <td>防止进程读取剪贴板的内容</td>
+    </tr>
+    <tr>
+      <td>JOB_OBJECT_UILIMIT_WRITECLIPBOARD</td>
+      <td>防止进程删除剪贴板的内容</td>
+    </tr>
+    <tr>
+      <td>JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS</td>
+      <td>防止进程通过SystemParametersInfor函数来改变系统参数</td>
+    </tr>
+    <tr>
+      <td>JOB_OBJECT_UILIMIT_DISPLAYSETTINGS</td>
+      <td>防止进程通过ChangeDisplaySettings函数来改变显示设置</td>
+    </tr>
+    <tr>
+      <td>JOB_OBJECT_UILIMIT_GLOBALATOMS</td>
+      <td>为作业赋予它自己的基本结构表，使作业中的进程只能访问该作业的表</td>
+    </tr>
+    <tr>
+      <td>JOB_OBJECT_UILIMIT_DESKTOP</td>
+      <td>防止进程使用CreateDesktop或SwitchDesktop函数创建或转换桌面</td>
+    </tr>
+    <tr>
+      <td>JOB_OBJECT_UILIMIT_HANDLES</td>
+      <td>防止作业中的进程使用同一作业外部的进程创建的USER对象（如HWND）</td>
+    </tr>
+  </tbody>
 </table>
 
 <h3 id="section-3">四、线程</h3>
@@ -542,36 +546,35 @@ _endthreadex则是对应多做了清空关联数据结构的操作。
 
 <p>内核对象句柄表结构：</p>
 
-<table width="563" border="1" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td valign="top" width="102">索引
-(Handle)</td>
-<td valign="top" width="159"><span style="color: #ff8080;">内核对象内存块的指针</span></td>
-<td valign="top" width="150">访问屏蔽
-（标志位的DWORD）</td>
-<td valign="top" width="150">继承标志
-（标志位的DWORD ）</td>
-</tr>
-<tr>
-<td valign="top" width="102">1</td>
-<td valign="top" width="159">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-</tr>
-<tr>
-<td valign="top" width="102">2</td>
-<td valign="top" width="159">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-</tr>
-<tr>
-<td valign="top" width="102">…</td>
-<td valign="top" width="159">…</td>
-<td valign="top" width="151">…</td>
-<td valign="top" width="151">…</td>
-</tr>
-</tbody>
+<table>
+  <thead>
+    <tr>
+      <th>索引 (Handle)</th>
+      <th>内核对象内存块的指针</th>
+      <th>访问屏蔽（标志位的DWORD）</th>
+      <th>继承标志（标志位的DWORD ）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+      <td>0 x ? ? ? ? ? ? ? ?</td>
+    </tr>
+    <tr>
+      <td>…</td>
+      <td>…</td>
+      <td>…</td>
+      <td>…</td>
+    </tr>
+  </tbody>
 </table>
 
 <ul>
@@ -638,34 +641,26 @@ _endthreadex则是对应多做了清空关联数据结构的操作。
 
 <p>大概的就是这样：</p>
 
-<table width="567" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td align="center" valign="top" width="212">子控件有ON_NOTIFY_REFLECT</td>
-<td align="center" valign="top" width="155">父窗口有ON_NOTIFY</td>
-<td align="center" valign="top" width="198">效果</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="212">N</td>
-<td align="center" valign="top" width="155">N</td>
-<td align="center" valign="top" width="198">WM_NOTIFY未被处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="212">N</td>
-<td align="center" valign="top" width="155">Y</td>
-<td align="center" valign="top" width="198">WM_NOTIFY只被父窗口处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="212">Y</td>
-<td align="center" valign="top" width="155">N</td>
-<td align="center" valign="top" width="198">WM_NOTIFY只被子控件处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="212">Y</td>
-<td align="center" valign="top" width="155">Y</td>
-<td align="center" valign="top" width="198">WM_NOTIFY只被子控件处理</td>
-</tr>
-</tbody>
+<table>
+  <thead>
+    <tr>
+      <th>子控件有ON_NOTIFY_REFLECT</th>
+      <th>父窗口有ON_NOTIFY</th>
+      <th>效果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>WM_NOTIFY未被处理</td>
+      <td>WM_NOTIFY只被父窗口处理</td>
+      <td>WM_NOTIFY只被子控件处理</td>
+    </tr>
+    <tr>
+      <td>Y</td>
+      <td>Y</td>
+      <td>WM_NOTIFY只被子控件处理</td>
+    </tr>
+  </tbody>
 </table>
 
 <!--more-->
@@ -686,35 +681,38 @@ _endthreadex则是对应多做了清空关联数据结构的操作。
 
 <p>大概是这样：</p>
 
-<table width="610" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td align="center" valign="top" width="220">子控件ON_NOTIFY_REFLECT_EX返回值</td>
-<td align="center" valign="top" width="144">父窗口有ON_NOTIFY</td>
-<td align="center" valign="top" width="244">效果</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="220">TRUE</td>
-<td align="center" valign="top" width="144">N</td>
-<td align="center" valign="top" width="244">WM_NOTIFY只被子控件处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="220">TRUE</td>
-<td align="center" valign="top" width="144">Y</td>
-<td align="center" valign="top" width="244">WM_NOTIFY只被子控件处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="220">FALSE</td>
-<td align="center" valign="top" width="144">N</td>
-<td align="center" valign="top" width="244">WM_NOTIFY只被子控件处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="220">FALSE</td>
-<td align="center" valign="top" width="144">Y</td>
-<td align="center" valign="top" width="244">WM_NOTIFY被子控件和父窗口处理</td>
-</tr>
-</tbody>
+<table>
+  <thead>
+    <tr>
+      <th>子控件ON_NOTIFY_REFLECT_EX返回值</th>
+      <th>父窗口有ON_NOTIFY</th>
+      <th>效果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TRUE</td>
+      <td>N</td>
+      <td>WM_NOTIFY只被子控件处理</td>
+    </tr>
+    <tr>
+      <td>TRUE</td>
+      <td>Y</td>
+      <td>WM_NOTIFY只被子控件处理</td>
+    </tr>
+    <tr>
+      <td>FALSE</td>
+      <td>N</td>
+      <td>WM_NOTIFY只被子控件处理</td>
+    </tr>
+    <tr>
+      <td>FALSE</td>
+      <td>Y</td>
+      <td>WM_NOTIFY被子控件和父窗口处理</td>
+    </tr>
+  </tbody>
 </table>
+
 ]]></content>
   </entry>
   
