@@ -84,7 +84,7 @@
 
 <p>DNS隧道是什么就不解释了。google一下DNS隧道能搜到风河、云风两个大牛相关的blog。这次我用iodine来实现DNS隧道。</p>
 
-<h3 id="section">场景 </h3>
+<h2 id="section">场景 </h2>
 <p>现在情况是，用户只能跟外界有DNS通路，想借此进行平常的http、ftp等通信。</p>
 
 <p>据说平常的CMCC等开放热点，虽然http等要账号和密码，但DNS是通的，然后你懂的了。</p>
@@ -111,7 +111,7 @@
   <li>
     <p>外网回复的数据包原路返回，这样就完成通讯了。
  
-### VMWare环境模拟</p>
+## VMWare环境模拟</p>
   </li>
 </ul>
 
@@ -132,7 +132,7 @@ HostC（DNS服务器）可以跟HostA进行DNS解析，且能跟HostB通信。 
 HostA的iptables不允许HostA和HostB之间互访
 </code></pre>
 
-<h3 id="dns">DNS服务器配置</h3>
+<h2 id="dns">DNS服务器配置</h2>
 
 <p>刚开始看教程好像很繁琐，感觉conf文件好多啊，而且配置项也多~~</p>
 
@@ -245,7 +245,7 @@ $ iptables –I INPUT -p udp --dport 53 -j ACCEPT
 
 <p>在HostA和HostB的/etc/resolv.conf添加HostA的ip后，就能正确解析goorockey.go了。</p>
 
-<h3 id="iodine">iodine</h3>
+<h2 id="iodine">iodine</h2>
 
 <p>iodine是外国人写的开源DNS隧道工具，有linux版、windows版和Mac版的。教程看它的ReadMe或者HowToSetup都比较清楚。</p>
 
@@ -278,13 +278,13 @@ $ iptables –I INPUT -p udp --dport 53 -j ACCEPT
 
 <p> 然后就可以用ssh隧道过去来做代理了~~</p>
 
-<h3 id="section-1">小结</h3>
+<h2 id="section-1">小结</h2>
 
 <p>那时候看到DNS隧道，真是非常的兴奋，感觉太爽、太妙了。其实协议都可以这样做隧道，只是那时候没有意识到而已。</p>
 
 <p>之后还继续想实验一下ICMP隧道，看一下iodine的代码。O(∩_∩)O哈哈~</p>
 
-<h3 id="section-2">参考资料：</h3>
+<h2 id="section-2">参考资料：</h2>
 
 <ul>
   <li>

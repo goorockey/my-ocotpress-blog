@@ -4,7 +4,7 @@
   <title><![CDATA[Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-29T12:00:03+08:00</updated>
+  <updated>2014-04-29T12:34:56+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -27,7 +27,7 @@
 
 <!-- more -->
 
-<h3 id="wxrectcrect">wxRect和CRect</h3>
+<h2 id="wxrectcrect">wxRect和CRect</h2>
 
 <p>Windows的CRect要替换成wxWidgets的wxRect真不能简单的替换，因为两者内部设计不一样。</p>
 
@@ -41,21 +41,21 @@
 
 <p>鉴于wxRect和CRect以上的差异，其实移植的时候最好的做法是自己写一个封装了wxRect的MyRect类，把wxRect和CRect的差异在MyRect里面做转换。这其实是应用了Adaptor Pattern。</p>
 
-<h3 id="macwxbitmapwxclipboardalpha">Mac下wxBitmap在剪切板wxClipboard取回时，Alpha信息丢失</h3>
+<h2 id="macwxbitmapwxclipboardalpha">Mac下wxBitmap在剪切板wxClipboard取回时，Alpha信息丢失</h2>
 
 <p>wxWidgets在从剪切板wxClipboard取回图片数据wxBitmapDataObject时，会丢失了透明信息，即Alpha channel。具体来看就是原来用RGBA表示的有透明信息的图片，通过剪切板传递之后，RGBA的A都变成255了。</p>
 
 <p>我通过查看wxWidgets的源码，发现确实是个bug，wxWidgets在Mac这边调用Cocoa接口从剪切板获取像素数据保存为图片时，没有关注Alpha channel。这个我通过修改它源码解决了。详见我提交到官方的这个<a href="http://trac.wxwidgets.org/ticket/16198">ticket</a>。</p>
 
-<h3 id="wxdcunix">wxDC在Unix下不是线程安全的</h3>
+<h2 id="wxdcunix">wxDC在Unix下不是线程安全的</h2>
 
 <p>wxDC是wxWidgets的绘制上下文，对应于Windows下的CDC。官方资料说了，wxDC在Unix平台下是非线程安全的。这里指的Unix平台具体是GTK(Linux)和OSX(Mac)。所以绘制的时候最好是下wxPaintEvent的响应函数里面做。在子线程做绘制不保证正确，即使是用wxWidgets的wxGuiEnter/wxGuiLeave加锁也是不行。</p>
 
-<h3 id="section">对话框资源的移植</h3>
+<h2 id="section">对话框资源的移植</h2>
 
 <p>在MFC中，对话框资源都保存在rc文件中。而对应到wxWidgets，每个对话框以xml格式保存成各自的xrc文件，跟rc有一定区别。MFC大部分控件在wxWidgets都能找到。对于对话框资源的移植，我们是用脚本批量完成的，中间一个坑是转换时候对话框和控件的大小在MFC的rc和wxWidgets的xrc不是1:1的，要乘一个比例，1.5左右。</p>
 
-<h3 id="all-in-all">ALL IN ALL</h3>
+<h2 id="all-in-all">ALL IN ALL</h2>
 
 <p>以上是暂时记得的问题。总的来说，wxWidgets是个强大的跨平台库，用着真心方便，常用的操作也都覆盖了，代码也整洁漂亮，社区也活跃，还是可以放心选用的。而且作为一个开源库，有什么问题都能自己定位自己修改解决，开源万岁～
 <br />
@@ -181,7 +181,7 @@
 
 <!-- more -->
 
-<h3 id="pdfmyurl">pdfmyurl</h3>
+<h2 id="pdfmyurl">pdfmyurl</h2>
 
 <p>可以通过http://pdfmyurl.com?url=&lt;siteurl&gt; ,来把指定链接的网页保存为pdf，而且是直接返回的，即用wget http://pdfmyurl.com?url=&lt;siteurl&gt;就可以直接得到所需的pdf，不用再按什么按钮之类的了。</p>
 
@@ -196,7 +196,7 @@
 
 <p>pdfmyurl已经很强大了，但每次只能完成一个网面的pdf，所以还得想办法做pdf的合并。</p>
 
-<h3 id="pdftk">pdftk</h3>
+<h2 id="pdftk">pdftk</h2>
 
 <p><a href="http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/" title="pdftk">pdftk</a>也是一个pdf方面的神奇，可以完成pdf合并、合并多个pdf指定页、分割、加水印等，而且是跨windows、linux、mac多个平台的。不过我也只用来合并pdf:</p>
 
@@ -244,7 +244,7 @@
 
 <!-- more -->
 
-<h3 id="section">准备</h3>
+<h2 id="section">准备</h2>
 
 <p>我是在linux上弄的，windows下用cygwin也行。</p>
 
@@ -260,7 +260,7 @@ $ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
 
 <p>这时候执行bin/hadoop就会出现帮助信息了。</p>
 
-<h3 id="section-1">跑例程</h3>
+<h2 id="section-1">跑例程</h2>
 
 <p>Hadoop的文件系统叫<a href="http://hadoop.apache.org/docs/stable/hdfs_design.html" title="HDFS">HDFS</a>（Hadoop distribution filesystem)，是一个分布式文件系统。每份数据都会在多个节点有备份，以容错、修复。所有数据都要先放进HDFS才能Hadoop处理。</p>
 
@@ -288,7 +288,7 @@ $ bin/hadoop fs -ls output
 $ bin/hadoop fs -cat output/*
 </code></pre>
 
-<h3 id="wordcount">WordCount例子</h3>
+<h2 id="wordcount">WordCount例子</h2>
 
 <p><a href="http://hadoop.apache.org/docs/stable/mapred_tutorial.html" title="WordCount">WordCount</a>是hadoop中的另一个例子</p>
 
@@ -317,7 +317,7 @@ $ bin/hadoop jar wordcount.jar org.myorg.WordCount input output  # 执行wordcou
 $ bin/hadoop fs -cat output/*  # 打印结果
 </code></pre>
 
-<h3 id="section-2">结语</h3>
+<h2 id="section-2">结语</h2>
 
 <p>尝试了一下Hadoop，还有更多有待研究
 <br />
@@ -335,7 +335,7 @@ $ bin/hadoop fs -cat output/*  # 打印结果
     <id>http://www.goorockey.com/blog/2012/10/10/about-exploit-exercise-nebula-level01</id>
     <content type="html"><![CDATA[<p>今天做<a href="http://exploit-exercises.com/">exploit exercise</a>的nebula <a href="http://exploit-exercises.com/nebula/level01">level01</a>，长见识了，记录一下。</p>
 
-<h3 id="section">题目</h3>
+<h2 id="section">题目</h2>
 
 <p>题目提供了/home/flag01/下flag01的源码：</p>
 
@@ -378,7 +378,7 @@ $ /home/flag01/flag01 # 执行/home/flag01下的flag01
 $ getflag # 通关
 </code></pre>
 
-<h3 id="section-1">原理</h3>
+<h2 id="section-1">原理</h2>
 
 <p>主要原理网上的解法都说得很明白，就是通过env使得执行的echo是我们创建的假echo，成功以用户flag01的权限起bash</p>
 
@@ -396,7 +396,7 @@ $ getflag # 通关
   <p>If the shell is started with the effective user (group) id not equal to the real user (group) id, and the -p option is not supplied, no startup files are read, shell functions are not inherited from the environment, the SHELLOPTS variable, if it appears in the environment, is ignored, and the effective user id is set to the real user id. If the -p option is supplied at invocation, the startup behavior is the same, but the effective user id is not reset.</p>
 </blockquote>
 
-<h3 id="real-user-id-effective-user-idsaved-set-user-id-set-user-id-bit">real user ID, effective user ID，saved set-user-ID, set-user-ID bit</h3>
+<h2 id="real-user-id-effective-user-idsaved-set-user-id-set-user-id-bit">real user ID, effective user ID，saved set-user-ID, set-user-ID bit</h2>
 
 <p>首先明确什么是real user ID, effective user ID，saved set-user-ID, set-user-ID bit</p>
 
@@ -416,13 +416,13 @@ $ getflag # 通关
 
 <p>这就知道saved set-user-ID有什么用了。它就是当程序是SUID程序时，effective user ID可以被设为real user ID和程序启动时的effective user ID，saved set-user-ID就是用来保存这个程序启动时effective user ID的值的，使得setuid可以把effective user ID可以从real user ID设回来。</p>
 
-<h3 id="bash">bash</h3>
+<h2 id="bash">bash</h2>
 
 <p>然后就是起bash时，如果effective user ID跟real user ID不同，且real user ID不是管理员权限用户，则会把effective user ID设回real user ID。</p>
 
 <p>而我们这样如果没有setresgid,setresuid的话，real user ID是level01, effective user ID是flag01, 起bash时，effective user ID会被设回real user ID，那还只是以level01起bash，而不是flag01起bash了。</p>
 
-<h3 id="system">system()的安全问题</h3>
+<h2 id="system">system()的安全问题</h2>
 
 <p>在这里也可以看到system()是有安全问题的，因为system()里面是fork完就直接调用execl，使得继承了父进程的effective user ID的子进程执行新的程序。</p>
 
@@ -434,7 +434,7 @@ $ getflag # 通关
 
 <p>意思在SUID程序中，不应该用system()，而是自己写fork()和exec()来实现，并在fork和exec中间，自己处理好id权限问题。</p>
 
-<h3 id="section-2">结语</h3>
+<h2 id="section-2">结语</h2>
 
 <p>之前看APUE，用户id这里看得一头雾水，通过这个exercise，总算有点感觉了。
 <br />
@@ -457,7 +457,7 @@ $ getflag # 通关
 
 <hr />
 
-<h3 id="section">1. 发邮件</h3>
+<h2 id="section">1. 发邮件</h2>
 
 <p>由于服务器是windows系统，google得知，windows下有<a href="http://www.blat.net">blat</a>这发邮件的大杀器，所以刚开始是想用blat+批处理做的。</p>
 
@@ -512,12 +512,12 @@ smtp.quit()
 days = (datetime.datetime.now() - datetime.datetime(2012,9,30)).days
 </code></pre>
 
-<h3 id="section-1">2.定时</h3>
+<h2 id="section-1">2.定时</h2>
 <p>定时在windows可以用计划任务实现</p>
 
 <p>P.S 在linux可以用cron实现</p>
 
-<h3 id="section-2">3.整个代码</h3>
+<h2 id="section-2">3.整个代码</h2>
 
 <pre><code>#coding=utf-8
 import smtplib
@@ -639,7 +639,7 @@ if __name__ == '__main__':
     <id>http://www.goorockey.com/blog/2012/09/25/pair-and-list-in-scheme</id>
     <content type="html"><![CDATA[<p>最近学scheme，总结一下pair和list的区别，主要是两点：</p>
 
-<h4 id="listpairnulllistpairlist">1. list一定是pair，但只有以null（空list）结尾的pair才是list</h4>
+<h3 id="listpairnulllistpairlist">1. list一定是pair，但只有以null（空list）结尾的pair才是list</h3>
 
 <p>对于(define list1 (list a b c)),list1表现为(a b c),其实也可以写成(a . (b . ()))。</p>
 
@@ -673,7 +673,7 @@ if __name__ == '__main__':
 #t
 </code></pre>
 
-<h4 id="pair">2. pair的显示规则</h4>
+<h3 id="pair">2. pair的显示规则</h3>
 
 <p>引用<a href="http://download.plt-scheme.org/doc/html/guide/Pairs__Lists__and_Scheme_Syntax.html">这里</a>的解释：</p>
 
@@ -743,7 +743,7 @@ if __name__ == '__main__':
 
 <p>DNS隧道是什么就不解释了。google一下DNS隧道能搜到风河、云风两个大牛相关的blog。这次我用iodine来实现DNS隧道。</p>
 
-<h3 id="section">场景 </h3>
+<h2 id="section">场景 </h2>
 <p>现在情况是，用户只能跟外界有DNS通路，想借此进行平常的http、ftp等通信。</p>
 
 <p>据说平常的CMCC等开放热点，虽然http等要账号和密码，但DNS是通的，然后你懂的了。</p>
@@ -770,7 +770,7 @@ if __name__ == '__main__':
   <li>
     <p>外网回复的数据包原路返回，这样就完成通讯了。
  
-### VMWare环境模拟</p>
+## VMWare环境模拟</p>
   </li>
 </ul>
 
@@ -791,7 +791,7 @@ HostC（DNS服务器）可以跟HostA进行DNS解析，且能跟HostB通信。 
 HostA的iptables不允许HostA和HostB之间互访
 </code></pre>
 
-<h3 id="dns">DNS服务器配置</h3>
+<h2 id="dns">DNS服务器配置</h2>
 
 <p>刚开始看教程好像很繁琐，感觉conf文件好多啊，而且配置项也多~~</p>
 
@@ -904,7 +904,7 @@ $ iptables –I INPUT -p udp --dport 53 -j ACCEPT
 
 <p>在HostA和HostB的/etc/resolv.conf添加HostA的ip后，就能正确解析goorockey.go了。</p>
 
-<h3 id="iodine">iodine</h3>
+<h2 id="iodine">iodine</h2>
 
 <p>iodine是外国人写的开源DNS隧道工具，有linux版、windows版和Mac版的。教程看它的ReadMe或者HowToSetup都比较清楚。</p>
 
@@ -937,13 +937,13 @@ $ iptables –I INPUT -p udp --dport 53 -j ACCEPT
 
 <p> 然后就可以用ssh隧道过去来做代理了~~</p>
 
-<h3 id="section-1">小结</h3>
+<h2 id="section-1">小结</h2>
 
 <p>那时候看到DNS隧道，真是非常的兴奋，感觉太爽、太妙了。其实协议都可以这样做隧道，只是那时候没有意识到而已。</p>
 
 <p>之后还继续想实验一下ICMP隧道，看一下iodine的代码。O(∩_∩)O哈哈~</p>
 
-<h3 id="section-2">参考资料：</h3>
+<h2 id="section-2">参考资料：</h2>
 
 <ul>
   <li>
@@ -974,7 +974,7 @@ $ iptables –I INPUT -p udp --dport 53 -j ACCEPT
 
 <p>实验涉及：NAT，iptables，</p>
 
-<h3 id="section">实验目标</h3>
+<h2 id="section">实验目标</h2>
 
 <p>这次我要用iptables实现NAT功能（SNAT和DNAT）。</p>
 
@@ -998,13 +998,13 @@ $ iptables –I INPUT -p udp --dport 53 -j ACCEPT
   </li>
 </ul>
 
-<h3 id="section-1">环境</h3>
+<h2 id="section-1">环境</h2>
 
 <p>用VMWare虚拟出这4台机子，VMWare的版本为8.0</p>
 
 <p>每台机子都跑CentOS 6.0</p>
 
-<h3 id="vmware">VMWare环境配置</h3>
+<h2 id="vmware">VMWare环境配置</h2>
 
 <p>安装4个虚拟机，都装上CentOS，主机名分别定为hostA、hostB、hostC、hostD，对应A、B、C、D。</p>
 
@@ -1042,7 +1042,7 @@ D：192.168.4.234
 C则都能跟它们三个互访
 </code></pre>
 
-<h3 id="ciptablesnat">配置网关C的iptables，实现NAT</h3>
+<h2 id="ciptablesnat">配置网关C的iptables，实现NAT</h2>
 
 <p>到关键也是好玩的地方了。</p>
 
@@ -1104,7 +1104,7 @@ C则都能跟它们三个互访
 
 <p>现在D可以通过ssh到C的19991口来ssh到A了。</p>
 
-<h3 id="section-2">小结</h3>
+<h2 id="section-2">小结</h2>
 
 <p>整个实验搞完，对iptables，NAT的原理还是深刻了不少。</p>
 
@@ -1124,7 +1124,7 @@ C则都能跟它们三个互访
     <id>http://www.goorockey.com/blogs/77213</id>
     <content type="html"><![CDATA[<p>最近要恶补一下计算机网络的基础知识，今天先总结一下NAT。</p>
 
-<h3 id="nat">NAT的背景</h3>
+<h2 id="nat">NAT的背景</h2>
 
 <p>随着Internet的普及，网络中的ip资源是越来越紧张。而NAT就是为了解决这个问题的方案。</p>
 
@@ -1138,7 +1138,7 @@ C则都能跟它们三个互访
 
 <!-- more -->
 
-<h3 id="nat-1">NAT的类型</h3>
+<h2 id="nat-1">NAT的类型</h2>
 
 <p>按照通信发起方的不同，NAT可以分为：</p>
 
@@ -1175,7 +1175,7 @@ C则都能跟它们三个互访
 
 <p>可想而知，当8.8.8.8向1.1.1.1发送数据包，网关会做DNAT，把包的目标ip从1.1.1.1改为192.168.1.2，同时会把转换记录到一个表中。然后192.168.1.2回复数据包，包的源ip是192.168.1.2，目标ip会是8.8.8.8。网关接受到包后，则查表，把源ip修改回1.1.1.1。</p>
 
-<h3 id="nat-2">NAT的转换方式</h3>
+<h2 id="nat-2">NAT的转换方式</h2>
 
 <p>NAT有四种转换方式：</p>
 
@@ -1230,7 +1230,7 @@ C则都能跟它们三个互访
 
 <p>网关的表中记录这种转化。</p>
 
-<h3 id="section">小结</h3>
+<h2 id="section">小结</h2>
 
 <p>其实所谓的内网和外网都是相对而言，只要是两个网络间的通信，都可以或需要用网关或路由做NAT。</p>
 
@@ -1257,7 +1257,7 @@ C则都能跟它们三个互访
     <link href="http://www.goorockey.com/blogs/77180"/>
     <updated>2012-02-29T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/77180</id>
-    <content type="html"><![CDATA[<h3 id="section">背景</h3>
+    <content type="html"><![CDATA[<h2 id="section">背景</h2>
 
 <p>之前就试过几次想把linux作为宿主来玩，但都因为舍弃不了一些windows下的软件而放弃了，例如wiz，qq等都是我常用的软件。试过wine，但总是有点错误，不完美。</p>
 
@@ -1267,7 +1267,7 @@ C则都能跟它们三个互访
 
 <!-- more -->
 
-<h3 id="section-1">系统</h3>
+<h2 id="section-1">系统</h2>
 
 <p>这次选的linux的linux mint(64bit)，一个基于ubuntu的linux发行版。</p>
 
@@ -1275,7 +1275,7 @@ C则都能跟它们三个互访
 
 <p>我不大喜欢ubuntu现在的natty，所以就在虚拟机试用了一下linux mint，感觉比ubuntu方便。</p>
 
-<h3 id="section-2">工具</h3>
+<h2 id="section-2">工具</h2>
 
 <ul>
   <li>
@@ -1295,7 +1295,7 @@ C则都能跟它们三个互访
   </li>
 </ul>
 
-<h3 id="section-3">日常应用</h3>
+<h2 id="section-3">日常应用</h2>
 
 <p>1.网络管理</p>
 
@@ -1382,7 +1382,7 @@ $ sudo apt-get --purge remove network-manager-gnome
     <link href="http://www.goorockey.com/blogs/77141"/>
     <updated>2012-02-22T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/77141</id>
-    <content type="html"><![CDATA[<h3 id="ssh">ssh端口转发是什么</h3>
+    <content type="html"><![CDATA[<h2 id="ssh">ssh端口转发是什么</h2>
 <p>ssh端口转发也被叫ssh隧道，ssh代理。</p>
 
 <p>所谓隧道，就是用X协议封装Y协议的数据包，靠X协议来进行Y协议通信。</p>
@@ -1400,7 +1400,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <!-- more -->
 
-<h3 id="ssh-1">三种ssh端口转发</h3>
+<h2 id="ssh-1">三种ssh端口转发</h2>
 
 <p>ssh端口转发有三种：</p>
 
@@ -1416,7 +1416,7 @@ $ sudo apt-get --purge remove network-manager-gnome
   </li>
 </ul>
 
-<h3 id="section">本地转发</h3>
+<h2 id="section">本地转发</h2>
 
 <p>命令是：</p>
 
@@ -1477,7 +1477,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>就能在A机子远程桌面控制C机子了。</p>
 
-<h3 id="section-1">远程转发</h3>
+<h2 id="section-1">远程转发</h2>
 
 <p>其实远程转发跟本地转发是基本相同的。</p>
 
@@ -1498,7 +1498,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>如果客户端和服务端都允许ssh连接，那选择本地转发还是远程转发都可以。</p>
 
-<h3 id="section-2">动态转发</h3>
+<h2 id="section-2">动态转发</h2>
 <p>命令是：</p>
 
 <pre><code>$ ssh –D &lt;local port&gt;  &lt;ssh host&gt;
@@ -1510,11 +1510,11 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>这时候ssh隧道是充当了SOCKS代理的作用。这就可以用来翻X之类了。</p>
 
-<h3 id="ending">Ending</h3>
+<h2 id="ending">Ending</h2>
 
 <p>总的来说，ssh是个好东西~~~</p>
 
-<h3 id="section-3">相关资料：</h3>
+<h2 id="section-3">相关资料：</h2>
 
 <ul>
   <li>
@@ -1552,7 +1552,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <!-- more -->
 
-<h3 id="dotcloud">dotcloud介绍</h3>
+<h2 id="dotcloud">dotcloud介绍</h2>
 
 <p>dotcloud是PaaS(Platform as a Service)的云计算平台，类似的还有GAE、Heroku、国内的SAE。</p>
 
@@ -1571,7 +1571,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>dotcloud的访问速度还是很快的。</p>
 
-<h3 id="dotcloud-1">dotcloud使用</h3>
+<h2 id="dotcloud-1">dotcloud使用</h2>
 
 <p>搭建wordpress的话，网上资源很多，我主要是参考：</p>
 
@@ -1586,7 +1586,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>反正算蛮简单的。</p>
 
-<h3 id="section">建议：</h3>
+<h2 id="section">建议：</h2>
 
 <p>不要用postinstall脚本连接的方法。由于dotcloud的push，是把原有的全部删除，重新建立一份，这个脚本是把wp-content移出current目录，防止push后把wp-content覆盖了。</p>
 
@@ -1608,7 +1608,7 @@ $ sudo apt-get --purge remove network-manager-gnome
     <id>http://www.goorockey.com/blogs/77106</id>
     <content type="html"><![CDATA[<p>今天拿自己项目组svn的日志来小玩了一下code swarm。</p>
 
-<h3 id="code-swarm">什么是code swarm?</h3>
+<h2 id="code-swarm">什么是code swarm?</h2>
 
 <p>code swarm是可以把svn、cvs、git等代码管理系统的日志，以可视化的形式展现的项目。</p>
 
@@ -1629,7 +1629,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>我个人感觉，看别人的code swarm没什么特别的感受，只有看自己项目的才有感觉，呵呵。</p>
 
-<h3 id="code-swarm-1">使用 code swarm</h3>
+<h2 id="code-swarm-1">使用 code swarm</h2>
 
 <p>可以从它google code 的主页中下载代码：<a href="http://code.google.com/p/codeswarm/downloads/list">http://code.google.com/p/codeswarm/downloads/list</a></p>
 
@@ -1641,7 +1641,7 @@ $ sudo apt-get --purge remove network-manager-gnome
 
 <p>在命令行提示中选择配置文件后，code swarm就能呈现了，但还可以修改配置来达到自己的效果。</p>
 
-<h3 id="code-swarm-2">配置code swarm</h3>
+<h2 id="code-swarm-2">配置code swarm</h2>
 
 <p>我觉得关键的配置：</p>
 
@@ -1679,7 +1679,7 @@ $ sudo apt-get --purge remove network-manager-gnome
   </li>
 </ul>
 
-<h3 id="code-swarm-3">把code swarm的图片合成为视频</h3>
+<h2 id="code-swarm-3">把code swarm的图片合成为视频</h2>
 
 <p>方法很多，抱着学习的心态，我试着按wiki的方法用mencoder。</p>
 
@@ -1866,7 +1866,7 @@ $ sudo apt-get --purge remove network-manager-gnome
     <link href="http://www.goorockey.com/blogs/60002"/>
     <updated>2011-11-12T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/60002</id>
-    <content type="html"><![CDATA[<h3 id="apachephpmysql">一、安装及配置Apache+php+mysql</h3>
+    <content type="html"><![CDATA[<h2 id="apachephpmysql">一、安装及配置Apache+php+mysql</h2>
 
 <p>1.安装Apache+php+mysql</p>
 
@@ -1920,7 +1920,7 @@ $ sudo apt-get --purge remove network-manager-gnome
   </li>
 </ul>
 
-<h3 id="tomcat">二、安装和配置Tomcat：</h3>
+<h2 id="tomcat">二、安装和配置Tomcat：</h2>
 
 <p>1.安装JDK：</p>
 
@@ -2086,7 +2086,7 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
     <link href="http://www.goorockey.com/blogs/45011"/>
     <updated>2011-09-05T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/45011</id>
-    <content type="html"><![CDATA[<h3 id="section">原子操作</h3>
+    <content type="html"><![CDATA[<h2 id="section">原子操作</h2>
 
 <p>能调用的原子操作</p>
 
@@ -2099,7 +2099,7 @@ PVOID InterlockedCompareExchangePointer(PVOID* ppvDestination, PVOID pvExchange,
 
 <!--more-->
 
-<h3 id="section-1">以查询方式同步</h3>
+<h2 id="section-1">以查询方式同步</h2>
 
 <pre><code>volatile BOOL g_fFinishedCalculation = FALSE;
 
@@ -2133,7 +2133,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<h3 id="criticalsection">关键代码段Critical_Section</h3>
+<h2 id="criticalsection">关键代码段Critical_Section</h2>
 
 <ul>
   <li>
@@ -2184,7 +2184,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<h3 id="section-2">内核对象同步</h3>
+<h2 id="section-2">内核对象同步</h2>
 
 <ul>
   <li>
@@ -2195,7 +2195,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<h3 id="waitabletimer">WaitableTimer</h3>
+<h2 id="waitabletimer">WaitableTimer</h2>
 
 <ul>
   <li>
@@ -2209,7 +2209,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<h3 id="section-3">其他等待函数</h3>
+<h2 id="section-3">其他等待函数</h2>
 
 <table>
   <tbody>
@@ -2224,7 +2224,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </tbody>
 </table>
 
-<h3 id="section-4">各同步的内核对象的理解</h3>
+<h2 id="section-4">各同步的内核对象的理解</h2>
 
 <ul>
   <li>

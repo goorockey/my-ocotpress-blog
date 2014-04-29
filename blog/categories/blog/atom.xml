@@ -4,7 +4,7 @@
   <title><![CDATA[categories: blog | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-29T12:00:03+08:00</updated>
+  <updated>2014-04-29T12:34:56+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -70,7 +70,7 @@
 
 <!-- more -->
 
-<h3 id="dotcloud">dotcloud介绍</h3>
+<h2 id="dotcloud">dotcloud介绍</h2>
 
 <p>dotcloud是PaaS(Platform as a Service)的云计算平台，类似的还有GAE、Heroku、国内的SAE。</p>
 
@@ -89,7 +89,7 @@
 
 <p>dotcloud的访问速度还是很快的。</p>
 
-<h3 id="dotcloud-1">dotcloud使用</h3>
+<h2 id="dotcloud-1">dotcloud使用</h2>
 
 <p>搭建wordpress的话，网上资源很多，我主要是参考：</p>
 
@@ -104,7 +104,7 @@
 
 <p>反正算蛮简单的。</p>
 
-<h3 id="section">建议：</h3>
+<h2 id="section">建议：</h2>
 
 <p>不要用postinstall脚本连接的方法。由于dotcloud的push，是把原有的全部删除，重新建立一份，这个脚本是把wp-content移出current目录，防止push后把wp-content覆盖了。</p>
 

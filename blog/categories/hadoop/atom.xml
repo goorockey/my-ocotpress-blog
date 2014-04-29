@@ -4,7 +4,7 @@
   <title><![CDATA[categories: hadoop | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/hadoop/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-29T12:00:03+08:00</updated>
+  <updated>2014-04-29T12:34:56+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -29,7 +29,7 @@
 
 <!-- more -->
 
-<h3 id="section">准备</h3>
+<h2 id="section">准备</h2>
 
 <p>我是在linux上弄的，windows下用cygwin也行。</p>
 
@@ -45,7 +45,7 @@ $ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
 
 <p>这时候执行bin/hadoop就会出现帮助信息了。</p>
 
-<h3 id="section-1">跑例程</h3>
+<h2 id="section-1">跑例程</h2>
 
 <p>Hadoop的文件系统叫<a href="http://hadoop.apache.org/docs/stable/hdfs_design.html" title="HDFS">HDFS</a>（Hadoop distribution filesystem)，是一个分布式文件系统。每份数据都会在多个节点有备份，以容错、修复。所有数据都要先放进HDFS才能Hadoop处理。</p>
 
@@ -73,7 +73,7 @@ $ bin/hadoop fs -ls output
 $ bin/hadoop fs -cat output/*
 </code></pre>
 
-<h3 id="wordcount">WordCount例子</h3>
+<h2 id="wordcount">WordCount例子</h2>
 
 <p><a href="http://hadoop.apache.org/docs/stable/mapred_tutorial.html" title="WordCount">WordCount</a>是hadoop中的另一个例子</p>
 
@@ -102,7 +102,7 @@ $ bin/hadoop jar wordcount.jar org.myorg.WordCount input output  # 执行wordcou
 $ bin/hadoop fs -cat output/*  # 打印结果
 </code></pre>
 
-<h3 id="section-2">结语</h3>
+<h2 id="section-2">结语</h2>
 
 <p>尝试了一下Hadoop，还有更多有待研究</p>
 ]]></content>

@@ -81,7 +81,7 @@ PVOID &hellip;">
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">《Windows核心编程》读书笔记3--线程同步</h2>
-	<div class="entry-content"><h3 id="section">原子操作</h3>
+	<div class="entry-content"><h2 id="section">原子操作</h2>
 
 <p>能调用的原子操作</p>
 
@@ -94,7 +94,7 @@ PVOID InterlockedCompareExchangePointer(PVOID* ppvDestination, PVOID pvExchange,
 
 <!--more-->
 
-<h3 id="section-1">以查询方式同步</h3>
+<h2 id="section-1">以查询方式同步</h2>
 
 <pre><code>volatile BOOL g_fFinishedCalculation = FALSE;
 
@@ -128,7 +128,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<h3 id="criticalsection">关键代码段Critical_Section</h3>
+<h2 id="criticalsection">关键代码段Critical_Section</h2>
 
 <ul>
   <li>
@@ -179,7 +179,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<h3 id="section-2">内核对象同步</h3>
+<h2 id="section-2">内核对象同步</h2>
 
 <ul>
   <li>
@@ -190,7 +190,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<h3 id="waitabletimer">WaitableTimer</h3>
+<h2 id="waitabletimer">WaitableTimer</h2>
 
 <ul>
   <li>
@@ -204,7 +204,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </li>
 </ul>
 
-<h3 id="section-3">其他等待函数</h3>
+<h2 id="section-3">其他等待函数</h2>
 
 <table>
   <tbody>
@@ -219,7 +219,7 @@ DWORD WINAPI RecalcFunc(PVOID pvParam)
   </tbody>
 </table>
 
-<h3 id="section-4">各同步的内核对象的理解</h3>
+<h2 id="section-4">各同步的内核对象的理解</h2>
 
 <ul>
   <li>

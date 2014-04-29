@@ -83,7 +83,7 @@
 
 <p>实验涉及：NAT，iptables，</p>
 
-<h3 id="section">实验目标</h3>
+<h2 id="section">实验目标</h2>
 
 <p>这次我要用iptables实现NAT功能（SNAT和DNAT）。</p>
 
@@ -107,13 +107,13 @@
   </li>
 </ul>
 
-<h3 id="section-1">环境</h3>
+<h2 id="section-1">环境</h2>
 
 <p>用VMWare虚拟出这4台机子，VMWare的版本为8.0</p>
 
 <p>每台机子都跑CentOS 6.0</p>
 
-<h3 id="vmware">VMWare环境配置</h3>
+<h2 id="vmware">VMWare环境配置</h2>
 
 <p>安装4个虚拟机，都装上CentOS，主机名分别定为hostA、hostB、hostC、hostD，对应A、B、C、D。</p>
 
@@ -151,7 +151,7 @@ D：192.168.4.234
 C则都能跟它们三个互访
 </code></pre>
 
-<h3 id="ciptablesnat">配置网关C的iptables，实现NAT</h3>
+<h2 id="ciptablesnat">配置网关C的iptables，实现NAT</h2>
 
 <p>到关键也是好玩的地方了。</p>
 
@@ -213,7 +213,7 @@ C则都能跟它们三个互访
 
 <p>现在D可以通过ssh到C的19991口来ssh到A了。</p>
 
-<h3 id="section-2">小结</h3>
+<h2 id="section-2">小结</h2>
 
 <p>整个实验搞完，对iptables，NAT的原理还是深刻了不少。</p>
 

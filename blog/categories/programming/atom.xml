@@ -4,7 +4,7 @@
   <title><![CDATA[categories: programming | Goorockey's Blog]]></title>
   <link href="http://www.goorockey.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://www.goorockey.com/"/>
-  <updated>2014-04-29T12:00:03+08:00</updated>
+  <updated>2014-04-29T12:34:56+08:00</updated>
   <id>http://www.goorockey.com/</id>
   <author>
     <name><![CDATA[Goorockey]]></name>
@@ -27,7 +27,7 @@
 
 <!-- more -->
 
-<h3 id="wxrectcrect">wxRect和CRect</h3>
+<h2 id="wxrectcrect">wxRect和CRect</h2>
 
 <p>Windows的CRect要替换成wxWidgets的wxRect真不能简单的替换，因为两者内部设计不一样。</p>
 
@@ -41,21 +41,21 @@
 
 <p>鉴于wxRect和CRect以上的差异，其实移植的时候最好的做法是自己写一个封装了wxRect的MyRect类，把wxRect和CRect的差异在MyRect里面做转换。这其实是应用了Adaptor Pattern。</p>
 
-<h3 id="macwxbitmapwxclipboardalpha">Mac下wxBitmap在剪切板wxClipboard取回时，Alpha信息丢失</h3>
+<h2 id="macwxbitmapwxclipboardalpha">Mac下wxBitmap在剪切板wxClipboard取回时，Alpha信息丢失</h2>
 
 <p>wxWidgets在从剪切板wxClipboard取回图片数据wxBitmapDataObject时，会丢失了透明信息，即Alpha channel。具体来看就是原来用RGBA表示的有透明信息的图片，通过剪切板传递之后，RGBA的A都变成255了。</p>
 
 <p>我通过查看wxWidgets的源码，发现确实是个bug，wxWidgets在Mac这边调用Cocoa接口从剪切板获取像素数据保存为图片时，没有关注Alpha channel。这个我通过修改它源码解决了。详见我提交到官方的这个<a href="http://trac.wxwidgets.org/ticket/16198">ticket</a>。</p>
 
-<h3 id="wxdcunix">wxDC在Unix下不是线程安全的</h3>
+<h2 id="wxdcunix">wxDC在Unix下不是线程安全的</h2>
 
 <p>wxDC是wxWidgets的绘制上下文，对应于Windows下的CDC。官方资料说了，wxDC在Unix平台下是非线程安全的。这里指的Unix平台具体是GTK(Linux)和OSX(Mac)。所以绘制的时候最好是下wxPaintEvent的响应函数里面做。在子线程做绘制不保证正确，即使是用wxWidgets的wxGuiEnter/wxGuiLeave加锁也是不行。</p>
 
-<h3 id="section">对话框资源的移植</h3>
+<h2 id="section">对话框资源的移植</h2>
 
 <p>在MFC中，对话框资源都保存在rc文件中。而对应到wxWidgets，每个对话框以xml格式保存成各自的xrc文件，跟rc有一定区别。MFC大部分控件在wxWidgets都能找到。对于对话框资源的移植，我们是用脚本批量完成的，中间一个坑是转换时候对话框和控件的大小在MFC的rc和wxWidgets的xrc不是1:1的，要乘一个比例，1.5左右。</p>
 
-<h3 id="all-in-all">ALL IN ALL</h3>
+<h2 id="all-in-all">ALL IN ALL</h2>
 
 <p>以上是暂时记得的问题。总的来说，wxWidgets是个强大的跨平台库，用着真心方便，常用的操作也都覆盖了，代码也整洁漂亮，社区也活跃，还是可以放心选用的。而且作为一个开源库，有什么问题都能自己定位自己修改解决，开源万岁～</p>
 ]]></content>
@@ -102,19 +102,19 @@
     <link href="http://www.goorockey.com/blogs/38007"/>
     <updated>2011-08-24T00:00:00+08:00</updated>
     <id>http://www.goorockey.com/blogs/38007</id>
-    <content type="html"><![CDATA[<h4 id="section">题一、有一个整数数组，请求出两两之差绝对值最小的值</h4>
+    <content type="html"><![CDATA[<h3 id="section">题一、有一个整数数组，请求出两两之差绝对值最小的值</h3>
 
 <p>方法：先排序，再找差值最小的点对。</p>
 
 <p>效率：时间复杂度O(nlogn)</p>
 
-<h4 id="n">题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑）</h4>
+<h3 id="n">题二、平面上N个点，每两个点都确定一条直线，求出斜率最大的那条直线所通过的两个点（斜率不存在的情况不考虑）</h3>
 
 <p>方法：根据x排序，用图解枚举所有情况，能证明斜率最大的两点肯定是相邻的两点。</p>
 
 <p>效率：时间复杂度O(nlogn)</p>
 
-<h4 id="f2ff">题三、一棵排序二叉树，令 f=(最大值+最小值)/2，设计一个算法，找出距离f值最近、大于f值的结点</h4>
+<h3 id="f2ff">题三、一棵排序二叉树，令 f=(最大值+最小值)/2，设计一个算法，找出距离f值最近、大于f值的结点</h3>
 
 <p>方法：把f插入，中序排序</p>
 
@@ -122,7 +122,7 @@
 
 <!--more-->
 
-<h4 id="section-1">题四、找出两个字符串中最大公共子字符串</h4>
+<h3 id="section-1">题四、找出两个字符串中最大公共子字符串</h3>
 
 <p>如”abccade”,”dgcadde”的最大子串为”cad”</p>
 
@@ -134,7 +134,7 @@
 
 <p>矩阵法：用矩阵表示两字符串，横竖字符相同的格置1，则在45度方向连续1最多的就是所求，时间复杂度O(n^2) 。</p>
 
-<h4 id="section-2">题五、检查单向链表中是否有环</h4>
+<h3 id="section-2">题五、检查单向链表中是否有环</h3>
 
 <p>这算是经典的面试题了，记录一下好的解法和推广。</p>
 
@@ -164,7 +164,7 @@
 <noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712175&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 </p>
 
-<h4 id="section-3">推广一：有环单向链表中环的节点数</h4>
+<h3 id="section-3">推广一：有环单向链表中环的节点数</h3>
 
 <p>操作：</p>
 
@@ -178,7 +178,7 @@
 <noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712217&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 </p>
 
-<h4 id="section-4">推广二、找到有环单向链表中环首节点</h4>
+<h3 id="section-4">推广二、找到有环单向链表中环首节点</h3>
 
 <p>如以下有环单向链表：</p>
 
@@ -196,7 +196,7 @@
 
 <p>解释：因为开始两指针相距n个节点，当后指针刚进入环时，肯定会与前指针在环的首节点相遇。</p>
 
-<h4 id="section-5">推广三、破坏有环单向链表的环</h4>
+<h3 id="section-5">推广三、破坏有环单向链表的环</h3>
 
 <p>操作：</p>
 
@@ -206,7 +206,7 @@
 <noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist/3712226&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 </p>
 
-<h4 id="section-6">题五、找到有序链表的中位值</h4>
+<h3 id="section-6">题五、找到有序链表的中位值</h3>
 
 <p>常规方法：遍历一次链表得到链表长度length，再遍历一次链表到length/2的位置即为中位值</p>
 

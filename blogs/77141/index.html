@@ -80,7 +80,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">SSH端口转发</h2>
-	<div class="entry-content"><h3 id="ssh">ssh端口转发是什么</h3>
+	<div class="entry-content"><h2 id="ssh">ssh端口转发是什么</h2>
 <p>ssh端口转发也被叫ssh隧道，ssh代理。</p>
 
 <p>所谓隧道，就是用X协议封装Y协议的数据包，靠X协议来进行Y协议通信。</p>
@@ -98,7 +98,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 
 <!-- more -->
 
-<h3 id="ssh-1">三种ssh端口转发</h3>
+<h2 id="ssh-1">三种ssh端口转发</h2>
 
 <p>ssh端口转发有三种：</p>
 
@@ -114,7 +114,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
   </li>
 </ul>
 
-<h3 id="section">本地转发</h3>
+<h2 id="section">本地转发</h2>
 
 <p>命令是：</p>
 
@@ -175,7 +175,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 
 <p>就能在A机子远程桌面控制C机子了。</p>
 
-<h3 id="section-1">远程转发</h3>
+<h2 id="section-1">远程转发</h2>
 
 <p>其实远程转发跟本地转发是基本相同的。</p>
 
@@ -196,7 +196,7 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 
 <p>如果客户端和服务端都允许ssh连接，那选择本地转发还是远程转发都可以。</p>
 
-<h3 id="section-2">动态转发</h3>
+<h2 id="section-2">动态转发</h2>
 <p>命令是：</p>
 
 <pre><code>$ ssh –D &lt;local port&gt;  &lt;ssh host&gt;
@@ -208,11 +208,11 @@ ssh端口转发也被叫ssh隧道，ssh代理。 所谓隧道，就是用X协议
 
 <p>这时候ssh隧道是充当了SOCKS代理的作用。这就可以用来翻X之类了。</p>
 
-<h3 id="ending">Ending</h3>
+<h2 id="ending">Ending</h2>
 
 <p>总的来说，ssh是个好东西~~~</p>
 
-<h3 id="section-3">相关资料：</h3>
+<h2 id="section-3">相关资料：</h2>
 
 <ul>
   <li>
