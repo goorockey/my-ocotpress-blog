@@ -15,9 +15,7 @@ tags: hadoop programming
 
 由于某种原因，今天玩了一下[Hadoop]。正确来说，我是玩[HOP]，一个Hadoop的修改版本。
 
-{% blockquote %}
-The Hadoop Online Prototype (HOP) is a modified version of Hadoop MapReduce that allows data to be pipelined between tasks and between jobs. This can enable better cluster utilization and increased parallelism, and allows new functionality: online aggregation (approximate answers as a job runs), and stream processing (MapReduce jobs that run continuously, processing new data as it arrives). 
-{% endblockquote %}
+> The Hadoop Online Prototype (HOP) is a modified version of Hadoop MapReduce that allows data to be pipelined between tasks and between jobs. This can enable better cluster utilization and increased parallelism, and allows new functionality: online aggregation (approximate answers as a job runs), and stream processing (MapReduce jobs that run continuously, processing new data as it arrives). 
 
 就是多了pipeline（流水线）的Hadoop。分布式流水线可以有效加快各jobs在各节点的同步运算。
 
@@ -57,11 +55,11 @@ Hadoop的分布式体系中，有一个NameNode，是master的角色，负责主
     $ bin/hadoop fs -put intput input   # 把当前文件系统input目录复制为HDFS的input
     $ bin/hadoop jar hadoop-*-examples.jar grep input output 'dfs[a-z.]+'  # 执行所有example.jar，后面的是参数
 
-# 一段时间后，执行完毕 #
+    # 一段时间后，执行完毕 #
     $ bin/hadoop fs -get output output # 把HDFS中的output目录复制为当前文件系统的ouput
     $ cat output/* # 打印结果
 
-# 或者直接对HDFS操作 #
+    # 或者直接对HDFS操作 #
     $ bin/hadoop fs -ls output
     $ bin/hadoop fs -cat output/*
 
@@ -86,7 +84,6 @@ Hadoop是通过[MapReduce]机制来处理大数据的。Map阶段分割输入的
     $ bin/hadoop fs -rmr output/
 
     $ bin/hadoop fs -put input input # 把输入文件目录input重新放到HDFS中
-
     $ bin/hadoop jar wordcount.jar org.myorg.WordCount input output  # 执行wordcount.jar
 
     # 执行一段时间后完毕 #

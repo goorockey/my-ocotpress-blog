@@ -64,85 +64,28 @@ tags: windows programming
 
 2.主要的API:
 
-<table width="439" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td valign="top" width="200">API</td>
-<td valign="top" width="237">功能</td>
-</tr>
-<tr>
-<td valign="top" width="200">CreateJobObject</td>
-<td valign="top" width="237">创建作业内核对象</td>
-</tr>
-<tr>
-<td valign="top" width="200">OpenJobObject</td>
-<td valign="top" width="237">根据Handle打开作业内核对象</td>
-</tr>
-<tr>
-<td valign="top" width="200">IsProcessInJob</td>
-<td valign="top" width="237">验证某一个进程是否存在于作业中</td>
-</tr>
-<tr>
-<td valign="top" width="200">SetInformationJobObject</td>
-<td valign="top" width="237">给作业加上各种限制</td>
-</tr>
-<tr>
-<td valign="top" width="200">QueryInformationJobObject</td>
-<td valign="top" width="237">查询作业对象的信息</td>
-</tr>
-<tr>
-<td valign="top" width="200">AssignProcessToJobObject</td>
-<td valign="top" width="237">将进程放入作业</td>
-</tr>
-<tr>
-<td valign="top" width="200">TerminateJobObject</td>
-<td valign="top" width="237">终止作业内所有进程</td>
-</tr>
-</tbody>
-</table>
+API | 功能
+--- | ---
+CreateJobObject | 创建作业内核对象
+OpenJobObject | 根据Handle打开作业内核对象
+IsProcessInJob | 验证某一个进程是否存在于作业中
+SetInformationJobObject | 给作业加上各种限制
+QueryInformationJobObject | 查询作业对象的信息
+AssignProcessToJobObject | 将进程放入作业
+TerminateJobObject | 终止作业内所有进程
 
 3.用于作业对象的基本用户界面限制的位标志
 
-<table width="618" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td valign="top" width="188">标志</td>
-<td valign="top" width="428">描述</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_EXITWINDOWS</td>
-<td valign="top" width="428">用于防止进程通过ExitWindowsEx函数退出、关闭、重新引导或关闭系统电源</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_READCLIPBOARD</td>
-<td valign="top" width="428">防止进程读取剪贴板的内容</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_WRITECLIPBOARD</td>
-<td valign="top" width="428">防止进程删除剪贴板的内容</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS</td>
-<td valign="top" width="428">防止进程通过SystemParametersInfor函数来改变系统参数</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_DISPLAYSETTINGS</td>
-<td valign="top" width="428">防止进程通过ChangeDisplaySettings函数来改变显示设置</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_GLOBALATOMS</td>
-<td valign="top" width="428">为作业赋予它自己的基本结构表，使作业中的进程只能访问该作业的表</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_DESKTOP</td>
-<td valign="top" width="428">防止进程使用CreateDesktop或SwitchDesktop函数创建或转换桌面</td>
-</tr>
-<tr>
-<td valign="top" width="188">JOB_OBJECT_UILIMIT_HANDLES</td>
-<td valign="top" width="428">防止作业中的进程使用同一作业外部的进程创建的USER对象（如HWND）</td>
-</tr>
-</tbody>
-</table>
+标志 | 描述
+---- | ---
+JOB\_OBJECT\_UILIMIT\_EXITWINDOWS | 用于防止进程通过ExitWindowsEx函数退出、关闭、重新引导或关闭系统电源
+JOB\_OBJECT\_UILIMIT\_READCLIPBOARD | 防止进程读取剪贴板的内容
+JOB\_OBJECT\_UILIMIT\_WRITECLIPBOARD | 防止进程删除剪贴板的内容
+JOB\_OBJECT\_UILIMIT\_SYSTEMPARAMETERS | 防止进程通过SystemParametersInfor函数来改变系统参数
+JOB\_OBJECT\_UILIMIT\_DISPLAYSETTINGS | 防止进程通过ChangeDisplaySettings函数来改变显示设置
+JOB\_OBJECT\_UILIMIT\_GLOBALATOMS | 为作业赋予它自己的基本结构表，使作业中的进程只能访问该作业的表
+JOB\_OBJECT\_UILIMIT\_DESKTOP | 防止进程使用CreateDesktop或SwitchDesktop函数创建或转换桌面
+JOB\_OBJECT\_UILIMIT\_HANDLES | 防止作业中的进程使用同一作业外部的进程创建的USER对象（如HWND）
 
 ### 四、线程
 

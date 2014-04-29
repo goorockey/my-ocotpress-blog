@@ -19,35 +19,10 @@ tags: windows vc
 
 大概的就是这样：
 
-<table width="567" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td align="center" valign="top" width="212">子控件有ON_NOTIFY_REFLECT</td>
-<td align="center" valign="top" width="155">父窗口有ON_NOTIFY</td>
-<td align="center" valign="top" width="198">效果</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="212">N</td>
-<td align="center" valign="top" width="155">N</td>
-<td align="center" valign="top" width="198">WM_NOTIFY未被处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="212">N</td>
-<td align="center" valign="top" width="155">Y</td>
-<td align="center" valign="top" width="198">WM_NOTIFY只被父窗口处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="212">Y</td>
-<td align="center" valign="top" width="155">N</td>
-<td align="center" valign="top" width="198">WM_NOTIFY只被子控件处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="212">Y</td>
-<td align="center" valign="top" width="155">Y</td>
-<td align="center" valign="top" width="198">WM_NOTIFY只被子控件处理</td>
-</tr>
-</tbody>
-</table>
+子控件有ON\_NOTIFY\_REFLECT | 父窗口有ON\_NOTIFY       | 效果
+--------------------------- | ------------------------ | ----------------------
+WM\_NOTIFY未被处理          | WM\_NOTIFY只被父窗口处理 | WM\_NOTIFY只被子控件处理
+Y                           | Y                        | WM\_NOTIFY只被子控件处理
 
 <!--more-->
 
@@ -65,32 +40,10 @@ ON_NOTIFY和ON_NOTIFY_EX 以及 ON_NOTIFY_REFLECT和ON_NOTIFY_REFLECT_EX
 
 大概是这样：
 
-<table width="610" border="0" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td align="center" valign="top" width="220">子控件ON_NOTIFY_REFLECT_EX返回值</td>
-<td align="center" valign="top" width="144">父窗口有ON_NOTIFY</td>
-<td align="center" valign="top" width="244">效果</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="220">TRUE</td>
-<td align="center" valign="top" width="144">N</td>
-<td align="center" valign="top" width="244">WM_NOTIFY只被子控件处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="220">TRUE</td>
-<td align="center" valign="top" width="144">Y</td>
-<td align="center" valign="top" width="244">WM_NOTIFY只被子控件处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="220">FALSE</td>
-<td align="center" valign="top" width="144">N</td>
-<td align="center" valign="top" width="244">WM_NOTIFY只被子控件处理</td>
-</tr>
-<tr>
-<td align="center" valign="top" width="220">FALSE</td>
-<td align="center" valign="top" width="144">Y</td>
-<td align="center" valign="top" width="244">WM_NOTIFY被子控件和父窗口处理</td>
-</tr>
-</tbody>
-</table>
+子控件ON\_NOTIFY\_REFLECT\_EX返回值 | 父窗口有ON\_NOTIFY | 效果
+---------------------------------   | ------------------ | ---
+TRUE | N | WM\_NOTIFY只被子控件处理
+TRUE | Y | WM\_NOTIFY只被子控件处理
+FALSE | N | WM\_NOTIFY只被子控件处理
+FALSE | Y | WM\_NOTIFY被子控件和父窗口处理
+

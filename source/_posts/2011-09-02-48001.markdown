@@ -52,37 +52,11 @@ tags: windows programming
 
 内核对象句柄表结构：
 
-<table width="563" border="1" cellspacing="0" cellpadding="2">
-<tbody>
-<tr>
-<td valign="top" width="102">索引
-(Handle)</td>
-<td valign="top" width="159"><span style="color: #ff8080;">内核对象内存块的指针</span></td>
-<td valign="top" width="150">访问屏蔽
-（标志位的DWORD）</td>
-<td valign="top" width="150">继承标志
-（标志位的DWORD ）</td>
-</tr>
-<tr>
-<td valign="top" width="102">1</td>
-<td valign="top" width="159">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-</tr>
-<tr>
-<td valign="top" width="102">2</td>
-<td valign="top" width="159">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-<td valign="top" width="150">0 x ? ? ? ? ? ? ? ?</td>
-</tr>
-<tr>
-<td valign="top" width="102">…</td>
-<td valign="top" width="159">…</td>
-<td valign="top" width="151">…</td>
-<td valign="top" width="151">…</td>
-</tr>
-</tbody>
-</table>
+索引 (Handle) | 内核对象内存块的指针 | 访问屏蔽（标志位的DWORD）| 继承标志（标志位的DWORD ）
+------------  | -------------------- | -----------------------  | -------------------------
+1 | 0 x ? ? ? ? ? ? ? ? | 0 x ? ? ? ? ? ? ? ? | 0 x ? ? ? ? ? ? ? ?
+2 | 0 x ? ? ? ? ? ? ? ? | 0 x ? ? ? ? ? ? ? ? | 0 x ? ? ? ? ? ? ? ?
+… | … | … | …
 
 - 每个进程内都有一个内核对象句柄表来记录它在使用的内核对象，表中包含该内核对象内存块的指针。
 在内核对象的句柄就是该内核对象在此表中的索引值。
